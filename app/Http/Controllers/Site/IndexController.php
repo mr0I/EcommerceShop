@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Category;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,7 +16,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('site/index');
+        $mobileCat = Category::where('name','mobile')->first();
+        $mobileProducts = Product::where('category_id' , $mobileCat->id)->orderBy('date', 'desc')->take(10)->get();
+        return view('site/index' , compact('mobileProducts'));
     }
 
     /**

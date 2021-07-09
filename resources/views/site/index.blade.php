@@ -69,9 +69,9 @@
     <div class="tab-product-main">
       <div class="tab-prodcut-contain">
         <ul class="tabs tab-title">
-          <li class="current"><a href="tab-1">مد</a></li>
-          <li class=""><a href="tab-2">الکترونیک</a></li>
-          <li class=""><a href="tab-3">کفش</a></li>
+          <li class="current"><a href="tab-1">تلفن همراه</a></li>
+          <li class=""><a href="tab-2">لپ تاپ</a></li>
+          <li class=""><a href="tab-3">تبلت</a></li>
         </ul>
       </div>
     </div>
@@ -87,381 +87,67 @@
             <div class="tab-content-cls ">
               <div id="tab-1" class="tab-content active default">
                 <div class="product-slide-6 product-m no-arrow">
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/1.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a1.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                        <div class="new-label1">
-                          <div>جدید</div>
-                        </div>
-                        <div class="on-sale1">
-                          فروش ویژه
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline ">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                گوشی موبایل
-                              </h6>
+                  @foreach($mobileProducts as $product)
+                    <div>
+                      <div class="product-box">
+                        <div class="product-imgbox">
+                          <div class="product-front">
+                            <a href="{{ $product->url }}">
+                              <img src="{{ $product->image }}" class="img-fluid  " alt="product">
                             </a>
                           </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              56,000 تومان
+                          <div class="product-back">
+                            <a href="{{ $product->url }}">
+                              <img src="{{ $product->image }}" class="img-fluid  " alt="product">
+                            </a>
+                          </div>
+                          <div class="product-icon icon-inline">
+                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
+                              <i data-feather="shopping-cart"></i>
+                            </button>
+                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                               data-tippy-content="افزودن به لیست علاقه مندی">
+                              <i data-feather="heart"></i>
+                            </a>
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
+                               class="tooltip-top" data-tippy-content="مشاهده سریع">
+                              <i data-feather="eye"></i>
+                            </a>
+                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
+                              <i data-feather="refresh-cw"></i>
+                            </a>
+                          </div>
+                          {{--<div class="new-label1">--}}
+                            {{--<div>جدید</div>--}}
+                          {{--</div>--}}
+                          {{--<div class="on-sale1">--}}
+                            {{--فروش ویژه--}}
+                          {{--</div>--}}
+                        </div>
+                        <div class="product-detail detail-inline ">
+                          <div class="detail-title">
+                            <div class="detail-left">
+                              <a href="{{ $product->url }}">
+                                <h6 class="price-title">
+                                  {{ $product->title }}
+                                </h6>
+                              </a>
                             </div>
-                            <div class="price">
+                            <div class="detail-right">
+                              {{--<div class="check-price">--}}
+                                {{--{{ $product->title }} تومان--}}
+                              {{--</div>--}}
                               <div class="price">
-                                24,000 تومان
+                                <div class="price">
+                                  24,000 تومان
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/2.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a2.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                        <div class="new-label1">
-                          <div>جدید</div>
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                کیف زنانه
-                              </h6>
-                            </a>
-                          </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              56,000 تومان
-                            </div>
-                            <div class="price">
-                              <div class="price">
-                                24,000 تومان
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/4.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a4.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                دوربین عکاسی
-                              </h6>
-                            </a>
-                          </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              60,000 تومان
-                            </div>
-                            <div class="price">
-                              <div class="price">
-                                20,000 تومان
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/5.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a5.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                        <div class="new-label1">
-                          <div>جدید</div>
-                        </div>
-                        <div class="on-sale1">
-                          فروش ویژه
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                لپ تاپ لنوو
-                              </h6>
-                            </a>
-                          </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              70,000 تومان
-                            </div>
-                            <div class="price">
-                              <div class="price">
-                                30,000 تومان
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/6.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a6.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                کیف گوشی
-                              </h6>
-                            </a>
-                          </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              100,000 تومان
-                            </div>
-                            <div class="price">
-                              <div class="price">
-                                80,000 تومان
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="product-box">
-                      <div class="product-imgbox">
-                        <div class="product-front">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/7.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-back">
-                          <a href="product-page(left-sidebar).html">
-                            <img src="{{ url('images/layout-2/product/a7.jpg') }}" class="img-fluid  " alt="product">
-                          </a>
-                        </div>
-                        <div class="product-icon icon-inline">
-                          <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
-                            <i data-feather="shopping-cart"></i>
-                          </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                             data-tippy-content="افزودن به لیست علاقه مندی">
-                            <i data-feather="heart"></i>
-                          </a>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                             class="tooltip-top" data-tippy-content="مشاهده سریع">
-                            <i data-feather="eye"></i>
-                          </a>
-                          <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                            <i data-feather="refresh-cw"></i>
-                          </a>
-                        </div>
-                      </div>
-                      <div class="product-detail detail-inline">
-                        <div class="detail-title">
-                          <div class="detail-left">
-                            <div class="rating-star">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
-                            <a href="product-page(left-sidebar).html">
-                              <h6 class="price-title">
-                                میز چوبی
-                              </h6>
-                            </a>
-                          </div>
-                          <div class="detail-right">
-                            <div class="check-price">
-                              90,000 تومان
-                            </div>
-                            <div class="price">
-                              <div class="price">
-                                28,000 تومان
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  @endforeach
                 </div>
               </div>
               <div id="tab-2" class="tab-content">
