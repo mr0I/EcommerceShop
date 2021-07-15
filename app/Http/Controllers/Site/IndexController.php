@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -16,8 +17,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $mobileCat = Category::where('name','mobile')->first();
-        $mobileProducts = Product::where('category_id' , $mobileCat->id)->orderBy('date', 'desc')->take(10)->get();
+//        $mobileCat = Category::where('name','mobile')->first();
+//        $mobileProducts = Product::where('category_id' , $mobileCat->id)->orderBy('date', 'desc')->take(10)->get();
+        $mobileProducts = DB::select('SELECT * FROM  categories c JOIN products p ON p.category_id = c.id WHERE c.id=1 ORDER BY date DESC LIMIT 10');
         return view('site/index' , compact('mobileProducts'));
     }
 

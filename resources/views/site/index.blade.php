@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  عنوان
+  صفحه اصلی
 @endsection
 
 @section('content')
@@ -92,12 +92,12 @@
                       <div class="product-box">
                         <div class="product-imgbox">
                           <div class="product-front">
-                            <a href="{{ $product->url }}">
+                            <a href="/product/{{ $product->id }}">
                               <img src="{{ $product->image }}" class="img-fluid  " alt="product">
                             </a>
                           </div>
                           <div class="product-back">
-                            <a href="{{ $product->url }}">
+                            <a href="/product/{{ $product->id }}">
                               <img src="{{ $product->image }}" class="img-fluid  " alt="product">
                             </a>
                           </div>
@@ -127,7 +127,7 @@
                         <div class="product-detail detail-inline ">
                           <div class="detail-title">
                             <div class="detail-left">
-                              <a href="{{ $product->url }}">
+                              <a href="/product/{{ $product->id }}">
                                 <h6 class="price-title">
                                   {{ $product->title }}
                                 </h6>

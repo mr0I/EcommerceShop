@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 //    Route::get('/', 'AdminController@index');
 //});
 
-// Route::group(['namespace' => 'Site', 'middleware' => 'verified'], function () {
 Route::group(['namespace' => 'Site'], function () {
-    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/', 'IndexController@index')->name('home');
+    Route::get('/product/{slug}', 'SiteController@product');
 });
 
 //Auth::routes(['verify' => true]);
