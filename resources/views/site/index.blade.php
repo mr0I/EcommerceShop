@@ -139,7 +139,7 @@
                               {{--</div>--}}
                               <div class="price">
                                 <div class="price">
-                                  24,000 تومان
+                                  {{ $product->price }} تومان
                                 </div>
                               </div>
                             </div>

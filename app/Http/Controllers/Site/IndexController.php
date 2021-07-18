@@ -19,7 +19,12 @@ class IndexController extends Controller
     {
 //        $mobileCat = Category::where('name','mobile')->first();
 //        $mobileProducts = Product::where('category_id' , $mobileCat->id)->orderBy('date', 'desc')->take(10)->get();
-        $mobileProducts = DB::select('SELECT * FROM  categories c JOIN products p ON p.category_id = c.id WHERE c.id=1 ORDER BY date DESC LIMIT 10');
+        $mobileProducts =DB::table('categories' , 'c')
+            ->join('products as p' , 'p.category_id', '=', 'c.id')
+            ->where('c.id' , '1')
+            ->select('*')
+            ->orderBy('date' , 'Desc')
+            ->take(10)->get();
         return view('site/index' , compact('mobileProducts'));
     }
 

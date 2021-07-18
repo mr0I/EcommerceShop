@@ -1,12 +1,23 @@
 @extends('site.layout.master')
 
 @section('title')
-  {{ $product->title }}
+  @if($product !== null)
+    {{ $product->title }}
+    @else
+    صفحه محصول
+  @endif
 @endsection
 
 @section('content')
 
-  <!-- breadcrumb start -->
+  @if($product === null)
+    <div class="alert alert-danger">محصول موردنظر یافت نشد</div>
+  @endif
+
+
+  @if($product !== null)
+
+    <!-- breadcrumb start -->
   <div class="breadcrumb-main ">
     <div class="container">
       <div class="row">
@@ -44,9 +55,9 @@
               <div class="pro-group">
                 <h2>{{ $product->title }}</h2>
                 <ul class="pro-price">
-                  <li>70,000 تومان</li>
-                  <li><span>140,000 تومان</span></li>
-                  <li>50% تخفیف</li>
+                  <li>{{ $product->price }} تومان</li>
+                  {{--<li><span>140,000 تومان</span></li>--}}
+                  {{--<li>50% تخفیف</li>--}}
                 </ul>
                 <div class="revieu-box">
                   <ul>
@@ -152,6 +163,12 @@
                   </li>
                 </ul>
 
+                <ul class="product-specifications mt-5">
+                  @foreach(json_decode($product->specifications , true) as $key=>$value)
+                    <li class="w-100">{{ $key }}  {{ $value }}</li>
+                  @endforeach
+                </ul>
+
                 <div class="product-buttons">
                   <a href="javascript:void(0)" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
                      data-tippy-content="افزودن به سبد خرید">
@@ -207,54 +224,18 @@
             </ul>
             <div class="tab-content nav-material" id="top-tabContent">
               <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                  تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                  ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                  سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم
-                  متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                  ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                  ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                  ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
+                <p>{{ $product->description }} </p>
               </div>
               <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم
-                  متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن
-                  ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن
-                  ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
                 <div class="single-product-tables">
                   <table>
                     <tbody>
-                    <tr>
-                      <td>جنس</td>
-                      <td>ابریشمی</td>
-                    </tr>
-                    <tr>
-                      <td>رنگ</td>
-                      <td>قرمز</td>
-                    </tr>
-                    <tr>
-                      <td>ماده</td>
-                      <td>کرپ چاپ شده</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                  <table>
-                    <tbody>
-                    <tr>
-                      <td>طول</td>
-                      <td>50 اینچ</td>
-                    </tr>
-                    <tr>
-                      <td>سایز</td>
-                      <td>S, M, L .XXL</td>
-                    </tr>
+                    @foreach(json_decode($product->parameters , true) as $key=>$value)
+                      <tr>
+                        <td>{{ $key }}</td>
+                        <td> {{ $value }}</td>
+                      </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -750,7 +731,6 @@
   </section>
   <!-- related products -->
 
-
   <!-- edit product modal start-->
   <div class="modal fade bd-example-modal-lg theme-modal pro-edit-modal" id="edit-product" tabindex="-1" role="dialog"
        aria-hidden="true">
@@ -978,7 +958,6 @@
     </div>
   </div>
   <!-- Add to cart bar end-->
-
 
   <!-- wishlistbar bar -->
   <div id="wishlist_side" class="add_to_cart right ">
@@ -1333,8 +1312,8 @@
                   </h2>
                   <ul class="pro-price">
                     <li>70,000 تومان</li>
-                    <li><span>140,000 تومان</span></li>
-                    <li>50% تخفیف</li>
+                    {{--<li><span>140,000 تومان</span></li>--}}
+                    {{--<li>50% تخفیف</li>--}}
                   </ul>
                   <div class="revieu-box">
                     <ul>
@@ -1536,7 +1515,8 @@
           <img src="{{ $product->image }}" class="img-fluid" alt="">
           <div class="content d-lg-block d-none">
             <h5>{{ $product->title }}</h5>
-            <h6>32,000 تومان<del>49,000 تومان</del><span>55% تخفیف</span></h6>
+            <h6>{{ $product->price }} تومان</h6>
+            {{--<h6>32,000 تومان<del>49,000 تومان</del><span>55% تخفیف</span></h6>--}}
           </div>
         </div>
 
@@ -1554,6 +1534,7 @@
     <h3>به سبد خرید افزوده شد</h3>
   </div>
   <!-- added to cart notification -->
+  @endif
 
 
 
