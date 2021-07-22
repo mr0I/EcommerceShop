@@ -11,8 +11,10 @@ class SiteController extends Controller
     public function product($slug)
     {
         $product = Product::find($slug);
-       // dd($product);
         return view('site/product/index' ,compact('product'));
+    }
 
+    public function restricted(){
+        return view('site/restricted');
     }
 }

@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'islogedin'], function () {
-//    Route::get('/', 'AdminController@index');
-//});
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => 'isAuth'], function () {
+    Route::get('/', function (){
+        echo 'sddad';
+    });
+});
 
 Route::group(['namespace' => 'Site'], function () {
     Route::get('/', 'IndexController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
+    Route::get('/restricted', 'SiteController@restricted');
 });
 
-//Auth::routes(['verify' => true]);
-
+Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');

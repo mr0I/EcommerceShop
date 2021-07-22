@@ -17,8 +17,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-//        $mobileCat = Category::where('name','mobile')->first();
-//        $mobileProducts = Product::where('category_id' , $mobileCat->id)->orderBy('date', 'desc')->take(10)->get();
         $mobileProducts =DB::table('categories' , 'c')
             ->join('products as p' , 'p.category_id', '=', 'c.id')
             ->where('c.id' , '1')
