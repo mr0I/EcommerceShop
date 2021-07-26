@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => 'isAuth'], function () {
-    Route::get('/', function (){
-        echo 'sddad';
-    });
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAdmin'], function () {
+    Route::get('/', 'AdminContrller@index');
 });
 
+
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
+    Route::get('/', 'AdminContrller@index');
+});
 Route::group(['namespace' => 'Site'], function () {
+    Route::get('/dm-admin', 'IndexController@admin');
     Route::get('/', 'IndexController@index')->name('home');
     Route::post('/changeLang', 'IndexController@changeLang');
     Route::post('/changeTheme', 'IndexController@changeTheme');

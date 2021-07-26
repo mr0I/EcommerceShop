@@ -51,7 +51,6 @@
   <div class="top-header">
     <div class="custom-container">
       <div class="row">
-
         <div class="col-xl-7 col-md-4 col-sm-6">
           <div class="top-header-right">
             <div class="language-block">
@@ -128,7 +127,7 @@
             </div>
             <div class="brand-logo logo-sm-center">
               <a href="index.html">
-                <img src="../assets/images/layout-2/logo/logo.png" class="img-fluid  " alt="logo">
+                <img src="{{ url('images/layout-2/logo/logo.png') }}" class="img-fluid  " alt="logo">
               </a>
             </div>
           </div>
@@ -296,55 +295,14 @@
                 <div class="collapse  nav-desk" id="navbarToggleExternalContent">
                   <ul class="nav-cat title-font">
                     <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/01.png" alt="category-product">لباس گرم</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/02.png" alt="category-product">تلویزیون</a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/03.png" alt="category-product">حیوانات خانگی</a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/04.png" alt="category-product"> ماشین، موتور
-                        سیکلت</a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/05.png" alt="category-product"> محصولات صنعتی</a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/06.png" alt="category-product">محصولات زیبایی و
-                        سلامت</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/07.png" alt="category-product"> آجیل و خشکبار </a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/08.png" alt="category-product"> ورزشی</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/09.png" alt="category-product"> کیف و کفش</a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/10.png" alt="category-product"> فیلم و موسیقی </a>
-                    </li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/11.png" alt="category-product"> کنسول بازی</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="../assets/images/layout-1/nav-img/12.png" alt="category-product"> اسباب بازی، محصولات
-                        کودک</a></li>
-                    <li>
+                                src="{{ url('images/layout-1/nav-img/01.png') }}" alt="category-product">لباس گرم</a></li>
+                    <li> <a href="category-page(left-sidebar).html"><img src="{{ url('images/layout-1/nav-img/02.png') }}" alt="category-product">تلویزیون</a></li>
                       <ul class="mor-slide-open">
                         <li> <a href="category-page(left-sidebar).html"><img
-                                    src="../assets/images/layout-1/nav-img/08.png" alt="category-product"> ورزشی</a></li>
+                                    src="{{ url('images/layout-1/nav-img/08.png') }}" alt="category-product"> ورزشی</a></li>
                         <li> <a href="category-page(left-sidebar).html"><img
-                                    src="../assets/images/layout-1/nav-img/09.png" alt="category-product"> کیف و کفش</a>
+                                    src="{{ url('images/layout-1/nav-img/09.png') }}" alt="category-product"> کیف و کفش</a>
                         </li>
-                        <li> <a href="category-page(left-sidebar).html"><img
-                                    src="../assets/images/layout-1/nav-img/10.png" alt="category-product"> فیلم و موسیقی
-                          </a></li>
-                        <li> <a href="category-page(left-sidebar).html"><img
-                                    src="../assets/images/layout-1/nav-img/11.png" alt="category-product"> کنسول بازی</a>
-                        </li>
-                        <li> <a href="category-page(left-sidebar).html"><img
-                                    src="../assets/images/layout-1/nav-img/12.png" alt="category-product"> اسباب بازی،
-                            محصولات کودک</a></li>
                       </ul>
                     </li>
                     <li>
@@ -365,45 +323,13 @@
                   </li>
                   <!--HOME-->
                   <li>
-                    <a class="dark-menu-item" href="javascript:void(0)">خانه</a>
-                    <ul>
-                      <li><a href="index.html">فروشگاه بزرگ 1</a></li>
-                      <li><a href="layout-2.html">فروشگاه بزرگ 2</a></li>
-                      <li><a href="layout-3.html">فروشگاه بزرگ 3</a></li>
-                      <li><a href="layout-4.html">فروشگاه بزرگ 4</a></li>
-                      <li><a href="megastore.html">فروشگاه بزرگ 5</a></li>
-                      <li><a href="layout-5.html">لوازم الکترونیکی</a></li>
-                      <li><a href="layout-6.html">میوه و سبزیجات</a></li>
-                      <li><a href="furniture.html">مبلمان و لوازم چوبی</a></li>
-                      <li><a href="cosmetic.html">لوازم آرایشی و بهداشتی</a></li>
-                      <li><a href="kids.html">محصولات کودک</a></li>
-                      <li><a href="tools.html">فروشگاه ابزار</a></li>
-                      <li><a href="grocery.html">فروشگاه خواربار</a></li>
-                      <li><a href="pets.html">حیوانات خانگی</a></li>
-                      <li><a href="farming.html">فروشگاه کشاورزی</a></li>
-                      <li><a href="digital-marketplace.html">بازار دیجیتال</a></li>
-                    </ul>
+                    <a class="dark-menu-item" href="{{ route('home') }}">{{ __('Home') }}</a>
                   </li>
                   <!--HOME-END-->
                   <!--SHOP-->
-                  <li>
-                    <a class="dark-menu-item" href="javascript:void(0)">فروشگاه</a>
-                    <ul>
-                      <li><a href="category-page(left-sidebar).html">سایدبار راست</a></li>
-                      <li><a href="category-page(right-sidebar).html">سایدبار چپ</a></li>
-                      <li><a href="category-page(no-sidebar).html">بدون سایدبار</a></li>
-                      <li><a href="category-page(sidebar-popup).html">سایدبار پاپ آپ</a></li>
-                      <li><a href="category-page(metro).html">حالت مترو </a></li>
-                      <li><a href="category-page(full-width).html">تمام عرض </a></li>
-                      <li><a href="category-page(infinite-scroll).html">بارگزاری بیشتر</a></li>
-                      <li><a href=category-page(3-grid).html>3 ستونه</a></li>
-                      <li><a href="category-page(6-grid).html">6 ستونه</a></li>
-                      <li><a href="category-page(list-view).html">لیست محصولات</a></li>
-                    </ul>
-                  </li>
                   <!--SHOP-END-->
                   <!--product-meu start-->
-                  <li class="mega"><a class="dark-menu-item" href="javascript:void(0)">محصول
+                  <li class="mega"><a class="dark-menu-item" href="#">{{ __('Products') }}
                     </a>
                     <ul class="mega-menu full-mega-menu ">
                       <li>
@@ -499,12 +425,12 @@
                           <div class="row menu-banner">
                             <div class="col-lg-6">
                               <div>
-                                <img src="../assets/images/menu-banner1.jpg" alt="menu-banner" class="img-fluid">
+                                <img src="{{ url('images/menu-banner1.jpg') }}" alt="menu-banner" class="img-fluid">
                               </div>
                             </div>
                             <div class="col-lg-6">
                               <div>
-                                <img src="../assets/images/menu-banner2.jpg" alt="menu-banner" class="img-fluid">
+                                <img src="{{ url('images/menu-banner2.jpg') }}" alt="menu-banner" class="img-fluid">
                               </div>
                             </div>
                           </div>
@@ -514,111 +440,9 @@
                   </li>
                   <!--product-meu end-->
 
-                  <!--mega-meu start-->
-                  <li class="mega">
-                    <a class="dark-menu-item" href="javascript:void(0)">ویژگی ها</a>
-                    <ul class="mega-menu full-mega-menu ratio_landscape">
-                      <li>
-                        <div class="container">
-                          <div class="row">
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>نمونه کار</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="grid-2-col.html">شبکه بندی 2 ستونه</a></li>
-                                    <li><a href="grid-3-col.html">شبکه بندی 3 ستونه</a></li>
-                                    <li><a href="grid-4-col.html">شبکه بندی 4 ستونه</a></li>
-                                    <li><a href="grid-6-col.html">شبکه بندی 6 ستونه</a></li>
-                                    <li><a href="masonary-2-grid.html">طرح Masonry 2 ستونه</a></li>
-                                    <li><a href="masonary-3-grid.html">طرح Masonry 3 ستونه</a></li>
-                                    <li><a href="masonary-4-grid.html">طرح Masonry 4 ستونه</a></li>
-                                    <li><a href="masonary-fullwidth.html">طرح Masonry تمام عرض</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>سبد خرید</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="layout-5.html">سبد خرید پاپ آپ</a></li>
-                                    <li><a href="layout-6.html">شمارنده تعداد </a></li>
-                                    <li><a href="index.html">سبد خرید بالا</a></li>
-                                    <li><a href="layout-2.html">سبد خرید پایین</a></li>
-                                    <li><a href="layout-3.html">سبد خرید راست</a></li>
-                                    <li><a href="layout-4.html">سبد خرید چپ</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>عناصر طراحی</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="element-title.html">عنوان</a></li>
-                                    <li><a href="element-banner.html">بنر</a></li>
-                                    <li><a href="element-category.html">دسته بندی</a></li>
-                                    <li><a href="element-service.html">خدمات</a></li>
-                                    <li><a href="element-image-ratio.html">نسبت تصویر</a></li>
-                                    <li><a href="element-tab.html">تب بندی</a></li>
-                                    <li><a href="element-counter.html">شمارنده</a></li>
-                                    <li><a href="element-pricingtable.html">جدول قیمت گذاری</a></li>
-                                    <li><a href="element-team.html">تیم</a></li>
-                                    <li><a href="element-testimonial.html">نظرات</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>قالب ایمیل</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="../email-template/email-order-success.html">سفارش موفق</a></li>
-                                    <li><a href="../email-template/email-order-success-tow.html">سفارش موفق 2</a>
-                                    </li>
-                                    <li><a href="../email-template/email-template.html">قالب ایمیل</a></li>
-                                    <li><a href="../email-template/email-template-tow.html">قالب ایمیل 2</a></li>
-                                  </ul>
-                                </div>
-                                <div class="menu-title menu-secon-title">
-                                  <h5>استفاده آسان</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="button.html">دکمه ها</a></li>
-                                    <li><a href="instagram.html">اینستاگرام</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col mega-box product ">
-                              <div class="mega-img">
-                                <img src="../assets/images/mega-banner.jpg" alt="menu-banner" class="img-fluid">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <!--mega-meu end-->
-
                   <!--pages meu start-->
                   <li>
-                    <a class="dark-menu-item" href="javascript:void(0)">صفحات</a>
+                    <a class="dark-menu-item" href="#">{{ __('Pages') }}</a>
                     <ul>
                       <li>
                         <a href="javascript:void(0)">فاکتور<span class="new-tag">جدید</span></a>
@@ -675,7 +499,7 @@
 
                   <!--blog-meu start-->
                   <li>
-                    <a class="dark-menu-item" href="javascript:void(0)">اخبار</a>
+                    <a class="dark-menu-item" href="javascript:void(0)">{{ __('Articles') }}</a>
                     <ul>
                       <li><a href="blog(left-sidebar).html">سایدبار راست</a></li>
                       <li><a href="blog(right-sidebar).html">سایدبار چپ</a></li>
@@ -929,23 +753,11 @@
               <div class="footer-contant">
                 <div class="footer-logo">
                   <a href="index.html">
-                    <img src="../assets/images/layout-2/logo/logo.png" class="img-fluid" alt="logo">
+                    <img src="{{ url('images/layout-2/logo/logo.png') }}" class="img-fluid" alt="logo">
                   </a>
                 </div>
                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
                   ایپسوم متن ساختگی با تولید سادگی</p>
-                <ul class="paymant">
-                  <li><a href="javascript:void(0)"><img src="../assets/images/layout-1/pay/1.png" class="img-fluid"
-                                                        alt="pay"></a></li>
-                  <li><a href="javascript:void(0)"><img src="../assets/images/layout-1/pay/2.png" class="img-fluid"
-                                                        alt="pay"></a></li>
-                  <li><a href="javascript:void(0)"><img src="../assets/images/layout-1/pay/3.png" class="img-fluid"
-                                                        alt="pay"></a></li>
-                  <li><a href="javascript:void(0)"><img src="../assets/images/layout-1/pay/4.png" class="img-fluid"
-                                                        alt="pay"></a></li>
-                  <li><a href="javascript:void(0)"><img src="../assets/images/layout-1/pay/5.png" class="img-fluid"
-                                                        alt="pay"></a></li>
-                </ul>
               </div>
             </div>
             <div class="footer-box">

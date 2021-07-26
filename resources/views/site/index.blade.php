@@ -955,7 +955,7 @@
           </div>
           <!--titel end-->
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-12">
           <div class="slide-1 no-arrow">
             <div>
               <div class="hot-deal-contain ">
@@ -965,7 +965,7 @@
                       <a href="product-page(left-sidebar).html">
                         <div class="img-wrraper">
                           <div>
-                            <img src="../assets/images/layout-2/hot-deal/8.jpg" alt="hot-deal"
+                            <img src="{{ url('images/layout-2/hot-deal/8.jpg') }}" alt="hot-deal"
                                  class="img-fluid  bg-img">
                           </div>
                         </div>
@@ -973,7 +973,7 @@
                       <a href="product-page(left-sidebar).html">
                         <div class="img-wrraper">
                           <div>
-                            <img src="../assets/images/layout-2/hot-deal/7.jpg" alt="hot-deal"
+                            <img src="{{ url('images/layout-2/hot-deal/7.jpg') }}" alt="hot-deal"
                                  class="img-fluid  bg-img">
                           </div>
                         </div>
@@ -981,7 +981,7 @@
                       <a href="product-page(left-sidebar).html">
                         <div class="img-wrraper">
                           <div>
-                            <img src="../assets/images/layout-2/hot-deal/6.jpg" alt="hot-deal"
+                            <img src="{{ url('images/layout-2/hot-deal/6.jpg') }}" alt="hot-deal"
                                  class="img-fluid  bg-img">
                           </div>
                         </div>
@@ -989,7 +989,7 @@
                       <a href="product-page(left-sidebar).html">
                         <div class="img-wrraper">
                           <div>
-                            <img src="../assets/images/layout-2/hot-deal/5.jpg" alt="hot-deal"
+                            <img src="{{ url('images/layout-2/hot-deal/5.jpg') }}" alt="hot-deal"
                                  class="img-fluid  bg-img">
                           </div>
                         </div>
@@ -1098,383 +1098,11 @@
                   </div>
                   <div class="col-md-2 ">
                     <div class="hotdeal-right-nav">
-                      <div><img src="../assets/images/layout-2/hot-deal/8.jpg" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="../assets/images/layout-2/hot-deal/7.jpg" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="../assets/images/layout-2/hot-deal/6.jpg" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="../assets/images/layout-2/hot-deal/5.jpg" alt="hot-dea" class="img-fluid  "></div>
+                      <div><img src="{{ url('images/layout-2/hot-deal/8.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
+                      <div><img src="{{ url('images/layout-2/hot-deal/7.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
+                      <div><img src="{{ url('images/layout-2/hot-deal/6.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
+                      <div><img src="{{ url('images/layout-2/hot-deal/5.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="slide-1-section no-arrow">
-            <div>
-              <div class="media-banner border-0">
-                <div class="media-banner-box">
-                  <div class="media-heading">
-                    <h5>محصولات جدید</h5>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>میکسر جدید</p>
-                            </a>
-                            <h6>42,000 تومان <span>47,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>پنکه رومیزی</p>
-                            </a>
-                            <h6>47,000 تومان <span>52,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>گوشی سامسونگ</p>
-                            </a>
-                            <h6>57,000 تومان <span>75,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media-view">
-                    <h5>مشاهده بیشتر</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="media-banner border-0">
-                <div class="media-banner-box">
-                  <div class="media-heading">
-                    <h5>محصولات جدید</h5>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>گوشی سامسونگ</p>
-                            </a>
-                            <h6>78,000 تومان <span>68,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>میکسر جدید</p>
-                            </a>
-                            <h6>72,000 تومان <span>63,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>پنکه رومیزی</p>
-                            </a>
-                            <h6>82.05 <span>75,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="media-banner-box">
-                  <div class="media-view">
-                    <h5>مشاهده بیشتر</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="media-banner border-0">
-                <div class="media-banner-box">
-                  <div class="media-heading">
-                    <h5>محصولات جدید</h5>
-                  </div>
-                </div>
-
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>پنکه رومیزی</p>
-                            </a>
-                            <h6>79,000 تومان <span>47,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>گوشی سامسونگ</p>
-                            </a>
-                            <h6>51,000 تومان <span>76,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media">
-                    <a href="product-page(left-sidebar).html">
-                      <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                    </a>
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <div class="product-detail">
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                            <a href="product-page(left-sidebar).html">
-                              <p>میکسر جدید</p>
-                            </a>
-                            <h6>24,000 تومان <span>56,000</span></h6>
-                          </div>
-                          <div class="cart-info">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید"><i
-                                      data-feather="shopping-cart"></i></button>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                               data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                               class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                      data-feather="refresh-cw"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="media-banner-box">
-                  <div class="media-view">
-                    <h5>مشاهده بیشتر</h5>
                   </div>
                 </div>
               </div>
