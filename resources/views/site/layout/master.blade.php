@@ -9,6 +9,7 @@
   <meta name="description" content="big-deal">
   <meta name="keywords" content="big-deal">
   <meta name="author" content="big-deal">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
 
@@ -31,7 +32,9 @@
   <link rel="stylesheet" type="text/css" href="{{ url('css/extra.css') }}">
 </head>
 
-<body class="bg-light rtl">
+<body id="MainBody" class="
+  @if(session()->get('theme') =='dark') dark @else  bg-light @endif
+  @if(\Illuminate\Support\Facades\App::getLocale() =='fa') rtl @else ltr @endif">
 
 <!-- loader start -->
 <div class="loader-wrapper">
@@ -44,6 +47,41 @@
 <!--header start-->
 <header id="stickyheader">
   <div class="mobile-fix-option"></div>
+
+  <div class="top-header">
+    <div class="custom-container">
+      <div class="row">
+
+        <div class="col-xl-7 col-md-4 col-sm-6">
+          <div class="top-header-right">
+            <div class="language-block">
+              <div class="language-dropdown">
+                  <span class="language-dropdown-click">
+                    <span class="txt">@if(App::getLocale() =='fa') فارسی @else انگلیسی @endif</span>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                <ul class="language-dropdown-open">
+                  <li><a class="changeLang" data-lang="en">انگلیسی</a></li>
+                  <li><a class="changeLang" data-lang="fa">فارسی</a></li>
+                </ul>
+              </div>
+              <div class="curroncy-dropdown">
+                  <span class="curroncy-dropdown-click">
+                    <span class="txt">@if(session()->get('theme') =='dark') تم تیره @else تم روشن @endif</span>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                <ul class="curroncy-dropdown-open">
+                  <li><a class="changeTheme" data-theme="light">تم روشن</a></li>
+                  <li><a class="changeTheme" data-theme="dark">تم تاریک</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="layout-header2">
     <div class="container">
       <div class="col-md-12">
@@ -1023,5 +1061,6 @@
 <!-- Theme js-->
 <script src="{{ url('js/modal.js') }}"></script>
 <script src="{{ url('js/script.js') }}"></script>
+<script src="{{ url('js/custom/script.js') }}"></script>
 </body>
 </html>

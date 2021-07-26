@@ -21,6 +21,8 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => '
 
 Route::group(['namespace' => 'Site'], function () {
     Route::get('/', 'IndexController@index')->name('home');
+    Route::post('/changeLang', 'IndexController@changeLang');
+    Route::post('/changeTheme', 'IndexController@changeTheme');
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
 });

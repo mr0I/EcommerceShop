@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -24,6 +25,27 @@ class IndexController extends Controller
             ->orderBy('date' , 'Desc')
             ->take(10)->get();
         return view('site/index' , compact('mobileProducts'));
+    }
+
+    public function changeLang(Request $request){
+        session()->forget('lang');
+        if ($request->lang !== '' || $request->lang !== null  ){
+            session()->put('lang' , $request->lang);
+            App::setLocale($request->lang);
+            return response()->json(['result'=>'Done','selected_lang'=>$request->lang] , 200);
+        } else {
+            return response()->json(['result'=>'Error'] , 400);
+        }
+    }
+
+    public function changeTheme(Request $request){
+        session()->forget('theme');
+        if ($request->theme !== '' || $request->theme !== null  ){
+            session()->put('theme' , $request->theme);
+            return response()->json(['result'=>'Done','selected_theme'=>$request->theme] , 200);
+        } else {
+            return response()->json(['result'=>'Error'] , 400);
+        }
     }
 
     /**
