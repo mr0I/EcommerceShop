@@ -18,12 +18,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
     Route::get('/', 'AdminContrller@index');
 });
 
-
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
-    Route::get('/', 'AdminContrller@index');
+    Route::get('/', 'DashController@index');
 });
 Route::group(['namespace' => 'Site'], function () {
-    Route::get('/dm-admin', 'IndexController@admin');
+    Route::get('/dm-admin', 'IndexController@admin_login');
     Route::get('/', 'IndexController@index')->name('home');
     Route::post('/changeLang', 'IndexController@changeLang');
     Route::post('/changeTheme', 'IndexController@changeTheme');

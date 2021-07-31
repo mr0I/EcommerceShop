@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminContrller extends Controller
+class DashController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AdminContrller extends Controller
      */
     public function index()
     {
-        return view('admin/index');
+        return view('dashboard/index');
     }
 
     /**

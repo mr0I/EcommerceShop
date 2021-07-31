@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
-class setLocale
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class setLocale
      */
     public function handle($request, Closure $next)
     {
-        if (session()->get('lang') === 'en') {
-            App::setLocale('en');
+        if (Auth::check() && Auth::user()->role['name'] === 'Admin') {
+            return $next($request);
         } else {
-            App::setLocale('fa');
+            return redirect('/');
         }
-        return $next($request);
+        //return $next($request);
     }
 }

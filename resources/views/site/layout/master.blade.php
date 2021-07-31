@@ -33,14 +33,12 @@
 </head>
 
 <body id="MainBody" class="
-  @if(session()->get('theme') =='dark') dark @else  bg-light @endif
+@if(session()->get('theme') =='dark') dark @else  bg-light @endif
   @if(\Illuminate\Support\Facades\App::getLocale() =='fa') rtl @else ltr @endif">
 
 <!-- loader start -->
 <div class="loader-wrapper">
-  <div>
-    <img src="{{ url('images/Jumping-letters.gif') }}" alt="loader">
-  </div>
+  <div><img src="{{ url('images/Jumping-letters.gif') }}" alt="loader"></div>
 </div>
 <!-- loader end -->
 
@@ -624,11 +622,9 @@
 </header>
 <!--header end-->
 
-
 <div id="container">
   @yield('content')
 </div>
-
 
 <!-- My account bar start-->
 <div id="myAccount" class="add_to_cart right account-bar">
@@ -647,23 +643,13 @@
         @csrf
         <div class="form-group">
           <label for="email">{{ __('E-Mail Address') }}</label>
-          <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                 placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" autocomplete="email" autofocus required>
-          @error('email')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+          <input type="text" class="form-control" id="email" name="email"
+                 placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" autocomplete="email" required>
         </div>
         <div class="form-group">
           <label for="password" >{{ __('Password') }}</label>
-          <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
+          <input type="password" class="form-control" id="password" name="password"
                  placeholder="{{ __('Enter Password') }}" required autocomplete="current-password">
-          @error('password')
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-          </span>
-          @enderror
         </div>
         <div class="form-group row">
           <div class="col-12 offset-md-4">
@@ -692,7 +678,8 @@
       </form>
     @else
       <p class="text-center my-3">{{ __('Welcome')  }} {{ Auth::user()->name }}</p>
-      <p>
+      <p class="my-3 text-center"><a href="{{ url('/dashboard') }}">{{ __('User Panel') }}</a></p>
+      <p class="my-3 text-center">
         <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">{{ __('Exit') }}</a>
       </p>
       <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display:none;">
@@ -737,7 +724,6 @@
   </div>
 </div>
 <!-- add to  setting bar  end-->
-
 
 <!-- footer start -->
 <footer>

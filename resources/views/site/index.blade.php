@@ -64,6 +64,7 @@
   </section>
   <!--slider end-->
 
+
   <!--tab product-->
   <section class="section-pt-space">
     <div class="tab-product-main">
@@ -77,6 +78,8 @@
     </div>
   </section>
   <!--tab product-->
+
+
 
   <!-- slider tab  -->
   <section class="section-py-space ratio_square product">
@@ -1113,6 +1116,12 @@
     </div>
   </section>
   <!--hot deal start-->
+
+
+
+  <strong>{{ \Illuminate\Support\Facades\Config::get('currentTheme') }}</strong>
+  <h1>saddd</h1>
+
 
   <!-- title start -->
   <div class="title4 b-g-white text-left">

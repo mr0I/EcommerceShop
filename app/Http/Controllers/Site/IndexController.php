@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Session;
 
@@ -42,11 +43,17 @@ class IndexController extends Controller
     public function changeTheme(Request $request){
         session()->forget('theme');
         if ($request->theme !== '' || $request->theme !== null  ){
+            Config::set('constants.currentTheme' , $request->theme);
             session()->put('theme' , $request->theme);
             return response()->json(['result'=>'Done','selected_theme'=>$request->theme] , 200);
         } else {
             return response()->json(['result'=>'Error'] , 400);
         }
+    }
+
+    public function admin_login()
+    {
+        return view('site/admin-login');
     }
 
     /**
