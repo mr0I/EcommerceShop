@@ -842,6 +842,9 @@
 <!-- menu js-->
 <script src="{{ url('js/menu.js') }}"></script>
 
+<!-- elevatezoom js-->
+<script src="{{ url('js/jquery.elevatezoom.js') }}"></script>
+
 <!-- timer js -->
 {{--<script src="{{ url('js/timer2.js') }}"></script>--}}
 

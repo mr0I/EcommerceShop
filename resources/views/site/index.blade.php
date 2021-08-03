@@ -6,6 +6,13 @@
 
 @section('content')
 
+  @if(\Session::has('user_create_success'))
+    <div class="alert alert-success my-2 w-75" style="margin: 0 auto;">
+      {{ \Session::get('user_create_success') }}
+    </div>
+  @endif
+
+
   <!--slider start-->
   <section class="theme-slider home-slide b-g-white " id="home-slide">
     <div class="custom-container">

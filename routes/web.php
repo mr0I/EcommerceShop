@@ -22,8 +22,8 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::get('/', 'DashController@index');
 });
 Route::group(['namespace' => 'Site'], function () {
-    Route::get('/dm-admin', 'IndexController@admin_login');
     Route::get('/', 'IndexController@index')->name('home');
+    Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
     Route::post('/changeTheme', 'IndexController@changeTheme');
     Route::get('/product/{slug}', 'SiteController@product');
