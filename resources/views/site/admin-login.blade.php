@@ -12,22 +12,21 @@
         <div class="col-xl-4 col-lg-6 col-md-8 offset-xl-4 offset-lg-3 offset-md-2">
           <div class="theme-card">
             <h3 class="text-center">صفحه ورود</h3>
-            <form class="theme-form">
+            <form class="theme-form" action="{{ route('login') }}" method="post">
+              @csrf
               <div class="form-group">
-                <label>ایمیل</label>
-                <input type="text" class="form-control" placeholder="ایمیل" required="">
+                <label>{{ __('E-Mail Address') }}</label>
+                <input type="text" class="form-control" placeholder="{{ __('E-Mail Address') }}" required
+                        name="email" id="email" autocomplete="email" value="{{ old('email') }}">
               </div>
               <div class="form-group">
-                <label>رمز عبور</label>
-                <input type="password" class="form-control" placeholder="رمز عبور خود را وارد کنید" required="">
+                <label>{{ __('Password') }}</label>
+                <input type="password" class="form-control" placeholder="{{ __('Password') }}" name="password" id="password"
+                       autocomplete="current-password" required>
               </div>
-              <a href="javascript:void(0)" class="btn btn-normal">ورود</a>
+              <button href="#" type="submit" class="btn btn-normal"> {{ __('Login') }}</button>
               <a class="float-end txt-default mt-2" href="forget-pwd.html"> فراموشی رمز عبور؟</a>
             </form>
-            <p class="mt-3">با استفاده از فرم بالا می توانید به حساب کاربری خود در فروشگاه وارد شوید و
-              سفارشات خود را مدیریت کنید، اگر از قبل ثبت نام نکرده اید با استفاده از لینک زیر یک حساب
-              کاربری جدید بسازید.</p>
-            <a href="register.html" class="txt-default pt-3 d-block">ایجاد حساب جدید</a>
           </div>
         </div>
       </div>
