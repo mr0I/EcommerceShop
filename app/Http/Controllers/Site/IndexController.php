@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Site;
 
 use App\Category;
+use App\Compare;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Session;
@@ -54,6 +56,46 @@ class IndexController extends Controller
     public function admin_login()
     {
         return view('site/admin-login');
+    }
+
+    public function addToCompare(Request $request)
+    {
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $pid = $request->product_id;
+
+        $compare = Compare::where('userIdentity',$user_identity)->first();
+        if ($compare !== null){
+            $pid1 = $compare->pid1;
+            $pid2 = $compare->pid2;
+            $pid3 = $compare->pid3;
+            $pid4 = $compare->pid4;
+            if ($pid1==='' || $pid1===null){
+                $compare->pid1=$pid;
+            } elseif ($pid2==='' || $pid2===null){
+                $compare->pid2=$pid;
+            }elseif ($pid3==='' || $pid3===null){
+                $compare->pid3=$pid;
+            }elseif ($pid4==='' || $pid4===null){
+                $compare->pid4=$pid;
+            } else {
+                return response()->json(['result' => 'Full' ] , 200);
+            }
+            $compare->save();
+            return response()->json(['result' => 'Done' ] , 200);
+        } else {
+            $data = ([
+                'userIdentity' => $user_identity,
+                'pid1' => $pid
+            ]);
+            $res = Compare::create($data);
+            if ($res){
+                return response()->json(['result' => 'Done' ] , 200);
+            } else {
+                return response()->json(['result' => 'Error' ] , 400);
+
+            }
+        }
+
     }
 
     /**

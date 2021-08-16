@@ -28,6 +28,8 @@ Route::group(['namespace' => 'Site'], function () {
     Route::post('/changeTheme', 'IndexController@changeTheme');
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
+    Route::post('/addToCompare', 'IndexController@addToCompare');
+    Route::get('/compare', 'SiteController@compare');
 });
 
 Auth::routes();

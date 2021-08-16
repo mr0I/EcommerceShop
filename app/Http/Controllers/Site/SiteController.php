@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -35,5 +37,24 @@ class SiteController extends Controller
 
     public function restricted(){
         return view('site/restricted');
+    }
+
+    public function compare(){
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $compare = Compare::where('userIdentity',$user_identity)->first();
+
+        if ($compare !== null){
+            $product1 = Product::findOrfail($compare->pid1);
+            $product2 = Product::findOrfail($compare->pid2);
+            $product3 = Product::findOrfail($compare->pid3);
+            $product4 = Product::findOrfail($compare->pid4);
+        } else {
+            $product1 = null;
+            $product2 = null;
+            $product3 = null;
+            $product4 = null;
+        }
+
+        return view('site/compare', compact('product1','product2','product3','product4'));
     }
 }

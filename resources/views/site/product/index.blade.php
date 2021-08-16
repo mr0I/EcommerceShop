@@ -179,7 +179,6 @@
                       <i class="fa fa-heart" aria-hidden="true"></i>
                     </a>
                   </div>
-
                 </div>
 
                 <div class="pro-group ">

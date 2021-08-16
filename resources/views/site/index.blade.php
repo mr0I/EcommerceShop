@@ -112,9 +112,11 @@
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
-                            <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
+
+                            <a href="{{ $product->url }}" class="add-to-wish tooltip-top" target="_blank" rel="noreferrer noopener"
+                               data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
-                            </button>
+                            </a>
                             <a href="javascript:void(0)" class="add-to-wish tooltip-top"
                                data-tippy-content="افزودن به لیست علاقه مندی">
                               <i data-feather="heart"></i>
@@ -123,16 +125,11 @@
                                class="tooltip-top" data-tippy-content="مشاهده سریع">
                               <i data-feather="eye"></i>
                             </a>
-                            <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
+                            <a href="#" class="add-to-compare tooltip-top" data-id="{{ $product->id }}" data-tippy-content="مقایسه">
                               <i data-feather="refresh-cw"></i>
                             </a>
                           </div>
-                          {{--<div class="new-label1">--}}
-                            {{--<div>جدید</div>--}}
-                          {{--</div>--}}
-                          {{--<div class="on-sale1">--}}
-                            {{--فروش ویژه--}}
-                          {{--</div>--}}
+
                         </div>
                         <div class="product-detail detail-inline ">
                           <div class="detail-title">
