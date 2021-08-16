@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
     Route::post('/addToCompare', 'IndexController@addToCompare');
+    Route::post('/removeFromCompare', 'IndexController@removeFromCompare');
     Route::get('/compare', 'SiteController@compare');
 });
 

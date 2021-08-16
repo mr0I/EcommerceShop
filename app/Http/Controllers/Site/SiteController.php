@@ -44,10 +44,10 @@ class SiteController extends Controller
         $compare = Compare::where('userIdentity',$user_identity)->first();
 
         if ($compare !== null){
-            $product1 = Product::findOrfail($compare->pid1);
-            $product2 = Product::findOrfail($compare->pid2);
-            $product3 = Product::findOrfail($compare->pid3);
-            $product4 = Product::findOrfail($compare->pid4);
+            $product1 = ($compare->pid1!== null)? Product::findOrfail($compare->pid1): null;
+            $product2 = ($compare->pid2!== null)? Product::findOrfail($compare->pid2): null;
+            $product3 = ($compare->pid3!== null)? Product::findOrfail($compare->pid3): null;
+            $product4 = ($compare->pid4!== null)? Product::findOrfail($compare->pid4): null;
         } else {
             $product1 = null;
             $product2 = null;

@@ -10,6 +10,7 @@
   <meta name="keywords" content="big-deal">
   <meta name="author" content="big-deal">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="compare-url" content="{{ url('compare') }}">
   <link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
 
@@ -213,6 +214,7 @@
                     </div>
                   </a>
                 </li>
+
                 {{--<li class="mobile-cart item-count" onclick="openCart()">--}}
                 {{--<a href="javascript:void(0)">--}}
                 {{--<div class="cart-block">--}}
@@ -283,7 +285,6 @@
             <div class="nav-block">
 
               <div class="nav-left">
-
                 <nav class="navbar" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
                   <button class="navbar-toggler" type="button">
                     <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
@@ -512,6 +513,11 @@
             </div>
             <div class="icon-block">
               <ul>
+                <li>
+                  <a href="{{ url('/compare') }}">
+                    <i class="ti-direction-alt mx-2" style="font-size: 200%;color: #BDBDBD"></i>
+                  </a>
+                </li>
                 <li class="mobile-search">
                   <a href="javascript:void(0)">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -591,6 +597,7 @@
                     3
                   </div>
                 </li>
+
               </ul>
             </div>
           </div>
@@ -862,6 +869,10 @@
 <!-- Theme js-->
 <script src="{{ url('js/modal.js') }}"></script>
 <script src="{{ url('js/script.js') }}"></script>
+
+
+<script src="{{ url('js/custom/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('js/custom/script.js') }}"></script>
+
 </body>
 </html>

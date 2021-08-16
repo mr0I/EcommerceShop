@@ -320,7 +320,7 @@
                            data-tippy-content="مشاهده سریع">
                           <i data-feather="eye"></i>
                         </a>
-                        <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
+                        <a href="#" class="add-to-compare tooltip-top" data-id="{{ $product->id }}" data-tippy-content="مقایسه">
                           <i data-feather="refresh-cw"></i>
                         </a>
                       </div>

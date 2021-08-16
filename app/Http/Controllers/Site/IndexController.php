@@ -6,6 +6,7 @@ use App\Category;
 use App\Compare;
 use App\Http\Controllers\Controller;
 use App\Product;
+use function GuzzleHttp\default_ca_bundle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,15 @@ class IndexController extends Controller
         $pid = $request->product_id;
 
         $compare = Compare::where('userIdentity',$user_identity)->first();
+        $old_pids = [];
+        array_push($old_pids,$compare->pid1);
+        array_push($old_pids,$compare->pid2);
+        array_push($old_pids,$compare->pid3);
+        array_push($old_pids,$compare->pid4);
+        if (in_array($pid , $old_pids)){
+            return response()->json(['result'=> 'Duplicate'] , 400);
+        }
+
         if ($compare !== null){
             $pid1 = $compare->pid1;
             $pid2 = $compare->pid2;
@@ -96,6 +106,26 @@ class IndexController extends Controller
             }
         }
 
+    }
+
+    public function removeFromCompare(Request $request)
+    {
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+
+        $compare = Compare::where('userIdentity',$user_identity)->first();
+        if ($compare !== null){
+            switch ($request->product_id){
+                case 1:$compare->pid1 = null;break;
+                case 2:$compare->pid2 = null;break;
+                case 3:$compare->pid3 = null;break;
+                case 4:$compare->pid4 = null;break;
+                default:$compare->pid1 = null;
+            }
+            $compare->save();
+            return response()->json(['result' => 'Done' ] , 200);
+        } else {
+            return response()->json(['result' => 'Error' ] , 400);
+        }
     }
 
     /**

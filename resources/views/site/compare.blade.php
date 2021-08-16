@@ -32,103 +32,165 @@
         <div class="col-sm-12">
           <div class="compare-page">
             <div class="table-wrapper table-responsive">
-              <table class="table">
-                <thead>
-                <tr class="th-compare">
-                  <td>عمل</td>
-                  <th class="item-row">
-                    <button type="button" class="remove-compare text-danger text-center w-100">حذف</button>
-                  </th>
-                  <th class="item-row">
-                    <button type="button" class="remove-compare text-danger text-center w-100">حذف</button>
-                  </th>
-                  <th class="item-row">
-                    <button type="button" class="remove-compare text-danger text-center w-100">حذف</button>
-                  </th>
-                  <th class="item-row">
-                    <button type="button" class="remove-compare text-danger text-center w-100">حذف</button>
-                  </th>
-                </tr>
-                </thead>
-                <tbody id="table-compare">
-                <tr>
-                  <th class="product-name">نام محصول</th>
-                  <td class="grid-link__title">محصول شماره 1</td>
-                  <td class="grid-link__title">محصول شماره 2</td>
-                  <td class="grid-link__title">محصول شماره 3</td>
-                  <td class="grid-link__title">محصول شماره 4</td>
-                </tr>
-                <tr>
-                  <th class="product-name">تصویر محصول</th>
-                  <td class="item-row"><img src="{{ $product1->image }}" alt="product"
-                                            class="   featured-image">
-                    <div class="product-price product_price">
-                      <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
-                    </div>
-                    <a href="{{ $product1->url }}" target="_blank" rel="noopener noreferrer">{{ __('Buy') }}</a>
-                    <p class="grid-link__title hidden">{{ $product1->title }} </p>
-                  </td>
-                  <td class="item-row"><img src="{{ $product2->image }}" alt="product"
-                                            class="   featured-image">
-                    <div class="product-price product_price">
-                      <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
-                    </div>
-                    <a href="{{ $product2->url }}" target="_blank" rel="noopener noreferrer">{{ __('Buy') }}</a>
-                    <p class="grid-link__title hidden">{{ $product2->title }} </p>
-                  </td>
-                  <td class="item-row"><img src="{{ $product3->image }}" alt="product"
-                                            class="   featured-image">
-                    <div class="product-price product_price">
-                      <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
-                    </div>
-                    <a href="{{ $product3->url }}" target="_blank" rel="noopener noreferrer">{{ __('Buy') }}</a>
-                    <p class="grid-link__title hidden">{{ $product3->title }} </p>
-                  </td>
-                  <td class="item-row"><img src="{{ $product4->image }}" alt="product"
-                                            class="   featured-image">
-                    <div class="product-price product_price">
-                      <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
-                    </div>
-                    <a href="{{ $product4->url }}" target="_blank" rel="noopener noreferrer">{{ __('Buy') }}</a>
-                    <p class="grid-link__title hidden">{{ $product4->title }} </p>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="product-name">توضیحات محصول</th>
-                  <td class="item-row">
-                    <p class="description-compare">لورم ایپسوم متن ساختگی با تولید سادگی
-                      نامفهوم، لورم ایپسوم ...</p>
-                  </td>
-                  <td class="item-row">
-                    <p class="description-compare">لورم ایپسوم متن ساختگی با تولید سادگی
-                      نامفهوم، لورم ایپسوم ...</p>
-                  </td>
-                  <td class="item-row">
-                    <p class="description-compare">لورم ایپسوم متن ساختگی با تولید سادگی
-                      نامفهوم، لورم ایپسوم ...</p>
-                  </td>
-                  <td class="item-row">
-                    <p class="description-compare">لورم ایپسوم متن ساختگی با تولید سادگی
-                      نامفهوم، لورم ایپسوم ...</p>
-                  </td>
-                </tr>
-                <tr>
-                  <th class="product-name">وضعیت</th>
-                  <td class="availabel-stock">
-                    <p>موجود در انبار</p>
-                  </td>
-                  <td class="availabel-stock">
-                    <p>موجود در انبار</p>
-                  </td>
-                  <td class="availabel-stock">
-                    <p>موجود در انبار</p>
-                  </td>
-                  <td class="availabel-stock">
-                    <p>موجود در انبار</p>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+              @if($product1!==null || $product2!==null || $product3!==null || $product4!==null )
+                <table class="table">
+                  <thead>
+                  <tr class="th-compare">
+                    <td>عمل</td>
+                    @if($product1!==null)
+                      <th class="item-row">
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="1">
+                          حذف
+                          <i data-feather="remove"></i>
+                        </button>
+                      </th>
+                    @endif
+                    @if($product2!==null)
+                      <th class="item-row">
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="2">
+                          حذف
+                        </button>
+                      </th>
+                    @endif
+                    @if($product3!==null)
+                      <th class="item-row">
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="3">
+                          حذف
+                        </button>
+                      </th>
+                    @endif
+                    @if($product4!==null)
+                      <th class="item-row">
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="4">
+                          حذف
+                        </button>
+                      </th>
+                    @endif
+                  </tr>
+                  </thead>
+                  <tbody id="table-compare">
+                  <tr>
+                    <th class="product-name">نام محصول</th>
+                    @if($product1!==null) <td class="grid-link__title">{{ $product1->title }} </td> @endif
+                    @if($product2!==null) <td class="grid-link__title">{{ $product2->title }} </td> @endif
+                    @if($product3!==null) <td class="grid-link__title">{{ $product3->title }} </td> @endif
+                    @if($product4!==null) <td class="grid-link__title">{{ $product4->title }} </td> @endif
+                  </tr>
+                  <tr>
+                    <th class="product-name">تصویر محصول</th>
+                    @if($product1!==null)
+                      <td class="item-row"><img src="{{ $product1->image }}" alt="product"
+                                                class="   featured-image">
+                        <div class="product-price product_price">
+                          <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
+                        </div>
+
+                        <a href="{{ $product1->url }}" class="btn btn-white btn-outline tooltip-top"
+                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          {{ __('Buy') }}
+                        </a>
+                      </td>
+                    @endif
+                    @if($product2!==null)
+                      <td class="item-row"><img src="{{ $product2->image }}" alt="product"
+                                                class="   featured-image">
+                        <div class="product-price product_price">
+                          <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                        </div>
+
+                        <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          {{ __('Buy') }}
+                        </a>
+                      </td>
+                    @endif
+                    @if($product3!==null)
+                      <td class="item-row"><img src="{{ $product3->image }}" alt="product"
+                                                class="   featured-image">
+                        <div class="product-price product_price">
+                          <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
+                        </div>
+
+                        <a href="{{ $product3->url }}" class="btn btn-white btn-outline tooltip-top"
+                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          {{ __('Buy') }}
+                        </a>
+                      </td>
+                    @endif
+                    @if($product4!==null)
+                      <td class="item-row"><img src="{{ $product4->image }}" alt="product"
+                                                class="   featured-image">
+                        <div class="product-price product_price">
+                          <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
+                        </div>
+
+                        <a href="{{ $product4->url }}" class="btn btn-white btn-outline tooltip-top"
+                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          {{ __('Buy') }}
+                        </a>
+                      </td>
+                    @endif
+                  </tr>
+                  <tr>
+                    <th class="product-name">توضیحات محصول</th>
+                    @if($product1!==null)
+                      <td class="item-row">
+                        <p class="description-compare">
+                          {{ mb_strimwidth( $product1->description,0,300,'---') }}
+                        </p>
+                      </td>
+                    @endif
+                    @if($product2!==null)
+                      <td class="item-row">
+                        <p class="description-compare">
+                          {{ mb_strimwidth( $product2->description,0,300,'---') }}
+                        </p>
+                      </td>
+                    @endif
+                    @if($product3!==null)
+                      <td class="item-row">
+                        <p class="description-compare">
+                          {{ mb_strimwidth( $product3->description,0,300,'---') }}
+                        </p>
+                      </td>
+                    @endif
+                    @if($product4!==null)
+                      <td class="item-row">
+                        <p class="description-compare">
+                          {{ mb_strimwidth( $product4->description,0,300,'---') }}
+                        </p>
+                      </td>
+                    @endif
+                  </tr>
+                  <tr>
+                    <th class="product-name">وضعیت</th>
+                    @if($product1!==null)
+                      <td class="availabel-stock">
+                        <p>{{ $product1->status }}</p>
+                      </td>
+                    @endif
+                    @if($product2!==null)
+                      <td class="availabel-stock">
+                        <p>{{ $product2->status }}</p>
+                      </td>
+                    @endif
+                    @if($product3!==null)
+                      <td class="availabel-stock">
+                        <p>{{ $product3->status }}</p>
+                      </td>
+                    @endif
+                    @if($product4!==null)
+                      <td class="availabel-stock">
+                        <p>{{ $product4->status }}</p>
+                      </td>
+                    @endif
+                  </tr>
+                  </tbody>
+                </table>
+                @else
+                <p class="alert alert-warning text-center">{{ __('THERE IS NO ITEM!!!') }}</p>
+              @endif
+
             </div>
           </div>
         </div>
