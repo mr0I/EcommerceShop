@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Compare;
+use Carbon\Carbon;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -25,6 +28,16 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $compares = Compare::all();
+            $now = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
+
+            foreach ($compares as $compare){
+                $then = Carbon::createFromFormat('Y-m-d H:s:i', $compare->updated_at);
+                $diff = $then->diffInDays($now);
+                if ($diff>=3) $compare->delete();
+            }
+        })->daily();
     }
 
     /**
