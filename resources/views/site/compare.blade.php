@@ -36,7 +36,7 @@
                 <table class="table">
                   <thead>
                   <tr class="th-compare">
-                    <td>عمل</td>
+                    <td></td>
                     @if($product1!==null)
                       <th class="item-row">
                         <button type="button" class="remove-compare text-danger text-center w-100" data-pid="1">
