@@ -54,9 +54,16 @@
                 <div class="pro-group">
                   <h2>{{ $product->title }}</h2>
                   <ul class="pro-price">
-                    <li>{{ $product->price }} تومان</li>
-                    {{--<li><span>140,000 تومان</span></li>--}}
-                    {{--<li>50% تخفیف</li>--}}
+                    <li class="digits">{{ $product->price }} تومان</li>
+                    @if($product->main_price!==null && $product->main_price!=='')
+                      @php
+                        $price = $product->price;
+                        $main_price = $product->main_price;
+                        $discount = round((($main_price - $price)/$main_price)*100);
+                      @endphp
+                      <li><span class="digits">{{ $product->main_price }} تومان</span></li>
+                      <li>{{ $discount }}% تخفیف</li>
+                    @endif
                   </ul>
                   <div class="revieu-box">
                     <ul>
@@ -293,18 +300,18 @@
         <div class="row">
           <div class="col-12 product">
             <div class="product-slide-6 product-m no-arrow">
-              @foreach($related_products as $product)
+              @foreach($related_products as $related_product)
                 <div>
                   <div class="product-box">
                     <div class="product-imgbox">
                       <div class="product-front">
-                        <a href="/product/{{ $product->id }}">
-                          <img src="{{ $product->image }}" class="img-fluid" alt="product">
+                        <a href="/product/{{ $related_product->id }}">
+                          <img src="{{ $related_product->image }}" class="img-fluid" alt="product">
                         </a>
                       </div>
                       <div class="product-back">
-                        <a href="/product/{{ $product->id }}">
-                          <img src="{{ $product->image }}" class="img-fluid  " alt="product">
+                        <a href="/product/{{ $related_product->id }}">
+                          <img src="{{ $related_product->image }}" class="img-fluid  " alt="product">
                         </a>
                       </div>
                       <div class="product-icon icon-inline">
@@ -320,7 +327,7 @@
                            data-tippy-content="مشاهده سریع">
                           <i data-feather="eye"></i>
                         </a>
-                        <a href="#" class="add-to-compare tooltip-top" data-id="{{ $product->id }}" data-tippy-content="مقایسه">
+                        <a href="#" class="add-to-compare tooltip-top" data-id="{{ $related_product->id }}" data-tippy-content="مقایسه">
                           <i data-feather="refresh-cw"></i>
                         </a>
                       </div>
@@ -335,19 +342,26 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                           </div>
-                          <a href="/product/{{ $product->id }}">
+                          <a href="/product/{{ $related_product->id }}">
                             <h6 class="price-title">
-                              {{ $product->title }}
+                              {{ $related_product->title }}
                             </h6>
                           </a>
                         </div>
                         <div class="detail-right">
-                          {{--<div class="check-price">--}}
-                            {{--56,000 تومان--}}
-                          {{--</div>--}}
+                          @if($related_product->main_price!==null && $related_product->main_price!=='')
+                            @php
+                              $price = $related_product->price;
+                              $main_price = $related_product->main_price;
+                              $discount = round((($main_price - $price)/$main_price)*100);
+                            @endphp
+                            <div class="check-price">
+                              {{ $related_product->main_price }}  تومان
+                            </div>
+                          @endif
                           <div class="price">
-                            <div class="price">
-                              {{ $product->price }} تومان
+                            <div class="price digits">
+                              {{ $related_product->price }} تومان
                             </div>
                           </div>
                         </div>
@@ -588,8 +602,7 @@
             <img src="{{ $product->image }}" class="img-fluid" alt="" >
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
-              <h6>{{ $product->price }} تومان</h6>
-              {{--<h6>32,000 تومان<del>49,000 تومان</del><span>55% تخفیف</span></h6>--}}
+              <h6 class="digits">{{ $product->price }} تومان</h6>
             </div>
           </div>
 

@@ -141,11 +141,13 @@
                               </a>
                             </div>
                             <div class="detail-right">
-                              {{--<div class="check-price">--}}
-                                {{--{{ $product->title }} تومان--}}
-                              {{--</div>--}}
+                              @if($product->main_price!==null && $product->main_price!=='')
+                                <div class="check-price">
+                                  {{ $product->main_price }} تومان
+                                </div>
+                              @endif
                               <div class="price">
-                                <div class="price">
+                                <div class="price digits">
                                   {{ $product->price }} تومان
                                 </div>
                               </div>
@@ -958,7 +960,7 @@
         <div class="col-12">
           <!--title start-->
           <div class="title3 b-g-white text-left">
-            <h4>پیشنهاد های ویژه امروز</h4>
+            <h4>پیشنهاد های ویژه</h4>
           </div>
           <!--titel end-->
         </div>
@@ -969,146 +971,59 @@
                 <div class="row hot-deal-subcontain hotdeal-block1">
                   <div class="col-lg-4 col-md-4  ">
                     <div class="hotdeal-right-slick border-0">
-                      <a href="product-page(left-sidebar).html">
-                        <div class="img-wrraper">
-                          <div>
-                            <img src="{{ url('images/layout-2/hot-deal/8.jpg') }}" alt="hot-deal"
-                                 class="img-fluid  bg-img">
+                      @foreach($specialProducts as $product)
+                        <a href="/product/{{ $product->id }}">
+                          <div class="img-wrraper">
+                            <div>
+                              <img src="{{ $product->image }}" alt="hot-deal"
+                                   class="img-fluid  bg-img">
+                            </div>
                           </div>
-                        </div>
-                      </a>
-                      <a href="product-page(left-sidebar).html">
-                        <div class="img-wrraper">
-                          <div>
-                            <img src="{{ url('images/layout-2/hot-deal/7.jpg') }}" alt="hot-deal"
-                                 class="img-fluid  bg-img">
-                          </div>
-                        </div>
-                      </a>
-                      <a href="product-page(left-sidebar).html">
-                        <div class="img-wrraper">
-                          <div>
-                            <img src="{{ url('images/layout-2/hot-deal/6.jpg') }}" alt="hot-deal"
-                                 class="img-fluid  bg-img">
-                          </div>
-                        </div>
-                      </a>
-                      <a href="product-page(left-sidebar).html">
-                        <div class="img-wrraper">
-                          <div>
-                            <img src="{{ url('images/layout-2/hot-deal/5.jpg') }}" alt="hot-deal"
-                                 class="img-fluid  bg-img">
-                          </div>
-                        </div>
-                      </a>
+                        </a>
+                      @endforeach
                     </div>
                   </div>
+
                   <div class="col-lg-6 col-md-6 deal-order-3">
                     <div class="hotdeal-right-slick border-0">
-                      <div>
+                      @foreach($specialProducts as $product)
                         <div>
-                          <a href="product-page(left-sidebar).html">
-                            <h5>گوشی هوشمند </h5>
-                          </a>
-                          <ul class="rating">
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star-o"></i></li>
-                          </ul>
-                          <p>
-                            توضیحات محصول لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                            سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی
-                          </p>
-                          <h6>50,000 تومان <span>60,000</span></h6>
-                          <div class="timer">
-                            <p id="demo">
-                            </p>
+                          <div>
+                            <a href="/product/{{ $product->id }}">
+                              <h5 style="direction: rtl;">{{ $product->title }} </h5>
+                            </a>
+                            <ul class="rating">
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star-o"></i></li>
+                            </ul>
+                            <p style="direction: rtl">{{ mb_strimwidth($product->description,0,650,'---') }}</p>
+                              @php
+                                $price = $product->price;
+                                $main_price = $product->main_price;
+                                $discount = round((($main_price - $price)/$main_price)*100);
+                              @endphp
+                              <h6><strong class="digits">{{ $product->price }}</strong> تومان
+                                <span class="mx-2 digits" style="color: #acacac;text-decoration: line-through">{{ $product->main_price }} تومان </span>
+                              </h6>
+                            <div class="timer">
+                              <p id="demo">
+                              </p>
+                            </div>
+                            <a href="{{ $product->url }}" class="btn btn-normal btn-md ">شروع خرید</a>
                           </div>
-                          <a href="product-page(left-sidebar).html" class="btn btn-normal btn-md ">شروع خرید</a>
                         </div>
-                      </div>
-                      <div>
-                        <div>
-                          <a href="product-page(left-sidebar).html">
-                            <h5>جغد چوبی </h5>
-                          </a>
-                          <ul class="rating">
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star-o"></i></li>
-                          </ul>
-                          <p>
-                            توضیحات محصول لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                            سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی
-                          </p>
-                          <h6>60,000 تومان <span>70,000</span></h6>
-                          <div class="timer">
-                            <p id="demo1">
-                            </p>
-                          </div>
-                          <a href="product-page(left-sidebar).html" class="btn btn-normal btn-md ">شروع خرید</a>
-                        </div>
-                      </div>
-                      <div>
-                        <div>
-                          <a href="product-page(left-sidebar).html">
-                            <h5>صندلی اداری </h5>
-                          </a>
-                          <ul class="rating">
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star-o"></i></li>
-                          </ul>
-                          <p>
-                            توضیحات محصول لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                            سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی
-                          </p>
-                          <h6>45,000 تومان <span>50,000</span></h6>
-                          <div class="timer">
-                            <p id="demo2">
-                            </p>
-                          </div>
-                          <a href="product-page(left-sidebar).html" class="btn btn-normal btn-md ">شروع خرید</a>
-                        </div>
-                      </div>
-                      <div>
-                        <div>
-                          <a href="product-page(left-sidebar).html">
-                            <h5>هندزفری بی سیم </h5>
-                          </a>
-                          <ul class="rating">
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star"></i></li>
-                            <li><i class="fa fa-star-o"></i></li>
-                          </ul>
-                          <p>
-                            توضیحات محصول لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                            سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی
-                          </p>
-                          <h6>85,000 تومان <span>90,000</span></h6>
-                          <div class="timer">
-                            <p id="demo3">
-                            </p>
-                          </div>
-                          <a href="product-page(left-sidebar).html" class="btn btn-normal btn-md ">شروع خرید</a>
-                        </div>
-                      </div>
+                      @endforeach
+
                     </div>
                   </div>
                   <div class="col-md-2 ">
                     <div class="hotdeal-right-nav">
-                      <div><img src="{{ url('images/layout-2/hot-deal/8.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="{{ url('images/layout-2/hot-deal/7.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="{{ url('images/layout-2/hot-deal/6.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
-                      <div><img src="{{ url('images/layout-2/hot-deal/5.jpg') }}" alt="hot-dea" class="img-fluid  "></div>
+                      @foreach($specialProducts as $product)
+                        <div><img src="{{ $product->image }}" alt="hot-dea" class="img-fluid  "></div>
+                      @endforeach
                     </div>
                   </div>
                 </div>
@@ -1120,11 +1035,6 @@
     </div>
   </section>
   <!--hot deal start-->
-
-
-
-  <strong>{{ \Illuminate\Support\Facades\Config::get('currentTheme') }}</strong>
-  <h1>saddd</h1>
 
 
   <!-- title start -->

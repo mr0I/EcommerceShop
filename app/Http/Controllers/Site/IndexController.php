@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Compare;
 use App\Http\Controllers\Controller;
+use App\Product;
 use function GuzzleHttp\default_ca_bundle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -25,9 +26,12 @@ class IndexController extends Controller
             ->join('products as p' , 'p.category_id', '=', 'c.id')
             ->where('c.id' , '1')
             ->select('*')
-            ->orderBy('date' , 'Desc')
+            ->orderBy('date' , 'ASC')
             ->take(10)->get();
-        return view('site/index' , compact('mobileProducts'));
+
+        $specialProducts = Product::where('main_price', '<>' , null)->get();
+
+        return view('site/index' , compact('mobileProducts' ,'specialProducts'));
     }
 
     public function changeLang(Request $request){
