@@ -1000,13 +1000,12 @@
                               <li><i class="fa fa-star-o"></i></li>
                             </ul>
                             <p style="direction: rtl">{{ mb_strimwidth($product->description,0,650,'---') }}</p>
-                              @php
-                                $price = $product->price;
-                                $main_price = $product->main_price;
-                                $discount = round((($main_price - $price)/$main_price)*100);
-                              @endphp
-                              <h6><strong class="digits">{{ $product->price }}</strong> تومان
+                                @php
+                                  $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
+                                @endphp
+                            <h6><strong class="digits">{{ $product->price }}</strong> تومان
                                 <span class="mx-2 digits" style="color: #acacac;text-decoration: line-through">{{ $product->main_price }} تومان </span>
+                                <strong class="mx-2">{{ $discount }}% تخفیف </strong>
                               </h6>
                             <div class="timer">
                               <p id="demo">

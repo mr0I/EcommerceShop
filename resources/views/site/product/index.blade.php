@@ -57,9 +57,7 @@
                     <li class="digits">{{ $product->price }} تومان</li>
                     @if($product->main_price!==null && $product->main_price!=='')
                       @php
-                        $price = $product->price;
-                        $main_price = $product->main_price;
-                        $discount = round((($main_price - $price)/$main_price)*100);
+                        $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
                       @endphp
                       <li><span class="digits">{{ $product->main_price }} تومان</span></li>
                       <li>{{ $discount }}% تخفیف</li>
@@ -350,11 +348,6 @@
                         </div>
                         <div class="detail-right">
                           @if($related_product->main_price!==null && $related_product->main_price!=='')
-                            @php
-                              $price = $related_product->price;
-                              $main_price = $related_product->main_price;
-                              $discount = round((($main_price - $price)/$main_price)*100);
-                            @endphp
                             <div class="check-price">
                               {{ $related_product->main_price }}  تومان
                             </div>
