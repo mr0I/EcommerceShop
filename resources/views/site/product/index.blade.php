@@ -27,7 +27,7 @@
                 <ul>
                   <li><a href="/">خانه</a></li>
                   <li><i class="fa fa-angle-double-left"></i></li>
-                  <li><a href="#">{{ $product->category['name_fa'] }}</a></li>
+                  <li><a href="{{ url('category' , $product->category['name']) }}">{{ $product->category['name_fa'] }}</a></li>
                   <li><i class="fa fa-angle-double-left"></i></li>
                   <li>{{ $product->title }}</li>
                 </ul>

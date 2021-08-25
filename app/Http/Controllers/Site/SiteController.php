@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Category;
 use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
@@ -39,7 +40,7 @@ class SiteController extends Controller
         return view('site/restricted');
     }
 
-    public function compare(){
+    public function compare_products(){
         $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
         $compare = Compare::where('userIdentity',$user_identity)->first();
 
@@ -55,6 +56,16 @@ class SiteController extends Controller
             $product4 = null;
         }
 
-        return view('site/compare', compact('product1','product2','product3','product4'));
+        return view('site/index', compact('product1','product2','product3','product4'));
     }
+
+    public function category(Request $request)
+    {
+        $category_name = $request->name;
+        $category_id = Category::where('name',$category_name)->get('id');
+        $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
+
+        return view('site/category/index' , compact('products'));
+    }
+
 }
