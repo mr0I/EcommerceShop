@@ -20,19 +20,6 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $mobileProducts =DB::table('categories' , 'c')
-            ->join('products as p' , 'p.category_id', '=', 'c.id')
-            ->where('c.id' , '1')
-            ->select('*')
-            ->orderBy('date' , 'ASC')
-            ->take(10)->get();
-
-        $specialProducts = Product::where('main_price', '<>' , null)->get();
-
-        return view('site/index' , compact('mobileProducts' ,'specialProducts'));
-    }
 
     public function changeLang(Request $request){
         session()->forget('lang');

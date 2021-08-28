@@ -43,88 +43,15 @@
                 <h3 class="collapse-block-title mt-0">برند</h3>
                 <div class="collection-collapse-block-content">
                   <div class="collection-brand-filter">
-                    <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                      <input type="checkbox" class="custom-control-input form-check-input" id="zara">
-                      <label class="custom-control-label form-check-label" for="zara">زارا</label>
-                    </div>
-                    <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                      <input type="checkbox" class="custom-control-input form-check-input" id="vera-moda">
-                      <label class="custom-control-label form-check-label" for="vera-moda">سامسونگ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                      <input type="checkbox" class="custom-control-input form-check-input" id="forever-21">
-                      <label class="custom-control-label form-check-label" for="forever-21">ال سی من</label>
-                    </div>
-                    <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                      <input type="checkbox" class="custom-control-input form-check-input" id="roadster">
-                      <label class="custom-control-label form-check-label" for="roadster">هوآوی</label>
-                    </div>
-                    <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                      <input type="checkbox" class="custom-control-input form-check-input" id="only">
-                      <label class="custom-control-label form-check-label" for="only">اسنوا</label>
-                    </div>
+                    @foreach($brands as $brand)
+                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
+                        <input type="checkbox" class="custom-control-input form-check-input" id="{{ $brand }}">
+                        <label class="custom-control-label form-check-label" for="zara">{{ ucwords($brand) }}</label>
+                      </div>
+                    @endforeach
                   </div>
                 </div>
               </div>
-              <!-- color filter start here -->
-              <div class="collection-collapse-block open">
-                <h3 class="collapse-block-title">رنگ</h3>
-                <div class="collection-collapse-block-content">
-                  <div class="color-selector">
-                    <ul>
-                      <li>
-                        <div class="color-1 active"></div> سفید(14)
-                      </li>
-                      <li>
-                        <div class="color-2"></div> قهوه ای(24)
-                      </li>
-                      <li>
-                        <div class="color-3"></div> قرمز(18)
-                      </li>
-                      <li>
-                        <div class="color-4"></div> بنفش(10)
-                      </li>
-                      <li>
-                        <div class="color-5"></div> کله غازی(9)
-                      </li>
-                      <li>
-                        <div class="color-6"></div> صورتی(11)
-                      </li>
-                      <li>
-                        <div class="color-7"></div> نارنجی(15)
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- size filter start here -->
-              <div class="collection-collapse-block open">
-                <h3 class="collapse-block-title">سایز</h3>
-                <div class="collection-collapse-block-content">
-                  <div class="size-selector">
-                    <div class="collection-brand-filter">
-                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input" id="small">
-                        <label class="custom-control-label form-check-label" for="small">s</label>
-                      </div>
-                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input" id="mediam">
-                        <label class="custom-control-label form-check-label" for="mediam">m</label>
-                      </div>
-                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input" id="large">
-                        <label class="custom-control-label form-check-label" for="large">l</label>
-                      </div>
-                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input" id="extralarge">
-                        <label class="custom-control-label form-check-label" for="extralarge">xl</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
 
               <!-- price filter start here -->
               <div class="collection-collapse-block border-0 open">
@@ -611,10 +538,10 @@
                                 </ul>
                               </div>
                               <div class="product-page-per-view">
-                                <select>
-                                  <option value="High to low">12 مورد در هر صفحه</option>
-                                  <option value="Low to High">24 مورد در هر صفحه</option>
-                                  <option value="Low to High">36 مورد در هر صفحه</option>
+                                <select class="product-pp-select">
+                                  <option value="15" <?= ($_GET['per_page']=='15')? 'selected': ''; ?>>15 {{ __('Item in each page') }}</option>
+                                  <option value="30" <?= ($_GET['per_page']=='30')? 'selected': ''; ?>>30 {{ __('Item in each page') }}</option>
+                                  <option value="45" <?= ($_GET['per_page']=='45')? 'selected': ''; ?> >45 {{ __('Item in each page') }}</option>
                                 </select>
                               </div>
                               <div class="product-page-filter ">
@@ -868,6 +795,11 @@
                       </div>
                     </div>
                     @if (isset($products))
+                      @php
+                        $per_page = (isset($_GET['per_page'])) ? $_GET['per_page'] : null;
+                        $url_suffix = '';
+                        if($per_page) $url_suffix = '&per_page=' . $per_page;
+                      @endphp
                       <div class="product-pagination">
                         <div class="theme-paggination-block">
                           <div class="container-fluid p-0">
@@ -877,7 +809,8 @@
                                   <ul class="pagination">
                                     @if ($products->currentPage() != 1)
                                       <li class="page-item">
-                                        <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                                        <a class="page-link"
+                                           href="{{ ($url_suffix!=='')? $products->previousPageUrl() . $url_suffix : $products->previousPageUrl() }}" aria-label="Previous">
                                           <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
                                           <span class="sr-only">{{ __('Previous') }}</span>
                                         </a>
@@ -885,7 +818,7 @@
                                     @endif
                                     @for ($i = 1; $i <= $products->lastPage(); $i++)
                                       <li class="page-item @if ($products->currentPage()==$i)active @endif">
-                                        <a class="page-link" href="{{ $products->url($i) }}">
+                                        <a class="page-link" href="{{ ($url_suffix!=='')? $products->url($i) . $url_suffix : $products->url($i) }}">
                                           @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
                                         </a>
                                       </li>
@@ -895,7 +828,7 @@
                                     @endfor
                                     @if ($products->currentPage() != $products->lastPage())
                                       <li class="page-item">
-                                        <a class="page-link" href="{{$products->nextPageUrl()}}" aria-label="Next">
+                                        <a class="page-link" href="{{ ($url_suffix!=='')? $products->nextPageUrl() . $url_suffix : $products->nextPageUrl() }}" aria-label="Next">
                                           <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                                           <span class="sr-only">{{ __('Next') }}</span>
                                         </a>

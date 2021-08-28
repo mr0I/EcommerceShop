@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  صفحه اصلی
+{{ __('Main Page') }}
 @endsection
 
 @section('content')

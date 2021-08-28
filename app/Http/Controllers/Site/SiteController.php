@@ -9,9 +9,25 @@ use App\metaproduct;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $mobileProducts =DB::table('categories' , 'c')
+            ->join('products as p' , 'p.category_id', '=', 'c.id')
+            ->where('c.id' , '1')
+            ->select('*')
+            ->orderBy('date' , 'ASC')
+            ->take(10)->get();
+
+        $specialProducts = Product::where('main_price', '<>' , null)->get();
+
+        return view('site/index' , compact('mobileProducts' ,'specialProducts'));
+    }
+
     public function product($slug)
     {
         $product = Product::find($slug);
@@ -34,10 +50,6 @@ class SiteController extends Controller
             $views = 1;
         }
         return view('site/product/index' ,compact('product' , 'related_products','views'));
-    }
-
-    public function restricted(){
-        return view('site/restricted');
     }
 
     public function compare_products(){
@@ -63,9 +75,23 @@ class SiteController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
-        $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
+        if (isset($_GET['per_page'])){
+            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate($_GET['per_page']);
+        } else {
+            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
+        }
 
-        return view('site/category/index' , compact('products'));
+        // Calc Brands
+        $brands = [];
+        foreach ($products as $product){
+            if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
+        }
+
+        return view('site/category/index' , compact('products','category_id','brands'));
     }
 
+
+    public function restricted(){
+        return view('site/restricted');
+    }
 }

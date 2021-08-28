@@ -35,7 +35,7 @@
 
 <body id="MainBody" class="
 @if(session()->get('theme') =='dark') dark @else  bg-light @endif
-  @if(\Illuminate\Support\Facades\App::getLocale() =='fa') rtl @else ltr @endif">
+@if(\Illuminate\Support\Facades\App::getLocale() =='fa') rtl @else ltr @endif">
 
 <!-- loader start -->
 <div class="loader-wrapper">
@@ -254,13 +254,13 @@
                     <li> <a href="category-page(left-sidebar).html"><img
                                 src="{{ url('images/layout-1/nav-img/01.png') }}" alt="category-product">لباس گرم</a></li>
                     <li> <a href="category-page(left-sidebar).html"><img src="{{ url('images/layout-1/nav-img/02.png') }}" alt="category-product">تلویزیون</a></li>
-                      <ul class="mor-slide-open">
-                        <li> <a href="category-page(left-sidebar).html"><img
-                                    src="{{ url('images/layout-1/nav-img/08.png') }}" alt="category-product"> ورزشی</a></li>
-                        <li> <a href="category-page(left-sidebar).html"><img
-                                    src="{{ url('images/layout-1/nav-img/09.png') }}" alt="category-product"> کیف و کفش</a>
-                        </li>
-                      </ul>
+                    <ul class="mor-slide-open">
+                      <li> <a href="category-page(left-sidebar).html"><img
+                                  src="{{ url('images/layout-1/nav-img/08.png') }}" alt="category-product"> ورزشی</a></li>
+                      <li> <a href="category-page(left-sidebar).html"><img
+                                  src="{{ url('images/layout-1/nav-img/09.png') }}" alt="category-product"> کیف و کفش</a>
+                      </li>
+                    </ul>
                     </li>
                     <li>
                       <a class="mor-slide-click">دسته بندی بیشتر <i class="fa fa-angle-down pro-down"></i><i
@@ -295,7 +295,7 @@
                             <div class="col mega-box">
                               <div class="link-section">
                                 <div class="menu-title">
-                                  <h5>سایدبار</h5>
+                                  <h5>{{ __('Mobile') }}</h5>
                                 </div>
                                 <div class="menu-content">
                                   <ul>
@@ -398,6 +398,25 @@
                   <!--product-meu end-->
 
                   <!--pages meu start-->
+                  <li>
+                    <a class="dark-menu-item" href="#">{{ __('Products Category') }}</a>
+                    <ul>
+                      <li><a href="{{ url('category/mobile') }}">{{ __('Mobile') }}</a></li>
+                      <li>
+                        <a href="javascript:void(0)">مقایسه</a>
+                        <ul>
+                          <li><a href="compare.html">مقایسه</a></li>
+                          <li><a href="compare-2.html">مقایسه-2</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="collection.html">کالکشن</a></li>
+                      <li><a href="look-book.html">لوک بوک</a></li>
+                      <li><a href="404.html">خطای 404</a></li>
+                      <li><a href="coming-soon.html">به زودی </a></li>
+                      <li><a href="faq.html">سوالات متداول</a></li>
+                    </ul>
+                  </li>
+
                   <li>
                     <a class="dark-menu-item" href="#">{{ __('Pages') }}</a>
                     <ul>
