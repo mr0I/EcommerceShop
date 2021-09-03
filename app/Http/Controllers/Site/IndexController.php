@@ -7,6 +7,7 @@ use App\Compare;
 use App\Http\Controllers\Controller;
 use App\Product;
 use function GuzzleHttp\default_ca_bundle;
+use function GuzzleHttp\Promise\all;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Session;
+use function Sodium\library_version_major;
 
 class IndexController extends Controller
 {
@@ -124,9 +126,11 @@ class IndexController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
+        $all_products_count = Product::all()->count();
 
         $limit = Config::get('constants.catProductsPerPage');
         $offset = (isset($request->page_num))? (($request->page_num)*$limit) : 0;
+        $limit = ( (intval($offset)+intval($limit))>$all_products_count )? $all_products_count-intval($offset) : $limit;
 
         $sortBy = '';
         $sorting = '';
@@ -144,8 +148,8 @@ class IndexController extends Controller
                     $sortBy = 'date';
                     $sorting = 'DESC';
             }
-            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-                ->take($limit)->orderBy($sortBy , $sorting)->get();
+            $sorted_products = Product::where('category_id',$category_id[0]->id)->orderBy($sortBy,$sorting);
+            $products = $sorted_products->skip($offset)->take($limit)->get();
         } else{
             $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
                 ->take($limit)->latest('date')->get();
@@ -157,7 +161,7 @@ class IndexController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
-        return response()->json(['result'=>'Done' ,'products'=>$products ] , 200);
+        return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset ] , 200);
     }
 
     /**

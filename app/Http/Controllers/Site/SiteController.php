@@ -76,19 +76,19 @@ class SiteController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
+        $all_products_count = Product::all()->count();
 
-        @$page_num = ($_GET['page'])? $_GET['page'] : 1;
-        if (!isset($page_num)){
+        if (!isset($_GET['page'])){
             $limit = Config::get('constants.catProductsPerPage');
-            $offset = (isset($page_num))? (($page_num-1)*$limit) : 0;
         } else {
-            $limit = (Config::get('constants.catProductsPerPage')) * $page_num ;
-            $offset = 0;
+            $limit = (Config::get('constants.catProductsPerPage')) * intval($_GET['page']) ;
+            $limit = ($limit>$all_products_count)? $all_products_count: $limit;
         }
+        $offset = 0;
 
-            $sortBy = '';
-            $sorting = '';
-        if (@$_GET['sortBy']){
+        $sortBy = '';
+        $sorting = '';
+        if (isset($_GET['sortBy'])){
             switch ($_GET['sortBy']){
                 case 'cheap':
                     $sortBy = 'price';
@@ -102,8 +102,8 @@ class SiteController extends Controller
                     $sortBy = 'date';
                     $sorting = 'DESC';
             }
-            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-                ->take($limit)->orderBy($sortBy , $sorting)->get();
+            $sorted_products = Product::where('category_id',$category_id[0]->id)->orderBy($sortBy,$sorting);
+            $products = $sorted_products->skip($offset)->take($limit)->get();
         } else{
             $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
                 ->take($limit)->latest('date')->get();
