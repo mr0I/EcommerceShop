@@ -13,6 +13,7 @@ return [
     |
     */
 
-    'currentTheme' => env('CURRENT_THEME','light')
+    'currentTheme' => env('CURRENT_THEME','light'),
+    'catProductsPerPage' => env('CAT_PRODUCTS_PER_PAGE',16)
 
 ];

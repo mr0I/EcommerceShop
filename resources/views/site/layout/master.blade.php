@@ -845,5 +845,7 @@
 <script src="{{ url('js/custom/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('js/custom/script.js') }}"></script>
 
+@yield('productsByCategory')
+
 </body>
 </html>

@@ -9,6 +9,7 @@ use App\metaproduct;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
@@ -75,11 +76,18 @@ class SiteController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
-        if (isset($_GET['per_page'])){
-            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate($_GET['per_page']);
-        } else {
-            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
-        }
+
+        $limit = Config::get('constants.catProductsPerPage');
+        $offset = (isset($_GET['page']))? (($_GET['page']-1)*$limit) : 0;
+        $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+            ->take($limit)->latest('date')->get();
+
+
+//        if (isset($_GET['per_page'])){
+//            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate($_GET['per_page']);
+//        } else {
+//            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
+//        }
 
         // Calc Brands
         $brands = [];

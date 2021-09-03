@@ -26,6 +26,8 @@
   </div>
   <!-- breadcrumb End -->
 
+
+
   <!-- section start -->
   <section class="section-big-pt-space ratio_asos b-g-light">
     <div class="collection-wrapper">
@@ -475,6 +477,7 @@
                                                 alt=""></a>
             </div>
             <!-- side-bar banner end here -->
+
           </div>
 
           <div class="collection-content col">
@@ -791,6 +794,63 @@
                         @endforeach
                       </div>
                     </div>
+                    @if (isset($products))
+                      @php
+                        $per_page = (isset($_GET['per_page'])) ? $_GET['per_page'] : null;
+                       $url_suffix = '';
+                       if($per_page) $url_suffix = '&per_page=' . $per_page;
+                      @endphp
+                      <div class="product-pagination">
+                        <div class="theme-paggination-block">
+                          <div class="container-fluid p-0">
+                            <div class="row">
+                              <div class="col-xl-6 col-md-6 col-sm-12">
+                                <nav aria-label="Page navigation">
+                                  <ul class="pagination">
+                                    @if ($products->currentPage() != 1)
+                                      <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ ($url_suffix!=='')? $products->previousPageUrl() . $url_suffix : $products->previousPageUrl() }}" aria-label="Previous">
+                                          <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                                          <span class="sr-only">{{ __('Previous') }}</span>
+                                        </a>
+                                      </li>
+                                    @endif
+                                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                                      <li class="page-item @if ($products->currentPage()==$i)active @endif">
+                                        <a class="page-link" href="{{ ($url_suffix!=='')? $products->url($i) . $url_suffix : $products->url($i) }}">
+                                          @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
+                                        </a>
+                                      </li>
+                                      {{--@if ($i === ($products->lastPage()-3))--}}
+                                      {{--<li><a>...</a></li>--}}
+                                      {{--@endif--}}
+                                    @endfor
+                                    @if ($products->currentPage() != $products->lastPage())
+                                      <li class="page-item">
+                                        <a class="page-link" href="{{ ($url_suffix!=='')? $products->nextPageUrl() . $url_suffix : $products->nextPageUrl() }}" aria-label="Next">
+                                          <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                                          <span class="sr-only">{{ __('Next') }}</span>
+                                        </a>
+                                      </li>
+                                    @endif
+                                  </ul>
+                                </nav>
+                              </div>
+                              <div class="col-xl-6 col-md-6 col-sm-12">
+                                <div class="product-search-count-bottom">
+                                  @php
+                                    $from = (($products->currentPage() -1)  * $products->perPage()) + 1;
+                                    $to = (($from + $products->perPage()) <= $products->total()) ? ($from + $products->perPage())-1 : $products->total();
+                                  @endphp
+                                  <h5> نمایش محصول {{ $from }}تا{{ $to  }}  از {{ $products->total() }} نتیجه</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endif
                   </div>
                 </div>
               </div>

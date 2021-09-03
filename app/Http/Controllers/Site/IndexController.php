@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Category;
 use App\Compare;
 use App\Http\Controllers\Controller;
 use App\Product;
 use function GuzzleHttp\default_ca_bundle;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -116,6 +118,25 @@ class IndexController extends Controller
         } else {
             return response()->json(['result' => 'Error' ] , 400);
         }
+    }
+
+    public function getCatProducts(Request $request)
+    {
+        $category_name = $request->name;
+        $category_id = Category::where('name',$category_name)->get('id');
+
+        $limit = Config::get('constants.catProductsPerPage');
+        $offset = (isset($request->page_num))? (($request->page_num)*$limit) : 0;
+        $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+            ->take($limit)->latest('date')->get();
+
+        // Calc Brands
+        $brands = [];
+        foreach ($products as $product){
+            if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
+        }
+
+        return response()->json(['result'=>'Done' ,'products'=>$products , 'brands'=>$brands , 'category_id'=>$category_id ] , 200);
     }
 
     /**
