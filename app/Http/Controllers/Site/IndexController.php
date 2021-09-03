@@ -128,14 +128,22 @@ class IndexController extends Controller
         $category_id = Category::where('name',$category_name)->get('id');
         $all_products_count = Product::all()->count();
 
-        $limit = Config::get('constants.catProductsPerPage');
-        $offset = (isset($request->page_num))? (($request->page_num)*$limit) : 0;
-        $limit = ( (intval($offset)+intval($limit))>$all_products_count )? $all_products_count-intval($offset) : $limit;
+        $initial_limit = Config::get('constants.catProductsPerPage');
+        $offset = (intval($request->page_num)>0)? ((intval($request->page_num))*$initial_limit) : 0;
+        $limit = ( (intval($offset)+intval($initial_limit))>$all_products_count )? $all_products_count-intval($offset) : $initial_limit;
+
 
         $sortBy = '';
         $sorting = '';
         if ($request->sort_type!==null){
-            switch ($request->sort_type){
+            $sort_type = $request->sort_type;
+        } elseif(isset($_GET['sortBy'])){
+            $sort_type = $_GET['sortBy'];
+        } else{
+            $sort_type = null;
+        }
+        if ($sort_type!==null){
+            switch ($sort_type){
                 case 'cheap':
                     $sortBy = 'price';
                     $sorting = 'ASC';
@@ -150,7 +158,7 @@ class IndexController extends Controller
             }
             $sorted_products = Product::where('category_id',$category_id[0]->id)->orderBy($sortBy,$sorting);
             $products = $sorted_products->skip($offset)->take($limit)->get();
-        } else{
+        } else {
             $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
                 ->take($limit)->latest('date')->get();
         }
