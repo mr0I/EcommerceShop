@@ -136,7 +136,7 @@ class IndexController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
-        return response()->json(['result'=>'Done' ,'products'=>$products , 'brands'=>$brands , 'category_id'=>$category_id ] , 200);
+        return response()->json(['result'=>'Done' ,'products'=>$products ] , 200);
     }
 
     /**

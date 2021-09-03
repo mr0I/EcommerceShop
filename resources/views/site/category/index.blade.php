@@ -516,38 +516,7 @@
                               <div class="horizontal-filter-toggle">
                                 <h4><i data-feather="filter"></i>فیلتر</h4>
                               </div>
-                              <div class="collection-view">
-                                <ul>
-                                  <li><i class="fa fa-th grid-layout-view"></i></li>
-                                  <li><i class="fa fa-list-ul list-layout-view"></i></li>
-                                </ul>
-                              </div>
-                              <div class="collection-grid-view">
-                                <ul>
-                                  <li><img src="{{ url('/images/category/icon/2.png') }}" alt=""
-                                           class="product-2-layout-view"></li>
-                                  <li><img src="{{ url('/images/category/icon/3.png') }}" alt=""
-                                           class="product-3-layout-view"></li>
-                                  <li><img src="{{ url('/images/category/icon/4.png') }}" alt=""
-                                           class="product-4-layout-view"></li>
-                                  <li><img src="{{ url('/images/category/icon/5.png') }}" alt=""
-                                           class="product-6-layout-view"></li>
-                                </ul>
-                              </div>
-                              <div class="product-page-per-view">
-                                {{--<select class="product-pp-select">--}}
-                                  {{--<option value="15" <?= ($_GET['per_page']=='15')? 'selected': ''; ?>>15 {{ __('Item in each page') }}</option>--}}
-                                  {{--<option value="30" <?= ($_GET['per_page']=='30')? 'selected': ''; ?>>30 {{ __('Item in each page') }}</option>--}}
-                                  {{--<option value="45" <?= ($_GET['per_page']=='45')? 'selected': ''; ?> >45 {{ __('Item in each page') }}</option>--}}
-                                {{--</select>--}}
-                              </div>
-                              <div class="product-page-filter ">
-                                <select>
-                                  <option value="High to low">مرتب سازی</option>
-                                  <option value="Low to High">بر اساس قیمت</option>
-                                  <option value="Low to High">بر اساس نام</option>
-                                </select>
-                              </div>
+
                               <div class="horizontal-filter collection-filter">
                                 <div class="horizontal-filter-contain">
                                   <div class="collection-mobile-back"><span class="filter-back"><i
@@ -738,20 +707,31 @@
                       </div>
                     </div>
 
+                    <div class="row w-100 text-center mt-2">
+                      <ul class="sorting-options">
+                        <li class="sorting-option">{{ __('Sorting By: ') }}</li>
+                        <li class="sorting-option active"><a href="#" data-sort="22">مرتبط ترین</a></li>
+                        <li class="sorting-option"><a href="#" data-sort="22">محبوب‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" data-sort="4" class="is-active">پربازدیدترین</a></li>
+                        <li class="sorting-option"><a href="#" data-sort="20">ارزان‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" data-sort="21">گران‌ترین</a></li>
+                      </ul>
+                    </div>
+
                     <div class="product-wrapper-grid product">
                       <div class="row">
                         @foreach($products as $product)
-                          <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
+                          <div class="col-lg-3 col-grid-box">
                             <div class="product-box">
                               <div class="product-imgbox">
                                 <div class="product-front">
                                   <a href="/product/{{ $product->id }}">
-                                    <img src="{{ $product->image }}" class="img-fluid" alt="product">
+                                    <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="product">
                                   </a>
                                 </div>
                                 <div class="product-back">
                                   <a href="/product/{{ $product->id }}">
-                                    <img src="{{ $product->image }}" class="img-fluid " alt="product">
+                                    <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="product">
                                   </a>
                                 </div>
                               </div>
@@ -809,5 +789,10 @@
 
 
 @section('productsByCategory')
+  <script type="text/javascript">
+    const publicDir = '/uploads/product_images';
+    const productsCount = <?= $products_count ?>;
+    const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
+  </script>
   <script type="text/javascript" src="{{ url('js/custom/products_by_category.js') }}"></script>
 @endsection

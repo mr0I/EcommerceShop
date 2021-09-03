@@ -81,6 +81,7 @@ class SiteController extends Controller
         $offset = (isset($_GET['page']))? (($_GET['page']-1)*$limit) : 0;
         $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
             ->take($limit)->latest('date')->get();
+        $products_count = Product::all()->count();
 
 
 //        if (isset($_GET['per_page'])){
@@ -95,7 +96,8 @@ class SiteController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
-        return view('site/category/index' , compact('products','category_id','brands'));
+        return view('site/category/index' ,
+            compact('products','category_id','brands','products_count'));
     }
 
 

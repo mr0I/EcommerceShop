@@ -46,7 +46,7 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="product-slick">
-                <div><img src="{{ $product->image }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                <div><img src="{{ url('uploads/product_images'). '/' . $product->image }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
               </div>
             </div>
             <div class="col-lg-6">
@@ -304,12 +304,12 @@
                     <div class="product-imgbox">
                       <div class="product-front">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ $related_product->image }}" class="img-fluid" alt="product">
+                          <img src="{{ url('uploads/product_images'). '/' . $related_product->image }}" class="img-fluid" alt="product">
                         </a>
                       </div>
                       <div class="product-back">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ $related_product->image }}" class="img-fluid  " alt="product">
+                          <img src="{{ url('uploads/product_images'). '/' . $related_product->image }}" class="img-fluid  " alt="product">
                         </a>
                       </div>
                       <div class="product-icon icon-inline">
@@ -592,7 +592,7 @@
       <div class="container">
         <div class="cart-content">
           <div class="product-image">
-            <img src="{{ $product->image }}" class="img-fluid" alt="" >
+            <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="" >
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
               <h6 class="digits">{{ $product->price }} تومان</h6>
