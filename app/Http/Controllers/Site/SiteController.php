@@ -77,18 +77,39 @@ class SiteController extends Controller
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
 
-        $limit = Config::get('constants.catProductsPerPage');
-        $offset = (isset($_GET['page']))? (($_GET['page']-1)*$limit) : 0;
-        $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-            ->take($limit)->latest('date')->get();
+        @$page_num = ($_GET['page'])? $_GET['page'] : 1;
+        if (!isset($page_num)){
+            $limit = Config::get('constants.catProductsPerPage');
+            $offset = (isset($page_num))? (($page_num-1)*$limit) : 0;
+        } else {
+            $limit = (Config::get('constants.catProductsPerPage')) * $page_num ;
+            $offset = 0;
+        }
+
+            $sortBy = '';
+            $sorting = '';
+        if (@$_GET['sortBy']){
+            switch ($_GET['sortBy']){
+                case 'cheap':
+                    $sortBy = 'price';
+                    $sorting = 'ASC';
+                    break;
+                case 'expensive':
+                    $sortBy = 'price';
+                    $sorting = 'DESC';
+                    break;
+                default:
+                    $sortBy = 'date';
+                    $sorting = 'DESC';
+            }
+            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+                ->take($limit)->orderBy($sortBy , $sorting)->get();
+        } else{
+            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+                ->take($limit)->latest('date')->get();
+        }
+
         $products_count = Product::all()->count();
-
-
-//        if (isset($_GET['per_page'])){
-//            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate($_GET['per_page']);
-//        } else {
-//            $products = Product::where('category_id',$category_id[0]->id)->latest('date')->paginate(16);
-//        }
 
         // Calc Brands
         $brands = [];

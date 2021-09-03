@@ -710,11 +710,11 @@
                     <div class="row w-100 text-center mt-2">
                       <ul class="sorting-options">
                         <li class="sorting-option">{{ __('Sorting By: ') }}</li>
-                        <li class="sorting-option active"><a href="#" data-sort="22">مرتبط ترین</a></li>
-                        <li class="sorting-option"><a href="#" data-sort="22">محبوب‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" data-sort="4" class="is-active">پربازدیدترین</a></li>
-                        <li class="sorting-option"><a href="#" data-sort="20">ارزان‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" data-sort="21">گران‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="22">مرتبط ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="22">محبوب‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="4" class="is-active">پربازدیدترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="cheap">ارزان‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="expensive">گران‌ترین</a></li>
                       </ul>
                     </div>
 

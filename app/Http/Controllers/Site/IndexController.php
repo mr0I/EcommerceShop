@@ -127,8 +127,29 @@ class IndexController extends Controller
 
         $limit = Config::get('constants.catProductsPerPage');
         $offset = (isset($request->page_num))? (($request->page_num)*$limit) : 0;
-        $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-            ->take($limit)->latest('date')->get();
+
+        $sortBy = '';
+        $sorting = '';
+        if ($request->sort_type!==null){
+            switch ($request->sort_type){
+                case 'cheap':
+                    $sortBy = 'price';
+                    $sorting = 'ASC';
+                    break;
+                case 'expensive':
+                    $sortBy = 'price';
+                    $sorting = 'DESC';
+                    break;
+                default:
+                    $sortBy = 'date';
+                    $sorting = 'DESC';
+            }
+            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+                ->take($limit)->orderBy($sortBy , $sorting)->get();
+        } else{
+            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
+                ->take($limit)->latest('date')->get();
+        }
 
         // Calc Brands
         $brands = [];
