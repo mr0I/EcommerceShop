@@ -43,8 +43,8 @@
                   <div class="collection-brand-filter">
                     @foreach($brands as $brand)
                       <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input" id="{{ $brand }}">
-                        <label class="custom-control-label form-check-label" for="zara">{{ ucwords($brand) }}</label>
+                        <input type="checkbox" class="custom-control-input form-check-input brands-filter" id="brand_{{ $brand }}" data-brand="{{ $brand }}">
+                        <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">{{ ucwords($brand) }}</label>
                       </div>
                     @endforeach
                   </div>
@@ -60,6 +60,9 @@
                   </div>
                 </div>
               </div>
+              <button class="btn btn-white btn-outline tooltip-top category-apply-filters w-100 mt-4 p-2">
+                {{ __('Apply Filters') }}
+              </button>
             </div>
             <!-- silde-bar colleps block end here -->
             <!-- side-bar single product slider start -->
@@ -489,12 +492,14 @@
   <!-- section End -->
 
 
-
-
 @endsection
 
 
 @section('productsByCategory')
+  <!-- range sldier -->
+  <script src="{{ url('js/ion.rangeSlider.js') }}"></script>
+  <script src="{{ url('js/rangeslidermain.js') }}"></script>
+
   <script type="text/javascript">
     const publicDir = '/uploads/product_images';
     const productsCount = <?= $products_count ?>;

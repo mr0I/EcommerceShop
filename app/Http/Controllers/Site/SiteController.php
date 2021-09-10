@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
 
 class SiteController extends Controller
 {
@@ -76,7 +77,11 @@ class SiteController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
-        $all_products_count = Product::all()->count();
+        $all_products = Product::where('category_id',$category_id[0]->id)->get();
+        $all_products_count = sizeof($all_products);
+
+//        $filters = json_decode($_GET['filters']);
+//        dd($filters->brands);
 
         if (!isset($_GET['page'])){
             $limit = Config::get('constants.catProductsPerPage');
@@ -86,8 +91,9 @@ class SiteController extends Controller
         }
         $offset = 0;
 
-        $sortBy = '';
-        $sorting = '';
+
+        $sortBy = 'date';
+        $sorting = 'DESC';
         if (isset($_GET['sortBy'])){
             switch ($_GET['sortBy']){
                 case 'cheap':
@@ -102,13 +108,11 @@ class SiteController extends Controller
                     $sortBy = 'date';
                     $sorting = 'DESC';
             }
-            $sorted_products = Product::where('category_id',$category_id[0]->id)->orderBy($sortBy,$sorting);
-            $products = $sorted_products->skip($offset)->take($limit)->get();
-        } else{
-            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-                ->take($limit)->latest('date')->get();
         }
 
+        $sorted_products = Product::where('category_id',$category_id[0]->id)
+            ->orderBy($sortBy,$sorting);
+        $products = $sorted_products->skip($offset)->take($limit)->get();
         $products_count = Product::all()->count();
 
         // Calc Brands

@@ -126,22 +126,38 @@ class IndexController extends Controller
     {
         $category_name = $request->name;
         $category_id = Category::where('name',$category_name)->get('id');
-        $all_products_count = Product::all()->count();
+        $all_products = Product::where('category_id',$category_id[0]->id)->get();
+        $all_products_count = sizeof($all_products);
 
         $initial_limit = Config::get('constants.catProductsPerPage');
         $offset = (intval($request->page_num)>0)? ((intval($request->page_num))*$initial_limit) : 0;
         $limit = ( (intval($offset)+intval($initial_limit))>$all_products_count )? $all_products_count-intval($offset) : $initial_limit;
 
 
-        $sortBy = '';
-        $sorting = '';
         if ($request->sort_type!==null){
             $sort_type = $request->sort_type;
         } elseif(isset($_GET['sortBy'])){
             $sort_type = $_GET['sortBy'];
-        } else{
+        } else {
             $sort_type = null;
         }
+
+        // Calc All Brands
+        $All_brands = [];
+        foreach ($all_products as $product){
+            if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
+        }
+        if ($request->brands_filters!==null){
+            $brandsFilters = $request->brands_filters;
+        } elseif(isset($_GET['filters'])){
+            $brandsFilters = $_GET['filters'];
+        } else {
+            $brandsFilters = $All_brands;
+        }
+        //return response()->json(['result'=>$_GET['filters'] ] , 200);
+
+        $sortBy = 'date';
+        $sorting = 'DESC';
         if ($sort_type!==null){
             switch ($sort_type){
                 case 'cheap':
@@ -156,12 +172,11 @@ class IndexController extends Controller
                     $sortBy = 'date';
                     $sorting = 'DESC';
             }
-            $sorted_products = Product::where('category_id',$category_id[0]->id)->orderBy($sortBy,$sorting);
-            $products = $sorted_products->skip($offset)->take($limit)->get();
-        } else {
-            $products = Product::where('category_id',$category_id[0]->id)->skip($offset)
-                ->take($limit)->latest('date')->get();
         }
+
+        $sorted_products = Product::where('category_id',$category_id[0]->id)
+            ->whereIn('brand',$brandsFilters)->orderBy($sortBy,$sorting);
+        $products = $sorted_products->skip($offset)->take($limit)->get();
 
         // Calc Brands
         $brands = [];
