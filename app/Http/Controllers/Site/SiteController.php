@@ -117,8 +117,11 @@ class SiteController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
+        // New Products
+        $latest_mobile_products = Product::take(5)->latest('date')->get();
+
         return view('site/category/index' ,
-            compact('products','category_id','brands','products_count'));
+            compact('products','category_id','brands','products_count','latest_mobile_products'));
     }
 
 

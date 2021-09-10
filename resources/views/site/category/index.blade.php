@@ -68,402 +68,108 @@
               <div class="slide-1">
                 <div>
                   <div class="media-banner plrb-0 b-g-white1 border-0">
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>گوشی سامسونگ</p>
-                                </a>
-                                <h6>47,000 تومان <span>55,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>میکسر رکس</p>
-                                </a>
-                                <h6>40,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
+                    @foreach($latest_mobile_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
+                                    @else
+                                    <h6>{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-shopping-cart">
+                                      <circle cx="9" cy="21" r="1"></circle>
+                                      <circle cx="20" cy="21" r="1"></circle>
+                                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg> </button>
+                                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                                     data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
+                                                                                       class="add-to-wish"></i></a>
+                                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>پنکه رومیزی</p>
-                                </a>
-                                <h6>52,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
                   </div>
                 </div>
                 <div>
                   <div class="media-banner plrb-0 b-g-white1 border-0">
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>پنکه رومیزی</p>
-                                </a>
-                                <h6>52,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>گوشی سامسونگ</p>
-                                </a>
-                                <h6>47,000 تومان <span>55,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
+                    @foreach($latest_mobile_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
+                                    @else
+                                    <h6>{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-shopping-cart">
+                                      <circle cx="9" cy="21" r="1"></circle>
+                                      <circle cx="20" cy="21" r="1"></circle>
+                                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg> </button>
+                                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                                     data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
+                                                                                       class="add-to-wish"></i></a>
+                                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>میکسر رکس</p>
-                                </a>
-                                <h6>40,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div class="media-banner plrb-0 b-g-white1 border-0">
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/1.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>میکسر رکس</p>
-                                </a>
-                                <h6>40,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/2.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>پنکه رومیزی</p>
-                                </a>
-                                <h6>52,000 تومان <span>60,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="media-banner-box">
-                      <div class="media">
-                        <a href="product-page(left-sidebar).html" tabindex="0">
-                          <img src="../assets/images/layout-2/media-banner/3.jpg" class="img-fluid " alt="banner">
-                        </a>
-                        <div class="media-body">
-                          <div class="media-contant">
-                            <div>
-                              <div class="product-detail">
-                                <ul class="rating">
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star"></i></li>
-                                  <li><i class="fa fa-star-o"></i></li>
-                                </ul>
-                                <a href="product-page(left-sidebar).html" tabindex="0">
-                                  <p>گوشی سامسونگ</p>
-                                </a>
-                                <h6>47,000 تومان <span>55,000</span></h6>
-                              </div>
-                              <div class="cart-info">
-                                <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                          stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                  </svg> </button>
-                                <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                   data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"
-                                                                                     class="add-to-wish"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                   class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
-                                          data-feather="refresh-cw"></i></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                    @endforeach
                   </div>
                 </div>
               </div>
@@ -471,7 +177,7 @@
             <!-- side-bar single product slider end -->
             <!-- side-bar banner start here -->
             <div class="collection-sidebar-banner">
-              <a href="javascript:void(0)"><img src="../assets/images/category/side-banner.png" class="img-fluid "
+              <a href="javascript:void(0)"><img src="{{ url('/images/category/side-banner.png') }}" class="img-fluid "
                                                 alt=""></a>
             </div>
             <!-- side-bar banner end here -->
