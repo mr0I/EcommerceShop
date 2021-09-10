@@ -80,8 +80,6 @@ class SiteController extends Controller
         $all_products = Product::where('category_id',$category_id[0]->id)->get();
         $all_products_count = sizeof($all_products);
 
-//        $filters = json_decode($_GET['filters']);
-//        dd($filters->brands);
 
         if (!isset($_GET['page'])){
             $limit = Config::get('constants.catProductsPerPage');
@@ -110,14 +108,27 @@ class SiteController extends Controller
             }
         }
 
+        // Calc All Brands
+        $All_brands = [];
+        foreach ($all_products as $product){
+            if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
+        }
+
+        if (isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $brandsFilters = $filters->brands;
+        } else {
+            $brandsFilters = $All_brands;
+        }
+
         $sorted_products = Product::where('category_id',$category_id[0]->id)
-            ->orderBy($sortBy,$sorting);
+            ->whereIn('brand',$brandsFilters)->orderBy($sortBy,$sorting);
         $products = $sorted_products->skip($offset)->take($limit)->get();
         $products_count = Product::all()->count();
 
         // Calc Brands
         $brands = [];
-        foreach ($products as $product){
+        foreach ($all_products as $product){
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 

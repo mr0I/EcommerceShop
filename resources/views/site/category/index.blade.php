@@ -419,11 +419,11 @@
                     <div class="row w-100 text-center mt-2">
                       <ul class="sorting-options">
                         <li class="sorting-option">{{ __('Sorting By: ') }}</li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="22">مرتبط ترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="22">محبوب‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="4" class="is-active">پربازدیدترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="22">جدیدترین</a></li>
                         <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="cheap">ارزان‌ترین</a></li>
                         <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="expensive">گران‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="22">محبوب‌ترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="4" class="is-active">پربازدیدترین</a></li>
                       </ul>
                     </div>
 
@@ -500,10 +500,12 @@
   <script src="{{ url('js/ion.rangeSlider.js') }}"></script>
   <script src="{{ url('js/rangeslidermain.js') }}"></script>
 
+
   <script type="text/javascript">
     const publicDir = '/uploads/product_images';
     const productsCount = <?= $products_count ?>;
     const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
+    const brands= <?= implode(',',$brands) ?>;
   </script>
   <script type="text/javascript" src="{{ url('js/custom/products_by_category.js') }}"></script>
 @endsection

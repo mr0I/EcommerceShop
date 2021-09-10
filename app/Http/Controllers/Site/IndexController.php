@@ -147,14 +147,15 @@ class IndexController extends Controller
         foreach ($all_products as $product){
             if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
         }
+
         if ($request->brands_filters!==null){
             $brandsFilters = $request->brands_filters;
         } elseif(isset($_GET['filters'])){
-            $brandsFilters = $_GET['filters'];
+            $filters = json_decode($_GET['filters']);
+            $brandsFilters = $filters->brands;
         } else {
             $brandsFilters = $All_brands;
         }
-        //return response()->json(['result'=>$_GET['filters'] ] , 200);
 
         $sortBy = 'date';
         $sorting = 'DESC';

@@ -833,7 +833,7 @@
 <script src="{{ url('js/tippy-popper.min.js') }}"></script>
 <script src="{{ url('js/tippy-bundle.iife.min.js') }}"></script>
 
-<!-- father icon -->
+<!-- feather icon -->
 <script src="{{ url('js/feather.min.js') }}"></script>
 <script src="{{ url('js/feather-icon.js') }}"></script>
 
