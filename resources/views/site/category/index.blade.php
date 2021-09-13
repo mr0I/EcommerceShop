@@ -56,7 +56,7 @@
                 <h3 class="collapse-block-title">قیمت</h3>
                 <div class="collection-collapse-block-content">
                   <div class="filter-slide">
-                    <input class="js-range-slider" type="text" name="my_range" value="" data-type="double" />
+                    <input class="js-range-slider price-range" type="text" name="my_range" value="" data-type="double" />
                   </div>
                 </div>
               </div>
@@ -498,13 +498,14 @@
 @section('productsByCategory')
   <!-- range sldier -->
   <script src="{{ url('js/ion.rangeSlider.js') }}"></script>
-  <script src="{{ url('js/rangeslidermain.js') }}"></script>
 
 
   <script type="text/javascript">
     const publicDir = '/uploads/product_images';
     const productsCount = <?= $products_count ?>;
     const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
+    const priceMin = <?= $priceMin ?>;
+    const priceMax = <?= $priceMax ?>;
   </script>
   <script type="text/javascript" src="{{ url('/libs/js/products_by_category.js') }}"></script>
 

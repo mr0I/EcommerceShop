@@ -89,7 +89,7 @@ class SiteController extends Controller
         }
         $offset = 0;
 
-
+        // sorting filter
         $sortBy = 'date';
         $sorting = 'DESC';
         if (isset($_GET['sortBy'])){
@@ -108,12 +108,15 @@ class SiteController extends Controller
             }
         }
 
-        // Calc All Brands
+        // brands filter
         $All_brands = [];
+        $priceMin = 999999999999999;
+        $priceMax = 0;
         foreach ($all_products as $product){
             if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
+            if($product->price<$priceMin) $priceMin=$product->price;
+            if($product->price>$priceMax) $priceMax=$product->price;
         }
-
         if (isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $brandsFilters = $filters->brands;
@@ -121,10 +124,23 @@ class SiteController extends Controller
             $brandsFilters = $All_brands;
         }
 
+        // price filter
+        $min_price =0;
+        $max_price =999999999999999;
+        if(isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $priceRange = $filters->price;
+            $min_price = str_split($priceRange,';')[0];
+            $max_price = str_split($priceRange,';')[1];
+        }
+
+
         $sorted_products = Product::where('category_id',$category_id[0]->id)
-            ->whereIn('brand',$brandsFilters)->orderBy($sortBy,$sorting);
+            ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
+            ->orderBy($sortBy,$sorting);
         $products = $sorted_products->skip($offset)->take($limit)->get();
         $products_count = Product::all()->count();
+
 
         // Calc Brands
         $brands = [];
@@ -136,7 +152,8 @@ class SiteController extends Controller
         $latest_mobile_products = Product::take(5)->latest('date')->get();
 
         return view('site/category/index' ,
-            compact('products','category_id','brands','products_count','latest_mobile_products'));
+            compact('products','category_id','brands','products_count','latest_mobile_products'
+            ,'priceMin','priceMax'));
     }
 
 

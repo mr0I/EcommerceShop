@@ -11,6 +11,17 @@ jQuery(document).ready(function($) {
         });
     }
 
+    // Initial Quantification Price Range
+    $(".price-range").ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: 0,
+        max: Math.ceil(priceMax),
+        from: 1000000,
+        to: 20000000,
+        postfix: " تومان"
+    });
+
 
     // Constants
     window.public_dir = publicDir;
@@ -145,9 +156,15 @@ jQuery(document).ready(function($) {
         canLoadMoreProducts = true;
         showAlert = true;
 
+        let priceRange = $('.price-range').val();
+        let min_price = (priceRange.split(';'))[0];
+        let max_price = (priceRange.split(';'))[1];
+
+
         const data = {
-            brands_filters: window.brands_filters,
-            // page_num: 0
+            brands_filters: ((window.brands_filters).length!==0)? window.brands_filters : null,
+            min_price: min_price,
+            max_price: max_price
         };
         fetch(`/getCatProducts/${getUrlParams().category_name}`, {
             method: 'POST',
@@ -171,14 +188,15 @@ jQuery(document).ready(function($) {
                         let quotedArray = '"' + window.brands_filters.join('","') + '"';
                         let updatedUrl =  catPageBaseUrl+ '?page=1'
                             +((getUrlParams().sortBy!=='')? '&sortBy='+getUrlParams().sortBy : '')
-                            +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"10","max":"1000"}' + '}' ;
+                            +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"'+min_price+'","max":"'+max_price+'" }' + '}' ;
                         window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
                     });
                 }
             })
-    })
+    });
 
 });
+
 
 function getUrlParams() {
     let url = new URL(window.location.href);

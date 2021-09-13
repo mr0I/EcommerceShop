@@ -133,7 +133,22 @@ class IndexController extends Controller
         $offset = (intval($request->page_num)>0)? ((intval($request->page_num))*$initial_limit) : 0;
         $limit = ( (intval($offset)+intval($initial_limit))>$all_products_count )? $all_products_count-intval($offset) : $initial_limit;
 
+        // brands filter
+        $All_brands = [];
+        foreach ($all_products as $product){
+            if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
+        }
+        if ($request->brands_filters!==null){
+            $brandsFilters = $request->brands_filters;
+        } elseif(isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $brandsFilters = $filters->brands;
+            if(count($brandsFilters)===1 && $brandsFilters[0]==='') $brandsFilters = $All_brands;
+        } else {
+            $brandsFilters = $All_brands;
+        }
 
+        // sorting filter
         if ($request->sort_type!==null){
             $sort_type = $request->sort_type;
         } elseif(isset($_GET['sortBy'])){
@@ -141,22 +156,6 @@ class IndexController extends Controller
         } else {
             $sort_type = null;
         }
-
-        // Calc All Brands
-        $All_brands = [];
-        foreach ($all_products as $product){
-            if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
-        }
-
-        if ($request->brands_filters!==null){
-            $brandsFilters = $request->brands_filters;
-        } elseif(isset($_GET['filters'])){
-            $filters = json_decode($_GET['filters']);
-            $brandsFilters = $filters->brands;
-        } else {
-            $brandsFilters = $All_brands;
-        }
-
         $sortBy = 'date';
         $sorting = 'DESC';
         if ($sort_type!==null){
@@ -175,8 +174,27 @@ class IndexController extends Controller
             }
         }
 
+        // price filter
+        $min_price =0;
+        $max_price =9999999999;
+        if ($request->min_price!==null && $request->max_price!==null ){
+            $min_price =$request->min_price;
+            $max_price =$request->max_price;
+        } elseif(isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $priceRange = $filters->price;
+            $min_price = $priceRange->min;
+            $max_price = $priceRange->max;
+        } else{
+            $min_price =0;
+            $max_price =9999999999;
+        }
+
+
+
         $sorted_products = Product::where('category_id',$category_id[0]->id)
-            ->whereIn('brand',$brandsFilters)->orderBy($sortBy,$sorting);
+            ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
+            ->orderBy($sortBy,$sorting);
         $products = $sorted_products->skip($offset)->take($limit)->get();
 
         // Calc Brands
@@ -185,7 +203,7 @@ class IndexController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
-        return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset ] , 200);
+        return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset,'$brandsFilters'=>$brandsFilters ] , 200);
     }
 
     /**
