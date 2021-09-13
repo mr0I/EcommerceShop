@@ -505,7 +505,7 @@
     const publicDir = '/uploads/product_images';
     const productsCount = <?= $products_count ?>;
     const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
-    const brands= <?= implode(',',$brands) ?>;
   </script>
-  <script type="text/javascript" src="{{ url('js/custom/products_by_category.js') }}"></script>
+  <script type="text/javascript" src="{{ url('/libs/js/products_by_category.js') }}"></script>
+
 @endsection

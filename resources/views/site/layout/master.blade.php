@@ -30,7 +30,7 @@
   <!-- Theme css -->
   <link rel="stylesheet" type="text/css" href="{{ url('css/color2.css') }}" media="screen" id="color">
   <!-- Extra css -->
-  <link rel="stylesheet" type="text/css" href="{{ url('css/custom/extra.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
 </head>
 
 <body id="MainBody" class="
@@ -826,6 +826,12 @@
 <!-- timer js -->
 {{--<script src="{{ url('js/timer2.js') }}"></script>--}}
 
+
+<!-- feather icon -->
+<script src="{{ url('js/feather.min.js') }}"></script>
+<script src="{{ url('js/feather-icon.js') }}"></script>
+
+
 <!-- Bootstrap js-->
 <script src="{{ url('js/bootstrap.js') }}"></script>
 
@@ -833,19 +839,21 @@
 <script src="{{ url('js/tippy-popper.min.js') }}"></script>
 <script src="{{ url('js/tippy-bundle.iife.min.js') }}"></script>
 
-<!-- feather icon -->
-<script src="{{ url('js/feather.min.js') }}"></script>
-<script src="{{ url('js/feather-icon.js') }}"></script>
 
 <!-- Theme js-->
 <script src="{{ url('js/modal.js') }}"></script>
 <script src="{{ url('js/script.js') }}"></script>
 
 
-<script src="{{ url('js/custom/sweetalert2.all.min.js') }}"></script>
-<script src="{{ url('js/custom/script.js') }}"></script>
+<script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
+<script src="{{ url('libs/js/script.js') }}"></script>
 
 @yield('productsByCategory')
+
+
+<script>
+    feather.replace()
+</script>
 
 </body>
 </html>
