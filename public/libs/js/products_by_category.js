@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+    $('.digits').digits();
+
     // Initial Quantification Checkboxes
     if (getUrlParams().filters!== ''){
         const brandsArray = (JSON.parse(getUrlParams().filters)).brands;
@@ -194,6 +196,8 @@ jQuery(document).ready(function($) {
                 }
             })
     });
+
+
 
 });
 

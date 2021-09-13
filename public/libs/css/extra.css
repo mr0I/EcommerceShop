@@ -225,3 +225,7 @@
     color: #EEEEEE;
     background-color: lightseagreen;
 }
+
+.filter-slide .irs-from, .filter-slide .irs-to {
+    font-size: 12px;
+}

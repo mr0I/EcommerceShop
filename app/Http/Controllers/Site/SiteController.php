@@ -102,6 +102,10 @@ class SiteController extends Controller
                     $sortBy = 'price';
                     $sorting = 'DESC';
                     break;
+                case 'lastest':
+                    $sortBy = 'date';
+                    $sorting = 'DESC';
+                    break;
                 default:
                     $sortBy = 'date';
                     $sorting = 'DESC';
@@ -110,7 +114,7 @@ class SiteController extends Controller
 
         // brands filter
         $All_brands = [];
-        $priceMin = 999999999999999;
+        $priceMin = 9999999999;
         $priceMax = 0;
         foreach ($all_products as $product){
             if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
@@ -120,18 +124,19 @@ class SiteController extends Controller
         if (isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $brandsFilters = $filters->brands;
+            if(count($brandsFilters)===1 && $brandsFilters[0]==='') $brandsFilters = $All_brands;
         } else {
             $brandsFilters = $All_brands;
         }
 
         // price filter
         $min_price =0;
-        $max_price =999999999999999;
+        $max_price =9999999999;
         if(isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $priceRange = $filters->price;
-            $min_price = str_split($priceRange,';')[0];
-            $max_price = str_split($priceRange,';')[1];
+            $min_price = $priceRange->min;
+            $max_price = $priceRange->max;
         }
 
 
@@ -139,8 +144,8 @@ class SiteController extends Controller
             ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
             ->orderBy($sortBy,$sorting);
         $products = $sorted_products->skip($offset)->take($limit)->get();
-        $products_count = Product::all()->count();
 
+        $products_count = Product::all()->count();
 
         // Calc Brands
         $brands = [];

@@ -419,7 +419,7 @@
                     <div class="row w-100 text-center mt-2">
                       <ul class="sorting-options">
                         <li class="sorting-option">{{ __('Sorting By: ') }}</li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="22">جدیدترین</a></li>
+                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="latest">جدیدترین</a></li>
                         <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="cheap">ارزان‌ترین</a></li>
                         <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="expensive">گران‌ترین</a></li>
                         <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="22">محبوب‌ترین</a></li>

@@ -168,6 +168,10 @@ class IndexController extends Controller
                     $sortBy = 'price';
                     $sorting = 'DESC';
                     break;
+                case 'lastest':
+                    $sortBy = 'date';
+                    $sorting = 'DESC';
+                    break;
                 default:
                     $sortBy = 'date';
                     $sorting = 'DESC';
