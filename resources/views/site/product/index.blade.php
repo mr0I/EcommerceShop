@@ -15,6 +15,20 @@
   @endif
 
 
+  @if (\Session::has('review_error'))
+    {{--<script>{{ \Session::get('review_error') }}</script>--}}
+    <script type="text/javascript">
+        alert('Error');
+    </script>
+  @endif
+  @if (\Session::has('review_success'))
+    {{--<script>{{ \Session::get('review_error') }}</script>--}}
+    <script type="text/javascript">
+        alert('Success');
+    </script>
+  @endif
+
+
   @if($product !== null)
     <!-- breadcrumb start -->
     <div class="breadcrumb-main ">
@@ -65,13 +79,13 @@
                   </ul>
                   <div class="revieu-box">
                     <ul>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star"></i></li>
-                      <li><i class="fa fa-star-o"></i></li>
+                      <li><i class="fa <?= ($average_rating>=1)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
+                      <li><i class="fa <?= ($average_rating>=2)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
+                      <li><i class="fa <?= ($average_rating>=3)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
+                      <li><i class="fa <?= ($average_rating>=4)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
+                      <li><i class="fa <?= ($average_rating>=5)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
+                    <a href="#top-review"><span>({{ $comments_count }} بررسی)</span></a>
                     </ul>
-                    <a href="review.html"><span>(6 بررسی)</span></a>
                   </div>
                   <ul class="best-seller">
                     <li>
@@ -244,37 +258,65 @@
                   </div>
                 </div>
                 <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                  <form class="theme-form">
+                  <form class="theme-form" action="{{ route('addComment') }}" method="post">
+                    @csrf
                     <div class="row g-3">
                       <div class="col-md-12">
                         <div class="media">
                           <label>امتیاز</label>
                           <div class="media-body ms-3">
-                            <div class="rating three-star"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                      class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                            <div class="rate">
+                              <input type="radio" id="star5" name="star" value="5" />
+                              <label for="star5" title="text">5 stars</label>
+                              <input type="radio" id="star4" name="star" value="4" />
+                              <label for="star4" title="text">4 stars</label>
+                              <input type="radio" id="star3" name="star" value="3" />
+                              <label for="star3" title="text">3 stars</label>
+                              <input type="radio" id="star2" name="star" value="2" />
+                              <label for="star2" title="text">2 stars</label>
+                              <input type="radio" id="star1" name="star" value="1" />
+                              <label for="star1" title="text">1 star</label>
+                            </div>
                           </div>
+                          <a href="{{ url('/reviews',['pid'=>$product->id]) }}">{{ __('All Reviews') }}</a>
                         </div>
                       </div>
                       <div class="col-md-6">
-                        <label for="name">نام</label>
-                        <input type="text" class="form-control" id="name" placeholder="نام خود را وارد کنید" required>
+                        <label for="name">{{ __('Name') }}</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                               name="name" value="{{ old('name') }}" autocomplete="name" autofocus
+                               placeholder="نام خود را وارد کنید">
+                        @error('name')
+                          <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                       </div>
                       <div class="col-md-6">
-                        <label for="email">ایمیل</label>
-                        <input type="text" class="form-control" placeholder="ایمیل" required>
+                        <label for="email">{{ __('Email') }}</label>
+                        <input type="text" class="form-control" name="email" placeholder="ایمیل"
+                               value="{{ old('email') }}" autocomplete="email">
+                        @error('email')
+                        <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                       </div>
                       <div class="col-md-12">
-                        <label for="review">عنوان دیدگاه</label>
-                        <input type="text" class="form-control" placeholder="موضوع دیدگاه خود را وارد کنید" required>
+                        <label for="review">{{ __('Text') }}</label>
+                        <textarea class="form-control" name="comment" placeholder="متن دیدگاه خود را وارد کنید..."
+                                  id="exampleFormControlTextarea1" rows="6">{{ old('comment') }}</textarea>
+                        @error('comment')
+                        <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                        @enderror
                       </div>
                       <div class="col-md-12">
-                        <label for="review">عنوان دیدگاه</label>
-                        <textarea class="form-control" placeholder="متن دیدگاه خود را وارد کنید"
-                                  id="exampleFormControlTextarea1" rows="6"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <button class="btn btn-normal" type="submit">ارسال
-                          دیدگاه</button>
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button class="btn btn-normal" type="submit">
+                          {{ __('Send Comment') }}
+                        </button>
                       </div>
                     </div>
                   </form>

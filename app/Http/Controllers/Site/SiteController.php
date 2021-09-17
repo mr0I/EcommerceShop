@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Category;
+use App\Comment;
 use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
@@ -51,7 +52,19 @@ class SiteController extends Controller
             metaproduct::create($data);
             $views = 1;
         }
-        return view('site/product/index' ,compact('product' , 'related_products','views'));
+
+        // Calc Comments
+//        $comments_count = Comment::with('products')->count();
+        $comments_count = Comment::where('product_id',$product->id)->count();
+        $comment_stars = Comment::get('star');
+        $sum_stars = 0;$average_rating = 0;
+        foreach ($comment_stars as $star){
+            $sum_stars += $star->star;
+        }
+        $average_rating= ($comments_count!==0)? round($sum_stars/$comments_count) : 0;
+
+        return view('site/product/index'
+            ,compact('product', 'related_products','views','comments_count','average_rating'));
     }
 
     public function compare_products(){
