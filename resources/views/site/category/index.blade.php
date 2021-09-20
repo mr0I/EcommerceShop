@@ -37,21 +37,23 @@
               <!-- brand filter start -->
               <div class="collection-mobile-back">
                 <span class="filter-back"><i class="fa fa-angle-right" aria-hidden="true"></i> بازگشت</span></div>
-              <div class="collection-collapse-block open">
-                <h3 class="collapse-block-title mt-0">برند</h3>
-                <div class="collection-collapse-block-content">
-                  <div class="collection-brand-filter">
-                    @foreach($brands as $brand)
-                      <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                        <input type="checkbox" class="custom-control-input form-check-input brands-filter" id="brand_{{ $brand }}" data-brand="{{ $brand }}">
-                        <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">{{ ucwords($brand) }}</label>
-                      </div>
-                    @endforeach
+              @if(sizeof($brands)!==0 && (sizeof($brands)!==1 && $brands[0]!=null))
+                <div class="collection-collapse-block open">
+                  <h3 class="collapse-block-title mt-0">برند</h3>
+                  <div class="collection-collapse-block-content">
+                    <div class="collection-brand-filter">
+                      @foreach($brands as $brand)
+                        <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
+                          <input type="checkbox" class="custom-control-input form-check-input brands-filter" id="brand_{{ $brand }}" data-brand="{{ $brand }}">
+                          <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">{{ ucwords($brand) }}</label>
+                        </div>
+                      @endforeach
+                    </div>
                   </div>
                 </div>
-              </div>
+            @endif
 
-              <!-- price filter start here -->
+            <!-- price filter start here -->
               <div class="collection-collapse-block border-0 open">
                 <h3 class="collapse-block-title">قیمت</h3>
                 <div class="collection-collapse-block-content">
@@ -93,7 +95,7 @@
                                   </a>
                                   @if($product->main_price!==null)
                                     <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
-                                    @else
+                                  @else
                                     <h6>{{ $product->price }} تومان </h6>
                                   @endif
                                 </div>
@@ -146,7 +148,7 @@
                                   </a>
                                   @if($product->main_price!==null)
                                     <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
-                                    @else
+                                  @else
                                     <h6>{{ $product->price }} تومان </h6>
                                   @endif
                                 </div>
@@ -419,11 +421,19 @@
                     <div class="row w-100 text-center mt-2">
                       <ul class="sorting-options">
                         <li class="sorting-option">{{ __('Sorting By: ') }}</li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn active" data-sort="latest">جدیدترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="cheap">ارزان‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="expensive">گران‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="22">محبوب‌ترین</a></li>
-                        <li class="sorting-option"><a href="#" class="sorting-option-btn" data-sort="4" class="is-active">پربازدیدترین</a></li>
+                        <li class="sorting-option">
+                          <a href="#" class="sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='latest')? 'active' : '' ?>"
+                             data-sort="latest">جدیدترین</a>
+                        </li>
+                        <li class="sorting-option">
+                          <a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='cheap')? 'active' : '' ?>"
+                             data-sort="cheap">ارزان‌ترین</a></li>
+                        <li class="sorting-option">
+                          <a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='expensive')? 'active' : '' ?>"
+                             data-sort="expensive">گران‌ترین</a></li>
+                        <li class="sorting-option">
+                          <a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='most_viewed')? 'active' : '' ?>"
+                             data-sort="most_viewed">پربازدیدترین</a></li>
                       </ul>
                     </div>
 
@@ -459,8 +469,12 @@
                                     @if($product->main_price!==null)
                                       <div class="check-price digits"> {{ $product->main_price }} تومان </div>
                                     @endif
-                                    <div class="price">
-                                      <div class="price digits"> {{ $product->price }} تومان </div>
+                                    <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                      @if($product->status=='not-available')
+                                        <div class="text-danger"> {{ __('Not Available') }} </div>
+                                      @else
+                                        <div class="digits"> {{ $product->price }} تومان </div>
+                                      @endif
                                     </div>
                                   </div>
                                 </div>
@@ -501,11 +515,11 @@
 
 
   <script type="text/javascript">
-    const publicDir = '/uploads/product_images';
-    const productsCount = <?= $products_count ?>;
-    const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
-    const priceMin = <?= $priceMin ?>;
-    const priceMax = <?= $priceMax ?>;
+      const publicDir = '/uploads/product_images';
+      const productsCount = <?= $products_count ?>;
+      const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
+      const priceMin = <?= $priceMin ?>;
+      const priceMax = <?= $priceMax ?>;
   </script>
   <script type="text/javascript" src="{{ url('/libs/js/products_by_category.js') }}"></script>
 

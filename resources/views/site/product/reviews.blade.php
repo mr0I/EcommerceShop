@@ -35,7 +35,7 @@
   <!--review start-->
   @if(sizeof($comments)===0)
     <div class="alert alert-warning">هیچ نظری ثبت نشده است!!!</div>
-    @else
+  @else
   <section class="review  section-big-py-space">
     <div class="container">
       <div class="row review-block">

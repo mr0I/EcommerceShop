@@ -27,8 +27,6 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/restricted', 'SiteController@restricted');
     Route::get('/compare', 'SiteController@compare_products');
     Route::get('/category/{name}', 'SiteController@category');
-    Route::post('/comment/store', 'CommentController@store')->name('addComment');
-    Route::get('/reviews/{pid}', 'CommentController@reviews');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');

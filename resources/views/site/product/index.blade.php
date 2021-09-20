@@ -77,16 +77,6 @@
                       <li>{{ $discount }}% تخفیف</li>
                     @endif
                   </ul>
-                  <div class="revieu-box">
-                    <ul>
-                      <li><i class="fa <?= ($average_rating>=1)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
-                      <li><i class="fa <?= ($average_rating>=2)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
-                      <li><i class="fa <?= ($average_rating>=3)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
-                      <li><i class="fa <?= ($average_rating>=4)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
-                      <li><i class="fa <?= ($average_rating>=5)? 'fa-star' : 'fa-star-o'  ?>"></i></li>
-                    <a href="#top-review"><span>({{ $comments_count }} بررسی)</span></a>
-                    </ul>
-                  </div>
                   <ul class="best-seller">
                     <li>
                       <svg enable-background="new 0 0 497 497" viewBox="0 0 497 497" xmlns="http://www.w3.org/2000/svg">
@@ -181,11 +171,13 @@
                     </li>
                   </ul>
 
-                  <ul class="product-specifications mt-5">
-                    @foreach(json_decode($product->specifications , true) as $key=>$value)
-                      <li class="w-100">{{ $key }}  {{ $value }}</li>
-                    @endforeach
-                  </ul>
+                  @if($product->specifications!==null && $product->specifications!=='')
+                    <ul class="product-specifications mt-5">
+                      @foreach(json_decode($product->specifications , true) as $key=>$value)
+                        <li class="w-100">{{ $key }}  {{ $value }}</li>
+                      @endforeach
+                    </ul>
+                  @endif
 
                   <div class="product-buttons">
                     <a href="javascript:void(0)" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
@@ -234,10 +226,6 @@
                                         role="tab" aria-selected="false">جزئیات</a>
                   <div class="material-border"></div>
                 </li>
-                <li class="nav-item"><a class="nav-link" id="review-top-tab" data-bs-toggle="tab" href="#top-review"
-                                        role="tab" aria-selected="false">دیدگاه</a>
-                  <div class="material-border"></div>
-                </li>
               </ul>
               <div class="tab-content nav-material" id="top-tabContent">
                 <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
@@ -256,70 +244,6 @@
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                  <form class="theme-form" action="{{ route('addComment') }}" method="post">
-                    @csrf
-                    <div class="row g-3">
-                      <div class="col-md-12">
-                        <div class="media">
-                          <label>امتیاز</label>
-                          <div class="media-body ms-3">
-                            <div class="rate">
-                              <input type="radio" id="star5" name="star" value="5" />
-                              <label for="star5" title="text">5 stars</label>
-                              <input type="radio" id="star4" name="star" value="4" />
-                              <label for="star4" title="text">4 stars</label>
-                              <input type="radio" id="star3" name="star" value="3" />
-                              <label for="star3" title="text">3 stars</label>
-                              <input type="radio" id="star2" name="star" value="2" />
-                              <label for="star2" title="text">2 stars</label>
-                              <input type="radio" id="star1" name="star" value="1" />
-                              <label for="star1" title="text">1 star</label>
-                            </div>
-                          </div>
-                          <a href="{{ url('/reviews',['pid'=>$product->id]) }}">{{ __('All Reviews') }}</a>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="name">{{ __('Name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                               name="name" value="{{ old('name') }}" autocomplete="name" autofocus
-                               placeholder="نام خود را وارد کنید">
-                        @error('name')
-                          <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
-                      </div>
-                      <div class="col-md-6">
-                        <label for="email">{{ __('Email') }}</label>
-                        <input type="text" class="form-control" name="email" placeholder="ایمیل"
-                               value="{{ old('email') }}" autocomplete="email">
-                        @error('email')
-                        <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
-                      </div>
-                      <div class="col-md-12">
-                        <label for="review">{{ __('Text') }}</label>
-                        <textarea class="form-control" name="comment" placeholder="متن دیدگاه خود را وارد کنید..."
-                                  id="exampleFormControlTextarea1" rows="6">{{ old('comment') }}</textarea>
-                        @error('comment')
-                        <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                          </span>
-                        @enderror
-                      </div>
-                      <div class="col-md-12">
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        <button class="btn btn-normal" type="submit">
-                          {{ __('Send Comment') }}
-                        </button>
-                      </div>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>

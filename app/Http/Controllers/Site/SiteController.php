@@ -53,18 +53,7 @@ class SiteController extends Controller
             $views = 1;
         }
 
-        // Calc Comments
-//        $comments_count = Comment::with('products')->count();
-        $comments_count = Comment::where('product_id',$product->id)->count();
-        $comment_stars = Comment::get('star');
-        $sum_stars = 0;$average_rating = 0;
-        foreach ($comment_stars as $star){
-            $sum_stars += $star->star;
-        }
-        $average_rating= ($comments_count!==0)? round($sum_stars/$comments_count) : 0;
-
-        return view('site/product/index'
-            ,compact('product', 'related_products','views','comments_count','average_rating'));
+        return view('site/product/index',compact('product', 'related_products','views'));
     }
 
     public function compare_products(){
@@ -72,10 +61,10 @@ class SiteController extends Controller
         $compare = Compare::where('userIdentity',$user_identity)->first();
 
         if ($compare !== null){
-            $product1 = ($compare->pid1!== null)? Product::findOrfail($compare->pid1): null;
-            $product2 = ($compare->pid2!== null)? Product::findOrfail($compare->pid2): null;
-            $product3 = ($compare->pid3!== null)? Product::findOrfail($compare->pid3): null;
-            $product4 = ($compare->pid4!== null)? Product::findOrfail($compare->pid4): null;
+            $product1 = ($compare->pid1!== null)? Product::find($compare->pid1): null;
+            $product2 = ($compare->pid2!== null)? Product::find($compare->pid2): null;
+            $product3 = ($compare->pid3!== null)? Product::find($compare->pid3): null;
+            $product4 = ($compare->pid4!== null)? Product::find($compare->pid4): null;
         } else {
             $product1 = null;
             $product2 = null;
@@ -83,7 +72,13 @@ class SiteController extends Controller
             $product4 = null;
         }
 
-        return view('site/index', compact('product1','product2','product3','product4'));
+        // remove old pids
+        if($product1===null) $compare->pid1=null;$compare->save();
+        if($product2===null) $compare->pid2=null;$compare->save();
+        if($product3===null) $compare->pid3=null;$compare->save();
+        if($product4===null) $compare->pid4=null;$compare->save();
+
+        return view('site/compare', compact('product1','product2','product3','product4'));
     }
 
     public function category(Request $request)
@@ -152,11 +147,17 @@ class SiteController extends Controller
             $max_price = $priceRange->max;
         }
 
-
+        if (sizeof($All_brands)===0 || (sizeof($All_brands)===1 && $All_brands[0]==null)){
+            $sorted_products = Product::where('category_id',$category_id[0]->id)
+                ->whereBetween('price', [$min_price,$max_price])
+                ->orderBy($sortBy,$sorting);
+        } else {
         $sorted_products = Product::where('category_id',$category_id[0]->id)
             ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
             ->orderBy($sortBy,$sorting);
+        }
         $products = $sorted_products->skip($offset)->take($limit)->get();
+
 
         $products_count = Product::all()->count();
 

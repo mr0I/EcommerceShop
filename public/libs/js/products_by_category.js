@@ -121,7 +121,7 @@ jQuery(document).ready(function($) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Data',data);
+//                console.log('Data',data);
                 if (data.result === 'Done') {
                     $('.sorting-option-btn').removeClass('active');
                     $thisBtn.addClass('active');
@@ -244,8 +244,12 @@ function appendProducts(productsContainer,product) {
                                   </div>
                                   <div class="detail-right">
                                     ${(product.main_price!==null)? '<div class="check-price digits">  '+product.main_price+' تومان </div>' : ''}
-                                    <div class="price">
-                                      <div class="price digits"> ${product.price} تومان </div> 
+                                    <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold">
+                                    ${(product.status=='not-available')?
+                                      `<div class="text-danger"> ناموجود </div> `
+                                    :   
+                                        `<div class="digits"> ${product.price} تومان </div> `
+                                    }
                                     </div>
                                   </div>
                                 </div>
@@ -263,5 +267,4 @@ function appendProducts(productsContainer,product) {
                             </div>
                           </div>
                         `);
-
 }

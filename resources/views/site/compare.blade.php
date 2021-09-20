@@ -79,55 +79,75 @@
                   <tr>
                     <th class="product-name">تصویر محصول</th>
                     @if($product1!==null)
-                      <td class="item-row"><img src="{{ $product1->image }}" alt="product"
-                                                class="   featured-image">
-                        <div class="product-price product_price">
-                          <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
-                        </div>
-
-                        <a href="{{ $product1->url }}" class="btn btn-white btn-outline tooltip-top"
-                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
-                          {{ __('Buy') }}
-                        </a>
+                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product1->image }}" alt="product"
+                                                class="featured-image">
+                        @if($product1->status=='available')
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                          </div>
+                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                            {{ __('Buy') }}
+                          </a>
+                        @else
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>--- </span>
+                          </div>
+                        @endif
                       </td>
                     @endif
                     @if($product2!==null)
-                      <td class="item-row"><img src="{{ $product2->image }}" alt="product"
-                                                class="   featured-image">
+                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product2->image }}" alt="product"
+                                                class="featured-image">
+                        @if($product2->status=='available')
                         <div class="product-price product_price">
                           <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
                         </div>
-
                         <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
                            data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
                           {{ __('Buy') }}
                         </a>
+                          @else
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>--- </span>
+                          </div>
+                        @endif
                       </td>
                     @endif
                     @if($product3!==null)
-                      <td class="item-row"><img src="{{ $product3->image }}" alt="product"
-                                                class="   featured-image">
-                        <div class="product-price product_price">
-                          <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
-                        </div>
-
-                        <a href="{{ $product3->url }}" class="btn btn-white btn-outline tooltip-top"
-                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
-                          {{ __('Buy') }}
-                        </a>
+                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product3->image }}" alt="product"
+                                                class="featured-image">
+                        @if($product3->status=='available')
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                          </div>
+                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                            {{ __('Buy') }}
+                          </a>
+                        @else
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>--- </span>
+                          </div>
+                        @endif
                       </td>
                     @endif
                     @if($product4!==null)
-                      <td class="item-row"><img src="{{ $product4->image }}" alt="product"
-                                                class="   featured-image">
-                        <div class="product-price product_price">
-                          <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
-                        </div>
-
-                        <a href="{{ $product4->url }}" class="btn btn-white btn-outline tooltip-top"
-                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
-                          {{ __('Buy') }}
-                        </a>
+                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product4->image }}" alt="product"
+                                                class="featured-image">
+                        @if($product4->status=='available')
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                          </div>
+                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                            {{ __('Buy') }}
+                          </a>
+                        @else
+                          <div class="product-price product_price">
+                            <strong>قیمت : </strong><span>--- </span>
+                          </div>
+                        @endif
                       </td>
                     @endif
                   </tr>
@@ -164,24 +184,37 @@
                   </tr>
                   <tr>
                     <th class="product-name">وضعیت</th>
-                    @if($product1!==null)
+                    @php
+                      $available_txt = __('Available');
+                      $not_available_txt = __('Not Available');
+                    @endphp
+
+                  @if($product1!==null)
                       <td class="availabel-stock">
-                        <p>{{ $product1->status }}</p>
+                        <p class="{{ ($product1->status=='available')? 'text-success' : 'text-danger' }}">
+                          {{ ($product1->status=='available')? $available_txt : $not_available_txt  }}
+                        </p>
                       </td>
                     @endif
                     @if($product2!==null)
                       <td class="availabel-stock">
-                        <p>{{ $product2->status }}</p>
+                        <p class="{{ ($product2->status=='available')? 'text-success' : 'text-danger' }}">
+                          {{ ($product2->status=='available')? $available_txt : $not_available_txt  }}
+                        </p>
                       </td>
                     @endif
                     @if($product3!==null)
                       <td class="availabel-stock">
-                        <p>{{ $product3->status }}</p>
+                        <p class="{{ ($product3->status=='available')? 'text-success' : 'text-danger' }}">
+                          {{ ($product3->status=='available')? $available_txt : $not_available_txt  }}
+                        </p>
                       </td>
                     @endif
                     @if($product4!==null)
                       <td class="availabel-stock">
-                        <p>{{ $product4->status }}</p>
+                        <p class="{{ ($product4->status=='available')? 'text-success' : 'text-danger' }}">
+                          {{ ($product4->status=='available')? $available_txt : $not_available_txt  }}
+                        </p>
                       </td>
                     @endif
                   </tr>
