@@ -68,7 +68,11 @@
                 <div class="pro-group">
                   <h2>{{ $product->title }}</h2>
                   <ul class="pro-price">
-                    <li class="digits">{{ $product->price }} تومان</li>
+                    @if($product->price==0)
+                      <li class="text-danger">{{ __('Not Available') }} </li>
+                    @else
+                      <li class="digits">{{ $product->price }} تومان</li>
+                    @endif
                     @if($product->main_price!==null && $product->main_price!=='')
                       @php
                         $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
@@ -180,11 +184,13 @@
                   @endif
 
                   <div class="product-buttons">
-                    <a href="javascript:void(0)" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
-                       data-tippy-content="افزودن به سبد خرید">
-                      <i class="fa fa-shopping-cart"></i>
-                      افزودن به سبد خرید
-                    </a>
+                    @if($product->price!=0)
+                      <a href="{{ $product->url }}" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
+                         data-tippy-content="افزودن به سبد خرید" target="_blank">
+                        <i class="fa fa-shopping-cart"></i>
+                        افزودن به سبد خرید
+                      </a>
+                    @endif
                     <a href="javascript:void(0)" class="btn btn-normal add-to-wish tooltip-top"
                        data-tippy-content="افزودن به لیست علاقه مندی">
                       <i class="fa fa-heart" aria-hidden="true"></i>
@@ -561,12 +567,18 @@
             <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="" >
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
-              <h6 class="digits">{{ $product->price }} تومان</h6>
+              @if($product->price==0)
+              <h6 class="text-danger">{{ __('Not Available') }}</h6>
+              @else
+                <h6 class="digits">{{ $product->price }} تومان</h6>
+                @endif
             </div>
           </div>
 
           <div class="add-btn">
-            <a href="javascript:void(0)" class="btn btn-solid btn-sm">افزودن به سبد خرید</a>
+            @if($product->price!=0)
+              <a href="{{ $product->url }}" class="btn btn-solid btn-sm" target="_blank">افزودن به سبد خرید</a>
+            @endif
           </div>
         </div>
       </div>

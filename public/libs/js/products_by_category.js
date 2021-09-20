@@ -24,8 +24,8 @@ jQuery(document).ready(function($) {
         grid: true,
         min: 0,
         max: Math.ceil(priceMax),
-        from: 1000000,
-        to: 20000000,
+        from: Math.floor(priceMin),
+        to: Math.ceil(priceMax),
         postfix: " تومان"
     });
 

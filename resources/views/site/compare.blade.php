@@ -71,16 +71,19 @@
                   <tbody id="table-compare">
                   <tr>
                     <th class="product-name">نام محصول</th>
-                    @if($product1!==null) <td class="grid-link__title">{{ $product1->title }} </td> @endif
-                    @if($product2!==null) <td class="grid-link__title">{{ $product2->title }} </td> @endif
-                    @if($product3!==null) <td class="grid-link__title">{{ $product3->title }} </td> @endif
-                    @if($product4!==null) <td class="grid-link__title">{{ $product4->title }} </td> @endif
+                    @if($product1!==null) <td class="grid-link__title"><a href="/product/{{ $product1  ->id }}" target="_blank">{{ $product1->title }}</a> </td> @endif
+                    @if($product2!==null) <td class="grid-link__title"><a href="/product/{{ $product2  ->id }}" target="_blank">{{ $product2->title }}</a> </td> @endif
+                    @if($product3!==null) <td class="grid-link__title"><a href="/product/{{ $product3  ->id }}" target="_blank">{{ $product3->title }}</a> </td> @endif
+                    @if($product4!==null) <td class="grid-link__title"><a href="/product/{{ $product4  ->id }}" target="_blank">{{ $product4->title }}</a> </td> @endif
                   </tr>
                   <tr>
                     <th class="product-name">تصویر محصول</th>
                     @if($product1!==null)
-                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product1->image }}" alt="product"
-                                                class="featured-image">
+                      <td class="item-row">
+                        <a href="/product/{{ $product1  ->id }}" target="_blank">
+                          <img src="{{ url('uploads/product_images/').'/'. $product1->image }}" alt="product"
+                               class="featured-image">
+                        </a>
                         @if($product1->status=='available')
                           <div class="product-price product_price">
                             <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
@@ -97,8 +100,11 @@
                       </td>
                     @endif
                     @if($product2!==null)
-                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product2->image }}" alt="product"
-                                                class="featured-image">
+                      <td class="item-row">
+                        <a href="/product/{{ $product2  ->id }}" target="_blank">
+                          <img src="{{ url('uploads/product_images/').'/'. $product2->image }}" alt="product"
+                               class="featured-image">
+                        </a>
                         @if($product2->status=='available')
                         <div class="product-price product_price">
                           <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
@@ -115,8 +121,11 @@
                       </td>
                     @endif
                     @if($product3!==null)
-                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product3->image }}" alt="product"
-                                                class="featured-image">
+                      <td class="item-row">
+                        <a href="/product/{{ $product3  ->id }}" target="_blank">
+                          <img src="{{ url('uploads/product_images/').'/'. $product3->image }}" alt="product"
+                               class="featured-image">
+                        </a>
                         @if($product3->status=='available')
                           <div class="product-price product_price">
                             <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
@@ -133,8 +142,11 @@
                       </td>
                     @endif
                     @if($product4!==null)
-                      <td class="item-row"><img src="{{ url('uploads/product_images/').'/'. $product4->image }}" alt="product"
-                                                class="featured-image">
+                      <td class="item-row">
+                        <a href="/product/{{ $product4  ->id }}" target="_blank">
+                          <img src="{{ url('uploads/product_images/').'/'. $product4->image }}" alt="product"
+                               class="featured-image">
+                        </a>
                         @if($product4->status=='available')
                           <div class="product-price product_price">
                             <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
