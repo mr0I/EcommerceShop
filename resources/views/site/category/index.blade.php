@@ -52,13 +52,21 @@
                   </div>
                 </div>
             @endif
-
             <!-- price filter start here -->
               <div class="collection-collapse-block border-0 open">
                 <h3 class="collapse-block-title">قیمت</h3>
                 <div class="collection-collapse-block-content">
                   <div class="filter-slide">
                     <input class="js-range-slider price-range" type="text" name="my_range" value="" data-type="double" />
+                  </div>
+                </div>
+              </div>
+              <div class="collection-collapse-block border-0 open">
+                <h3 class="collapse-block-title">وضعیت موجودی</h3>
+                <div class="collection-collapse-block-content mt-2">
+                  <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
+                    <input type="checkbox" class="custom-control-input form-check-input" id="status_checkbox">
+                    <label class="custom-control-label form-check-label" for="status_checkbox">{{ __('Only Available Products') }}</label>
                   </div>
                 </div>
               </div>
@@ -422,7 +430,7 @@
                       <ul class="sorting-options">
                         <li class="sorting-option">{{ __('Sorting By: ') }}</li>
                         <li class="sorting-option">
-                          <a href="#" class="sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='latest')? 'active' : '' ?>"
+                          <a href="#" class="sorting-option-btn <?= ((isset($_GET['sortBy']) && $_GET['sortBy']=='latest') || !isset($_GET['sortBy']))? 'active' : '' ?>"
                              data-sort="latest">جدیدترین</a>
                         </li>
                         <li class="sorting-option">

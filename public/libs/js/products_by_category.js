@@ -4,13 +4,18 @@ jQuery(document).ready(function($) {
 
     // Initial Quantification Checkboxes
     if (getUrlParams().filters!== ''){
-        const brandsArray = (JSON.parse(getUrlParams().filters)).brands;
-        $.each($('input.brands-filter'),function () {
-            brandsArray.forEach(item => {
-                if ($(this).data('brand').indexOf(item) !== -1){$(this).prop('checked', true);
-                }
-            })
-        });
+        const status_chk = (JSON.parse(getUrlParams().filters)).status;
+        (status_chk==='available')? $('#status_checkbox').prop('checked',true) : $('#status_checkbox').prop('checked',false);
+
+        if ($('input.brands-filter').length){
+            const brandsArray = (JSON.parse(getUrlParams().filters)).brands;
+            $.each($('input.brands-filter'),function () {
+                brandsArray.forEach(item => {
+                    if ($(this).data('brand').indexOf(item) !== -1){$(this).prop('checked', true);
+                    }
+                })
+            });
+        }
     }
 
     // Initial Quantification Price Range
@@ -24,7 +29,6 @@ jQuery(document).ready(function($) {
         postfix: " تومان"
     });
 
-
     // Constants
     window.public_dir = publicDir;
 
@@ -34,7 +38,7 @@ jQuery(document).ready(function($) {
     let canLoadMoreProducts = true;
     const href = (new URL(window.location.href)).href;
     const catPageBaseUrl = href.substr(0,href.lastIndexOf('?'));
-    const AllPages = Math.ceil(productsCount/productsPerPage);
+    window.AllPages = Math.ceil(productsCount/productsPerPage);
     let showAlert=false;
 
     window.addEventListener('scroll', async (event) =>{
@@ -78,7 +82,7 @@ jQuery(document).ready(function($) {
                     isLoading = false;
                     let np = Number(getUrlParams().page) + 1;
 
-                    if (np<=AllPages){
+                    if (np<=window.AllPages){
                         let updatedUrl =  catPageBaseUrl+ '?page='+ np
                             +((getUrlParams().sortBy!=='')? '&sortBy='+getUrlParams().sortBy : '')
                             +((getUrlParams().filters!=='')? '&filters='+getUrlParams().filters : '') ;
@@ -87,7 +91,7 @@ jQuery(document).ready(function($) {
                             null,
                             updatedUrl);
                     }
-                    if (np==AllPages){
+                    if (np==window.AllPages){
                         // No More Products
                         canLoadMoreProducts = false;
                     }
@@ -161,12 +165,13 @@ jQuery(document).ready(function($) {
         let priceRange = $('.price-range').val();
         let min_price = (priceRange.split(';'))[0];
         let max_price = (priceRange.split(';'))[1];
-
+        let status = ($('#status_checkbox').prop('checked'))? 'available' : 'no_diff';
 
         const data = {
             brands_filters: ((window.brands_filters).length!==0)? window.brands_filters : null,
             min_price: min_price,
-            max_price: max_price
+            max_price: max_price,
+            status: status
         };
         fetch(`/getCatProducts/${getUrlParams().category_name}`, {
             method: 'POST',
@@ -183,6 +188,7 @@ jQuery(document).ready(function($) {
                     let productsContainer = $('.product-wrapper-grid');
                     productsContainer.find('.row').html('');
                     const products = data.products;
+                    window.AllPages = Math.ceil(data.all_products_count/productsPerPage);
 
                     products.forEach(product => {
                         appendProducts(productsContainer,product);
@@ -190,15 +196,13 @@ jQuery(document).ready(function($) {
                         let quotedArray = '"' + window.brands_filters.join('","') + '"';
                         let updatedUrl =  catPageBaseUrl+ '?page=1'
                             +((getUrlParams().sortBy!=='')? '&sortBy='+getUrlParams().sortBy : '')
-                            +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"'+min_price+'","max":"'+max_price+'" }' + '}' ;
+                            +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"'+min_price+'","max":"'+max_price+'" },' +
+                            '"status":"'+ status + '"' + '}' ;
                         window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
                     });
                 }
             })
     });
-
-
-
 });
 
 
@@ -246,10 +250,10 @@ function appendProducts(productsContainer,product) {
                                     ${(product.main_price!==null)? '<div class="check-price digits">  '+product.main_price+' تومان </div>' : ''}
                                     <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold">
                                     ${(product.status=='not-available')?
-                                      `<div class="text-danger"> ناموجود </div> `
-                                    :   
-                                        `<div class="digits"> ${product.price} تومان </div> `
-                                    }
+        `<div class="text-danger"> ناموجود </div> `
+        :
+        `<div class="digits"> ${product.price} تومان </div> `
+        }
                                     </div>
                                   </div>
                                 </div>

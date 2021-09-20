@@ -194,16 +194,35 @@ class IndexController extends Controller
             $max_price =9999999999;
         }
 
+        // Availability Filter
+        if (isset($request->status)){
+            if($request->status=='available'){
+                $status=['available'];
+            } else {
+                $status = ['available','not-available'];
+                }
+        } else if(isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $st = $filters->status;
+            ($st=='available')? $status=['available'] : $status=['available','not-available'];
+        } else {
+            $status = ['available','not-available'];
+        }
+
+
         if (sizeof($All_brands)===0 || (sizeof($All_brands)===1 && $All_brands[0]==null)){
             $sorted_products = Product::where('category_id',$category_id[0]->id)
                 ->whereBetween('price', [$min_price,$max_price])
+                ->whereIn('status',$status)
                 ->orderBy($sortBy,$sorting);
         } else {
             $sorted_products = Product::where('category_id',$category_id[0]->id)
                 ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
+                ->whereIn('status',$status)
                 ->orderBy($sortBy,$sorting);
         }
         $products = $sorted_products->skip($offset)->take($limit)->get();
+        $all_products_count = $sorted_products->count();
 
         // Calc Brands
         $brands = [];
@@ -211,7 +230,8 @@ class IndexController extends Controller
             if (! in_array($product->brand , $brands)) array_push($brands,$product->brand);
         }
 
-        return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset,'$brandsFilters'=>$brandsFilters ] , 200);
+        return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset,'$brandsFilters'=>$brandsFilters
+        ,'all_products_count'=>$all_products_count] , 200);
     }
 
     /**

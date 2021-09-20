@@ -147,19 +147,33 @@ class SiteController extends Controller
             $max_price = $priceRange->max;
         }
 
+        // Availability Filter
+        if(isset($_GET['filters'])){
+            $filters = json_decode($_GET['filters']);
+            $st = $filters->status;
+            ($st=='available')? $status=['available'] : $status=['available','not-available'];
+        } else {
+            $status = ['available','not-available'];
+        }
+
+
         if (sizeof($All_brands)===0 || (sizeof($All_brands)===1 && $All_brands[0]==null)){
             $sorted_products = Product::where('category_id',$category_id[0]->id)
                 ->whereBetween('price', [$min_price,$max_price])
+                ->whereIn('status',$status)
                 ->orderBy($sortBy,$sorting);
         } else {
-        $sorted_products = Product::where('category_id',$category_id[0]->id)
-            ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
-            ->orderBy($sortBy,$sorting);
+            $sorted_products = Product::where('category_id',$category_id[0]->id)
+                ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
+                ->whereIn('status',$status)
+                ->orderBy($sortBy,$sorting);
         }
         $products = $sorted_products->skip($offset)->take($limit)->get();
+        $all_products_count = $sorted_products->count();
 
 
-        $products_count = Product::all()->count();
+        $products_count = $sorted_products->count();
+//        $products_count = Product::all()->count();
 
         // Calc Brands
         $brands = [];
