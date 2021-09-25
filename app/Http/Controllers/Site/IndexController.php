@@ -214,11 +214,14 @@ class IndexController extends Controller
             $sorted_products = Product::where('category_id',$category_id[0]->id)
                 ->whereBetween('price', [$min_price,$max_price])
                 ->whereIn('status',$status)
+                ->where('disabled','false')
                 ->orderBy($sortBy,$sorting);
         } else {
             $sorted_products = Product::where('category_id',$category_id[0]->id)
-                ->whereIn('brand',$brandsFilters)->whereBetween('price', [$min_price,$max_price])
+                ->whereIn('brand',$brandsFilters)
+                ->whereBetween('price', [$min_price,$max_price])
                 ->whereIn('status',$status)
+                ->where('disabled','false')
                 ->orderBy($sortBy,$sorting);
         }
         $products = $sorted_products->skip($offset)->take($limit)->get();

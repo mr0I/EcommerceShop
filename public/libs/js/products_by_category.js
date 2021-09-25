@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
 
+    let localVars = JSON.parse(document.getElementById("json_content").innerHTML,false);
     $('.digits').digits();
 
     // Initial Quantification Checkboxes
@@ -23,14 +24,14 @@ jQuery(document).ready(function($) {
         type: "double",
         grid: true,
         min: 0,
-        max: Math.ceil(priceMax),
-        from: Math.floor(priceMin),
-        to: Math.ceil(priceMax),
+        max: Math.ceil(localVars.priceMax),
+        from: Math.floor(localVars.priceMin),
+        to: Math.ceil(localVars.priceMax),
         postfix: " تومان"
     });
 
     // Constants
-    window.public_dir = publicDir;
+    window.public_dir = localVars.publicDir;
 
     // Scroll Event
     let lastScrollY = 0;
@@ -38,7 +39,7 @@ jQuery(document).ready(function($) {
     let canLoadMoreProducts = true;
     const href = (new URL(window.location.href)).href;
     const catPageBaseUrl = href.substr(0,href.lastIndexOf('?'));
-    window.AllPages = Math.ceil(productsCount/productsPerPage);
+    window.AllPages = Math.ceil(localVars.productsCount/localVars.productsPerPage);
     let showAlert=false;
 
     window.addEventListener('scroll', async (event) =>{
@@ -188,7 +189,7 @@ jQuery(document).ready(function($) {
                     let productsContainer = $('.product-wrapper-grid');
                     productsContainer.find('.row').html('');
                     const products = data.products;
-                    window.AllPages = Math.ceil(data.all_products_count/productsPerPage);
+                    window.AllPages = Math.ceil(data.all_products_count/localVars.productsPerPage);
 
                     products.forEach(product => {
                         appendProducts(productsContainer,product);

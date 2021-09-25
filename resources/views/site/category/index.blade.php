@@ -447,59 +447,63 @@
 
                     <div class="product-wrapper-grid product">
                       <div class="row">
-                        @foreach($products as $product)
-                          <div class="col-lg-3 col-grid-box">
-                            <div class="product-box">
-                              <div class="product-imgbox">
-                                <div class="product-front">
-                                  <a href="/product/{{ $product->id }}">
-                                    <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="product">
-                                  </a>
-                                </div>
-                                <div class="product-back">
-                                  <a href="/product/{{ $product->id }}">
-                                    <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="product">
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="product-detail detail-center detail-inverse">
-                                <div class="detail-title">
-                                  <div class="detail-left">
-                                    <div class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                              class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    </div>
-                                    <p>{{ mb_strimwidth($product->decription,0,100,'---') }}</p>
+                        @if(sizeof($products)!==0)
+                          @foreach($products as $product)
+                            <div class="col-lg-3 col-grid-box">
+                              <div class="product-box">
+                                <div class="product-imgbox">
+                                  <div class="product-front">
                                     <a href="/product/{{ $product->id }}">
-                                      <h6 class="price-title">{{ $product->title }}</h6>
+                                      <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="product">
                                     </a>
                                   </div>
-                                  <div class="detail-right">
-                                    @if($product->main_price!==null)
-                                      <div class="check-price digits"> {{ $product->main_price }} تومان </div>
-                                    @endif
-                                    <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
-                                      @if($product->status=='not-available')
-                                        <div class="text-danger"> {{ __('Not Available') }} </div>
-                                      @else
-                                        <div class="digits"> {{ $product->price }} تومان </div>
-                                      @endif
-                                    </div>
+                                  <div class="product-back">
+                                    <a href="/product/{{ $product->id }}">
+                                      <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="product">
+                                    </a>
                                   </div>
                                 </div>
-                                <div class="icon-detail">
-                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <i
-                                            data-feather="shopping-cart"></i> </button>
-                                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                                     data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
-                                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                     class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
-                                  <a href="#" class="tooltip-top add-to-compare" data-id="{{ $product->id }}" data-tippy-content="مقایسه"> <i
-                                            data-feather="refresh-cw"></i> </a>
+                                <div class="product-detail detail-center detail-inverse">
+                                  <div class="detail-title">
+                                    <div class="detail-left">
+                                      <div class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                      </div>
+                                      <p>{{ mb_strimwidth($product->decription,0,100,'---') }}</p>
+                                      <a href="/product/{{ $product->id }}">
+                                        <h6 class="price-title">{{ $product->title }}</h6>
+                                      </a>
+                                    </div>
+                                    <div class="detail-right">
+                                      @if($product->main_price!==null)
+                                        <div class="check-price digits"> {{ $product->main_price }} تومان </div>
+                                      @endif
+                                      <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                        @if($product->status=='not-available')
+                                          <div class="text-danger"> {{ __('Not Available') }} </div>
+                                        @else
+                                          <div class="digits"> {{ $product->price }} تومان </div>
+                                        @endif
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="icon-detail">
+                                    <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <i
+                                              data-feather="shopping-cart"></i> </button>
+                                    <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                                       data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
+                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
+                                       class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
+                                    <a href="#" class="tooltip-top add-to-compare" data-id="{{ $product->id }}" data-tippy-content="مقایسه"> <i
+                                              data-feather="refresh-cw"></i> </a>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        @endforeach
+                          @endforeach
+                          @else
+                          <div class="alert alert-warning">{{ __('No product in this category') }}</div>
+                        @endif
                       </div>
                     </div>
                   </div>
@@ -522,12 +526,14 @@
   <script src="{{ url('js/ion.rangeSlider.js') }}"></script>
 
 
-  <script type="text/javascript">
-      const publicDir = '/uploads/product_images';
-      const productsCount = <?= $products_count ?>;
-      const productsPerPage = <?= Config::get('constants.catProductsPerPage') ?>;
-      const priceMin = <?= $priceMin ?>;
-      const priceMax = <?= $priceMax ?>;
+  <script type="application/ld+json" id="json_content">
+    {
+      "publicDir" : "/uploads/product_images",
+      "productsCount" : <?= $products_count ?>,
+      "productsPerPage" : <?= Config::get('constants.catProductsPerPage') ?>,
+      "priceMin" : <?= $priceMin ?>,
+      "priceMax" : <?= $priceMax ?>
+    }
   </script>
   <script type="text/javascript" src="{{ url('/libs/js/products_by_category.js') }}"></script>
 

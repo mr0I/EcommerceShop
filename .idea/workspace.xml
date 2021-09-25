@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="051088c2-b736-4dae-b103-c5165309533a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/libs/js/products_by_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/libs/js/products_by_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/site/compare.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/compare.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/site/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/product/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/category/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4228">
-              <caret line="174" column="51" selection-start-line="174" selection-start-column="51" selection-end-line="174" selection-end-column="51" />
+            <state relative-caret-position="32">
+              <caret line="178" selection-start-line="178" selection-end-line="178" />
               <folding>
                 <element signature="e#45#62#0#PHP" expanded="true" />
                 <element signature="e#1791#2909#0#PHP" />
@@ -49,8 +50,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="233" column="28" selection-start-line="233" selection-start-column="10" selection-end-line="233" selection-end-column="28" />
+            <state relative-caret-position="339">
+              <caret line="216" column="41" selection-start-line="216" selection-start-column="41" selection-end-line="216" selection-end-column="41" />
+              <caret line="223" column="41" selection-start-line="223" selection-start-column="41" selection-end-line="223" selection-end-column="41" />
               <folding>
                 <element signature="e#45#62#0#PHP" expanded="true" />
               </folding>
@@ -58,23 +60,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/site/product/index.blade.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/site/category/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="579" column="88" selection-start-line="579" selection-start-column="88" selection-end-line="579" selection-end-column="88" />
+            <state relative-caret-position="113">
+              <caret line="527" selection-start-line="527" selection-end-line="527" />
               <folding>
-                <element signature="e#19664#36294#0#HTML" />
+                <element signature="e#0#34123#0#Blade" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/libs/js/products_by_category.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3">
-              <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+            <state relative-caret-position="56">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
               <folding>
                 <element signature="n#!!block;n#getUrlParams#0" />
                 <element signature="n#!!block;n#appendProducts#0" />
@@ -95,11 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>enum</find>
-      <find>دیدگاه</find>
-      <find>top-review</find>
-      <find>(6 بررسی)</find>
-      <find>category</find>
       <find>product-back</find>
       <find>متن</find>
       <find>jDateTime</find>
@@ -108,14 +105,12 @@
       <find>featured-image</find>
       <find>وضعیت</find>
       <find>available_txt</find>
-      <find>[0]</find>
       <find>برند</find>
       <find>Sorting B</find>
       <find>Available</find>
       <find>price</find>
       <find>forea</find>
       <find>review-top-tab</find>
-      <find>priceMax</find>
       <find>category-apply-filters</find>
       <find>ارز</find>
       <find>AllPages</find>
@@ -125,6 +120,13 @@
       <find>Not Available</find>
       <find>href</find>
       <find>افزودن به سبد خرید</find>
+      <find>[0]</find>
+      <find>products</find>
+      <find>publicDir</find>
+      <find>productsCount</find>
+      <find>productsPerPage</find>
+      <find>priceMax</find>
+      <find>priceMin</find>
     </findStrings>
     <replaceStrings>
       <replace>/product/{{ $product-&gt;id }}</replace>
@@ -146,7 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Dashboard/DashContrller.php" />
@@ -191,12 +192,13 @@
         <option value="$PROJECT_DIR$/resources/lang/fa.json" />
         <option value="$PROJECT_DIR$/app/Product.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php" />
-        <option value="$PROJECT_DIR$/resources/views/site/category/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php" />
-        <option value="$PROJECT_DIR$/public/libs/js/products_by_category.js" />
         <option value="$PROJECT_DIR$/resources/views/site/compare.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/site/product/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php" />
+        <option value="$PROJECT_DIR$/Push.bat" />
+        <option value="$PROJECT_DIR$/resources/views/site/category/index.blade.php" />
+        <option value="$PROJECT_DIR$/public/libs/js/products_by_category.js" />
       </list>
     </option>
   </component>
@@ -320,6 +322,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -351,13 +354,12 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="site" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
+              <item name="category" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -468,18 +470,19 @@
       <workItem from="1631897141754" duration="9429000" />
       <workItem from="1632158686183" duration="10151000" />
       <workItem from="1632158643661" duration="5637000" />
-      <workItem from="1632158336040" duration="2093000" />
+      <workItem from="1632158336040" duration="2182000" />
+      <workItem from="1632158450468" duration="3563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232677000" />
+    <option name="totallyTimeSpent" value="236329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.23600605" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.2397882" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.501634" side_tool="true" weight="0.22163388" />
@@ -567,11 +570,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../4-shopping/marketshop/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-336" />
@@ -720,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Push.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" selection-start-line="3" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/feather-icon.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -867,55 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#7#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4228">
-          <caret line="174" column="51" selection-start-line="174" selection-start-column="51" selection-end-line="174" selection-end-column="51" />
-          <folding>
-            <element signature="e#45#62#0#PHP" expanded="true" />
-            <element signature="e#1791#2909#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/libs/js/products_by_category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!block;n#getUrlParams#0" />
-            <element signature="n#!!block;n#appendProducts#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/site/category/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="86" column="62" selection-start-line="86" selection-start-column="35" selection-end-line="86" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="233" column="28" selection-start-line="233" selection-start-column="10" selection-end-line="233" selection-end-column="28" />
-          <folding>
-            <element signature="e#45#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/site/compare.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="849">
@@ -930,12 +872,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#7#44#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="216" column="41" selection-start-line="216" selection-start-column="41" selection-end-line="216" selection-end-column="41" />
+          <caret line="223" column="41" selection-start-line="223" selection-start-column="41" selection-end-line="223" selection-end-column="41" />
+          <folding>
+            <element signature="e#45#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/SiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="178" selection-start-line="178" selection-end-line="178" />
+          <folding>
+            <element signature="e#45#62#0#PHP" expanded="true" />
+            <element signature="e#1791#2909#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/site/product/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="579" column="88" selection-start-line="579" selection-start-column="88" selection-end-line="579" selection-end-column="88" />
+        <state relative-caret-position="-75">
+          <caret line="261" column="25" selection-start-line="261" selection-start-column="17" selection-end-line="261" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Push.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../../Radshid/sisoog/sources/isee_design/website/src/includes/product-content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1726" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/site/category/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="527" selection-start-line="527" selection-end-line="527" />
           <folding>
-            <element signature="e#19664#36294#0#HTML" />
+            <element signature="e#0#34123#0#Blade" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/js/products_by_category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!block;n#getUrlParams#0" />
+            <element signature="n#!!block;n#appendProducts#0" />
           </folding>
         </state>
       </provider>
