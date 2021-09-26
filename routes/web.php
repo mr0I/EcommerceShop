@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::post('/addToCompare', 'IndexController@addToCompare');
     Route::post('/removeFromCompare', 'IndexController@removeFromCompare');
     Route::post('/getCatProducts/{name}', 'IndexController@getCatProducts');
+    Route::post('/getProductInfo', 'IndexController@getProductInfo');
 });
 
 Auth::routes();

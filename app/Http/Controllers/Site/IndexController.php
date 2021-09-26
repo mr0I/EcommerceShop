@@ -237,6 +237,16 @@ class IndexController extends Controller
         ,'all_products_count'=>$all_products_count] , 200);
     }
 
+    public function getProductInfo(Request $request)
+    {
+        $product = Product::find($request->pid);
+        if ($product!==null){
+            return response()->json(['result'=>'Done','product'=>$product] , 200);
+        } else{
+            return response()->json(['result'=>'Error'] ,400 );
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
