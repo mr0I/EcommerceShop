@@ -81,14 +81,14 @@
                     @if($product1!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product1  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product1->image }}" alt="product"
+                          <img src="{{ url('uploads/product_images/').'/'. $product1->image . '.jpg' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product1->status=='available')
                           <div class="product-price product_price">
-                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                            <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                          <a href="{{ $product1->url }}" class="btn btn-white btn-outline tooltip-top"
                              data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>
@@ -102,7 +102,7 @@
                     @if($product2!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product2  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product2->image }}" alt="product"
+                          <img src="{{ url('uploads/product_images/').'/'. $product2->image . '.jpg' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product2->status=='available')
@@ -123,14 +123,14 @@
                     @if($product3!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product3  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product3->image }}" alt="product"
+                          <img src="{{ url('uploads/product_images/').'/'. $product3->image . '.jpg' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product3->status=='available')
                           <div class="product-price product_price">
-                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                            <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                          <a href="{{ $product3->url }}" class="btn btn-white btn-outline tooltip-top"
                              data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>
@@ -144,14 +144,14 @@
                     @if($product4!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product4  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product4->image }}" alt="product"
+                          <img src="{{ url('uploads/product_images/').'/'. $product4->image . '.jpg' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product4->status=='available')
                           <div class="product-price product_price">
-                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                            <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
+                          <a href="{{ $product4->url }}" class="btn btn-white btn-outline tooltip-top"
                              data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>

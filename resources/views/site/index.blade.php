@@ -103,12 +103,12 @@
                         <div class="product-imgbox">
                           <div class="product-front">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/product_images/'). '/' . $product->image }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" class="img-fluid  " alt="product">
                             </a>
                           </div>
                           <div class="product-back">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/product_images/'). '/' . $product->image }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" class="img-fluid  " alt="product">
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
@@ -975,7 +975,7 @@
                         <a href="/product/{{ $product->id }}">
                           <div class="img-wrraper">
                             <div>
-                              <img src="{{ url('uploads/product_images/'). '/' . $product->image }}" alt="hot-deal"
+                              <img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" alt="hot-deal"
                                    class="img-fluid  bg-img">
                             </div>
                           </div>
@@ -1021,7 +1021,7 @@
                   <div class="col-md-2 ">
                     <div class="hotdeal-right-nav">
                       @foreach($specialProducts as $product)
-                        <div><img src="{{ url('uploads/product_images/'). '/' . $product->image }}" alt="hot-dea" class="img-fluid  "></div>
+                        <div><img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" alt="hot-dea" class="img-fluid  "></div>
                       @endforeach
                     </div>
                   </div>

@@ -204,6 +204,13 @@ jQuery(document).ready(function($) {
                 }
             })
     });
+
+    $('.category-reset-filters').on('click',function () {
+        let url = new URL(window.location.href);
+        let href = url.href;
+        let pageUrl = (href.indexOf('?')!==-1)? href.split('?')[0] : href;
+        window.location.href=pageUrl;
+    })
 });
 
 
@@ -227,12 +234,12 @@ function appendProducts(productsContainer,product) {
                               <div class="product-imgbox">
                                 <div class="product-front">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image}" class="img-fluid" alt="product">
+                                    <img src="${window.public_dir + '/' + product.image + '.jpg'}" class="img-fluid" alt="product">
                                   </a>
                                 </div>
                                 <div class="product-back">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image}" class="img-fluid " alt="product">
+                                    <img src="${window.public_dir + '/' + product.image + '.jpg'}" class="img-fluid " alt="product">
                                   </a>
                                 </div>
                               </div>

@@ -70,9 +70,14 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-white btn-outline tooltip-top category-apply-filters w-100 mt-4 p-2">
-                {{ __('Apply Filters') }}
-              </button>
+
+                <button class="btn btn-white btn-outline tooltip-top category-apply-filters w-100 mt-4 p-2">
+                  {{ __('Apply Filters') }}
+                </button>
+                <button class="btn btn-danger btn-outline tooltip-top category-reset-filters w-100 mt-4 p-1">
+                  {{ __('Reset Filters') }}
+                </button>
+
             </div>
             <!-- silde-bar colleps block end here -->
             <!-- side-bar single product slider start -->
@@ -85,7 +90,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -138,7 +143,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image. '.jpg' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -454,12 +459,12 @@
                                 <div class="product-imgbox">
                                   <div class="product-front">
                                     <a href="/product/{{ $product->id }}">
-                                      <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid" alt="product">
+                                      <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid" alt="product">
                                     </a>
                                   </div>
                                   <div class="product-back">
                                     <a href="/product/{{ $product->id }}">
-                                      <img src="{{ url('uploads/product_images'). '/' . $product->image }}" class="img-fluid " alt="product">
+                                      <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="product">
                                     </a>
                                   </div>
                                 </div>
