@@ -281,28 +281,38 @@ jQuery(document).ready(function($){
         });
     });
 
-
-    /* Qucik View Modal */
-    $('.quick-view-btn').on('click',function () {
-        const pid = $(this).data('pid');
-
-        const data = { pid: pid };
-        fetch('/getProductInfo', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            body: JSON.stringify(data),
+    $.fn.digits = function () {
+        return this.each(function () {
+            $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'Done') {
-                    let product = data.product;
-                    const modalBody = $('.modal').find('.modal-body');
+    };
+    $('.digits').digits();
+});
 
-                    modalBody.html('');
-                    modalBody.append(`
+
+function viewModal(pid) {
+    let loader = document.getElementById("modal_loading");
+    let loader_icon = document.getElementById("modal_loading_icon");
+
+    const data = { pid: pid };
+    loader.style.display='block';
+    loader_icon.classList.add('fa-spin');
+    fetch('/getProductInfo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'Done') {
+                let product = data.product;
+                const modalBody = $('.modal').find('.modal-body');
+
+                modalBody.html('');
+                modalBody.append(`
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           <div class="row">
                             <div class="col-lg-6 col-xs-12">
@@ -316,11 +326,18 @@ jQuery(document).ready(function($){
                                   <h2> ${product.title} </h2>
                                   <ul class="pro-price">
                                   ${
-                                    (product.main_price!==null && product.main_price!=='')?
-                                        ` <li><span>${product.main_price} تومان</span></li>` : ``
-                                    }
-                                    <li>${product.price} تومان</li>
-                                    <li>50% تخفیف</li>
+                    (product.main_price!==null && product.main_price!=='')?
+                        ` <li><span>${product.main_price} تومان</span></li>` : ``
+                    }
+                                  ${
+                    (product.price!==0)?
+                        `<li>${product.price} تومان</li>` : `<li class="text-danger">ناموجود</li>`
+                    }
+                                    
+                                    ${
+                    (product.main_price!==null && product.main_price!=='')?
+                        `<li>${data.discount}% تخفیف</li>` : ``
+                    }
                                   </ul>
                                   <ul class="best-seller">
                                     <li>
@@ -412,13 +429,13 @@ jQuery(document).ready(function($){
                                           </g>
                                         </g>
                                       </svg>
-                                      44 مشاهده فعال
+                                      ${data.views} مشاهده 
                                     </li>
                                   </ul>
                                 </div>
                                 <div class="pro-group">
                                   <h6 class="product-title">اطلاعات محصول</h6>
-                                  <p> ${product.specifications} </p>
+                                  <p> ${(product.description).substring(0,300) + ' ... '} </p>
                                 </div>
                                 <div class="pro-group pb-0">
                                   <div class="product-buttons">
@@ -437,32 +454,24 @@ jQuery(document).ready(function($){
                             </div>
                           </div>
                     `)
-                } else {
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: '',
-                        html:`خطا در عملیات!`,
-                        showConfirmButton: false,
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'خُب'
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-    /* Qucik View Modal */
-
-
-
-
-    $.fn.digits = function () {
-        return this.each(function () {
-            $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            } else {
+                swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: '',
+                    html:`خطا در عملیات!`,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'خُب'
+                });
+            }
+            loader.style.display='none';
+            loader_icon.classList.remove('fa-spin');
         })
-    };
-    $('.digits').digits();
-});
+        .catch((error) => {
+            loader.style.display='none';
+            loader_icon.classList.remove('fa-spin');
+            console.error('Error:', error);
+        });
+};

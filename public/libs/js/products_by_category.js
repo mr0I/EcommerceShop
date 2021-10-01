@@ -210,7 +210,8 @@ jQuery(document).ready(function($) {
         let href = url.href;
         let pageUrl = (href.indexOf('?')!==-1)? href.split('?')[0] : href;
         window.location.href=pageUrl;
-    })
+    });
+
 });
 
 
@@ -258,10 +259,10 @@ function appendProducts(productsContainer,product) {
                                     ${(product.main_price!==null)? '<div class="check-price digits">  '+product.main_price+' تومان </div>' : ''}
                                     <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold">
                                     ${(product.status=='not-available')?
-        `<div class="text-danger"> ناموجود </div> `
-        :
-        `<div class="digits"> ${product.price} تومان </div> `
-        }
+                                        `<div class="text-danger"> ناموجود </div> `
+                                        :
+                                        `<div class="digits"> ${product.price} تومان </div> `
+                                        }
                                     </div>
                                   </div>
                                 </div>
@@ -270,8 +271,8 @@ function appendProducts(productsContainer,product) {
                                             data-feather="shopping-cart"></i> </button>
                                   <a href="javascript:void(0)" class="add-to-wish tooltip-top"
                                      data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
-                                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view"
-                                     class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"
+                                     onclick="viewModal(${product.id})" class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
                                   <a href="#" class="tooltip-top add-to-compare" data-id="${product.id}" data-tippy-content="مقایسه"> <i
                                             data-feather="refresh-cw"></i> </a>
                                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Category;
 use App\Compare;
 use App\Http\Controllers\Controller;
+use App\metaproduct;
 use App\Product;
 use function GuzzleHttp\default_ca_bundle;
 use function GuzzleHttp\Promise\all;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Session;
 use function Sodium\library_version_major;
+use \App\Helpers\functions;
+
+
 
 class IndexController extends Controller
 {
@@ -200,7 +204,7 @@ class IndexController extends Controller
                 $status=['available'];
             } else {
                 $status = ['available','not-available'];
-                }
+            }
         } else if(isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $st = $filters->status;
@@ -234,14 +238,28 @@ class IndexController extends Controller
         }
 
         return response()->json(['result'=>'Done' ,'products'=>$products ,'offset'=>$offset,'$brandsFilters'=>$brandsFilters
-        ,'all_products_count'=>$all_products_count] , 200);
+            ,'all_products_count'=>$all_products_count] , 200);
     }
 
     public function getProductInfo(Request $request)
     {
         $product = Product::find($request->pid);
         if ($product!==null){
-            return response()->json(['result'=>'Done','product'=>$product] , 200);
+            $calc_discount = new functions;
+            $discount = $calc_discount::calcDiscount($product->main_price,$product->price);
+            $meta_product = metaproduct::where('product_id' , $product->id)->where('key','views')->first();
+            if ($meta_product !== null){
+                $views = $meta_product->value;
+            } else {
+                $views = 0;
+            }
+
+            return response()->json([
+                'result'=>'Done',
+                'product'=>$product,
+                'discount'=>$discount,
+                'views'=>$views,
+            ] , 200);
         } else{
             return response()->json(['result'=>'Error'] ,400 );
         }

@@ -121,8 +121,8 @@
                                data-tippy-content="افزودن به لیست علاقه مندی">
                               <i data-feather="heart"></i>
                             </a>
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" data-pid="{{ $product->id }}"
-                               class="tooltip-top quick-view-btn" data-tippy-content="مشاهده سریععععع">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                               class="tooltip-top" data-tippy-content="مشاهده سریع">
                               <i data-feather="eye"></i>
                             </a>
                             <a href="#" class="add-to-compare tooltip-top" data-id="{{ $product->id }}" data-tippy-content="مقایسه">
@@ -1144,9 +1144,8 @@
        aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content quick-view-modal">
-        <div class="modal-body">
-
-        </div>
+        <div class="modal-body"></div>
+        <div id="modal_loading"><i class="fa fa-circle-o-notch" id="modal_loading_icon"></i></div>
       </div>
     </div>
   </div>
