@@ -8,6 +8,7 @@ use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -30,6 +31,7 @@ class SiteController extends Controller
 
         return view('site/index' , compact('mobileProducts' ,'specialProducts'));
     }
+
 
     public function product($slug)
     {

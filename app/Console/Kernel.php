@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $file_path = public_path() . '\logs\schuldeLogs.txt';
         $schedule->call(function () {
             $compares = Compare::all();
             $now = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
@@ -37,7 +38,7 @@ class Kernel extends ConsoleKernel
                 $diff = $then->diffInDays($now);
                 if ($diff>=3) $compare->delete();
             }
-        })->daily();
+        })->daily()->appendOutputTo($file_path);
     }
 
     /**
