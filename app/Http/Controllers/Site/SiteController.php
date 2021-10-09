@@ -8,6 +8,7 @@ use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
+use App\wishlist;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,6 @@ class SiteController extends Controller
 
         return view('site/index' , compact('mobileProducts' ,'specialProducts'));
     }
-
 
     public function product($slug)
     {
@@ -191,6 +191,15 @@ class SiteController extends Controller
         return view('site/category/index' ,
             compact('products','category_id','brands','products_count','latest_mobile_products'
             ,'priceMin','priceMax'));
+    }
+
+    public function wishlist(){
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $wish = wishlist::where('userIdentity',$user_identity)->get();
+        $arr = str_replace(array('[',']'),'',explode(",", $wish[0]->pids));
+
+        $products = Product::whereIn('id',$arr)->get();
+        return view('site/wishlist',compact('products'));
     }
 
 

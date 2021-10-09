@@ -26,12 +26,14 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
     Route::get('/compare', 'SiteController@compare_products');
+    Route::get('/wishlist', 'SiteController@wishlist');
     Route::get('/category/{name}', 'SiteController@category');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
     Route::post('/changeTheme', 'IndexController@changeTheme');
     Route::post('/addToCompare', 'IndexController@addToCompare');
+    Route::post('/addToWish', 'IndexController@addToWish');
     Route::post('/removeFromCompare', 'IndexController@removeFromCompare');
     Route::post('/getCatProducts/{name}', 'IndexController@getCatProducts');
     Route::post('/getProductInfo', 'IndexController@getProductInfo');

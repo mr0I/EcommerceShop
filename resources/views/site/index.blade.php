@@ -117,7 +117,7 @@
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                            <a href="javascript:void(0)" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"
                                data-tippy-content="افزودن به لیست علاقه مندی">
                               <i data-feather="heart"></i>
                             </a>

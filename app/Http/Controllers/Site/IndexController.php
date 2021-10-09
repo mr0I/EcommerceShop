@@ -7,6 +7,7 @@ use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
+use App\wishlist;
 use function GuzzleHttp\default_ca_bundle;
 use function GuzzleHttp\Promise\all;
 use http\Env\Response;
@@ -101,6 +102,46 @@ class IndexController extends Controller
             } else {
                 return response()->json(['result' => 'Error' ] , 400);
 
+            }
+        }
+
+    }
+
+
+    public function addToWish(Request $request)
+    {
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $pid = $request->product_id;
+
+        $wish = wishlist::where('userIdentity',$user_identity)->first();
+
+        if ($wish !== null){
+            $old_pids = $wish->pids;
+            $old_pids_arr = (array) json_decode($old_pids);
+
+            if (in_array($pid , $old_pids_arr)){
+                return response()->json(['result'=> 'Duplicate'] , 400);
+            }
+
+            array_push($old_pids_arr,$pid);
+            $pids = json_encode($old_pids_arr);
+
+            $wish->pids= $pids;
+            $wish->save();
+            return response()->json(['result' => 'Done' ] , 200);
+        } else {
+            $pids = [];
+            array_push($pids,$pid);
+
+            $data = ([
+                'userIdentity' => $user_identity,
+                'pids' => json_encode($pids)
+            ]);
+            $res = wishlist::create($data);
+            if ($res){
+                return response()->json(['result' => 'Done' ] , 200);
+            } else {
+                return response()->json(['result' => 'Error' ] , 400);
             }
         }
 
