@@ -167,6 +167,25 @@ class IndexController extends Controller
         }
     }
 
+    public function removeFromWishList(Request $request)
+    {
+        $pid = $request->product_id;
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+
+        $wish = wishlist::where('userIdentity',$user_identity)->first();
+        $old_pids = $wish->pids;
+        $old_pids_arr = (array) json_decode($old_pids);
+        $new_pids_arr=[];
+        for($i=0;$i<sizeof($old_pids_arr);$i++){
+            if ($old_pids_arr[$i]!==$pid) array_push($new_pids_arr,$old_pids_arr[$i]);
+        }
+        $pids = json_encode($new_pids_arr);
+
+        $wish->pids= $pids;
+        $wish->save();
+        return response()->json(['result' => 'Done' ] , 200);
+    }
+
     public function getCatProducts(Request $request)
     {
         $category_name = $request->name;

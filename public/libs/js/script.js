@@ -344,6 +344,66 @@ jQuery(document).ready(function($){
         });
     });
 
+    $('.remove-wish-product').on('click',function (e) {
+        e.preventDefault();
+       let pid = $(this).data('id');
+
+        swalWithBootstrapButtons.fire({
+            position: 'center',
+            icon: 'warning',
+            title: '',
+            html:`محصول انتخابی از لیست علاقه مندی حذف شود؟`,
+            showConfirmButton: true,
+            confirmButtonText: 'بله',
+            showCloseButton: false,
+            showCancelButton: true,
+            cancelButtonText: 'خیر'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const data = { product_id: pid };
+                fetch('/removeFromWishList', {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === 'Done') {
+                            swalWithBootstrapButtons.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: '',
+                                html:`محصول از لیست علاقه مندی حذف شد :)`,
+                                showConfirmButton: false,
+                                showCloseButton: false,
+                                showCancelButton: false,
+                                timer: 2000,
+                                timerProgressBar: true
+                            });
+                            window.location.reload(true);
+                        } else {
+                            swalWithBootstrapButtons.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: '',
+                                html:`خطا در عملیات!`,
+                                showConfirmButton: false,
+                                showCloseButton: false,
+                                showCancelButton: true,
+                                cancelButtonText: 'خُب'
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    });
+
     $.fn.digits = function () {
         return this.each(function () {
             $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));

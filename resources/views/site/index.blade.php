@@ -113,11 +113,11 @@
                           </div>
                           <div class="product-icon icon-inline">
 
-                            <a href="{{ $product->url }}" class="add-to-wish tooltip-top" target="_blank" rel="noreferrer noopener"
+                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
-                            <a href="javascript:void(0)" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"
+                            <a href="#" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"
                                data-tippy-content="افزودن به لیست علاقه مندی">
                               <i data-feather="heart"></i>
                             </a>
@@ -178,7 +178,7 @@
                           <button onclick="openCart()" class="tooltip-top" data-tippy-content="افزودن به سبد خرید">
                             <i data-feather="shopping-cart"></i>
                           </button>
-                          <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                          <a href="#" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"
                              data-tippy-content="افزودن به لیست علاقه مندی">
                             <i data-feather="heart"></i>
                           </a>

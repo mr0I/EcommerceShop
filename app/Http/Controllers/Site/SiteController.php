@@ -67,18 +67,17 @@ class SiteController extends Controller
             $product2 = ($compare->pid2!== null)? Product::find($compare->pid2): null;
             $product3 = ($compare->pid3!== null)? Product::find($compare->pid3): null;
             $product4 = ($compare->pid4!== null)? Product::find($compare->pid4): null;
+            // remove old pids
+            if($product1===null) $compare->pid1=null;$compare->save();
+            if($product2===null) $compare->pid2=null;$compare->save();
+            if($product3===null) $compare->pid3=null;$compare->save();
+            if($product4===null) $compare->pid4=null;$compare->save();
         } else {
             $product1 = null;
             $product2 = null;
             $product3 = null;
             $product4 = null;
         }
-
-        // remove old pids
-        if($product1===null) $compare->pid1=null;$compare->save();
-        if($product2===null) $compare->pid2=null;$compare->save();
-        if($product3===null) $compare->pid3=null;$compare->save();
-        if($product4===null) $compare->pid4=null;$compare->save();
 
         return view('site/compare', compact('product1','product2','product3','product4'));
     }
@@ -198,7 +197,7 @@ class SiteController extends Controller
         $wish = wishlist::where('userIdentity',$user_identity)->get();
         $arr = str_replace(array('[',']'),'',explode(",", $wish[0]->pids));
 
-        $products = Product::whereIn('id',$arr)->get();
+        $products = Product::whereIn('id',$arr)->paginate(5);
         return view('site/wishlist',compact('products'));
     }
 

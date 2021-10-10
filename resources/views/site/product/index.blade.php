@@ -191,7 +191,7 @@
                         افزودن به سبد خرید
                       </a>
                     @endif
-                    <a href="javascript:void(0)" class="btn btn-normal add-to-wish tooltip-top"
+                    <a href="#" class="btn btn-normal add-to-wish tooltip-top" data-id="{{ $product->id }}"
                        data-tippy-content="افزودن به لیست علاقه مندی">
                       <i class="fa fa-heart" aria-hidden="true"></i>
                     </a>
@@ -289,7 +289,7 @@
                                 data-tippy-content="افزودن به سبد خرید">
                           <i data-feather="shopping-cart"></i>
                         </button>
-                        <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                        <a href="#" class="add-to-wish tooltip-top" data-id="{{ $related_product->id }}"
                            data-tippy-content="افزودن به لیست علاقه مندی">
                           <i data-feather="heart"></i>
                         </a>

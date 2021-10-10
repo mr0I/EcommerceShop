@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\wishlist;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Compare;
@@ -31,12 +32,18 @@ class Kernel extends ConsoleKernel
         $file_path = public_path() . '\logs\schuldeLogs.txt';
         $schedule->call(function () {
             $compares = Compare::all();
+            $wishes = wishlist::all();
             $now = Carbon::createFromFormat('Y-m-d H:s:i', Carbon::now());
 
             foreach ($compares as $compare){
                 $then = Carbon::createFromFormat('Y-m-d H:s:i', $compare->updated_at);
                 $diff = $then->diffInDays($now);
                 if ($diff>=3) $compare->delete();
+            }
+            foreach ($wishes as $wish){
+                $then = Carbon::createFromFormat('Y-m-d H:s:i', $wish->updated_at);
+                $diff = $then->diffInDays($now);
+                if ($diff>=3) $wish->delete();
             }
         })->daily()->appendOutputTo($file_path);
     }

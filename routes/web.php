@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::post('/addToCompare', 'IndexController@addToCompare');
     Route::post('/addToWish', 'IndexController@addToWish');
     Route::post('/removeFromCompare', 'IndexController@removeFromCompare');
+    Route::post('/removeFromWishList', 'IndexController@removeFromWishList');
     Route::post('/getCatProducts/{name}', 'IndexController@getCatProducts');
     Route::post('/getProductInfo', 'IndexController@getProductInfo');
 });
