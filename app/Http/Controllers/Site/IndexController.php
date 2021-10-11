@@ -128,7 +128,7 @@ class IndexController extends Controller
 
             $wish->pids= $pids;
             $wish->save();
-            return response()->json(['result' => 'Done' ] , 200);
+            return response()->json(['result' => 'Done' ,'count'=>count($old_pids_arr)] , 200);
         } else {
             $pids = [];
             array_push($pids,$pid);
@@ -139,7 +139,7 @@ class IndexController extends Controller
             ]);
             $res = wishlist::create($data);
             if ($res){
-                return response()->json(['result' => 'Done' ] , 200);
+                return response()->json(['result' => 'Done' ,'count'=>count($pids)] , 200);
             } else {
                 return response()->json(['result' => 'Error' ] , 400);
             }

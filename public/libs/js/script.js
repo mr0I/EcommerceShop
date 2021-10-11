@@ -253,6 +253,7 @@ jQuery(document).ready(function($){
                             return false;
                         }
                     });
+                    $('.item-count-contain').html(data.count);
                 } else if(data.result==='Duplicate'){
                     swalWithBootstrapButtons.fire({
                         position: 'center',
@@ -344,9 +345,10 @@ jQuery(document).ready(function($){
         });
     });
 
+    /* Remove wishlist */
     $('.remove-wish-product').on('click',function (e) {
         e.preventDefault();
-       let pid = $(this).data('id');
+        let pid = $(this).data('id');
 
         swalWithBootstrapButtons.fire({
             position: 'center',
@@ -404,6 +406,7 @@ jQuery(document).ready(function($){
         });
     });
 
+    // split prices By comma
     $.fn.digits = function () {
         return this.each(function () {
             $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
