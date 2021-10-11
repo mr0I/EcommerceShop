@@ -6,9 +6,9 @@
 jQuery(document).ready(function($){
 
     /* Toasts */
-    const TopToast = Swal.mixin({
+    window.BottomToast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: 'bottom-start',
         showConfirmButton: false,
         timer: 3500,
         background: '#1c272b',
@@ -18,7 +18,7 @@ jQuery(document).ready(function($){
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     });
-    const swalWithBootstrapButtons = Swal.mixin({
+    window.swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success mx-1',
             cancelButton: 'btn btn-danger mx-1'
@@ -26,9 +26,9 @@ jQuery(document).ready(function($){
         buttonsStyling: false
     });
 
-    setTimeout(function () {
-        $('div.alert').fadeOut(200);
-    } , 3000);
+    // setTimeout(function () {
+    //     $('div.alert').fadeOut(200);
+    // } , 3000);
 
 
     $('.changeTheme').on('click', function () {
@@ -136,158 +136,11 @@ jQuery(document).ready(function($){
             });
     });
 
-    /* Add To Compare */
-    $('.add-to-compare').on('click' , function (e) {
-        e.preventDefault();
-        const pid = $(this).data('id');
-
-        const data = { product_id: pid };
-        fetch('/addToCompare', {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if (data.result === 'Done') {
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: '',
-                        html:`محصول به لیست مقایسه اضافه شد :)`,
-                        showConfirmButton: true,
-                        confirmButtonText: 'برو به لیست مقایسه',
-                        showCloseButton: false,
-                        showCancelButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = $('meta[name="compare-url"]').attr('content');
-                            return false;
-                        }
-                    });
-                } else if(data.result === 'Full'){
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'info',
-                        title: '',
-                        html:`لیست مقایسه پر شده است!`,
-                        showConfirmButton: true,
-                        confirmButtonText: 'برو به لیست مقایسه',
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'بستن',
-                        timer: 3000,
-                        timerProgressBar: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = $('meta[name="compare-url"]').attr('content');
-                            return false;
-                        }
-                    });
-                } else if(data.result==='Duplicate'){
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: '',
-                        html:`این محصول قبلا به لیست اضافه شده است!`,
-                        showConfirmButton: false,
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'خُب'
-                    });
-                } else {
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: '',
-                        html:`خطا در افزودن به لیست!`,
-                        showConfirmButton: false,
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'خُب'
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-
-    /* Add To Wishlist */
-    $('.add-to-wish').on('click' , function (e) {
-        e.preventDefault();
-        const pid = $(this).data('id');
-
-        const data = { product_id: pid };
-        fetch('/addToWish', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            body: JSON.stringify(data),
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'Done') {
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: '',
-                        html:`محصول به لیست علاقه مندی اضافه شد :)`,
-                        showConfirmButton: true,
-                        confirmButtonText: 'برو به لیست علاقه مندی',
-                        showCloseButton: false,
-                        showCancelButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = $('meta[name="wishlist-url"]').attr('content');
-                            return false;
-                        }
-                    });
-                    $('.item-count-contain').html(data.count);
-                } else if(data.result==='Duplicate'){
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: '',
-                        html:`این محصول قبلا به لیست علاقه مندی اضافه شده است!`,
-                        showConfirmButton: false,
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'خُب'
-                    });
-                } else {
-                    swalWithBootstrapButtons.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: '',
-                        html:`خطا در افزودن به لیست علاقه مندی!`,
-                        showConfirmButton: false,
-                        showCloseButton: false,
-                        showCancelButton: true,
-                        cancelButtonText: 'خُب'
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-
     /* Remove Compare */
     $('.remove-compare').on('click' , function () {
         const pid = $(this).data('pid');
 
-        swalWithBootstrapButtons.fire({
+        window.swalWithBootstrapButtons.fire({
             position: 'center',
             icon: 'warning',
             title: '',
@@ -311,7 +164,7 @@ jQuery(document).ready(function($){
                     .then(response => response.json())
                     .then(data => {
                         if (data.result === 'Done') {
-                            swalWithBootstrapButtons.fire({
+                            window.swalWithBootstrapButtons.fire({
                                 position: 'center',
                                 icon: 'success',
                                 title: '',
@@ -326,7 +179,7 @@ jQuery(document).ready(function($){
                                 if (result.isConfirmed || result.isDismissed)  window.location.reload(true);
                             });
                         } else {
-                            swalWithBootstrapButtons.fire({
+                            window.swalWithBootstrapButtons.fire({
                                 position: 'center',
                                 icon: 'error',
                                 title: '',
@@ -350,7 +203,7 @@ jQuery(document).ready(function($){
         e.preventDefault();
         let pid = $(this).data('id');
 
-        swalWithBootstrapButtons.fire({
+        window.swalWithBootstrapButtons.fire({
             position: 'center',
             icon: 'warning',
             title: '',
@@ -374,20 +227,16 @@ jQuery(document).ready(function($){
                     .then(response => response.json())
                     .then(data => {
                         if (data.result === 'Done') {
-                            swalWithBootstrapButtons.fire({
-                                position: 'center',
+                            window.BottomToast.fire({
                                 icon: 'success',
-                                title: '',
-                                html:`محصول از لیست علاقه مندی حذف شد :)`,
-                                showConfirmButton: false,
-                                showCloseButton: false,
-                                showCancelButton: false,
-                                timer: 2000,
-                                timerProgressBar: true
+                                title: 'محصول از لیست علاقه مندی حذف شد :)',
+                                timer:1500
                             });
-                            window.location.reload(true);
+                            setTimeout(function () {
+                                window.location.reload(true);
+                            },2000)
                         } else {
-                            swalWithBootstrapButtons.fire({
+                            window.swalWithBootstrapButtons.fire({
                                 position: 'center',
                                 icon: 'error',
                                 title: '',
@@ -581,7 +430,7 @@ function viewModal(pid) {
                           </div>
                     `)
             } else {
-                swalWithBootstrapButtons.fire({
+                window.swalWithBootstrapButtons.fire({
                     position: 'center',
                     icon: 'error',
                     title: '',
@@ -600,4 +449,147 @@ function viewModal(pid) {
             loader_icon.classList.remove('fa-spin');
             console.error('Error:', error);
         });
-};
+}
+
+function addToWish(e,pid) {
+    e.preventDefault();
+
+    const data = { product_id: pid };
+    fetch('/addToWish', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'Done') {
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '',
+                    html:`محصول به لیست علاقه مندی اضافه شد :)`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'برو به لیست علاقه مندی',
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = $('meta[name="wishlist-url"]').attr('content');
+                        return false;
+                    }
+                });
+                $('.item-count-contain').html(data.count);
+            } else if(data.result==='Duplicate'){
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: '',
+                    html:`این محصول قبلا به لیست علاقه مندی اضافه شده است!`,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'خُب'
+                });
+            } else {
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: '',
+                    html:`خطا در افزودن به لیست علاقه مندی!`,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'خُب'
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function addToCompare(e,pid) {
+    e.preventDefault();
+
+    const data = { product_id: pid };
+    fetch('/addToCompare', {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: JSON.stringify(data),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.result === 'Done') {
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '',
+                    html:`محصول به لیست مقایسه اضافه شد :)`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'برو به لیست مقایسه',
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = $('meta[name="compare-url"]').attr('content');
+                        return false;
+                    }
+                });
+            } else if(data.result === 'Full'){
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: '',
+                    html:`لیست مقایسه پر شده است!`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'برو به لیست مقایسه',
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'بستن',
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = $('meta[name="compare-url"]').attr('content');
+                        return false;
+                    }
+                });
+            } else if(data.result==='Duplicate'){
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: '',
+                    html:`این محصول قبلا به لیست اضافه شده است!`,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'خُب'
+                });
+            } else {
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: '',
+                    html:`خطا در افزودن به لیست!`,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'خُب'
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}

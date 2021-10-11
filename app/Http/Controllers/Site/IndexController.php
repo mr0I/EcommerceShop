@@ -120,7 +120,7 @@ class IndexController extends Controller
             $old_pids_arr = (array) json_decode($old_pids);
 
             if (in_array($pid , $old_pids_arr)){
-                return response()->json(['result'=> 'Duplicate'] , 400);
+                return response()->json(['result'=> 'Duplicate'] , 200);
             }
 
             array_push($old_pids_arr,$pid);

@@ -269,11 +269,11 @@ function appendProducts(productsContainer,product) {
                                 <div class="icon-detail">
                                   <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <i
                                             data-feather="shopping-cart"></i> </button>
-                                  <a href="#" class="add-to-wish tooltip-top" data-id="${product.id}"
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,${product.id})"
                                      data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"
                                      onclick="viewModal(${product.id})" class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
-                                  <a href="#" class="tooltip-top add-to-compare" data-id="${product.id}" data-tippy-content="مقایسه"> <i
+                                  <a href="#" class="tooltip-top add-to-compare" onclick="addToCompare(event,${product.id})" data-tippy-content="مقایسه"> <i
                                             data-feather="refresh-cw"></i> </a>
                                 </div>
                               </div>

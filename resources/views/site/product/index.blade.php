@@ -191,7 +191,7 @@
                         افزودن به سبد خرید
                       </a>
                     @endif
-                    <a href="#" class="btn btn-normal add-to-wish tooltip-top" data-id="{{ $product->id }}"
+                    <a href="#" class="btn btn-normal add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})"
                        data-tippy-content="افزودن به لیست علاقه مندی">
                       <i class="fa fa-heart" aria-hidden="true"></i>
                     </a>
@@ -289,7 +289,7 @@
                                 data-tippy-content="افزودن به سبد خرید">
                           <i data-feather="shopping-cart"></i>
                         </button>
-                        <a href="#" class="add-to-wish tooltip-top" data-id="{{ $related_product->id }}"
+                        <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $related_product->id }})"
                            data-tippy-content="افزودن به لیست علاقه مندی">
                           <i data-feather="heart"></i>
                         </a>
@@ -297,7 +297,8 @@
                            data-tippy-content="مشاهده سریع" onclick="viewModal({{ $related_product->id }})">
                           <i data-feather="eye"></i>
                         </a>
-                        <a href="#" class="add-to-compare tooltip-top" data-id="{{ $related_product->id }}" data-tippy-content="مقایسه">
+                        <a href="#" class="add-to-compare tooltip-top"
+                           onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه">
                           <i data-feather="refresh-cw"></i>
                         </a>
                       </div>
