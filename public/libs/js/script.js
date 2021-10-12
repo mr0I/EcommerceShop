@@ -26,10 +26,6 @@ jQuery(document).ready(function($){
         buttonsStyling: false
     });
 
-    // setTimeout(function () {
-    //     $('div.alert').fadeOut(200);
-    // } , 3000);
-
 
     $('.changeTheme').on('click', function () {
         let selected_theme = $(this).data('theme');

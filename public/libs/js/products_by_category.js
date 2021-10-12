@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
         postfix: " تومان"
     });
 
-    // Constants
+    // Piblic Constants
     window.public_dir = localVars.publicDir;
 
     // Scroll Event
@@ -46,7 +46,6 @@ jQuery(document).ready(function($) {
         const diff = window.scrollY - lastScrollY; // scrolling down
         lastScrollY = window.scrollY;
 
-
         if (diff>0 && !canLoadMoreProducts && (window.innerHeight + window.scrollY)>=document.body.offsetHeight - 250
             && isLoading==false) {
             if(!showAlert){
@@ -57,7 +56,6 @@ jQuery(document).ready(function($) {
 
         if (diff>0 && canLoadMoreProducts && (window.innerHeight + window.scrollY)>=document.body.offsetHeight - 250
             && isLoading==false) {
-            // console.log('reload');
             isLoading=true;
 
             const data = {page_num: getUrlParams().page};
@@ -229,6 +227,11 @@ function getUrlParams() {
 }
 
 function appendProducts(productsContainer,product) {
+    // load required methods for ajax load
+    feather.replace();
+    $('.digits').digits();
+
+
     productsContainer.find('.row').append(`
                           <div class="col-lg-3 col-grid-box">
                             <div class="product-box">
@@ -280,4 +283,5 @@ function appendProducts(productsContainer,product) {
                             </div>
                           </div>
                         `);
+
 }
