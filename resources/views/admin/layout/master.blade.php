@@ -58,7 +58,7 @@
 <script src="{{ url('js/sidebar-menu.js') }}"></script>
 
 <!--chartist js-->
-<script src="{{ url('js/chart/chartist/chartist.js') }}"></script>
+{{--<script src="{{ url('js/chart/chartist/chartist.js') }}"></script>--}}
 
 
 <!-- lazyload js-->
@@ -93,7 +93,7 @@
 <script src="{{ url('js/chart/flot-chart/jquery.flot.stack.js') }}"></script>
 <script src="{{ url('js/chart/flot-chart/jquery.flot.pie.js') }}"></script>
 <!--dashboard custom js-->
-<script src="{{ url('js/dashboard/default.js') }}"></script>
+{{--<script src="{{ url('js/dashboard/default.js') }}"></script>--}}
 
 <!--right sidebar js-->
 <script src="{{ url('js/chat-menu.js') }}"></script>

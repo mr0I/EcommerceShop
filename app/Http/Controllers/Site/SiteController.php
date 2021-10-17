@@ -201,6 +201,10 @@ class SiteController extends Controller
         return view('site/wishlist',compact('products'));
     }
 
+    public function adminLogin(){
+        return view('admin/login');
+    }
+
 
     public function restricted(){
         return view('site/restricted');

@@ -21,6 +21,5 @@ class isAdmin
         } else {
             return redirect('/');
         }
-        //return $next($request);
     }
 }

@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/compare', 'SiteController@compare_products');
     Route::get('/wishlist', 'SiteController@wishlist');
     Route::get('/category/{name}', 'SiteController@category');
+    Route::get('/adminnnnlogin', 'SiteController@adminLogin');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
@@ -41,4 +42,3 @@ Route::group(['namespace' => 'Site'], function () {
 });
 
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');

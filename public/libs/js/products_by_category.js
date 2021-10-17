@@ -231,7 +231,6 @@ function appendProducts(productsContainer,product) {
     feather.replace();
     $('.digits').digits();
 
-
     productsContainer.find('.row').append(`
                           <div class="col-lg-3 col-grid-box">
                             <div class="product-box">
