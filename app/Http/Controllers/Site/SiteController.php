@@ -202,6 +202,9 @@ class SiteController extends Controller
     }
 
     public function adminLogin(){
+        if (Auth::check() && Auth::user()->role->name==='Admin'){
+            return view('admin/index');
+        }
         return view('admin/login');
     }
 
