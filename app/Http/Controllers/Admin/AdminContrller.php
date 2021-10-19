@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminContrller extends Controller
 {
@@ -14,7 +17,23 @@ class AdminContrller extends Controller
      */
     public function index()
     {
-        return view('admin/index');
+        $products_count = Product::count();
+        $users_count = User::all()->count();
+        $sites_count = Product::where('site_id',1)->count();
+        $cats_count = Product::where('category_id',1)->count();
+        //dd($products_count);
+        return view('admin/index',
+            compact('products_count','users_count','sites_count','cats_count'));
+    }
+
+
+    public function articles()
+    {
+        return view('admin/articles/index');
+    }
+    public function addArticle()
+    {
+        return view('admin/articles/add_article');
     }
 
     /**

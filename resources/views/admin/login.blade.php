@@ -1,22 +1,62 @@
-@extends('admin.layout.master')
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
 
-@section('title')
-  {{ __('Admin Login') }}
-@endsection
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bigdeal admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+  <meta name="keywords" content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
+  <meta name="author" content="pixelstrap">
+  <link rel="icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
+  <title>@yield('title')</title>
 
-@section('content')
+  <!-- Font Awesome-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
+
+  <!-- Flag icon-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/flag-icon.css') }}">
+
+  <!-- ico-font-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/icofont.css') }}">
+
+  <!-- Prism css-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/prism.css') }}">
+
+  <!-- Chartist css -->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/chartist.css') }}">
+
+  <!-- vector map css -->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/vector-map.css') }}">
+
+  <!-- Bootstrap css-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
+
+  <!-- App css-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/admin.css') }}">
+</head>
+
+<body class="rtl">
+
+<div id="container">
   <!-- page-wrapper Start-->
   <div class="page-wrapper">
-    <div class="authentication-box">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 p-0 card-left">
-            <div class="card bg-primary">
-              <div class="svg-icon">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 468.52 468.52" style="enable-background:new 0 0 468.52 468.52;"
-                     xml:space="preserve">
+    <!-- Page Header Start-->
+    <!-- Page Body Start-->
+    <div class="page-body-wrapper">
+      <!-- page-wrapper Start-->
+      <div class="page-wrapper">
+        <div class="authentication-box">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5 p-0 card-left">
+                <div class="card bg-primary">
+                  <div class="svg-icon">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 468.52 468.52" style="enable-background:new 0 0 468.52 468.52;"
+                         xml:space="preserve">
                                     <g>
                                       <path style="fill:#E6E6E6;" d="M468.52,102.595v251.88c0,11.14-7.571,20.52-17.86,23.25c-1.98,0.531-4.06,0.81-6.2,0.81H38.58
 		c-13.29,0-24.061-10.77-24.061-24.06v-251.88c0-13.29,10.771-24.06,24.061-24.06h405.88c2.14,0,4.22,0.28,6.2,0.81
@@ -123,69 +163,144 @@
 		c1.923,0,3.84-0.728,5.303-2.192l-83.142-83.142L393.695,417.909z" />
                                     </g>
                                 </svg>
-              </div>
+                  </div>
 
-              <div class="single-item">
-                <div>
-                  <div>
-                    <h3>به بیگ دیل خوش آمدید</h3>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                      تولید سادگی نامفهوم لورم ایپسوم متن ساختگی نامفهوم.</p>
+                  <div class="single-item">
+                    <div>
+                      <div>
+                        <h3>به بیگ دیل خوش آمدید</h3>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
+                          تولید سادگی نامفهوم لورم ایپسوم متن ساختگی نامفهوم.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-7 p-0 card-right">
-            <div class="card tab2-card">
-              <div class="card-body">
-                <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="top-profile-tab" data-bs-toggle="tab"
-                       href="#top-profile" role="tab" aria-controls="top-profile"
-                       aria-selected="true"><span class="icon-user ms-2"></span>ورود</a>
-                  </li>
-                </ul>
-                <div class="tab-content" id="top-tabContent">
-                  <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
-                       aria-labelledby="top-profile-tab">
-                    <form class="form-horizontal auth-form">
-                      <div class="form-group">
-                        <input required="" name="login[username]" type="email"
-                               class="form-control" placeholder="نام کاربری / ایمیل"
-                               id="exampleInputEmail1">
-                      </div>
-                      <div class="form-group">
-                        <input required="" name="login[password]" type="password"
-                               class="form-control" placeholder="رمز عبور">
-                      </div>
-                      <div class="form-terms">
-                        <div class="custom-control custom-checkbox mr-sm-2">
-                          <div class="form-check">
-                            <input class="form-check-input custom-control-input"
-                                   type="checkbox" value="" id="customControlAutosizing">
-                            <label class="form-check-label"
-                                   for="customControlAutosizing">مرا به خاطر بسپار</label>
+              <div class="col-md-7 p-0 card-right">
+                <div class="card tab2-card">
+                  <div class="card-body">
+                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="top-profile-tab" data-bs-toggle="tab"
+                           href="#top-profile" role="tab" aria-controls="top-profile"
+                           aria-selected="true"><span class="icon-user ms-2"></span>ورود</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="top-tabContent">
+                      <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
+                           aria-labelledby="top-profile-tab">
+                        @if(\Session::has('loginError'))
+                          <div class="alert alert-danger my-3 text-center">{{ \Session::get('loginError') }}</div>
+                        @endif
+                        <form action="{{ url('/adminCheckLogin') }}" method="post"
+                              class="form-horizontal auth-form">
+                          @csrf
+                          <div class="form-group">
+                            <input type="email" name="username" class="form-control" placeholder="ایمیل"
+                                   value="{{ old('username') }}">
                           </div>
-                          <a href="javascript:void(0)"
-                             class="btn btn-default forgot-pass">فراموشی رمز
-                            عبور؟</a>
-                        </div>
+                          <div class="form-group">
+                            <input name="password" type="password" class="form-control" placeholder="رمز عبور"
+                                   >
+                          </div>
+                          <div class="form-terms">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                              <div class="form-check">
+                                <input class="form-check-input custom-control-input"
+                                       type="checkbox" value="" id="customControlAutosizing">
+                                <label class="form-check-label"
+                                       for="customControlAutosizing">مرا به خاطر بسپار</label>
+                              </div>
+                              <a href="javascript:void(0)"
+                                 class="btn btn-default forgot-pass">فراموشی رمز
+                                عبور؟</a>
+                            </div>
+                          </div>
+                          <div class="form-button">
+                            <button class="btn btn-primary" type="submit">ورود</button>
+                          </div>
+                        </form>
                       </div>
-                      <div class="form-button">
-                        <button class="btn btn-primary" type="submit">ورود</button>
-                      </div>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <a href="{{ url('/') }}" class="btn btn-primary back-btn"><i data-feather="arrow-right"></i>بازگشت به
+              خانه</a>
           </div>
         </div>
-        <a href="{{ url('/') }}" class="btn btn-primary back-btn"><i data-feather="arrow-right"></i>بازگشت به
-          خانه</a>
       </div>
     </div>
   </div>
+</div>
 
-@endsection
+<!-- latest jquery-->
+<script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
+
+<!-- Bootstrap js-->
+<script src="{{ url('js/popper.min.js') }}"></script>
+<script src="{{ url('js/bootstrap.js') }}"></script>
+
+<!-- feather icon js-->
+<script src="{{ url('js/icons/feather-icon/feather.min.js') }}"></script>
+<script src="{{ url('js/icons/feather-icon/feather-icon.js') }}"></script>
+
+<!-- Sidebar jquery-->
+<script src="{{ url('js/sidebar-menu.js') }}"></script>
+
+<!--chartist js-->
+{{--<script src="{{ url('js/chart/chartist/chartist.js') }}"></script>--}}
+
+
+<!-- lazyload js-->
+<script src="{{ url('js/lazysizes.min.js') }}"></script>
+
+<!--copycode js-->
+<script src="{{ url('js/prism/prism.min.js') }}"></script>
+<script src="{{ url('js/clipboard/clipboard.min.js') }}"></script>
+<script src="{{ url('js/custom-card/custom-card.js') }}"></script>
+
+<!--counter js-->
+<script src="{{ url('js/counter/jquery.waypoints.min.js') }}"></script>
+<script src="{{ url('js/counter/jquery.counterup.min.js') }}"></script>
+<script src="{{ url('js/counter/counter-custom.js') }}"></script>
+
+<!--Customizer admin-->
+<script src="{{ url('js/admin-customizer.js') }}"></script>
+
+<!--map js-->
+<script src="{{ url('js/vector-map/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ url('js/vector-map/map/jquery-jvectormap-world-mill-en.js') }}"></script>
+
+<!--apex chart js-->
+<script src="{{ url('js/chart/apex-chart/apex-chart.js') }}"></script>
+<script src="{{ url('js/chart/apex-chart/stock-prices.js') }}"></script>
+
+<!--chartjs js-->
+<script src="{{ url('js/chart/flot-chart/excanvas.js') }}"></script>
+<script src="{{ url('js/chart/flot-chart/jquery.flot.js') }}"></script>
+<script src="{{ url('js/chart/flot-chart/jquery.flot.time.js') }}"></script>
+<script src="{{ url('js/chart/flot-chart/jquery.flot.categories.js') }}"></script>
+<script src="{{ url('js/chart/flot-chart/jquery.flot.stack.js') }}"></script>
+<script src="{{ url('js/chart/flot-chart/jquery.flot.pie.js') }}"></script>
+<!--dashboard custom js-->
+{{--<script src="{{ url('js/dashboard/default.js') }}"></script>--}}
+
+<!--right sidebar js-->
+<script src="{{ url('js/chat-menu.js') }}"></script>
+
+<!--height equal js-->
+<script src="{{ url('js/equal-height.js') }}"></script>
+
+<!-- lazyload js-->
+<script src="{{ url('js/lazysizes.min.js') }}"></script>
+
+<!--script admin-->
+<script src="{{ url('js/admin-script.js') }}"></script>
+
+</body>
+</html>
+
+
+

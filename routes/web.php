@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAdmin'], function () {
-    Route::get('/', 'AdminContrller@index');
+    Route::get('/dashboard', 'AdminContrller@index');
+    Route::get('/dashboard/articles', 'AdminContrller@articles');
+    Route::get('/dashboard/add_article', 'AdminContrller@addArticle');
 });
 
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
@@ -29,6 +31,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/wishlist', 'SiteController@wishlist');
     Route::get('/category/{name}', 'SiteController@category');
     Route::get('/adminnnnlogin', 'SiteController@adminLogin');
+    Route::post('/adminCheckLogin', 'SiteController@adminCheckLogin');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');

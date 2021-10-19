@@ -9,11 +9,14 @@ use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
 use App\wishlist;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
 
 class SiteController extends Controller
@@ -189,7 +192,7 @@ class SiteController extends Controller
 
         return view('site/category/index' ,
             compact('products','category_id','brands','products_count','latest_mobile_products'
-            ,'priceMin','priceMax'));
+                ,'priceMin','priceMax'));
     }
 
     public function wishlist(){
@@ -202,10 +205,30 @@ class SiteController extends Controller
     }
 
     public function adminLogin(){
-        if (Auth::check() && Auth::user()->role->name==='Admin'){
-            return view('admin/index');
+        if (Auth::check() && Auth::user()->role->name==='Admin') {
+            return redirect('admin/dashboard');
         }
         return view('admin/login');
+    }
+
+    public function adminCheckLogin(Request $request)
+    {
+        $user = User::where('email',$request->username)->first();
+        if ($user){
+            if (Hash::check($request->password, $user->password)) {
+                Auth::login($user);
+                return redirect('admin/dashboard');
+            } else{
+                Session::flash('loginError','نام کاربری یا رمز عبور اشتباه است :(');
+                return back();
+            }
+        } else{
+            Session::flash('loginError','نام کاربری یا رمز عبور اشتباه است :(');
+            return back();
+        }
+
+
+
     }
 
 

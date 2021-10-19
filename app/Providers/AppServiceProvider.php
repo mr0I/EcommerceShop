@@ -27,6 +27,9 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(['wish_list_len'=>$wish_list_len]);
         });
+        view()->composer(['admin.layout.master'], function ($view) {
+            $view->with(['user'=>Auth::user()]);
+        });
     }
 
     /**
