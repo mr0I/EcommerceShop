@@ -8,6 +8,7 @@
   <meta name="description" content="Bigdeal admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
   <meta name="keywords" content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="pixelstrap">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
   <link rel="shortcut icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
   <title>@yield('title')</title>
@@ -213,105 +214,7 @@
           <div class="friend-list-search mt-0">
             <input type="text" placeholder="جستجوی دوست"><i class="fa fa-search"></i>
           </div>
-          <div class="p-l-30 p-r-30">
-            <div class="chat-box">
-              <div class="people-list friend-list">
-                <ul class="list">
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user.png" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">مریم رسولی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user1.jpg" alt="">
-                    <div class="status-circle away"></div>
-                    <div class="about">
-                      <div class="name">نسترن افشار</div>
-                      <div class="status"> 28 دقیقه پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user2.jpg" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">پدرام شریفی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user3.jpg" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">فرهاد رضوی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/man.png" alt="">
-                    <div class="status-circle offline"></div>
-                    <div class="about">
-                      <div class="name">امیر صادقی</div>
-                      <div class="status"> 2 دقیقه پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user5.jpg" alt="">
-                    <div class="status-circle away"></div>
-                    <div class="about">
-                      <div class="name">پریسا توکلی</div>
-                      <div class="status"> 2 ساعت پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/designer.jpg" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">هادی لواسانی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user3.jpg" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">فرهاد رضوی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/man.png" alt="">
-                    <div class="status-circle offline"></div>
-                    <div class="about">
-                      <div class="name">امیر صادقی</div>
-                      <div class="status"> 2 دقیقه پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user5.jpg" alt="">
-                    <div class="status-circle away"></div>
-                    <div class="about">
-                      <div class="name">پریسا توکلی</div>
-                      <div class="status"> 2 ساعت پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user3.jpg" alt="">
-                    <div class="status-circle online"></div>
-                    <div class="about">
-                      <div class="name">فرهاد رضوی</div>
-                      <div class="status"> آنلاین</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/man.png" alt="">
-                    <div class="status-circle offline"></div>
-                    <div class="about">
-                      <div class="name">امیر صادقی</div>
-                      <div class="status"> 2 دقیقه پیش</div>
-                    </div>
-                  </li>
-                  <li class="clearfix"><img class="rounded-circle user-image" src="../assets/images/dashboard/user5.jpg" alt="">
-                    <div class="status-circle away"></div>
-                    <div class="about">
-                      <div class="name">پریسا توکلی</div>
-                      <div class="status"> 2 ساعت پیش</div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
       <!-- Right sidebar Ends-->
@@ -400,6 +303,9 @@
 
 <!--script admin-->
 <script src="{{ url('js/admin-script.js') }}"></script>
+
+<!-- custom script-->
+<script src="{{ url('libs/js/admin.js') }}"></script>
 
 </body>
 </html>

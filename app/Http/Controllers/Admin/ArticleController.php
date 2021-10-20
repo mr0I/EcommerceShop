@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Article;
 use App\Http\Controllers\Controller;
-use App\Product;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AdminContrller extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,22 +15,17 @@ class AdminContrller extends Controller
      */
     public function index()
     {
-        $products_count = Product::count();
-        $users_count = User::all()->count();
-        $sites_count = Product::where('site_id',1)->count();
-        $cats_count = Product::where('category_id',1)->count();
-        return view('admin/index',
-            compact('products_count','users_count','sites_count','cats_count'));
+        //
     }
 
-
-    public function articles()
+    public function addArticle(Request $request)
     {
-        return view('admin/articles/index');
-    }
-    public function addArticle()
-    {
-        return view('admin/articles/add_article');
+        $res = Article::create($request->data);
+        if ($res){
+            return response()->json(['result'=>'Done'],200);
+        } else{
+            return response()->json(['result'=>'Error'],500);
+        }
     }
 
     /**
