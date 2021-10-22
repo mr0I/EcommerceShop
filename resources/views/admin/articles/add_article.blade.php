@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-xl-8 col-md-7">
                     <div class=" editor-space">
-                         <textarea class="w-100" name="desc" cols="50 " rows="5"></textarea>
+                      <textarea class="w-100" name="desc" cols="50 " rows="5"></textarea>
                     </div>
                   </div>
                 </div>
@@ -57,10 +57,19 @@
                     </div>
                   </div>
                   <div class="col-xl-8 col-md-7">
-                      <label for="status_checkbox">آپلود تصویر</label>
-                      <input type="file" class="upload" onchange="previewImage(event)">
+                    <label for="status_checkbox">آپلود تصویر</label>
+                    <input type="file" class="upload" onchange="previewImage(event)" id="article_image">
                     <img src="{{ url('images/ArticleDefault.jpg') }}" id="article_image"
                          width="150" height="150" alt="">
+                    <button id="upload_img_btn" onclick="uploadToServer(event)">upload</button>
+                   <p><span id="loaded">20/30 kb</span></p>
+
+                    <div class="progress">
+                      <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    </div>
+                   <p><span id="percent">65%</span></p>
+                   <p><span id="result">res</span></p>
+                    <input type="hidden" id="uploaded_img_name">
                   </div>
                 </div>
               </form>

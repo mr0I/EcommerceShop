@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
     Route::resource('articles','ArticleController');
     // Ajax
     Route::post('/addArticle', 'ArticleController@addArticle');
+    Route::post('/uploadArticleImage', 'ArticleController@uploadArticleImage');
 
 });
 

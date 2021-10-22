@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Http\Controllers\Controller;
+use App\imageuploader;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -25,6 +27,20 @@ class ArticleController extends Controller
             return response()->json(['result'=>'Done'],200);
         } else{
             return response()->json(['result'=>'Error'],500);
+        }
+    }
+
+    public function uploadArticleImage(Request $request)
+    {
+        $year = Carbon::now()->year;
+        $fileName = time() . '-' . $year . '-' . $request->file->getClientOriginalName();
+        $request->file->move(public_path('uploads').'\article_images', $fileName);
+
+        $res = imageuploader::create(array_merge([],['image_name'=>$fileName]));
+        if ($res){
+            return response()->json(['result' => 'Done' , 'image'=> $fileName] , 200);
+        } else {
+            return response()->json(['result' => 'Error'] , 500);
         }
     }
 
