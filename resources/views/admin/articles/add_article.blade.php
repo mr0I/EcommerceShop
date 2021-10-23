@@ -58,18 +58,18 @@
                   </div>
                   <div class="col-xl-8 col-md-7">
                     <label for="status_checkbox">آپلود تصویر</label>
-                    <input type="file" class="upload" onchange="previewImage(event)" id="article_image">
-                    <img src="{{ url('images/ArticleDefault.jpg') }}" id="article_image"
-                         width="150" height="150" alt="">
+                    <input type="file" class="upload" onchange="previewImage(event)" id="article_image" accept="image/*">
+                    <img src="{{ url('images/ArticleDefault.jpg') }}" id="article_image_preview" width="100" height="100">
                     <button id="upload_img_btn" onclick="uploadToServer(event)">upload</button>
-                   <p><span id="loaded">20/30 kb</span></p>
-
+                    <p><span id="loaded"></span></p>
                     <div class="progress">
-                      <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                      <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated"
+                           role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                           style="width: 0"></div>
                     </div>
-                   <p><span id="percent">65%</span></p>
-                   <p><span id="result">res</span></p>
-                    <input type="hidden" id="uploaded_img_name">
+                    <p><span id="percent"></span></p>
+                    <p><span id="result"></span></p>
+                    <input type="hidden" id="uploaded_image_id" name="image_id">
                   </div>
                 </div>
               </form>

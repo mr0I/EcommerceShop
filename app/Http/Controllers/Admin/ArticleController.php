@@ -38,7 +38,7 @@ class ArticleController extends Controller
 
         $res = imageuploader::create(array_merge([],['image_name'=>$fileName]));
         if ($res){
-            return response()->json(['result' => 'Done' , 'image'=> $fileName] , 200);
+            return response()->json(['result' => 'Done' , 'id'=> $res->id] , 200);
         } else {
             return response()->json(['result' => 'Error'] , 500);
         }

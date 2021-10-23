@@ -8,6 +8,7 @@ jQuery(document).ready(function($){
         const thisBtn = $(this);
         let title = document.forms['addArticlePublic']['title'].value;
         let desc = document.forms['addArticlePublic']['desc'].value;
+        let image_id = document.forms['addArticlePublic']['image_id'].value;
         let status = (document.forms['addArticlePublic']['status'].checked)? 'published' : 'draft' ;
         let meta_title = document.forms['addArticleSeo']['meta_title'].value;
         let meta_desc = document.forms['addArticleSeo']['meta_desc'].value;
@@ -16,7 +17,7 @@ jQuery(document).ready(function($){
             title:title,
             desc:desc,
             status:status,
-            image:'image',
+            image_id:image_id,
             meta_title:meta_title,
             meta_desc:meta_desc
         };
@@ -35,6 +36,7 @@ jQuery(document).ready(function($){
             success: function (res , xhr) {
                 if (res.result==='Done' && xhr==='success'){
                     alert('مقاله ثبت شد.');
+                    window.location.href = $('meta[name="articles-list"]').attr('content');
                 } else {
                     alert('خطا در عملیات!!!');
                 }
@@ -44,18 +46,16 @@ jQuery(document).ready(function($){
                 thisBtn.html('ذخیره');
             },timeout:10000
         });
-
     })
+
 });
 
 function previewImage(e) {
-    console.log('sdad');
     const image = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onload = e =>{
-        document.getElementById("article_image").src=e.target.result;
-        // this.preview_image = e.target.result;
+        document.getElementById('article_image_preview').src= e.target.result;
     };
 }
 
@@ -63,10 +63,11 @@ function previewImage(e) {
 /* Image Uploader */
 function uploadToServer(e){
     e.preventDefault();
+    document.getElementById('prog').style.width = 0 + '%';
+
     var file = document.getElementById('article_image').files[0];
     var formData = new FormData();
     var httpReq = new XMLHttpRequest();
-    //var metas = document.getElementsByTagName('meta');
 
     formData.append('file', file);
     httpReq.upload.addEventListener('progress', progressFunc);
@@ -78,7 +79,6 @@ function uploadToServer(e){
 
     httpReq.send(formData);
 }
-
 function progressFunc(event){
     var loaded = (event.loaded)/100;
     var total = (event.total)/100;
@@ -87,37 +87,40 @@ function progressFunc(event){
     var percent = (event.loaded / event.total) *100;
     var p = Math.round(percent);
     document.getElementById('prog').style.width = p + '%';
-    document.getElementById('percent').innerHTML = p + "% ÂáæÏ ÔÏå" ;
+    document.getElementById('percent').innerHTML = p + "درصد" ;
     if(p === 100){
         setTimeout(function () {
-            alert('Done');
-            document.getElementById('prog').style.width = 0 + '%';
+            alert('فایل آپلود شد.');
             document.getElementById('article_image').value = '';
         },2000)
     }
 }
 function loadFunc(event){
     const resp = JSON.parse(event.target.responseText);
-    console.log('resppp',resp);
+    // console.log('respppp',resp);
     if (resp.result==='Done'){
-        document.getElementById('uploaded_img_name').value = resp.image;
+        document.getElementById('uploaded_image_id').value = resp.id;
+        document.getElementById('result').innerHTML = 'آپلود موفق :)';
     } else {
-        document.getElementById('uploaded_img_name').value = '';
+        document.getElementById('uploaded_image_id').value = '';
+        document.getElementById('result').innerHTML = 'خطای نامشخص';
     }
-    document.getElementById('result').innerHTML = resp.result;
 }
 function errorFunc(){
-    document.getElementById('result').innerHTML = "ÎØÇ ÏÑ ÂáæÏ";
-    document.getElementById('uploaded_img_name').value = '';
+    document.getElementById('result').innerHTML = "خطا در آپلود!!!";
+    document.getElementById('uploaded_image_id').value = '';
 }
 function abortFunc(){
-    document.getElementById('result').innerHTML = "ÂáæÏ áÛæ ÔÏ!";
-    document.getElementById('uploaded_img_name').value = '';
+    document.getElementById('result').innerHTML = "لغو آپلود :| ";
+    document.getElementById('uploaded_image_id').value = '';
 }
 function Cancel(){
-    document.getElementById('uploaded_img_name').value = '';
-    location.reload();
+    document.getElementById('uploaded_image_id').value = '';
+    window.location.reload();
 }
-/* Video Uploader */
+/* Image Uploader */
+
+
+
 
 

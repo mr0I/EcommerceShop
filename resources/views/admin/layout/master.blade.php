@@ -9,6 +9,7 @@
   <meta name="keywords" content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="pixelstrap">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="articles-list" content="{{ url('admin/dashboard/articles') }}">
   <link rel="icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
   <link rel="shortcut icon" href="{{ url('images/favicon/favicon.png') }}" type="image/x-icon">
   <title>@yield('title')</title>
