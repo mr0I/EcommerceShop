@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/category/{name}', 'SiteController@category');
     Route::get('/adminnnnlogin', 'SiteController@adminLogin');
     Route::post('/adminCheckLogin', 'SiteController@adminCheckLogin');
+//    Route::get('/getArticles', 'SiteController@articles');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');

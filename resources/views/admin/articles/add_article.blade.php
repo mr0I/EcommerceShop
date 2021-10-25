@@ -65,7 +65,8 @@
                     <div class="progress">
                       <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated"
                            role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                           style="width: 0"></div>
+                           style="width: 0">
+                      </div>
                     </div>
                     <p><span id="percent"></span></p>
                     <p><span id="result"></span></p>

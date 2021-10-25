@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Article;
+use App\article_image;
 use App\Category;
 use App\Comment;
 use App\Compare;
@@ -33,7 +35,13 @@ class SiteController extends Controller
 
         $specialProducts = Product::where('main_price', '<>' , null)->get();
 
-        return view('site/index' , compact('mobileProducts' ,'specialProducts'));
+        $articles = Article::all();
+//        foreach ($articles as $article){
+//            dd($article->article_image['image']);
+//        }
+
+        return view('site/index' ,
+            compact('mobileProducts' ,'specialProducts','articles'));
     }
 
     public function product($slug)

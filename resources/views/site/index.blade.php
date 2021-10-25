@@ -1051,86 +1051,33 @@
       <div class="row blog-block">
         <div class="col-12 ">
           <div class="blog-slide-4 no-arrow">
-            <div>
-              <div class="blog-contain blog-border">
-                <div class="blog-img">
-                  <a href="blog-details.html">
-                    <img src="{{ url('images/marketplace/blog/1.jpg') }}" alt="blog" class="img-fluid w-100">
-                  </a>
+            @foreach($articles as $article)
+              <div>
+                <div class="blog-contain blog-border">
+                  <div class="blog-img">
+                    <a href="blog-details.html">
+                      <img src="{{ url('uploads/article_images/'.$article->article_image['image']) }}"
+                           alt="blog_pic" class="img-fluid w-100">
+                    </a>
+                  </div>
+                  <div class="blog-details-2">
+                    <a href="blog-details.html">
+                      <h4>{{ $article->title }} </h4>
+                    </a>
+                    <p>
+                    {{ $article->desc }}
+                    </p>
+                    <a href="#" class=" btn btn-rounded  btn-xs">
+                      مطالعه بیشتر
+                    </a>
+                  </div>
+                  <div class="blog-label1">
+                    {{ $article->updated_at }}
+                  </div>
                 </div>
-                <div class="blog-details-2">
-                  <a href="blog-details.html">
-                    <h4>پیشرفت در بازار دیجیتال </h4>
-                  </a>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم، لورم ایپسوم.</p>
-                  <a href="blog-details.html" class=" btn btn-rounded  btn-xs">
-                    مطالعه بیشتر
-                  </a>
-                </div>
-                <div class="blog-label1">27 <br>مهر</div>
               </div>
-            </div>
-            <div>
-              <div class="blog-contain blog-border">
-                <div class="blog-img">
-                  <a href="blog-details.html">
-                    <img src="{{ url('images/marketplace/blog/2.jpg') }}" alt="blog" class="img-fluid w-100">
-                  </a>
-                </div>
-                <div class="blog-details-2">
-                  <a href="blog-details.html">
-                    <h4>آموزش طراحی قالب فروشگاهی </h4>
-                  </a>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم، لورم ایپسوم.</p>
-                  <a href="blog-details.html" class=" btn btn-rounded  btn-xs">
-                    مطالعه بیشتر
-                  </a>
-                </div>
-                <div class="blog-label1">27 <br>مهر</div>
-              </div>
-            </div>
-            <div>
-              <div class="blog-contain blog-border">
-                <div class="blog-img">
-                  <a href="blog-details.html">
-                    <img src="{{ url('images/marketplace/blog/3.jpg') }}" alt="blog" class="img-fluid w-100">
-                  </a>
-                </div>
-                <div class="blog-details-2">
-                  <a href="blog-details.html">
-                    <h4>راهنمای طراحی گرافیک </h4>
-                  </a>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم، لورم ایپسوم.</p>
-                  <a href="blog-details.html" class=" btn btn-rounded  btn-xs">
-                    مطالعه بیشتر
-                  </a>
-                </div>
-                <div class="blog-label1">27 <br>مهر</div>
-              </div>
-            </div>
-            <div>
-              <div class="blog-contain blog-border">
-                <div class="blog-img">
-                  <a href="blog-details.html">
-                    <img src="{{ url('images/marketplace/blog/4.jpg') }}" alt="blog" class="img-fluid w-100">
-                  </a>
-                </div>
-                <div class="blog-details-2">
-                  <a href="blog-details.html">
-                    <h4>5 رازی که باید بدانید</h4>
-                  </a>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم، لورم ایپسوم.</p>
-                  <a href="blog-details.html" class=" btn btn-rounded  btn-xs">
-                    مطالعه بیشتر
-                  </a>
-                </div>
-                <div class="blog-label1">27 <br>مهر</div>
-              </div>
-            </div>
+
+            @endforeach
           </div>
         </div>
       </div>
