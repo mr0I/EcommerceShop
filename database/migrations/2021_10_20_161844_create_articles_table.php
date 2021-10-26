@@ -16,11 +16,12 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title',155);
-            $table->bigInteger('image_id'); // Foreign Key
-            $table->string('desc');
+            $table->bigInteger('article_image_id');
+            $table->text('description');
             $table->string('meta_title')->nullable();
             $table->string('meta_desc')->nullable();
             $table->enum('status', ['published','draft']);
+            $table->string('slug');
             $table->timestamps();
         });
     }

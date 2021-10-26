@@ -15,9 +15,9 @@ jQuery(document).ready(function($){
 
         const article_data={
             title:title,
-            desc:desc,
+            description:desc,
             status:status,
-            image_id:image_id,
+            article_image_id:image_id,
             meta_title:meta_title,
             meta_desc:meta_desc
         };

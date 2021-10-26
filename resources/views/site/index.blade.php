@@ -1,10 +1,14 @@
 @extends('site.layout.master')
 
 @section('title')
-{{ __('Main Page') }}
+  {{ __('Main Page') }}
 @endsection
 
 @section('content')
+  @php
+    include_once public_path() . '/libs/helpers/jdatetime.class.php';
+    $date = new jDateTime(true, true, 'Asia/Tehran');
+  @endphp
 
   @if(\Session::has('user_create_success'))
     <div class="alert alert-success my-2 w-75" style="margin: 0 auto;">
@@ -1001,13 +1005,13 @@
                               <li><i class="fa fa-star-o"></i></li>
                             </ul>
                             <p style="direction: rtl">{{ mb_strimwidth($product->description,0,650,'---') }}</p>
-                                @php
-                                  $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
-                                @endphp
+                            @php
+                              $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
+                            @endphp
                             <h6><strong class="digits">{{ $product->price }}</strong> تومان
-                                <span class="mx-2 digits" style="color: #acacac;text-decoration: line-through">{{ $product->main_price }} تومان </span>
-                                <strong class="mx-2">{{ $discount }}% تخفیف </strong>
-                              </h6>
+                              <span class="mx-2 digits" style="color: #acacac;text-decoration: line-through">{{ $product->main_price }} تومان </span>
+                              <strong class="mx-2">{{ $discount }}% تخفیف </strong>
+                            </h6>
                             <div class="timer">
                               <p id="demo">
                               </p>
@@ -1037,53 +1041,53 @@
   <!--hot deal start-->
 
 
-  <!-- title start -->
-  <div class="title4 b-g-white text-left">
-    <h3>آخرین اخبار ما</h3>
-    <div class="line">
+  @if(sizeof($articles)!==0)
+    <!-- title start -->
+    <div class="title4 b-g-white text-left">
+      <h3>{{ __('Latest News') }}</h3>
+      <div class="line">
+      </div>
     </div>
-  </div>
-  <!-- title end -->
+    <!-- title end -->
 
-  <!--blog start-->
-  <section class="blog  section-big-pb-space b-g-white blog-inverce">
-    <div class="custom-container">
-      <div class="row blog-block">
-        <div class="col-12 ">
-          <div class="blog-slide-4 no-arrow">
-            @foreach($articles as $article)
-              <div>
-                <div class="blog-contain blog-border">
-                  <div class="blog-img">
-                    <a href="blog-details.html">
-                      <img src="{{ url('uploads/article_images/'.$article->article_image['image']) }}"
-                           alt="blog_pic" class="img-fluid w-100">
-                    </a>
-                  </div>
-                  <div class="blog-details-2">
-                    <a href="blog-details.html">
+    <!--blog start-->
+    <section class="blog  section-big-pb-space b-g-white blog-inverce">
+      <div class="custom-container">
+        <div class="row blog-block">
+          <div class="col-12 ">
+            <div class="blog-slide-4 no-arrow">
+              @foreach($articles as $article)
+                <div>
+                  <div class="blog-contain blog-border">
+                    <div class="blog-img">
+                      <a href="{{ url('article/'.$article->slug) }}">
+                        <img src="{{ url('uploads/article_images/'.$article->articleImage   ['image']) }}"
+                             alt="blog_pic" class="img-fluid w-100">
+                      </a>
+                    </div>
+                    <div class="blog-details-2">
                       <h4>{{ $article->title }} </h4>
-                    </a>
-                    <p>
-                    {{ $article->desc }}
-                    </p>
-                    <a href="#" class=" btn btn-rounded  btn-xs">
-                      مطالعه بیشتر
-                    </a>
-                  </div>
-                  <div class="blog-label1">
-                    {{ $article->updated_at }}
+                      <p>{{ mb_strimwidth($article->description,0,200,'---') }}</p>
+                      <a href="{{ url('article/'.$article->slug) }}" class=" btn btn-rounded  btn-xs">
+                        {{ __('Read   More') }}
+                      </a>
+                    </div>
+                    <div class="blog-label1" style="direction: rtl">
+                      {{ $date->date("j F Y" , strtotime($article->updated_at)) }}
+                    </div>
                   </div>
                 </div>
-              </div>
+              @endforeach
+            </div>
 
-            @endforeach
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!--blog end-->
+    </section>
+    <!--blog end-->
+  @endif
+
+
 
 
 

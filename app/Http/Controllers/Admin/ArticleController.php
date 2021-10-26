@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
-use App\article_image;
+use App\articleimage;
 use App\Http\Controllers\Controller;
+use App\Image;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class ArticleController extends Controller
         $fileName = time() . '-' . $year . '-' . $request->file->getClientOriginalName();
         $request->file->move(public_path('uploads').'\article_images', $fileName);
 
-        $res = article_image::create(array_merge([],['image'=>$fileName]));
+        $res = ArticleImage::create(array_merge([],['image'=>$fileName]));
         if ($res){
             return response()->json(['result' => 'Done' , 'id'=> $res->id] , 200);
         } else {

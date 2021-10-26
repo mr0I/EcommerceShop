@@ -2,14 +2,27 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
     protected $guarded=[];
 
-    public function article_image(){
-        return $this->belongsTo(article_image::class);
+    public function articleImage(){
+        return $this->belongsTo(ArticleImage::class);
+    }
+
+
+
+    use Sluggable;
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
 }

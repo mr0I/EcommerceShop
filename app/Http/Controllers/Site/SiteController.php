@@ -35,13 +35,15 @@ class SiteController extends Controller
 
         $specialProducts = Product::where('main_price', '<>' , null)->get();
 
-        $articles = Article::all();
-//        foreach ($articles as $article){
-//            dd($article->article_image['image']);
-//        }
+        $articles = Article::with('articleImage')->get();
 
         return view('site/index' ,
             compact('mobileProducts' ,'specialProducts','articles'));
+    }
+
+    public function singleArticle($slug)
+    {
+return view('site/article/single');
     }
 
     public function product($slug)
