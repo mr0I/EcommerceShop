@@ -50,6 +50,7 @@ jQuery(document).ready(function($){
 
 });
 
+
 function previewImage(e) {
     const image = e.target.files[0];
     const reader = new FileReader();
@@ -58,7 +59,6 @@ function previewImage(e) {
         document.getElementById('article_image_preview').src= e.target.result;
     };
 }
-
 
 /* Image Uploader */
 function uploadToServer(e){
@@ -120,6 +120,37 @@ function Cancel(){
 }
 /* Image Uploader */
 
+
+
+function delArticle(articleId) {
+    if (confirm('مطمئنی؟')){
+        const data = {articleId: articleId};
+
+        fetch(`/admin/deleteArticle`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // console.log('data',data);return;
+                if (data.result === 'Done'){
+                    alert('مقاله پاک شد:)');
+                    window.location.reload();
+                }else{
+                    alert('خطا در عملیات');
+                }
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+}
 
 
 

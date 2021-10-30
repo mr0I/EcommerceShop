@@ -45,6 +45,23 @@ class ArticleController extends Controller
         }
     }
 
+    public function deleteArticle(Request $request)
+    {
+        $article = Article::find($request->articleId);
+        if ($article!==null){
+            $image_id = $article->article_image_id;
+            $res = $article->delete();
+            if ($res){
+                $image = ArticleImage::find($image_id);
+                $res2 = $image->delete();
+                if ($res2) return response()->json(['result' => 'Done'] , 200);
+                else return response()->json(['result' => 'Error'] , 400);
+            }
+        } else{
+            return response()->json(['result' => 'Error'] , 400);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

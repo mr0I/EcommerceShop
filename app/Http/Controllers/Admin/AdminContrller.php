@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Article;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\User;
@@ -28,7 +29,9 @@ class AdminContrller extends Controller
 
     public function articles()
     {
-        return view('admin/articles/index');
+        $articles = Article::all();
+
+        return view('admin/articles/index',compact('articles'));
     }
     public function addArticle()
     {
