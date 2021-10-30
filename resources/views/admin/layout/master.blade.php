@@ -32,6 +32,9 @@
   <!-- vector map css -->
   <link rel="stylesheet" type="text/css" href="{{ url('css/vector-map.css') }}">
 
+  <!-- Datatables css-->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/datatables.css') }}">
+
   <!-- Bootstrap css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
 
@@ -255,12 +258,6 @@
 <!-- Sidebar jquery-->
 <script src="{{ url('js/sidebar-menu.js') }}"></script>
 
-<!--chartist js-->
-{{--<script src="{{ url('js/chart/chartist/chartist.js') }}"></script>--}}
-
-
-<!-- lazyload js-->
-<script src="{{ url('js/lazysizes.min.js') }}"></script>
 
 <!--copycode js-->
 <script src="{{ url('js/prism/prism.min.js') }}"></script>
@@ -271,6 +268,14 @@
 <script src="{{ url('js/counter/jquery.waypoints.min.js') }}"></script>
 <script src="{{ url('js/counter/jquery.counterup.min.js') }}"></script>
 <script src="{{ url('js/counter/counter-custom.js') }}"></script>
+
+
+<!-- Datatable js-->
+<script src="{{ url('js/datatables/jquery.dataTables.min.js') }}"></script>
+
+<!-- lazyload js-->
+<script src="{{ url('js/lazysizes.min.js') }}"></script>
+
 
 <!--Customizer admin-->
 <script src="{{ url('js/admin-customizer.js') }}"></script>
@@ -290,8 +295,6 @@
 <script src="{{ url('js/chart/flot-chart/jquery.flot.categories.js') }}"></script>
 <script src="{{ url('js/chart/flot-chart/jquery.flot.stack.js') }}"></script>
 <script src="{{ url('js/chart/flot-chart/jquery.flot.pie.js') }}"></script>
-<!--dashboard custom js-->
-{{--<script src="{{ url('js/dashboard/default.js') }}"></script>--}}
 
 <!--right sidebar js-->
 <script src="{{ url('js/chat-menu.js') }}"></script>
@@ -307,6 +310,9 @@
 
 <!-- custom script-->
 <script src="{{ url('libs/js/admin.js') }}"></script>
+
+
+@yield('inlineScripts')
 
 </body>
 </html>

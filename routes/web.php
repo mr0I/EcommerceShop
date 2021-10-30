@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
     Route::get('/dashboard', 'AdminContrller@index');
     Route::get('/dashboard/articles', 'AdminContrller@articles');
     Route::get('/dashboard/add_article', 'AdminContrller@addArticle');
+    Route::get('/dashboard/edit_article/{article_id}', 'AdminContrller@editArticle');
     Route::resource('articles','ArticleController');
     // Ajax
     Route::post('/addArticle', 'ArticleController@addArticle');

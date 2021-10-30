@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('title')
-  Admin Dash
+  افزودن مقاله
 @endsection
 
 @section('content')

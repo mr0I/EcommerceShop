@@ -37,6 +37,11 @@ class AdminContrller extends Controller
     {
         return view('admin/articles/add_article');
     }
+    public function editArticle($article_id)
+    {
+        $article = Article::find($article_id);
+        return view('admin/articles/edit_article' , compact('article'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -32,10 +32,11 @@
               <h5>{{ __('Articles List') }}</h5>
             </div>
             <div class="card-body order-datatable">
-              <table class="display" id="basic-1">
+              <table class="display" id="articles_table">
                 <thead>
                 <tr>
                   <th>ردیف</th>
+                  <th>تصویر</th>
                   <th>عنوان</th>
                   <th>توضیحات</th>
                   <th>وضعیت</th>
@@ -44,7 +45,6 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 @php
                   $counter=0;
                   include_once public_path() . '/libs/helpers/jdatetime.class.php';
@@ -55,8 +55,13 @@
                   <tr>
                     <td>{{ ++$counter }}</td>
                     <td>
-                      <img src="{{ url('uploads/article_images') .'/'.$article->articleImage['image'] }}" alt=""
-                           class="blur-up lazyloaded" width="50" height="50">
+                      @if($article->article_image_id!==null)
+                        <img src="{{ url('uploads/article_images') .'/'.$article->articleImage['image'] }}" alt=""
+                             class="blur-up lazyloaded" width="50" height="50">
+                      @else
+                        <img src="{{ url('images/unknown_article.jpg') }}" alt=""
+                             class="blur-up lazyloaded" width="50" height="50">
+                      @endif
                     </td>
                     <td>{{ $article->title }}</td>
                     <td>
@@ -68,7 +73,10 @@
                     <td>{{ $date->date("l j F Y" , strtotime($article->updated_at))  }}</td>
                     <td>
                       <div>
-                        <i class="fa fa-edit ms-2 font-success" style="cursor: pointer"></i>
+                        <a href="{{ url('admin/dashboard/edit_article', $article->id) }}">
+                          <i class="fa fa-edit ms-2 font-success" style="cursor: pointer"></i>
+                        </a>
+
                         <i class="fa fa-trash font-danger" style="cursor: pointer"
                            onclick="delArticle({{ $article->id }})"></i>
                       </div>
@@ -85,4 +93,15 @@
     <!-- Container-fluid Ends-->
 
   </div>
+@endsection
+
+
+@section('inlineScripts')
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#articles_table').DataTable({
+              'order':[[1,'asc']]
+          });
+      });
+  </script>
 @endsection
