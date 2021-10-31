@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
     Route::resource('articles','ArticleController');
     // Ajax
     Route::post('/addArticle', 'ArticleController@addArticle');
+    Route::put('/updateArticle/{article_id}', 'ArticleController@updateArticle');
     Route::post('/uploadArticleImage', 'ArticleController@uploadArticleImage');
     Route::post('/deleteArticle', 'ArticleController@deleteArticle');
 

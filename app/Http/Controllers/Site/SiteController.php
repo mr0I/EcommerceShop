@@ -43,7 +43,9 @@ class SiteController extends Controller
 
     public function singleArticle($slug)
     {
-return view('site/article/single');
+        $article = Article::where('slug',$slug)->first();
+
+        return view('site/article/single',compact('article'));
     }
 
     public function product($slug)

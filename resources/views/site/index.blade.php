@@ -1061,8 +1061,13 @@
                   <div class="blog-contain blog-border">
                     <div class="blog-img">
                       <a href="{{ url('article/'.$article->slug) }}">
-                        <img src="{{ url('uploads/article_images/'.$article->articleImage   ['image']) }}"
-                             alt="blog_pic" class="img-fluid w-100">
+                        @if($article->article_image_id!==null)
+                        <img src="{{ url('uploads/article_images/'.$article->articleImage['image']) }}"
+                             alt="blog_pic" class="img-fluid w-100" style="max-height: 250px;">
+                          @else
+                          <img src="{{ url('images/custom/noimage.png') }}"
+                               alt="blog_pic" class="img-fluid w-100" style="max-height: 250px;">
+                        @endif
                       </a>
                     </div>
                     <div class="blog-details-2">

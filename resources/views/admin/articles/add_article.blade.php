@@ -25,7 +25,7 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade active show" id="general" role="tabpanel"
                  aria-labelledby="general-tab">
-              <form class="needs-validation" name="addArticlePublic">
+              <form class="needs-validation" name="ArticlePublic">
                 <h4>عمومی</h4>
                 <div class="form-group row">
                   <div class="col-xl-3 col-md-4">
@@ -76,7 +76,7 @@
               </form>
             </div>
             <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tabs">
-              <form class="needs-validation" name="addArticleSeo">
+              <form class="needs-validation" name="ArticleSeo">
                 <h4>سئو</h4>
                 <div class="form-group row">
                   <div class="col-xl-3 col-md-4">
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="pull-right">
-            <button type="button" class="btn btn-primary" id="addArticleFrmSubmit">ذخیره</button>
+            <button type="button" class="btn btn-primary ArticleFrmSubmit" data-type="Add">ذخیره</button>
           </div>
         </div>
       </div>

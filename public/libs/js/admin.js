@@ -4,14 +4,17 @@
 })(jQuery);
 
 jQuery(document).ready(function($){
-    $('#addArticleFrmSubmit').on('click',function () {
-        const thisBtn = $(this);
-        let title = document.forms['addArticlePublic']['title'].value;
-        let desc = document.forms['addArticlePublic']['desc'].value;
-        let image_id = document.forms['addArticlePublic']['image_id'].value;
-        let status = (document.forms['addArticlePublic']['status'].checked)? 'published' : 'draft' ;
-        let meta_title = document.forms['addArticleSeo']['meta_title'].value;
-        let meta_desc = document.forms['addArticleSeo']['meta_desc'].value;
+
+    $('.ArticleFrmSubmit').on('click',function () {
+        const thisBtn = $(this),
+            frm_type = thisBtn.data('type');
+
+        let title = document.forms['ArticlePublic']['title'].value,
+            desc = document.forms['ArticlePublic']['desc'].value,
+            image_id = document.forms['ArticlePublic']['image_id'].value,
+            status = (document.forms['ArticlePublic']['status'].checked)? 'published' : 'draft',
+            meta_title = document.forms['ArticleSeo']['meta_title'].value,
+            meta_desc = document.forms['ArticleSeo']['meta_desc'].value;
 
         const article_data={
             title:title,
@@ -22,31 +25,60 @@ jQuery(document).ready(function($){
             meta_desc:meta_desc
         };
 
-        $.ajax({
-            url: '/admin/addArticle',
-            headers:{
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            data: { 'data':article_data },
-            dataType: 'json',
-            beforeSend: function(){
-                thisBtn.html('در حال ارسال...');
-            },
-            success: function (res , xhr) {
-                if (res.result==='Done' && xhr==='success'){
-                    alert('مقاله ثبت شد.');
-                    window.location.href = $('meta[name="articles-list"]').attr('content');
-                } else {
-                    alert('خطا در عملیات!!!');
-                }
-            }, error:function (err) {
-                console.log('Error',err);
-            }, complete:function () {
-                thisBtn.html('ذخیره');
-            },timeout:10000
-        });
-    })
+        if (frm_type==='Add'){
+            $.ajax({
+                url: '/admin/addArticle',
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                data: { 'data':article_data },
+                dataType: 'json',
+                beforeSend: function(){
+                    thisBtn.html('در حال ارسال...');
+                },
+                success: function (res , xhr) {
+                    if (res.result==='Done' && xhr==='success'){
+                        alert('مقاله ثبت شد.');
+                        window.location.href = $('meta[name="articles-list"]').attr('content');
+                    } else {
+                        alert('خطا در عملیات!!!');
+                    }
+                }, error:function (err) {
+                    console.log('Error',err);
+                }, complete:function () {
+                    thisBtn.html('ذخیره');
+                },timeout:10000
+            });
+        } else if(frm_type==='Edit'){
+            const article_id = thisBtn.data('id');
+
+            $.ajax({
+                url: `/admin/updateArticle/${article_id}`,
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'PUT',
+                data: { 'data':article_data },
+                dataType: 'json',
+                beforeSend: function(){
+                    thisBtn.html('در حال ویرایش...');
+                },
+                success: function (res , xhr) {
+                    if (res.result==='Done' && xhr==='success'){
+                        alert('مقاله ویرایش شد.');
+                        window.location.href = $('meta[name="articles-list"]').attr('content');
+                    } else {
+                        alert('خطا در عملیات!!!');
+                    }
+                }, error:function (err) {
+                    console.log('Error',err);
+                }, complete:function () {
+                    thisBtn.html('ویرایش');
+                },timeout:10000
+            });
+        }
+    });
 
 });
 
@@ -74,7 +106,7 @@ function uploadToServer(e){
     httpReq.addEventListener('load', loadFunc);
     httpReq.addEventListener('error', errorFunc);
     httpReq.addEventListener('abort', abortFunc);
-    httpReq.open('post', 'http://127.0.0.1:8000/admin/uploadArticleImage');
+    httpReq.open('post', `/admin/uploadArticleImage`);
     httpReq.setRequestHeader("X-CSRF-Token", $('meta[name="csrf-token"]').attr('content'));
 
     httpReq.send(formData);
@@ -97,7 +129,6 @@ function progressFunc(event){
 }
 function loadFunc(event){
     const resp = JSON.parse(event.target.responseText);
-    // console.log('respppp',resp);
     if (resp.result==='Done'){
         document.getElementById('uploaded_image_id').value = resp.id;
         document.getElementById('result').innerHTML = 'آپلود موفق :)';
@@ -119,7 +150,6 @@ function Cancel(){
     window.location.reload();
 }
 /* Image Uploader */
-
 
 
 function delArticle(articleId) {

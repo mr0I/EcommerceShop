@@ -59,7 +59,7 @@
                         <img src="{{ url('uploads/article_images') .'/'.$article->articleImage['image'] }}" alt=""
                              class="blur-up lazyloaded" width="50" height="50">
                       @else
-                        <img src="{{ url('images/unknown_article.jpg') }}" alt=""
+                        <img src="{{ url('images/custom/unknown_article.jpg') }}" alt=""
                              class="blur-up lazyloaded" width="50" height="50">
                       @endif
                     </td>
@@ -69,7 +69,13 @@
                             {{ mb_strimwidth($article->description,0,50,'---') }}
                       </span>
                     </td>
-                    <td>{{ $article->status==='published'? 'منتشر شده' : 'پیشنویس' }}</td>
+                    <td>
+                      @if($article->status==='published')
+                        <span class="text-success" style="font-weight: bold;">منتشر شده</span>
+                      @else
+                        <span class="text-danger" style="font-weight: bold;">پیشنویس</span>
+                      @endif
+                    </td>
                     <td>{{ $date->date("l j F Y" , strtotime($article->updated_at))  }}</td>
                     <td>
                       <div>

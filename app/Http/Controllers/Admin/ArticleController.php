@@ -27,7 +27,26 @@ class ArticleController extends Controller
         if ($res){
             return response()->json(['result'=>'Done'],200);
         } else{
-            return response()->json(['result'=>'Error'],500);
+            return response()->json(['result'=>'Error'],400);
+        }
+    }
+
+    public function updateArticle(Request $request,$article_id)
+    {
+        $article = Article::find($article_id);
+        $image_id = $article->article_image_id;
+
+        $res = $article->update(array_merge($request->data));
+        if ($res){
+            if ($image_id!==null){
+                $image = ArticleImage::find($image_id);
+                $res2 = $image->delete();
+                if ($res2) return response()->json(['result' => 'Done'] , 200);
+                else return response()->json(['result' => 'Error'] , 400);
+            }
+            return response()->json(['result' => 'Done'] , 200);
+        } else {
+            response()->json(['result' => 'Error'] , 400);
         }
     }
 

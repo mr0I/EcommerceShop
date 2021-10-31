@@ -28,67 +28,67 @@
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade active show" id="general" role="tabpanel"
                    aria-labelledby="general-tab">
-                  <form class="needs-validation" name="addArticlePublic">
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
-                    <h4>عمومی</h4>
-                    <div class="form-group row">
-                      <div class="col-xl-3 col-md-4">
-                        <label for="validationCustom0"><span>*</span> عنوان</label>
-                      </div>
-                      <div class="col-xl-8 col-md-7">
-                        <input class="form-control " name="title" type="text"
-                               value="{{ $article->title ?? old('title') }}">
-                      </div>
+                <form class="needs-validation" name="ArticlePublic">
+                  {{ csrf_field() }}
+                  {{ method_field('PATCH') }}
+                  <h4>عمومی</h4>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-md-4">
+                      <label for="validationCustom0"><span>*</span> عنوان</label>
                     </div>
-                    <div class="form-group row editor-label">
-                      <div class="col-xl-3 col-md-4">
-                        <label><span>*</span> توضیحات</label>
-                      </div>
-                      <div class="col-xl-8 col-md-7">
-                        <div class=" editor-space">
+                    <div class="col-xl-8 col-md-7">
+                      <input class="form-control " name="title" type="text"
+                             value="{{ $article->title ?? old('title') }}">
+                    </div>
+                  </div>
+                  <div class="form-group row editor-label">
+                    <div class="col-xl-3 col-md-4">
+                      <label><span>*</span> توضیحات</label>
+                    </div>
+                    <div class="col-xl-8 col-md-7">
+                      <div class=" editor-space">
                       <textarea class="w-100" name="desc" cols="50 " rows="5">
-                        {{ $article->desc ?? old('desc') }}
+                        {{ $article->description ?? old('desc') }}
                       </textarea>
-                        </div>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <div class="col-xl-3 col-md-4">
-                        <label>وضعیت</label>
-                      </div>
-                      <div class="col-xl-8 col-md-7">
-                        <div class="checkbox checkbox-primary ">
-                          <input type="checkbox" name="status" id="status_checkbox"
-                                  {{ ($article->status==='published')? 'checked' : '' }}>
-                          <label for="status_checkbox">انتشار این صفحه</label>
-                        </div>
-                      </div>
-                      <div class="col-xl-8 col-md-7">
-                        <label for="status_checkbox">آپلود تصویر</label>
-                        <input type="file" class="upload" onchange="previewImage(event)" id="article_image" accept="image/*">
-                        @if($article->article_image_id!==null)
-                          <img src="{{ url('uploads/article_images',$article->articleImage['image']) }}" id="article_image_preview" width="100" height="100">
-                        @else
-                          <img src="{{ url('images/ArticleDefault.jpg') }}" id="article_image_preview" width="100" height="100">
-                        @endif
-                        <button id="upload_img_btn" onclick="uploadToServer(event)">upload</button>
-                        <p><span id="loaded"></span></p>
-                        <div class="progress">
-                          <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated"
-                               role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                               style="width: 0">
-                          </div>
-                        </div>
-                        <p><span id="percent"></span></p>
-                        <p><span id="result"></span></p>
-                        <input type="hidden" id="uploaded_image_id" name="image_id">
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-xl-3 col-md-4">
+                      <label>وضعیت</label>
+                    </div>
+                    <div class="col-xl-8 col-md-7">
+                      <div class="checkbox checkbox-primary ">
+                        <input type="checkbox" name="status" id="status_checkbox"
+                                {{ ($article->status==='published')? 'checked' : '' }}>
+                        <label for="status_checkbox">انتشار این صفحه</label>
                       </div>
                     </div>
-                  </form>
+                    <div class="col-xl-8 col-md-7">
+                      <label for="status_checkbox">آپلود تصویر</label>
+                      <input type="file" class="upload" onchange="previewImage(event)" id="article_image" accept="image/*">
+                      @if($article->article_image_id!==null)
+                        <img src="{{ url('uploads/article_images',$article->articleImage['image']) }}" id="article_image_preview" width="100" height="100">
+                      @else
+                        <img src="{{ url('images/ArticleDefault.jpg') }}" id="article_image_preview" width="100" height="100">
+                      @endif
+                      <button id="upload_img_btn" onclick="uploadToServer(event)">upload</button>
+                      <p><span id="loaded"></span></p>
+                      <div class="progress">
+                        <div id="prog" class="progress-bar progress-bar-striped progress-bar-animated"
+                             role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 0">
+                        </div>
+                      </div>
+                      <p><span id="percent"></span></p>
+                      <p><span id="result"></span></p>
+                      <input type="hidden" id="uploaded_image_id" name="image_id">
+                    </div>
+                  </div>
+                </form>
               </div>
               <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tabs">
-                <form class="needs-validation" name="addArticleSeo">
+                <form class="needs-validation" name="ArticleSeo">
                   <h4>سئو</h4>
                   <div class="form-group row">
                     <div class="col-xl-3 col-md-4">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-xl-8 col-md-7">
                       <input class="form-control " type="text" name="meta_title"
-                              value="{{ $article->meta_title ?? old('meta_title') }}" >
+                             value="{{ $article->meta_title ?? old('meta_title') }}" >
                     </div>
                   </div>
                   <div class="form-group row editor-label">
@@ -111,7 +111,8 @@
               </div>
             </div>
             <div class="pull-right">
-              <button type="button" class="btn btn-primary" id="addArticleFrmSubmit">ویرایش</button>
+              <button type="button" class="btn btn-primary ArticleFrmSubmit"
+                      data-type="Edit" data-id="{{ $article->id }}">ویرایش</button>
             </div>
           </div>
         @endif
