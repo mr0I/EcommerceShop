@@ -35,7 +35,8 @@ class SiteController extends Controller
 
         $specialProducts = Product::where('main_price', '<>' , null)->get();
 
-        $articles = Article::with('articleImage')->get();
+        $articles = Article::with('articleImage')
+            ->where('status','published')->get();
 
         return view('site/index' ,
             compact('mobileProducts' ,'specialProducts','articles'));

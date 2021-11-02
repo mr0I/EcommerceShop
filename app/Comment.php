@@ -8,7 +8,7 @@ class Comment extends Model
 {
     protected $guarded=[];
 
-    public function products(){
-        return $this->belongsTo(Product::class,'product_id');
+    public function article(){
+        return $this->belongsTo(Article::class,'article_id');
     }
 }

@@ -13,6 +13,10 @@ class Article extends Model
         return $this->belongsTo(ArticleImage::class);
     }
 
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
+
 
 
     use Sluggable;

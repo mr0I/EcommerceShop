@@ -32,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('css/color2.css') }}" media="screen" id="color">
   <!-- Extra css -->
   <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
+  @toastr_css
 </head>
 
 <body id="MainBody" class="
@@ -826,6 +827,10 @@
 
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('libs/js/script.js') }}"></script>
+@toastr_js
+@toastr_render
+
+
 
 @yield('productsByCategory')
 

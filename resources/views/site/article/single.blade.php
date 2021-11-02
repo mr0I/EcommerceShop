@@ -50,7 +50,7 @@
               <li><i class="fa fa-heart"></i> 5 پسند</li>
               <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
             </ul>
-              <p>{{ $article->description }}</p>
+            <p>{{ $article->description }}</p>
           </div>
         </div>
       </div>
@@ -96,27 +96,48 @@
           </div>
         </div>
       </div>
+
       <div class=" row blog-contact">
         <div class="col-sm-12  ">
           <div class="creative-card">
-            <h2>دیدگاه خود را ارسال کنید</h2>
-            <form class="theme-form">
+            <h2>{{ __('Send your feedback') }}</h2>
+
+            @if($errors->any())
+              {{ $errors }}
+            @endif
+            <form class="theme-form" action="{{ url('/storeComment') }}" method="post">
+              @csrf
               <div class="row g-3">
                 <div class="col-md-12">
-                  <label for="name">نام</label>
-                  <input type="text" class="form-control" id="name" placeholder="نام خود را وارد کنید" required="">
+                  <label for="name">{{ __('name') }}</label>
+                  <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" autocomplete="name"
+                         placeholder="{{ __('Enter your name') }}" autofocus>
                 </div>
                 <div class="col-md-12">
-                  <label for="email">ایمیل</label>
-                  <input type="text" class="form-control" id="email" placeholder="ایمیل" required="">
+                  <label for="email">{{ __('Email') }}</label>
+                  <input type="email" class="form-control" id="email" name="email"
+                         placeholder="{{ __('Enter your email') }}">
+                  @if($errors->has('email'))
+                    <span class="invalid-feedbackkk" role="alert">
+                      @for($i=0;$i<sizeof($errors->email);$i++)
+                        <strong>{{ $errors->email[$i] }}</strong>
+                        @endfor
+                    </span>
+                  @endif
                 </div>
                 <div class="col-md-12">
-                  <label for="exampleFormControlTextarea1">دیگاه</label>
-                  <textarea class="form-control" placeholder="دیدگاه خود را بنویسید" id="exampleFormControlTextarea1"
+                  <label for="exampleFormControlTextarea1">{{ __('Comment text') }}</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" name="comment"
                             rows="6"></textarea>
+                  @if($errors->has('comment'))
+                    <span class="invalid-feedbackkk" role="alert">
+                        <strong>{{ $errors->first('comment') }}</strong>
+                    </span>
+                  @endif
                 </div>
+                <input type="hidden" value="{{ $article->id }}" name="article_id">
                 <div class="col-md-12">
-                  <button class="btn btn-normal" type="submit">ارسال دیدگاه</button>
+                  <button class="btn btn-normal" type="submit">{{ __('Send') }}</button>
                 </div>
               </div>
             </form>
