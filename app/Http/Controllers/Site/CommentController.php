@@ -20,7 +20,7 @@ class CommentController extends Controller
             'comment' => 'required|max:1000'
         ]);
         if ($validator->fails()) {
-            toastr()->error(trans('Error in filling form!'));
+            toastr()->error(trans('Error in filling form'));
             return redirect()->back()->withErrors($validator);
         }
 
@@ -30,10 +30,10 @@ class CommentController extends Controller
         ]));
 
         if($comment) {
-            toastr()->success(trans('Comment sent successfully'));
+            toastr()->success(trans('Your comment has been submitted and will be displayed after approval'));
             return redirect()->back();
         } else {
-            toastr()->error(trans('Error in filling form!'));
+            toastr()->error(trans('Error in filling form'));
             return redirect()->back();
         }
     }

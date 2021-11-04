@@ -25,7 +25,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
     Route::put('/updateArticle/{article_id}', 'ArticleController@updateArticle');
     Route::post('/uploadArticleImage', 'ArticleController@uploadArticleImage');
     Route::post('/deleteArticle', 'ArticleController@deleteArticle');
-
 });
 
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
@@ -41,6 +40,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/adminnnnlogin', 'SiteController@adminLogin');
     Route::post('/adminCheckLogin', 'SiteController@adminCheckLogin');
     Route::get('/article/{slug}', 'SiteController@singleArticle');
+    Route::get('/blog', 'SiteController@blog');
     Route::post('/storeComment', 'CommentController@store');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');

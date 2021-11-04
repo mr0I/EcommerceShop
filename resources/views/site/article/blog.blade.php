@@ -19,11 +19,11 @@
         <div class="col">
           <div class="breadcrumb-contain">
             <div>
-              <h2>اخبار</h2>
+              {{--<h2>اخبار</h2>--}}
               <ul>
-                <li><a href="javascript:void(0)">خانه</a></li>
+                <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                 <li><i class="fa fa-angle-double-left"></i></li>
-                <li><a href="javascript:void(0)">اخبار</a></li>
+                <li>{{ __('Articles') }}</li>
               </ul>
             </div>
           </div>
@@ -38,173 +38,49 @@
     <div class="custom-container">
       <div class="row">
         <div class="col-xl-9 col-lg-8 col-md-7">
-          <div class="row blog-media">
-            <div class="col-xl-6">
-              <div class="blog-left">
-                <a href="javascript:void(0)"><img src="../assets/images/blog/1.jpg" class="img-fluid  " alt=""></a>
-                <div class="date-label">
-                  26 تیر 1400
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="blog-right">
-                <div>
-                  <a href="javascript:void(0)">
-                    <h4>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی.</h4>
+          @foreach($articles as $article)
+            @php
+              $comments = \App\Comment::where('article_id',$article->id)->where('status','approved')->get();
+            @endphp
+            <div class="row blog-media">
+              <div class="col-xl-6">
+                <div class="blog-left">
+                  <a href="{{ url('/artilce/'.$article->slug) }}">
+                    @if($article->article_image_id!==null)
+                    <img src="{{ url('uploads/article_images/'.$article->articleImage['image']) }}"
+                         class="img-fluid" alt="{{ __('Article Image') }}">
+                      @else
+                      <img src="{{ url('images/custom/noimage.png') }}"
+                           class="img-fluid" alt="{{ __('Article Image') }}">
+                    @endif
                   </a>
-                  <ul class="post-social">
-                    <li>نویسنده : مدیر سایت</li>
-                    <li><i class="fa fa-heart"></i> 5 پسند</li>
-                    <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
-                  </ul>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
+                  <div class="date-label">{{ $date->date("j F Y" , strtotime($article->updated_at)) }}</div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="blog-right">
+                  <div>
+                    <a href="{{ url('/artilce/'.$article->slug) }}">
+                      <h4>{{ $article->title }}</h4>
+                    </a>
+                    <ul class="post-social">
+                      <li>{{ __('Author: Site Admin') }}</li>
+                      {{--<li><i class="fa fa-heart"></i> 5 پسند</li>--}}
+                      <li><i class="fa fa-comments"></i> {{ sizeof($comments) }} دیدگاه</li>
+                    </ul>
+                    <p>{{ mb_strimwidth($article->description,0,200,'---') }}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row blog-media">
-            <div class="col-xl-6">
-              <div class="blog-left">
-                <a href="javascript:void(0)"><img src="../assets/images/blog/2.jpg" class="img-fluid  " alt=""></a>
-                <div class="date-label">
-                  26 تیر 1400
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="blog-right">
-                <div>
-                  <a href="javascript:void(0)">
-                    <h4>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی.</h4>
-                  </a>
-                  <ul class="post-social">
-                    <li>نویسنده : مدیر سایت</li>
-                    <li><i class="fa fa-heart"></i> 5 پسند</li>
-                    <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
-                  </ul>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row blog-media">
-            <div class="col-xl-6">
-              <div class="blog-left">
-                <a href="javascript:void(0)"><img src="../assets/images/blog/3.jpg" class="img-fluid  " alt=""></a>
-                <div class="date-label">
-                  26 تیر 1400
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="blog-right">
-                <div>
-                  <a href="javascript:void(0)">
-                    <h4>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی.</h4>
-                  </a>
-                  <ul class="post-social">
-                    <li>نویسنده : مدیر سایت</li>
-                    <li><i class="fa fa-heart"></i> 5 پسند</li>
-                    <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
-                  </ul>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row blog-media">
-            <div class="col-xl-6">
-              <div class="blog-left">
-                <a href="javascript:void(0)"><img src="../assets/images/blog/4.jpg" class="img-fluid  " alt=""></a>
-                <div class="date-label">
-                  26 تیر 1400
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="blog-right">
-                <div>
-                  <a href="javascript:void(0)">
-                    <h4>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی.</h4>
-                  </a>
-                  <ul class="post-social">
-                    <li>نویسنده : مدیر سایت</li>
-                    <li><i class="fa fa-heart"></i> 5 پسند</li>
-                    <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
-                  </ul>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید
-                    سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                    ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
+
         </div>
+
         <div class="col-xl-3 col-lg-4 col-md-5 order-sec">
           <div class="blog-sidebar">
             <div class="theme-card">
-              <h4>جدیدترین اخبار</h4>
-              <ul class="recent-blog">
-                <li>
-                  <div class="media"> <img class="img-fluid " src="../assets/images/blog/1.jpg"
-                                           alt="Generic placeholder image">
-                    <div class="media-body align-self-center">
-                      <h6>25 فروردین 1400</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media"> <img class="img-fluid " src="../assets/images/blog/2.jpg"
-                                           alt="Generic placeholder image">
-                    <div class="media-body align-self-center">
-                      <h6>25 فروردین 1400</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media"> <img class="img-fluid " src="../assets/images/blog/3.jpg"
-                                           alt="Generic placeholder image">
-                    <div class="media-body align-self-center">
-                      <h6>25 فروردین 1400</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media"> <img class="img-fluid " src="../assets/images/blog/4.jpg"
-                                           alt="Generic placeholder image">
-                    <div class="media-body align-self-center">
-                      <h6>25 فروردین 1400</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media"> <img class="img-fluid " src="../assets/images/blog/5.jpg"
-                                           alt="Generic placeholder image">
-                    <div class="media-body align-self-center">
-                      <h6>25 فروردین 1400</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="theme-card">
-              <h4>محبوب ترین اخبار</h4>
+              <h4>{{ __('The most popular articles') }}</h4>
               <ul class="popular-blog">
                 <li>
                   <div class="media">
@@ -250,6 +126,60 @@
             </div>
           </div>
         </div>
+
+        <div class="row justify-content-center">
+          <div class="col-9">
+            <div class="product-pagination">
+              <div class="theme-paggination-block">
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination">
+                        @if ($articles->currentPage() != 1)
+                          <li class="page-item">
+                            <a class="page-link"
+                               href="{{ $articles->previousPageUrl() }}" aria-label="Previous">
+                              <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('Previous') }}</span>
+                            </a>
+                          </li>
+                        @endif
+                        @for ($i = 1; $i <= $articles->lastPage(); $i++)
+                          <li class="page-item @if ($articles->currentPage()==$i)active @endif">
+                            <a class="page-link" href="{{ $articles->url($i)  }}">
+                              @if ($articles->currentPage()==$i) صفحه {{$i}} از {{$articles->lastPage()}} @else {{$i}} @endif
+                            </a>
+                          </li>
+                          {{--@if ($i === ($products->lastPage()-3))--}}
+                          {{--<li><a>...</a></li>--}}
+                          {{--@endif--}}
+                        @endfor
+                        @if ($articles->currentPage() != $articles->lastPage())
+                          <li class="page-item">
+                            <a class="page-link" href="{{ $articles->nextPageUrl() }}" aria-label="Next">
+                              <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('Next') }}</span>
+                            </a>
+                          </li>
+                        @endif
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <div class="product-search-count-bottom">
+                      @php
+                        $from = (($articles->currentPage() -1)  * $articles->perPage()) + 1;
+                        $to = (($from + $articles->perPage()) <= $articles->total()) ? ($from + $articles->perPage())-1 : $articles->total();
+                      @endphp
+                      <h5 style="direction: ltr">  {{ $from }}-{{ $to  }}  {{ __('From') }} {{ $articles->total() }} </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

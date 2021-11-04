@@ -1074,7 +1074,7 @@
                       <h4>{{ $article->title }} </h4>
                       <p>{{ mb_strimwidth($article->description,0,200,'---') }}</p>
                       <a href="{{ url('article/'.$article->slug) }}" class=" btn btn-rounded  btn-xs">
-                        {{ __('Read   More') }}
+                        {{ __('Read More') }}
                       </a>
                     </div>
                     <div class="blog-label1" style="direction: rtl">

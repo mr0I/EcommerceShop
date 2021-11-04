@@ -46,7 +46,19 @@ class SiteController extends Controller
     {
         $article = Article::where('slug',$slug)->first();
 
-        return view('site/article/single',compact('article'));
+        if ($article!==null){
+            $comments = Comment::where('article_id',$article->id)->where('status','approved')->get();
+            return view('site/article/single',compact('article','comments'));
+        } else {
+            return redirect('404');
+        }
+    }
+
+    public function blog()
+    {
+        $articles = Article::where('status','published')->paginate(2);
+
+        return view('site/article/blog',compact('articles'));
     }
 
     public function product($slug)

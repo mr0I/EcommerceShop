@@ -59,6 +59,7 @@
 .blog .blog-contain .blog-details-2 {
     background-color: #ffffff;
     padding: 20px;
+    min-height: 215px;
 }
 
 .blog .blog-contain .blog-details-2 h4 {
@@ -298,3 +299,30 @@ ul.rating-star{
     text-align: center;
 }
 /* Modals Styles */
+
+
+/* Form Styles */
+input.form-control{
+    margin-bottom: 0 !important;
+}
+/* Form Styles */
+
+.theme-pannel-main{
+    display: none;
+}
+
+.category-header-2 .navbar-menu .nav-block .nav-left .navbar {
+    padding: 28px 0 !important;
+}
+
+
+@media screen and (max-width: 2000px) {
+    .blog.blog-inverce .blog-contain .blog-details-2 .btn {
+        position: absolute;
+        bottom: 10px;
+    }
+}@media screen and (max-width: 768px) {
+    .blog.blog-inverce .blog-contain .blog-details-2 .btn {
+        position: relative;
+    }
+}

@@ -203,19 +203,23 @@
                             <input name="password" type="password" class="form-control" placeholder="رمز عبور"
                                    >
                           </div>
+
+
                           <div class="form-terms">
                             <div class="custom-control custom-checkbox mr-sm-2">
                               <div class="form-check">
                                 <input class="form-check-input custom-control-input"
-                                       type="checkbox" value="" id="customControlAutosizing">
+                                       type="checkbox" name="remember" id="remember"
+                                        {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label"
-                                       for="customControlAutosizing">مرا به خاطر بسپار</label>
+                                       for="remember">{{ __('Remember Me') }}</label>
                               </div>
                               <a href="javascript:void(0)"
                                  class="btn btn-default forgot-pass">فراموشی رمز
                                 عبور؟</a>
                             </div>
                           </div>
+
                           <div class="form-button">
                             <button class="btn btn-primary" type="submit">ورود</button>
                           </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="big-deal">
+  <meta name="description" content="@yield('metadesc')">
   <meta name="keywords" content="big-deal">
   <meta name="author" content="big-deal">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -477,14 +477,7 @@
 
                   <!--blog-meu start-->
                   <li>
-                    <a class="dark-menu-item" href="javascript:void(0)">{{ __('Articles') }}</a>
-                    <ul>
-                      <li><a href="blog(left-sidebar).html">سایدبار راست</a></li>
-                      <li><a href="blog(right-sidebar).html">سایدبار چپ</a></li>
-                      <li><a href="blog(no-sidebar).html">بدون سایدبار</a></li>
-                      <li><a href="blog-details.html">جزئیات خبر</a></li>
-                      <li><a href="blog-creative(left-sidebar).html">سایدبار راست خلاقانه</a></li>
-                    </ul>
+                    <a class="dark-menu-item" href="{{ url('/blog') }}">{{ __('Articles') }}</a>
                   </li>
                   <li>
                     <a class="dark-menu-item" href="{{ url('/compare') }}">{{ __('Compare Products') }}</a>

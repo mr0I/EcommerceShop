@@ -1,9 +1,8 @@
 @extends('site.layout.master')
 
 
-@section('title')
-  {{ __('Article') }}
-@endsection
+@section('title') {{ $article->meta_title }} @endsection
+@section('metadesc'){{ $article->meta_desc }}@endsection
 
 
 @section('content')
@@ -46,93 +45,79 @@
             <h3>{{ $article->title }}</h3>
             <ul class="post-social">
               <li>{{ $date->date("j F Y" , strtotime($article->updated_at)) }}</li>
-              <li>نویسنده : مدیر سایت</li>
-              <li><i class="fa fa-heart"></i> 5 پسند</li>
-              <li><i class="fa fa-comments"></i> 10 دیدگاه</li>
+              <li>{{ __('Author: Site Admin') }}</li>
+              {{--<li><i class="fa fa-heart"></i> 5 پسند</li>--}}
+              <li><i class="fa fa-comments"></i> {{ sizeof($comments) }} دیدگاه</li>
             </ul>
             <p>{{ $article->description }}</p>
           </div>
         </div>
       </div>
 
+
+      @if(sizeof($comments)!==0)
       <div class="row section-big-pb-space">
         <div class="col-sm-12 ">
           <div class="creative-card">
             <ul class="comment-section">
-              <li>
-                <div class="media"><img src="../assets/images/avtar/1.jpg" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h6>رضا افشار <span>( 12 فروردین 1400 در 01:30 عصر )</span></h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                      تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                      ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                      سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
+              @foreach($comments as $comment)
+                <li>
+                  <div class="media">
+                    <img src="http://www.gravatar.com/avatar/<?= md5($comment->email); ?>?rating=PG&size=24&size=50&d=identicon" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <h6>{{ $comment->name }}
+                        <p>
+                          <span class="m-0">( {{ $date->date("j F Y در H:i A" , strtotime($comment->created_at)) }} )</span>
+                        </p>
+                      </h6>
+                      <p>{{ $comment->comment }}</p>
+                    </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <div class="media"><img src="../assets/images/avtar/2.jpg" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h6>رضا افشار <span>( 12 فروردین 1400 در 01:30 عصر )</span></h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                      تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                      ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                      سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="media"><img src="../assets/images/avtar/3.jpg" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <h6>رضا افشار <span>( 12 فروردین 1400 در 01:30 عصر )</span></h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن ساختگی با
-                      تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم
-                      ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                      سادگی نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                  </div>
-                </div>
-              </li>
+                </li>
+              @endforeach
             </ul>
           </div>
         </div>
       </div>
+      @endif
 
       <div class=" row blog-contact">
         <div class="col-sm-12  ">
           <div class="creative-card">
             <h2>{{ __('Send your feedback') }}</h2>
 
-            @if($errors->any())
-              {{ $errors }}
-            @endif
             <form class="theme-form" action="{{ url('/storeComment') }}" method="post">
               @csrf
               <div class="row g-3">
                 <div class="col-md-12">
                   <label for="name">{{ __('name') }}</label>
                   <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" autocomplete="name"
-                         placeholder="{{ __('Enter your name') }}" autofocus>
+                         autofocus>
+                  @if($errors->has('name'))
+                    <small class="text-danger">{{ $errors->first('name') }}</small>
+                  @endif
                 </div>
                 <div class="col-md-12">
                   <label for="email">{{ __('Email') }}</label>
-                  <input type="email" class="form-control" id="email" name="email"
-                         placeholder="{{ __('Enter your email') }}">
+                  <input type="email" class="form-control" id="email" name="email" required>
                   @if($errors->has('email'))
-                    <span class="invalid-feedbackkk" role="alert">
-                      @for($i=0;$i<sizeof($errors->email);$i++)
-                        <strong>{{ $errors->email[$i] }}</strong>
-                        @endfor
-                    </span>
+                    <ul>
+                      @foreach ($errors->get('email') as $error)
+                        <li class="w-100 my-1"><small class="text-danger">{{ $error }}</small></li>
+                      @endforeach
+                    </ul>
                   @endif
                 </div>
                 <div class="col-md-12">
                   <label for="exampleFormControlTextarea1">{{ __('Comment text') }}</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" name="comment"
-                            rows="6"></textarea>
+                            rows="6" required></textarea>
                   @if($errors->has('comment'))
-                    <span class="invalid-feedbackkk" role="alert">
-                        <strong>{{ $errors->first('comment') }}</strong>
-                    </span>
+                    <ul>
+                      @foreach ($errors->get('comment') as $error)
+                        <li class="w-100 my-1"><small class="text-danger">{{ $error }}</small></li>
+                      @endforeach
+                    </ul>
                   @endif
                 </div>
                 <input type="hidden" value="{{ $article->id }}" name="article_id">
@@ -146,6 +131,10 @@
       </div>
 
     </div>
+    {{-- Add trans localizations --}}
+    <input type="hidden" value="{{ __('Your comment has been submitted and will be displayed after approval') }}">
+    <input type="hidden" value="{{ __('Error in filling form') }}">
+    {{-- Add trans localizations --}}
   </section>
   <!--Section ends-->
 @endsection
