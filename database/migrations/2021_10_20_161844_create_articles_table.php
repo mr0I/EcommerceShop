@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_desc')->nullable();
             $table->enum('status', ['published','draft']);
+            $table->integer('views')->unsigned();
             $table->string('slug');
             $table->timestamps();
         });

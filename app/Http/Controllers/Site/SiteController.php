@@ -47,6 +47,10 @@ class SiteController extends Controller
         $article = Article::where('slug',$slug)->first();
 
         if ($article!==null){
+            $views = $article->views;
+            $article->views = ++$views;
+            $article->save();
+
             $comments = Comment::where('article_id',$article->id)->where('status','approved')->get();
             return view('site/article/single',compact('article','comments'));
         } else {
@@ -57,8 +61,10 @@ class SiteController extends Controller
     public function blog()
     {
         $articles = Article::where('status','published')->paginate(2);
+        $popular_articles = Article::where('status','published')
+            ->orderBy('views','DESC')->latest()->get();
 
-        return view('site/article/blog',compact('articles'));
+        return view('site/article/blog',compact('articles','popular_articles'));
     }
 
     public function product($slug)

@@ -45,7 +45,7 @@
             <div class="row blog-media">
               <div class="col-xl-6">
                 <div class="blog-left">
-                  <a href="{{ url('/artilce/'.$article->slug) }}">
+                  <a href="{{ url('/article/'.$article->slug) }}">
                     @if($article->article_image_id!==null)
                     <img src="{{ url('uploads/article_images/'.$article->articleImage['image']) }}"
                          class="img-fluid" alt="{{ __('Article Image') }}">
@@ -60,7 +60,7 @@
               <div class="col-xl-6">
                 <div class="blog-right">
                   <div>
-                    <a href="{{ url('/artilce/'.$article->slug) }}">
+                    <a href="{{ url('/article/'.$article->slug) }}">
                       <h4>{{ $article->title }}</h4>
                     </a>
                     <ul class="post-social">
@@ -81,47 +81,24 @@
           <div class="blog-sidebar">
             <div class="theme-card">
               <h4>{{ __('The most popular articles') }}</h4>
-              <ul class="popular-blog">
+              <ul class="recent-blog">
+                @foreach($popular_articles as $popular_article)
                 <li>
                   <div class="media">
-                    <div class="blog-date"><span>03 </span><span>تیر</span></div>
+                    @if($popular_article->article_image_id!==null)
+                      <img src="{{ url('uploads/article_images/'.$popular_article->articleImage['image']) }}"
+                           class="img-fluid" alt="{{ __('Article Image') }}">
+                    @else
+                      <img src="{{ url('images/custom/noimage.png') }}"
+                           class="img-fluid" alt="{{ __('Article Image') }}">
+                    @endif
                     <div class="media-body align-self-center">
-                      <h6>لورم ایپسوم متن ساختگی</h6>
-                      <p>0 بازدید</p>
+                      <h6>{{ $popular_article->title }}</h6>
+                      <p>{{ $popular_article->views }} {{ __('Views') }}</p>
                     </div>
                   </div>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
                 </li>
-                <li>
-                  <div class="media">
-                    <div class="blog-date"><span>03 </span><span>تیر</span></div>
-                    <div class="media-body align-self-center">
-                      <h6>لورم ایپسوم متن ساختگی</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </li>
-                <li>
-                  <div class="media">
-                    <div class="blog-date"><span>03 </span><span>تیر</span></div>
-                    <div class="media-body align-self-center">
-                      <h6>لورم ایپسوم متن ساختگی</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </li>
-                <li>
-                  <div class="media">
-                    <div class="blog-date"><span>03 </span><span>تیر</span></div>
-                    <div class="media-body align-self-center">
-                      <h6>لورم ایپسوم متن ساختگی</h6>
-                      <p>0 بازدید</p>
-                    </div>
-                  </div>
-                  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم.</p>
-                </li>
+                  @endforeach
               </ul>
             </div>
           </div>

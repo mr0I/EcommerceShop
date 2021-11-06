@@ -120,6 +120,12 @@
                     </ul>
                   @endif
                 </div>
+                <div class="col-md-12">
+                  {!! app('captcha')->display() !!}
+                  @if($errors->has('g-recaptcha-response'))
+                    <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
+                  @endif
+                </div>
                 <input type="hidden" value="{{ $article->id }}" name="article_id">
                 <div class="col-md-12">
                   <button class="btn btn-normal" type="submit">{{ __('Send') }}</button>

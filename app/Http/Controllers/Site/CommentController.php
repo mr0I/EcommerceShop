@@ -17,15 +17,20 @@ class CommentController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'max:55',
             'email' => 'email|required|max:55',
-            'comment' => 'required|max:1000'
+            'comment' => 'required|max:1000',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
         if ($validator->fails()) {
             toastr()->error(trans('Error in filling form'));
             return redirect()->back()->withErrors($validator);
         }
 
-        $comment = Comment::create(array_merge($request->all() , [
+        $comment = Comment::create(array_merge([] , [
             'user_identity' => (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'],
+            'article_id' => $request->article_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
             'status' => 'pending'
         ]));
 
