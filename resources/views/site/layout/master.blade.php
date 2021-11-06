@@ -32,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('css/color2.css') }}" media="screen" id="color">
   <!-- Extra css -->
   <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
+  {!! NoCaptcha::renderJs() !!}
   @toastr_css
 </head>
 
@@ -604,6 +605,9 @@
           <label for="password" >{{ __('Password') }}</label>
           <input type="password" class="form-control" id="password" name="password"
                  placeholder="{{ __('Enter Password') }}" required autocomplete="current-password">
+        </div>
+        <div class="form-group">
+          {!! app('captcha')->display() !!}
         </div>
         <div class="form-group row">
           <div class="col-12 offset-md-4">
