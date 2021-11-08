@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
     public function addArticle(Request $request)
     {
-        $res = Article::create($request->data);
+        $res = Article::create(array_merge($request->data,['views'=>0]));
         if ($res){
             return response()->json(['result'=>'Done'],200);
         } else{

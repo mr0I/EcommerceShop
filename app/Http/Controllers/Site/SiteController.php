@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Site;
 
 use App\Article;
 use App\article_image;
+use App\ArticleView;
 use App\Category;
 use App\Comment;
 use App\Compare;
 use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
+use App\ProductView;
 use App\wishlist;
 use App\User;
 use Carbon\Carbon;
@@ -24,7 +26,7 @@ use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
 class SiteController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         $mobileProducts =DB::table('categories' , 'c')
             ->join('products as p' , 'p.category_id', '=', 'c.id')
@@ -47,15 +49,16 @@ class SiteController extends Controller
         $article = Article::where('slug',$slug)->first();
 
         if ($article!==null){
-            $views = $article->views;
-            $article->views = ++$views;
-            $article->save();
-
             $comments = Comment::where('article_id',$article->id)->where('status','approved')->get();
+            if($article->showArticle()) return view('site/article/single',compact('article','comments'));;
+
+            $article->increment('views');
+            ArticleView::createViewLog($article);
             return view('site/article/single',compact('article','comments'));
         } else {
             return redirect('404');
         }
+
     }
 
     public function blog()
@@ -70,26 +73,33 @@ class SiteController extends Controller
     public function product($slug)
     {
         $product = Product::find($slug);
-        if ($product === null) return redirect(url('404'));
-        $related_products = Product::where('category_id', $product->category_id)
-            ->where('id', '<>' , $product->id)->latest('date')->take(6)->get();
+        if ($product !== null) {
+            $related_products = Product::where('category_id', $product->category_id)
+                ->where('id', '<>' , $product->id)->latest('date')->take(6)->get();
+            $meta_product = metaproduct::where('product_id' , $product->id)->where('key','views')->first();
 
-        $meta_product = metaproduct::where('product_id' , $product->id)->where('key','views')->first();
-        if ($meta_product !== null){
-            $views = $meta_product->value;
-            $meta_product->value = ++$views;
-            $meta_product->save();
+            if ($meta_product === null){
+                $data = ([
+                    'product_id' => $product->id,
+                    'key' => 'views',
+                    'value' => 0
+                ]);
+                metaproduct::create($data);
+                $views = 1;
+            } else {
+                if ($product->showProduct()) {
+                    $views = $meta_product->value;
+                    return view('site/product/index',compact('product', 'related_products','views'));
+                }
+                $meta_product->increment('value');
+                ProductView::createViewLog($product);
+
+                $views = $meta_product->value;
+            }
+            return view('site/product/index',compact('product', 'related_products','views'));
         } else {
-            $data = ([
-                'product_id' => $product->id,
-                'key' => 'views',
-                'value' => 1
-            ]);
-            metaproduct::create($data);
-            $views = 1;
+            return redirect(url('404'));
         }
-
-        return view('site/product/index',compact('product', 'related_products','views'));
     }
 
     public function compare_products(){
