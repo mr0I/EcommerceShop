@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="@yield('metadesc')">
-  <meta name="keywords" content="big-deal">
+  <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
   <meta name="author" content="big-deal">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">

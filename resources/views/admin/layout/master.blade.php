@@ -37,6 +37,8 @@
 
   <!-- Bootstrap css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
+  <!-- tagify css-->
+  <link rel="stylesheet" type="text/css" href="{{ url('libs/css/tagify.min.css') }}">
 
   <!-- App css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/admin.css') }}">
@@ -307,6 +309,8 @@
 
 <!--script admin-->
 <script src="{{ url('js/admin-script.js') }}"></script>
+<!--Tagify-->
+<script src="{{ url('libs/js/jQuery.tagify.min.js') }}"></script>
 
 <!-- custom script-->
 <script src="{{ url('libs/js/admin.js') }}"></script>

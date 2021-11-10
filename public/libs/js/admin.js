@@ -5,16 +5,29 @@
 
 jQuery(document).ready(function($){
 
+    // Start init jquery libs
+    $('[name=tags]').tagify({
+        duplicates:false,
+        maxTags:10
+    });
+    // End init jquery libs
+
+
     $('.ArticleFrmSubmit').on('click',function () {
         const thisBtn = $(this),
             frm_type = thisBtn.data('type');
+
 
         let title = document.forms['ArticlePublic']['title'].value,
             desc = document.forms['ArticlePublic']['desc'].value,
             image_id = document.forms['ArticlePublic']['image_id'].value,
             status = (document.forms['ArticlePublic']['status'].checked)? 'published' : 'draft',
             meta_title = document.forms['ArticleSeo']['meta_title'].value,
-            meta_desc = document.forms['ArticleSeo']['meta_desc'].value;
+            meta_desc = document.forms['ArticleSeo']['meta_desc'].value,
+            meta_keywords = document.forms['ArticleSeo']['tags'].value;
+
+        let keywords = [];
+        JSON.parse(meta_keywords).map(key => keywords.push(key.value));
 
         const article_data={
             title:title,
@@ -22,8 +35,10 @@ jQuery(document).ready(function($){
             status:status,
             article_image_id:image_id,
             meta_title:meta_title,
-            meta_desc:meta_desc
+            meta_desc:meta_desc,
+            meta_keywords:keywords.join(', ')
         };
+
 
         if (frm_type==='Add'){
             $.ajax({

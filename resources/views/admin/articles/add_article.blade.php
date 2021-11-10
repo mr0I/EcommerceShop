@@ -94,6 +94,14 @@
                     <textarea rows="4" class="col-12" name="meta_desc"></textarea>
                   </div>
                 </div>
+                <div class="form-group row editor-label">
+                  <div class="col-xl-3 col-md-4">
+                    <label>کلمات کلیدی</label>
+                  </div>
+                  <div class="col-xl-8 col-md-7">
+                    <input name="tags" value="">
+                  </div>
+                </div>
               </form>
             </div>
           </div>

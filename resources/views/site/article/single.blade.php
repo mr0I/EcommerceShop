@@ -1,8 +1,10 @@
 @extends('site.layout.master')
 
 
-@section('title') {{ $article->meta_title }} @endsection
-@section('metadesc'){{ $article->meta_desc }}@endsection
+@section('title',$article->meta_title)
+@section('metadesc',$article->meta_desc)
+@section('keywords', $article->meta_keywords)
+
 
 
 @section('content')

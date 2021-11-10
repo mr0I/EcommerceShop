@@ -1,8 +1,7 @@
 @extends('admin.layout.master')
 
-@section('title')
-  Admin Dash
-@endsection
+@section('title', 'Admin Dash')
+
 
 @section('content')
   <div class="page-body">
