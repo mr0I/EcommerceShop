@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyMail;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\VerifyUser;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -73,9 +78,45 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role_id' => 2,
         ]);
-        if ($user){
+
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => Str::random(40)
+        ]);
+        Mail::to($user->email)->send(new VerifyMail($user));
+
+        if ($user && $verifyUser){
             Session::flash('user_create_success', __('User Created Successfully'));
             return $user;
+        } else {
+            Session::flash('user_create_error', __('User Not Created'));
+            return redirect()->back();
         }
+
     }
+
+    protected function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $verifyUser->user->verified = 1;
+                $verifyUser->user->save();
+
+                $user->email_verified_at= Carbon::now();
+                $user->save();
+
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+        }
+
+        return redirect('/login')->with('status', $status);
+    }
+
+
 }

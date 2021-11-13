@@ -54,4 +54,6 @@ Route::group(['namespace' => 'Site'], function () {
     Route::post('/getProductInfo', 'IndexController@getProductInfo');
 });
 
+
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Auth::routes();

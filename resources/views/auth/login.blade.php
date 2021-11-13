@@ -1,10 +1,21 @@
 @extends('site.layout.master')
 
 
-
-
 @section('content')
-    <div class="container">
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if (session('warning'))
+        <div class="alert alert-warning">
+            {{ session('warning') }}
+        </div>
+    @endif
+
+
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

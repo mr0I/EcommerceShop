@@ -22,6 +22,10 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
