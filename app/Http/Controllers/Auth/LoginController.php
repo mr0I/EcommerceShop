@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
+
+
 
 class LoginController extends Controller
 {
@@ -37,4 +41,29 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        // Set Custom Remember Me Expire Time
+        $rememberTokenExpireMinutes = 3*24*60; // 3 days
+        $rememberTokenName = \Illuminate\Support\Facades\Auth::getRecallerName();
+        // reset that cookie's expire time
+        Cookie::queue($rememberTokenName, Cookie::get($rememberTokenName), $rememberTokenExpireMinutes);
+
+
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->intended($this->redirectPath());
+    }
+
+
 }
