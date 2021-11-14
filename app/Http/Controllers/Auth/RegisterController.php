@@ -104,6 +104,7 @@ class RegisterController extends Controller
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
 
+                // Write Email Verify Date
                 $user->email_verified_at= Carbon::now();
                 $user->save();
 
