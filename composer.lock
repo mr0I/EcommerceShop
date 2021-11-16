@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aca37504d9436503dd4d8ae7dc0b03b0",
+    "content-hash": "8b9370ebcf433d239896f65ad94ef522",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -966,6 +966,61 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "time": "2021-04-26T09:17:50+00:00"
+        },
+        {
+            "name": "haruncpi/laravel-simple-captcha",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/haruncpi/laravel-simple-captcha.git",
+                "reference": "cef6c97e8c71752f49a060001393b91db467d1fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/haruncpi/laravel-simple-captcha/zipball/cef6c97e8c71752f49a060001393b91db467d1fa",
+                "reference": "cef6c97e8c71752f49a060001393b91db467d1fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Haruncpi\\LaravelSimpleCaptcha\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Haruncpi\\LaravelSimpleCaptcha\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "cc-by-4.0"
+            ],
+            "authors": [
+                {
+                    "name": "MD.HARUN-UR-RASHID",
+                    "email": "harun.cox@gmail.com"
+                }
+            ],
+            "description": "A laravel simple captcha package",
+            "keywords": [
+                "Simple",
+                "captcha",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/haruncpi/laravel-simple-captcha/issues",
+                "source": "https://github.com/haruncpi/laravel-simple-captcha/tree/v1.0.0"
+            },
+            "time": "2020-02-17T08:06:38+00:00"
         },
         {
             "name": "irazasyed/telegram-bot-sdk",

@@ -52,6 +52,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::post('/removeFromWishList', 'IndexController@removeFromWishList');
     Route::post('/getCatProducts/{name}', 'IndexController@getCatProducts');
     Route::post('/getProductInfo', 'IndexController@getProductInfo');
+    Route::post('/writeLog', 'IndexController@writeLog');
 });
 
 

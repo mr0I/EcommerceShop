@@ -118,7 +118,6 @@ jQuery(document).ready(function($){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.selected_theme === 'dark'){
                     $('#MainBody').removeClass('bg-light').addClass('dark');
                     $('.curroncy-dropdown-click').find('.txt').text('تم تیره');
@@ -128,7 +127,21 @@ jQuery(document).ready(function($){
                 }
             })
             .catch((error) => {
-                console.error('Error:', error);
+                const data= { log_type:'change language error',log_text:error, };
+                fetch('/writeLog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    }).catch((error) => {
+                    console.error('Error:', error);
+                });
             });
     });
 

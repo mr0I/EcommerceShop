@@ -26,6 +26,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/haruncpi/laravel-simple-captcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/irazasyed/telegram-bot-sdk" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kkomelin/laravel-translatable-string-exporter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />

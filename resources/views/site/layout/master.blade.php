@@ -827,14 +827,11 @@
 @toastr_js
 @toastr_render
 
-
-
 @yield('productsByCategory')
+@yield('scripts')
 
+<script> feather.replace()</script>
 
-<script>
-    feather.replace()
-</script>
 
 </body>
 </html>

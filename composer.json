@@ -14,6 +14,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "haruncpi/laravel-simple-captcha": "^1.0",
         "irazasyed/telegram-bot-sdk": "dev-develop",
         "kkomelin/laravel-translatable-string-exporter": "^1.13",
         "laravel/framework": "^7.0",

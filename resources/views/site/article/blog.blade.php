@@ -34,7 +34,8 @@
   <!-- breadcrumb End -->
 
   <!-- section start -->
-  <section class="section-big-py-space blog-page ratio2_3">
+  @if(sizeof($articles)!==0)
+    <section class="section-big-py-space blog-page ratio2_3">
     <div class="custom-container">
       <div class="row">
         <div class="col-xl-9 col-lg-8 col-md-7">
@@ -104,7 +105,8 @@
           </div>
         </div>
 
-        <div class="row justify-content-center">
+        @if($articles->lastPage() > 1)
+          <div class="row justify-content-center">
           <div class="col-9">
             <div class="product-pagination">
               <div class="theme-paggination-block">
@@ -156,10 +158,15 @@
             </div>
           </div>
         </div>
-
+        @endif
       </div>
     </div>
   </section>
+  @else
+    <div class="container mt-5">
+      <p class="alert alert-warning text-center">{{ __('No Article!!!') }}</p>
+    </div>
+  @endif
   <!-- Section ends -->
 
 @endsection

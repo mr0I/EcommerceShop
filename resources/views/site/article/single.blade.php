@@ -87,7 +87,6 @@
         <div class="col-sm-12  ">
           <div class="creative-card">
             <h2>{{ __('Send your feedback') }}</h2>
-
             <form class="theme-form" action="{{ url('/storeComment') }}" method="post">
               @csrf
               <div class="row g-3">
@@ -123,11 +122,19 @@
                   @endif
                 </div>
                 <div class="col-md-12">
-                  {!! app('captcha')->display() !!}
-                  @if($errors->has('g-recaptcha-response'))
-                    <small class="text-danger">{{ $errors->first('g-recaptcha-response') }}</small>
+                  <label for="captcha">{{ __('Captcha') }}</label>
+                  <p class="row w-100 p-4">{{getCaptchaQuestion()}}</p>
+                  <input type="number" name="_answer" class="form-control" required>
+                  @if($errors->has('_answer'))
+                    <ul>
+                      @foreach ($errors->get('_answer') as $error)
+                        <li class="w-100 my-1"><small class="text-danger">{{ $error }}</small></li>
+                      @endforeach
+                    </ul>
                   @endif
                 </div>
+
+
                 <input type="hidden" value="{{ $article->id }}" name="article_id">
                 <div class="col-md-12">
                   <button class="btn btn-normal" type="submit">{{ __('Send') }}</button>
@@ -146,3 +153,4 @@
   </section>
   <!--Section ends-->
 @endsection
+

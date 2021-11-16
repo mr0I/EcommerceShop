@@ -108,6 +108,7 @@
       <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
       <path value="$PROJECT_DIR$/vendor/yoeunes/toastr" />
       <path value="$PROJECT_DIR$/vendor/anhskohbo/no-captcha" />
+      <path value="$PROJECT_DIR$/vendor/haruncpi/laravel-simple-captcha" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

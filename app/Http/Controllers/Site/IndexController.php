@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use mysql_xdevapi\Session;
+use phpDocumentor\Reflection\Types\False_;
 use function Sodium\library_version_major;
 use \App\Helpers\functions;
 
@@ -106,7 +108,6 @@ class IndexController extends Controller
         }
 
     }
-
 
     public function addToWish(Request $request)
     {
@@ -323,6 +324,16 @@ class IndexController extends Controller
         } else{
             return response()->json(['result'=>'Error'] ,400 );
         }
+    }
+
+    public function writeLog(Request $request)
+    {
+        $logs = array(
+            "logType" => $request->log_type,
+            "logText" => $request->log_text
+        );
+        $res = Log::error(json_encode($logs),['ip'=> $_SERVER['REMOTE_ADDR']]);
+        return response()->json(['result'=>$res] ,200 );
     }
 
     /**

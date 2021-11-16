@@ -18,7 +18,8 @@ class CommentController extends Controller
             'name' => 'max:55',
             'email' => 'email|required|max:55',
             'comment' => 'required|max:1000',
-            'g-recaptcha-response' => 'required|captcha'
+            //'g-recaptcha-response' => 'required|captcha',
+            '_answer'=>'required|simple_captcha'
         ]);
         if ($validator->fails()) {
             toastr()->error(trans('Error in filling form'));
