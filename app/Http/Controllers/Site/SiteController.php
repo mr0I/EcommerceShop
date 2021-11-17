@@ -17,6 +17,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -24,23 +25,48 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
+use Spatie\Sitemap\SitemapGenerator;
 
 class SiteController extends Controller
 {
 
     public function index()
     {
-        $mobileProducts =DB::table('categories' , 'c')
-            ->join('products as p' , 'p.category_id', '=', 'c.id')
-            ->where('c.id' , '1')
-            ->select('*')
-            ->orderBy('date' , 'ASC')
-            ->take(10)->get();
+        $mobileProductsCacheKey = 'mobileProducts';
+        $specialProductsCacheKey = 'specialProducts';
+        $articlesCacheKey = 'publishedArticles';
+        $cachedmobileProducts = Cache::get($mobileProductsCacheKey);
+        $cachedspecialProducts = Cache::get($specialProductsCacheKey);
+        $cachedarticles = Cache::get($articlesCacheKey);
 
-        $specialProducts = Product::where('main_price', '<>' , null)->get();
+        if ($cachedmobileProducts){
+            $mobileProducts = $cachedmobileProducts;
+        } else {
+            $mobileProducts =DB::table('categories' , 'c')
+                ->join('products as p' , 'p.category_id', '=', 'c.id')
+                ->where('c.id' , '1')
+                ->select('*')
+                ->orderBy('date' , 'ASC')
+                ->take(10)->get();
 
-        $articles = Article::with('articleImage')
-            ->where('status','published')->get();
+            Cache::add($mobileProductsCacheKey,$mobileProducts,now()->addMinutes(10));
+        }
+
+        if ($cachedspecialProducts){
+            $specialProducts = $cachedspecialProducts;
+        } else {
+            $specialProducts = Product::where('main_price', '<>' , null)->get();
+            Cache::add($specialProductsCacheKey,$specialProducts,now()->addMinutes(10));
+        }
+
+        if ($cachedarticles){
+            $articles = $cachedarticles;
+        } else {
+            $articles = Article::with('articleImage')
+                ->where('status','published')->get();
+            Cache::add($articlesCacheKey,$articles,now()->addMinutes(10));
+        }
+
 
         return view('site/index' ,
             compact('mobileProducts' ,'specialProducts','articles'));
@@ -272,6 +298,13 @@ class SiteController extends Controller
 
 
 
+    }
+
+
+    public function genSitemap()
+    {
+        $path = public_path('sitemap.xml');
+        SitemapGenerator::create('http://127.0.0.1:8000')->writeToFile($path);
     }
 
 

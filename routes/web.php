@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/article/{slug}', 'SiteController@singleArticle');
     Route::get('/blog', 'SiteController@blog');
     Route::post('/storeComment', 'CommentController@store');
+    Route::get('/genSitemap', 'SiteController@genSitemap');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
