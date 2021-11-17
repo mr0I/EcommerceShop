@@ -8,30 +8,56 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="@yield('metadesc')">
   <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
-  <meta name="author" content="big-deal">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">
   <meta name="wishlist-url" content="{{ url('wishlist') }}">
+  <meta property="og:title" content="@yield('title')">
+  <meta property="og:description" content="@yield('metadesc')">
+  <meta property="og:image" content="https://isee.sisoog.com/assets/images/logo.png">
+  <meta property="og:url" content="https://digimarketz.com/">
+  <meta name="msapplication-tap-highlight" content="no"/>
+  <meta name="application-name" content="dgmarketz">
+  <meta name="author" content="Outsider" />
+  <meta name="robots" content="all, index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="geo.region" content="IR" />
+  <meta name="dcterms.identifier" content="" />
+  <meta name="dcterms.title" content="" />
+  <meta name="dcterms.description" content="" />
+  <meta name="dcterms.subject" content="" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="dgmarketz">
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-48x48.png" sizes="48x48">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-96x96.png" sizes="96x96">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-144x144.png" sizes="144x144">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-192x192.png" sizes="192x192">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-256x256.png" sizes="256x256">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-384x384.png" sizes="384x384">--}}
+  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-512x512.png" sizes="512x512">--}}
+  <meta name="msapplication-TileColor" content="#fff">
+  <!-- Disable scale web page -->
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  {{--<link rel="preload" href="/assets/fonts/micons.woff2" as="font" type="font/woff2" crossorigin="anonymous">--}}
+
   <link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
-
   <!--icon css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/themify.css') }}">
-
   <!--Slick slider css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/slick.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/slick-theme.css') }}">
-
   <!--Animate css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/animate.css') }}">
   <!-- Bootstrap css -->
   <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
-
   <!-- Theme css -->
   <link rel="stylesheet" type="text/css" href="{{ url('css/color2.css') }}" media="screen" id="color">
   <!-- Extra css -->
   <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
+
+  @yield('productSchema')
   {!! NoCaptcha::renderJs() !!}
   @toastr_css
 </head>

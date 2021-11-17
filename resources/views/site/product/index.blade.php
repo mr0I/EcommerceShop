@@ -1,10 +1,57 @@
 @extends('site.layout.master')
 
+
+@section('productSchema')
+  <script type="application/ld+json">
+    {
+    "@context": "https://www.schema.org",
+    "@type": "Product",
+    "name": "<?= $product->title ?>",
+    "alternateName": "",
+    "image": [
+        "<?= url('uploads/product_images'). '/' . $product->image . '.jpg' ?>",
+    ],
+    "description": "<?= $product->description ?>",
+    "sku": 100,
+    "mpn": <?= $product->id ?>,
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 0,
+        "reviewCount": 0,
+        "bestRating": 5,
+        "worstRating": 0
+    },
+    "brand": {
+        "@type": "Thing",
+        "name": "<?= $product->brand ?>"
+    },
+    "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "IRR",
+        "lowPrice": <?= $product->price ?>,
+        "highPrice": <?= ($product->main_price!==null)? $product->main_price : $product->price ?>,
+        "offerCount": 1,
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "IRR",
+            "price": <?= $product->price ?>,
+            "itemCondition": "https://schema.org/UsedCondition",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+                "@type": "Organization",
+                "name": "dgmarketz"
+            }
+        }
+    }
+}
+  </script>
+@endsection
+
 @section('title')
   @if($product !== null)
     {{ $product->title }}
   @else
-    صفحه محصول
+    {{ __('Product Page') }}
   @endif
 @endsection
 
@@ -353,10 +400,10 @@
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
               @if($product->price==0)
-              <h6 class="text-danger">{{ __('Not Available') }}</h6>
+                <h6 class="text-danger">{{ __('Not Available') }}</h6>
               @else
                 <h6 class="digits">{{ $product->price }} تومان</h6>
-                @endif
+              @endif
             </div>
           </div>
 

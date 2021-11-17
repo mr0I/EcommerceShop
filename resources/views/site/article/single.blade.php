@@ -122,6 +122,7 @@
                   @endif
                 </div>
                 <div class="col-md-12">
+                  {{-- composer require haruncpi/laravel-simple-captcha --}}
                   <label for="captcha">{{ __('Captcha') }}</label>
                   <p class="row w-100 p-4">{{getCaptchaQuestion()}}</p>
                   <input type="number" name="_answer" class="form-control" required>
