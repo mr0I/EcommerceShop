@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
     Route::post('/changeTheme', 'IndexController@changeTheme');
+    Route::post('/changeLayout', 'IndexController@changeLayout');
     Route::post('/addToCompare', 'IndexController@addToCompare');
     Route::post('/addToWish', 'IndexController@addToWish');
     Route::post('/removeFromCompare', 'IndexController@removeFromCompare');

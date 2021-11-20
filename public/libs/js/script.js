@@ -34,20 +34,20 @@ jQuery(document).ready(function($){
             return;
         }
 
-        $.ajax({
-            url: '/changeTheme',
-            headers:{
+        const data= { theme:selected_theme };
+        fetch('/changeTheme', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            type: 'POST',
-            data: { 'theme':selected_theme },
-            dataType: 'json',
-            beforeSend: function(){},
-            success: function (res , xhr) {
-                console.log(res);
-                console.log(xhr);
-                if (res.result === 'Done'){
-                    if (res.selected_theme === 'dark'){
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.result === 'Done'){
+                    if (data.selected_theme === 'dark'){
                         $('#MainBody').removeClass('bg-light').addClass('dark');
                         $('.curroncy-dropdown-click').find('.txt').text('تم تیره');
                     } else {
@@ -57,10 +57,38 @@ jQuery(document).ready(function($){
                 } else{
                     alert('خطا در انجام عملیات!!!');
                 }
-            }, error:function (err) {
-            }, complete:function () {
-            },timeout:10000
-        });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        // $.ajax({
+        //     url: '/changeTheme',
+        //     headers:{
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     },
+        //     type: 'POST',
+        //     data: { 'theme':selected_theme },
+        //     dataType: 'json',
+        //     beforeSend: function(){},
+        //     success: function (res , xhr) {
+        //         console.log(res);
+        //         console.log(xhr);
+        //         if (res.result === 'Done'){
+        //             if (res.selected_theme === 'dark'){
+        //                 $('#MainBody').removeClass('bg-light').addClass('dark');
+        //                 $('.curroncy-dropdown-click').find('.txt').text('تم تیره');
+        //             } else {
+        //                 $('#MainBody').removeClass('dark').addClass('bg-light');
+        //                 $('.curroncy-dropdown-click').find('.txt').text('تم روشن');
+        //             }
+        //         } else{
+        //             alert('خطا در انجام عملیات!!!');
+        //         }
+        //     }, error:function (err) {
+        //     }, complete:function () {
+        //     },timeout:10000
+        // });
 
     });
 
@@ -103,7 +131,68 @@ jQuery(document).ready(function($){
 
         if (selected_theme === '0' ) return;
         if (selected_theme === null || selected_theme === '') {
-            alert('لطفا یک زبان را انتخاب کنید');
+            alert('لطفا یک تم را انتخاب کنید');
+            return;
+        }
+
+        if(selected_theme==='light') {
+            $('input#tooglenight').prop('checked',true);
+        }else{
+            $('input#tooglenight').prop('checked',false);
+        }
+
+        const data= { theme:selected_theme };
+        fetch('/changeTheme', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.selected_theme === 'dark'){
+                    $('#MainBody').removeClass('bg-light').addClass('dark');
+                    $('.curroncy-dropdown-click').find('.txt').text('تم تیره');
+                } else {
+                    $('#MainBody').removeClass('dark').addClass('bg-light');
+                    $('.curroncy-dropdown-click').find('.txt').text('تم روشن');
+                }
+            })
+            .catch((error) => {
+                const data= { log_type:'change language error',log_text:error, };
+                fetch('/writeLog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    }).catch((error) => {
+                    console.error('Error:', error);
+                });
+            });
+    });
+
+    // Night-Day Switcher
+    $("#tooglenight").change(function() {
+        let selected_theme = '';
+
+        if(this.checked) {
+            selected_theme = 'light';
+            $('.changeThemeSelect option[value=light]').prop('selected',true);
+        }else{
+            selected_theme = 'dark';
+            $('.changeThemeSelect option[value=dark]').prop('selected',true);
+        }
+
+        if (selected_theme === null || selected_theme === '') {
+            alert('خطا در تغییر تم');
             return;
         }
 
@@ -144,6 +233,7 @@ jQuery(document).ready(function($){
                 });
             });
     });
+
 
     /* Remove Compare */
     $('.remove-compare').on('click' , function () {
@@ -271,6 +361,8 @@ jQuery(document).ready(function($){
         })
     };
     $('.digits').digits();
+
+
 });
 
 

@@ -42,17 +42,22 @@ class IndexController extends Controller
             return response()->json(['result'=>'Error'] , 400);
         }
     }
-
     public function changeTheme(Request $request){
         session()->forget('theme');
         if ($request->theme !== '' || $request->theme !== null  ){
-            Config::set('constants.currentTheme' , $request->theme);
+            //Config::set('constants.currentTheme' , $request->theme);
             session()->put('theme' , $request->theme);
             return response()->json(['result'=>'Done','selected_theme'=>$request->theme] , 200);
         } else {
             return response()->json(['result'=>'Error'] , 400);
         }
     }
+//    public function changeLayout(Request $request){
+//        session()->forget('layout');
+//        if ($request->layout !== '' || $request->layout !== null  ){
+//            session()->put('layout' , $request->layout);
+//        }
+//    }
 
     public function admin_login()
     {

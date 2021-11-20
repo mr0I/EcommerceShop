@@ -63,7 +63,7 @@
 </head>
 
 <body id="MainBody" class="
-@if(session()->get('theme') =='dark') dark @else  bg-light @endif
+@if(session()->get('theme') =='light') bg-light @else dark @endif
 @if(\Illuminate\Support\Facades\App::getLocale() =='fa') rtl @else ltr @endif">
 
 <!-- loader start -->
@@ -176,6 +176,17 @@
                   </div>
                 </div>
               </form>
+
+              <div class="content">
+                <i class="fas fa-sun"></i>
+                &nbsp;&nbsp;&nbsp;
+                <input type="checkbox" id="tooglenight" class="cbx hidden"
+                       @if(session()->get('theme')==='light') checked @endif />
+                <label for="tooglenight" class="switch"></label>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fas fa-moon"></i>
+              </div>
+
             </div>
           </div>
           <div class="header-right">
@@ -607,6 +618,9 @@
   @yield('content')
 </div>
 
+
+
+
 <!-- My account bar start-->
 <div id="myAccount" class="add_to_cart right account-bar">
   <a href="javascript:void(0)" class="overlay" onclick="closeAccount()"></a>
@@ -697,8 +711,8 @@
       <div class="form-group">
         <select class="changeThemeSelect">
           <option value="0" disabled>انتخاب تم...</option>
-          <option value="light" <?= (session()->get('theme') =='light')? 'selected' : '' ?> >روشن</option>
           <option value="dark" <?= (session()->get('theme') =='dark')? 'selected' : '' ?> >تاریک</option>
+          <option value="light" <?= (session()->get('theme') =='light')? 'selected' : '' ?> >روشن</option>
         </select>
       </div>
     </div>

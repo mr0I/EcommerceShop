@@ -200,7 +200,10 @@ jQuery(document).ready(function($) {
                         window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
                     });
                 }
-            })
+            });
+
+
+
     });
 
     $('.category-reset-filters').on('click',function () {
@@ -211,7 +214,6 @@ jQuery(document).ready(function($) {
     });
 
 });
-
 
 function getUrlParams() {
     let url = new URL(window.location.href);
@@ -227,10 +229,6 @@ function getUrlParams() {
 }
 
 function appendProducts(productsContainer,product) {
-    // load required methods for ajax load
-    feather.replace();
-    $('.digits').digits();
-
     productsContainer.find('.row').append(`
                           <div class="col-lg-3 col-grid-box">
                             <div class="product-box">
@@ -282,5 +280,9 @@ function appendProducts(productsContainer,product) {
                             </div>
                           </div>
                         `);
+
+    // load required methods for ajax load
+    feather.replace();
+    $('.digits').digits();
 
 }
