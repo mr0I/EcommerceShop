@@ -367,7 +367,11 @@ input.form-control{
 .hidden { display: none; }
 /* end day-night switch */
 
+.bottomLoader{
+    display: none;
+}
 
+/* start responsive */
 @media screen and (max-width: 2000px) {
     .blog.blog-inverce .blog-contain .blog-details-2 .btn {
         position: absolute;
@@ -378,3 +382,4 @@ input.form-control{
         position: relative;
     }
 }
+/* end responsive */

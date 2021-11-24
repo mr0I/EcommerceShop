@@ -69,13 +69,18 @@ jQuery(document).ready(function($) {
             })
                 .then(response => response.json())
                 .then(data => {
+                    const productsContainer = $('.product-wrapper-grid');
+                    const bottomLoader = $('.bottomLoader');
+
+                    bottomLoader.css('display','block');
+
                     if (data.result === 'Done') {
-                        let productsContainer = $('.product-wrapper-grid');
                         const products = data.products;
 
                         products.forEach(product => {
-                            appendProducts(productsContainer,product);
+                            appendProducts(productsContainer,product,bottomLoader);
                         });
+
                     }
 
                     isLoading = false;
@@ -124,15 +129,21 @@ jQuery(document).ready(function($) {
         })
             .then(response => response.json())
             .then(data => {
-//                console.log('Data',data);
+                let productsContainer = $('.product-wrapper-grid');
+                productsContainer.find('.row').before(`
+                        <div class="topLoader text-center mt-5"><i class="fa fa-spinner fa-pulse fa-3x"></i></div>
+                    `).css('display','none');
+
                 if (data.result === 'Done') {
                     $('.sorting-option-btn').removeClass('active');
                     $thisBtn.addClass('active');
 
-                    let productsContainer = $('.product-wrapper-grid');
                     productsContainer.find('.row').html('');
-                    const products = data.products;
+                    setTimeout(function () {
+                        productsContainer.find('.row').css('display','flex');
+                    },1000);
 
+                    const products = data.products;
                     products.forEach(product => {
                         appendProducts(productsContainer,product);
 
@@ -179,13 +190,20 @@ jQuery(document).ready(function($) {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             body: JSON.stringify(data),
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
-                console.log('Data',data);
+                let productsContainer = $('.product-wrapper-grid');
+
+                productsContainer.find('.row').before(`
+                        <div class="topLoader text-center mt-5"><i class="fa fa-spinner fa-pulse fa-3x"></i></div>
+                    `).css('display','none');
                 if (data.result === 'Done') {
-                    let productsContainer = $('.product-wrapper-grid');
                     productsContainer.find('.row').html('');
+
+                    setTimeout(function () {
+                        productsContainer.find('.row').css('display','flex');
+                    },1000);
+
                     const products = data.products;
                     window.AllPages = Math.ceil(data.all_products_count/localVars.productsPerPage);
 
@@ -201,9 +219,6 @@ jQuery(document).ready(function($) {
                     });
                 }
             });
-
-
-
     });
 
     $('.category-reset-filters').on('click',function () {
@@ -228,7 +243,15 @@ function getUrlParams() {
     }
 }
 
-function appendProducts(productsContainer,product) {
+function appendProducts(productsContainer,product,bottomLoader=null) {
+    setTimeout(function () {
+        productsContainer.find('.topLoader').remove();
+        //productsContainer.find('.bottomLoader').remove();
+       // $('.collection-product-wrapper').find('.bottomLoader').remove();
+        if (bottomLoader!==null) bottomLoader.css('display','none');
+
+    },1000);
+
     productsContainer.find('.row').append(`
                           <div class="col-lg-3 col-grid-box">
                             <div class="product-box">
@@ -259,10 +282,10 @@ function appendProducts(productsContainer,product) {
                                     ${(product.main_price!==null)? '<div class="check-price digits">  '+product.main_price+' تومان </div>' : ''}
                                     <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold">
                                     ${(product.status=='not-available')?
-                                        `<div class="text-danger"> ناموجود </div> `
-                                        :
-                                        `<div class="digits"> ${product.price} تومان </div> `
-                                        }
+        `<div class="text-danger"> ناموجود </div> `
+        :
+        `<div class="digits"> ${product.price} تومان </div> `
+        }
                                     </div>
                                   </div>
                                 </div>
@@ -280,6 +303,9 @@ function appendProducts(productsContainer,product) {
                             </div>
                           </div>
                         `);
+
+
+
 
     // load required methods for ajax load
     feather.replace();

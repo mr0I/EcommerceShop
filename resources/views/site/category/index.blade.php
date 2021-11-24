@@ -71,10 +71,11 @@
                 </div>
               </div>
 
-                <button class="btn btn-white btn-outline tooltip-top category-apply-filters w-100 mt-4 p-2">
+
+                <button class="btn btn-success btn-outline category-apply-filters w-100 mt-4 p-1">
                   {{ __('Apply Filters') }}
                 </button>
-                <button class="btn btn-danger btn-outline tooltip-top category-reset-filters w-100 mt-4 p-1">
+                <button class="btn btn-danger btn-outline category-reset-filters w-100 mt-2 p-1">
                   {{ __('Reset Filters') }}
                 </button>
 
@@ -506,6 +507,7 @@
                           <div class="alert alert-warning">{{ __('No product in this category') }}</div>
                         @endif
                       </div>
+                      <div class="bottomLoader text-center mt-5"><i class="fa fa-spinner fa-pulse fa-3x"></i></div>
                     </div>
                   </div>
                 </div>

@@ -14,7 +14,7 @@
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('metadesc')">
   <meta property="og:image" content="https://isee.sisoog.com/assets/images/logo.png">
-  <meta property="og:url" content="https://digimarketz.com/">
+  <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">
   <meta name="author" content="Outsider" />
