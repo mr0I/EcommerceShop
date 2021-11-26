@@ -1,5 +1,19 @@
 jQuery(document).ready(function($) {
 
+    /* Toasts */
+    window.BottomToast = Swal.mixin({
+        toast: true,
+        position: 'bottom-start',
+        showConfirmButton: false,
+        timer: 3500,
+        background: '#1c272b',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+    
     let localVars = JSON.parse(document.getElementById("json_content").innerHTML,false);
     $('.digits').digits();
 
@@ -42,20 +56,21 @@ jQuery(document).ready(function($) {
     window.AllPages = Math.ceil(localVars.productsCount/localVars.productsPerPage);
     let showAlert=false;
 
+
     window.addEventListener('scroll', async (event) =>{
         const diff = window.scrollY - lastScrollY; // scrolling down
         lastScrollY = window.scrollY;
 
         if (diff>0 && !canLoadMoreProducts && (window.innerHeight + window.scrollY)>=document.body.offsetHeight - 250
-            && isLoading==false) {
+            && isLoading===false) {
             if(!showAlert){
                 showAlert = true;
-                alert('No more Post');
+                //alert('No more Post');
             }
         }
 
         if (diff>0 && canLoadMoreProducts && (window.innerHeight + window.scrollY)>=document.body.offsetHeight - 250
-            && isLoading==false) {
+            && isLoading===false) {
             isLoading=true;
 
             const data = {page_num: getUrlParams().page};
@@ -77,10 +92,11 @@ jQuery(document).ready(function($) {
                     if (data.result === 'Done') {
                         const products = data.products;
 
-                        products.forEach(product => {
-                            appendProducts(productsContainer,product,bottomLoader);
-                        });
-
+                        setTimeout(function () {
+                            products.forEach(product => {
+                                appendProducts(productsContainer,product,bottomLoader);
+                            });
+                        },1000);
                     }
 
                     isLoading = false;
@@ -157,6 +173,7 @@ jQuery(document).ready(function($) {
             })
     });
 
+
     window.brands_filters = [];
     $('.brands-filter').on('change', function () {
         let selected_val = $(this).data('brand');
@@ -167,6 +184,7 @@ jQuery(document).ready(function($) {
             window.brands_filters.splice(index,1);
         }
     });
+
 
     $('.category-apply-filters').on('click', function () {
         canLoadMoreProducts = true;
@@ -194,11 +212,7 @@ jQuery(document).ready(function($) {
             .then(data => {
                 let productsContainer = $('.product-wrapper-grid');
 
-                productsContainer.find('.row').before(`
-                        <div class="topLoader text-center mt-5"><i class="fa fa-spinner fa-pulse fa-3x"></i></div>
-                    `).css('display','none');
                 if (data.result === 'Done') {
-                    productsContainer.find('.row').html('');
 
                     setTimeout(function () {
                         productsContainer.find('.row').css('display','flex');
@@ -207,16 +221,33 @@ jQuery(document).ready(function($) {
                     const products = data.products;
                     window.AllPages = Math.ceil(data.all_products_count/localVars.productsPerPage);
 
-                    products.forEach(product => {
-                        appendProducts(productsContainer,product);
 
-                        let quotedArray = '"' + window.brands_filters.join('","') + '"';
-                        let updatedUrl =  catPageBaseUrl+ '?page=1'
-                            +((getUrlParams().sortBy!=='')? '&sortBy='+getUrlParams().sortBy : '')
-                            +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"'+min_price+'","max":"'+max_price+'" },' +
-                            '"status":"'+ status + '"' + '}' ;
-                        window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
-                    });
+                    if (products.length!==0){
+                        productsContainer.find('.row').before(`
+                        <div class="topLoader text-center mt-5"><i class="fa fa-spinner fa-pulse fa-3x"></i></div>
+                    `).css('display','none');
+                        productsContainer.find('.row').html('');
+
+                        products.forEach(product => {
+                            appendProducts(productsContainer,product);
+
+                            let quotedArray = '"' + window.brands_filters.join('","') + '"';
+                            let updatedUrl =  catPageBaseUrl+ '?page=1'
+                                +((getUrlParams().sortBy!=='')? '&sortBy='+getUrlParams().sortBy : '')
+                                +'&filters={'+ '"brands":[' + quotedArray + ']' + ',"price":{"min":"'+min_price+'","max":"'+max_price+'" },' +
+                                '"status":"'+ status + '"' + '}' ;
+                            window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
+                        });
+                    } else {
+                        window.BottomToast.fire({
+                            icon: 'warning',
+                            title: 'نتیجه ای برای نمایش یافت نشد!!!',
+                            timer:3000
+                        });
+                        productsContainer.find('.topLoader').remove();
+                        $('#product_wrapper_grid_alert').css('display','block');
+                    }
+
                 }
             });
     });
@@ -246,10 +277,7 @@ function getUrlParams() {
 function appendProducts(productsContainer,product,bottomLoader=null) {
     setTimeout(function () {
         productsContainer.find('.topLoader').remove();
-        //productsContainer.find('.bottomLoader').remove();
-       // $('.collection-product-wrapper').find('.bottomLoader').remove();
         if (bottomLoader!==null) bottomLoader.css('display','none');
-
     },1000);
 
     productsContainer.find('.row').append(`
