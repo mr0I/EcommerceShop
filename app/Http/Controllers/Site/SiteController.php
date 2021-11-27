@@ -295,10 +295,18 @@ class SiteController extends Controller
             Session::flash('loginError','نام کاربری یا رمز عبور اشتباه است :(');
             return back();
         }
-
-
-
     }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('title','like','%'.$request->q.'%')->get();
+
+        return view('site/search',[
+            'products'=>$products,
+            'search_query'=>$request->q
+            ]);
+    }
+
 
 
     public function genSitemap()

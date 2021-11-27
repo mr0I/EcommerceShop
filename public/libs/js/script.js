@@ -5,6 +5,8 @@
 
 jQuery(document).ready(function($){
 
+    let localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
+
     /* Toasts */
     window.BottomToast = Swal.mixin({
         toast: true,
@@ -354,6 +356,18 @@ jQuery(document).ready(function($){
         });
     });
 
+
+    const mainSearchInput = $('#main_search_input');
+    $('#main_search_frm').on('submit',function (e) {
+        e.preventDefault();
+        let search_query = mainSearchInput.val();
+        search_product(search_query,localVars.siteUrl);
+    });
+    $('#main_search_btn').on('click',function () {
+        let search_query = mainSearchInput.val();
+        search_product(search_query,localVars.siteUrl);
+    });
+
     // split prices By comma
     $.fn.digits = function () {
         return this.each(function () {
@@ -362,9 +376,14 @@ jQuery(document).ready(function($){
     };
     $('.digits').digits();
 
-
 });
 
+
+
+function search_product(searchQuery,siteUrl) {
+    window.location.href = `${siteUrl}search?q=${searchQuery}`;
+    //window.location.href = `http://127.0.0.1:8000/search?q=${searchQuery}`;
+}
 
 function viewModal(pid) {
     let loader = document.getElementById("modal_loading");
