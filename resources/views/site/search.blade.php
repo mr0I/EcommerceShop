@@ -13,13 +13,8 @@
       <div class="row">
         <div class="col">
           <div class="breadcrumb-contain">
-            <div>
-              <h2>{{ __('Search') }}</h2>
-              <ul>
-                <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                <li><i class="fa fa-angle-double-left"></i></li>
-                <li>{{ $search_query }}</li>
-              </ul>
+            <div style="direction: @if(\Illuminate\Support\Facades\App::getLocale() !=='fa') ltr @else rtl @endif">
+              <h2>{{ __('Search Results for ') }} <strong class="text-success">{{ $search_query }}</strong></h2>
             </div>
           </div>
         </div>
@@ -28,497 +23,121 @@
   </div>
   <!-- breadcrumb End -->
 
-  <!--section start-->
-  <section class="authentication-page section-big-pt-space b-g-light">
-    <div class="custom-containe">
-      <section class="search-block">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-              <form class="form-header">
-                <div class="input-group">
-                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                         placeholder="جستجوی محصولات ...">
-                  <button class="btn btn-normal"><i class="fa fa-search"></i>جستجو</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </section>
-  <!-- section end -->
-
   <!-- product section start -->
   <section class="section-big-py-space ratio_asos b-g-light">
     <div class="custom-container">
       <div class="row search-product related-pro1">
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/1.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a1.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
+        @foreach($products as $product)
+          <div class="col-xl-3 col-md-4 col-sm-6">
+            <div class="product">
+              <div class="product-box">
+                <div class="product-imgbox">
+                  <div class="product-front">
+                    <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid  " alt="product">
                   </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
+                  <div class="product-back">
+                    <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid  " alt="product">
+                  </div>
+                </div>
+                <div class="product-detail detail-center ">
+                  <div class="detail-title">
+                    <div class="detail-left">
+                      <a href="/product/{{ $product->id }}">
+                        <h6 class="price-title">{{ $product->title }}</h6>
+                      </a>
                     </div>
-                    <div class="price">
+                    <div class="detail-right">
+                      <div class="check-price">
+                        {{ $product->main_price }}   تومان
+                      </div>
                       <div class="price">
-                        24,000 تومان
+                        <div class="price">
+                          {{ $product->price }}   تومان
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
+                  <div class="icon-detail">
+                    <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                      <i data-feather="shopping-cart"></i>
+                    </button>
+                    <a href="javascript:void(0)" class="add-to-wish tooltip-top"
+                       data-tippy-content="افزودن به لیست علاقه مندی">
+                      <i data-feather="heart"></i>
+                    </a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
+                       data-tippy-content="مشاهده سریع">
+                      <i data-feather="eye"></i>
+                    </a>
+                    <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
+                      <i data-feather="refresh-cw"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/2.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a2.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/3.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a3.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/4.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a4.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/5.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a5.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/6.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a6.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/7.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a7.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-4 col-sm-6">
-          <div class="product">
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-2/product/8.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-2/product/a8.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <div class="rating-star">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="default.htm">
-                      <h6 class="price-title">
-                        نام محصول.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      56,000 تومان
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        24,000 تومان
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="icon-detail">
-                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
-                    <i data-feather="shopping-cart"></i>
-                  </button>
-                  <a href="javascript:void(0)" class="add-to-wish tooltip-top"
-                     data-tippy-content="افزودن به لیست علاقه مندی">
-                    <i data-feather="heart"></i>
-                  </a>
-                  <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view" class="tooltip-top"
-                     data-tippy-content="مشاهده سریع">
-                    <i data-feather="eye"></i>
-                  </a>
-                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه">
-                    <i data-feather="refresh-cw"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
+
+      @if($products->lastPage() > 1)
+        <div class="row justify-content-center">
+          <div class="col-9">
+            <div class="product-pagination">
+              <div class="theme-paggination-block">
+                <div class="row">
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination">
+                        @if ($products->currentPage() != 1)
+                          <li class="page-item">
+                            <a class="page-link"
+                               href="{{ $products->path().'/?q='.$search_query.'&page='.($products->currentPage()-1) }}"
+                               aria-label="Previous">
+                              <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('Previous') }}</span>
+                            </a>
+                          </li>
+                        @endif
+                        @for ($i = 1; $i <= $products->lastPage(); $i++)
+                          @php
+                          $productUrl = $products->url($i);
+                          $page = explode('?',$productUrl)[1];
+                          $finalUrl = $products->path().'/?q='.$search_query.'&'.$page;
+                          @endphp
+                          <li class="page-item @if ($products->currentPage()==$i)active @endif">
+                            <a class="page-link" @if($products->currentPage()!=$i) href="{{ $finalUrl  }}" @endif>
+                              @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
+                            </a>
+                          </li>
+                        @endfor
+                        @if ($products->currentPage() != $products->lastPage())
+                          <li class="page-item">
+                            <a class="page-link"
+                               href="{{ $products->path().'/?q='.$search_query.'&page='.($products->currentPage()+1) }}" aria-label="Next">
+                              <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('Next') }}</span>
+                            </a>
+                          </li>
+                        @endif
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <div class="product-search-count-bottom">
+                      @php
+                        $from = (($products->currentPage() -1)  * $products->perPage()) + 1;
+                        $to = (($from + $products->perPage()) <= $products->total()) ? ($from + $products->perPage())-1 : $products->total();
+                      @endphp
+                      <h5 style="direction: ltr">  {{ $from }}-{{ $to  }}  {{ __('From') }} {{ $products->total() }} </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      @endif
     </div>
   </section>
   <!-- product section end -->

@@ -161,12 +161,16 @@
           </div>
           <div class="input-block">
             <div class="input-box">
-              <form class="big-deal-form" id="main_search_frm">
+              <form class="big-deal-form" onsubmit="searchProduct(event)">
                 <div class="input-group">
                   <div class="input-group-text">
                     <span class="search" style="cursor: pointer" id="main_search_btn"><i class="fa fa-search"></i></span>
                   </div>
-                  <input type="search" class="form-control" placeholder="{{ __('Product Search') }}" id="main_search_input">
+                  @php
+                    $searchQuery = (isset($_GET['q'])) ? $_GET['q'] : '';
+                  @endphp
+                  <input type="search" class="form-control search-product-input" value="{{ $searchQuery }}"
+                         placeholder="{{ __('Product Search') }}" oninput="updateSearchQuery(event)" >
                   <div class="input-group-text">
                     <select>
                       <option value="0">{{ __('All Categories') }}</option>

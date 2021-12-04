@@ -357,34 +357,44 @@ jQuery(document).ready(function($){
     });
 
 
-    const mainSearchInput = $('#main_search_input');
-    $('#main_search_frm').on('submit',function (e) {
-        e.preventDefault();
-        let search_query = mainSearchInput.val();
-        search_product(search_query,localVars.siteUrl);
-    });
-    $('#main_search_btn').on('click',function () {
-        let search_query = mainSearchInput.val();
-        search_product(search_query,localVars.siteUrl);
-    });
+    // $('#search_product_input').on('input',function () {
+    //     document.querySelector('.search-product-input').value = $(this).val();
+    // });
 
-    // split prices By comma
+    // Split Prices By Comma
     $.fn.digits = function () {
         return this.each(function () {
             $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
         })
     };
     $('.digits').digits();
-
 });
 
 
+let sq = '';
+const localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
 
+function updateSearchQuery() {
+    sq = document.querySelector('.search-product-input').value;
+    console.log(sq);
+}
+function searchProduct(e) {
+    e.preventDefault();
+    sq = (sq==='')? getUrlParams().sq : sq;
+    search_product(sq,localVars.siteUrl);
+}
 function search_product(searchQuery,siteUrl) {
     window.location.href = `${siteUrl}search?q=${searchQuery}`;
-    //window.location.href = `http://127.0.0.1:8000/search?q=${searchQuery}`;
 }
 
+
+function getUrlParams() {
+    let url = new URL(window.location.href);
+
+    return{
+        'sq': (url.searchParams.get('q')) || ''
+    }
+}
 function viewModal(pid) {
     let loader = document.getElementById("modal_loading");
     let loader_icon = document.getElementById("modal_loading_icon");
@@ -570,7 +580,6 @@ function viewModal(pid) {
             console.error('Error:', error);
         });
 }
-
 function addToWish(e,pid) {
     e.preventDefault();
 
@@ -632,7 +641,6 @@ function addToWish(e,pid) {
             console.error('Error:', error);
         });
 }
-
 function addToCompare(e,pid) {
     e.preventDefault();
 

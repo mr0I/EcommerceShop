@@ -91,7 +91,7 @@ class SiteController extends Controller
 
     public function blog()
     {
-        $articles = Article::where('status','published')->paginate(2);
+        $articles = Article::where('status','published')->paginate(1);
         $popular_articles = Article::where('status','published')
             ->orderBy('views','DESC')->latest()->get();
 
@@ -299,7 +299,8 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
-        $products = Product::where('title','like','%'.$request->q.'%')->get();
+        $products = Product::where('title','like','%'.$request->q.'%')->paginate(12);
+//dd($products->path());
 
         return view('site/search',[
             'products'=>$products,
