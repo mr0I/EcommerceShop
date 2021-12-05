@@ -5,7 +5,7 @@
 
 jQuery(document).ready(function($){
 
-    let localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
+    window.localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
 
     /* Toasts */
     window.BottomToast = Swal.mixin({
@@ -357,11 +357,7 @@ jQuery(document).ready(function($){
     });
 
 
-    // $('#search_product_input').on('input',function () {
-    //     document.querySelector('.search-product-input').value = $(this).val();
-    // });
-
-    // Split Prices By Comma
+    /* Split Prices By Comma */
     $.fn.digits = function () {
         return this.each(function () {
             $(this).text($(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
@@ -371,30 +367,25 @@ jQuery(document).ready(function($){
 });
 
 
-let sq = '';
-const localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
 
-function updateSearchQuery() {
-    sq = document.querySelector('.search-product-input').value;
-    console.log(sq);
-}
 function searchProduct(e) {
     e.preventDefault();
-    sq = (sq==='')? getUrlParams().sq : sq;
-    search_product(sq,localVars.siteUrl);
-}
-function search_product(searchQuery,siteUrl) {
-    window.location.href = `${siteUrl}search?q=${searchQuery}`;
-}
+    let sq = document.querySelector('#search_product_input').value;
+    let cat_id = document.querySelector('#search_product_select').value;
 
+    console.log('cid',cat_id);
 
-function getUrlParams() {
-    let url = new URL(window.location.href);
-
-    return{
-        'sq': (url.searchParams.get('q')) || ''
+    if (sq!=='') {
+        window.location.href = `${window.localVars.siteUrl}search?q=${sq}&cat=${cat_id}`;
+    } else {
+        window.BottomToast.fire({
+            icon: 'warning',
+            title: 'عبارت موردنظر برای جستجو را وارد نمایید!',
+            timer:1500
+        });
     }
 }
+
 function viewModal(pid) {
     let loader = document.getElementById("modal_loading");
     let loader_icon = document.getElementById("modal_loading_icon");

@@ -164,23 +164,24 @@
               <form class="big-deal-form" onsubmit="searchProduct(event)">
                 <div class="input-group">
                   <div class="input-group-text">
-                    <span class="search" style="cursor: pointer" id="main_search_btn"><i class="fa fa-search"></i></span>
+                    <span class="search" style="cursor: pointer" id="main_search_btn" onclick="searchProduct(event)"><i class="fa fa-search"></i></span>
                   </div>
                   @php
                     $searchQuery = (isset($_GET['q'])) ? $_GET['q'] : '';
+                    $searchCatID = (isset($_GET['cat'])) ? $_GET['cat'] : '0';
                   @endphp
-                  <input type="search" class="form-control search-product-input" value="{{ $searchQuery }}"
-                         placeholder="{{ __('Product Search') }}" oninput="updateSearchQuery(event)" >
+                  <input type="search" class="form-control" id="search_product_input" value="{{ $searchQuery }}"
+                         placeholder="{{ __('Product Search') }}" >
                   <div class="input-group-text">
-                    <select>
-                      <option value="0">{{ __('All Categories') }}</option>
+                    <select id="search_product_select">
+                      <option value="0" @if($searchCatID==='0') selected @endif>{{ __('All Categories') }}</option>
                       @if(\Illuminate\Support\Facades\App::getLocale()!=='fa')
                         @foreach($categories_en as $key=>$value)
-                          <option value="{{ $key }}">{{ $value }}</option>
+                          <option value="{{ $key }}" @if($searchCatID==$key) selected @endif>{{ $value }}</option>
                         @endforeach
                       @else
                         @foreach($categories_fa as $key=>$value)
-                          <option value="{{ $key }}">{{ $value }}</option>
+                          <option value="{{ $key }}" @if($searchCatID==$key) selected @endif>{{ $value }}</option>
                         @endforeach
                       @endif
                     </select>
@@ -869,6 +870,7 @@
 
 
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
+<script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
 
 
 <script type="application/ld+json" id="master_json_content">

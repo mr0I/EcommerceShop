@@ -371,6 +371,19 @@ input.form-control{
     display: none;
 }
 
+.dark .product-pagination {
+    border: 1px solid #3c3c3c !important;
+}
+
+
+/* start highlighter */
+mark.highlight-text{
+    background-color: yellow;
+}
+/* end highlighter */
+
+
+
 /* start responsive */
 @media screen and (max-width: 2000px) {
     .blog.blog-inverce .blog-contain .blog-details-2 .btn {

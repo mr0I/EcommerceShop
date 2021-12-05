@@ -299,12 +299,17 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
-        $products = Product::where('title','like','%'.$request->q.'%')->paginate(12);
-//dd($products->path());
+        if ($request->cat!=='0'){
+        $products = Product::where('title','like','%'.$request->q.'%')
+            ->where('category_id',$request->cat)->paginate(12);
+        } else {
+            $products = Product::where('title','like','%'.$request->q.'%')->paginate(12);
+        }
 
         return view('site/search',[
             'products'=>$products,
-            'search_query'=>$request->q
+            'search_query'=>$request->q,
+            'category_id'=>$request->cat
             ]);
     }
 
