@@ -1,0 +1,15 @@
+// require('./js/jquery-3.3.1.min');
+require('./js/slick');
+require('./js/popper.min');
+require('./js/bootstrap-notify.min');
+require('./js/menu');
+require('./js/jquery.elevatezoom');
+require('./js/feather.min');
+require('./js/feather-icon');
+require('./js/bootstrap');
+require('./js/tippy-popper.min');
+require('./js/tippy-bundle.iife.min');
+require('./js/modal');
+require('./js/script');
+require('./js/sweetalert2.all.min');
+require('./js/jquery.mark.min');

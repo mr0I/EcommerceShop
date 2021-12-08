@@ -6,6 +6,7 @@
 /public/images
 /public/fonts
 /public/uploads
+/public/overplus
 /storage/*.key
 /vendor
 .env

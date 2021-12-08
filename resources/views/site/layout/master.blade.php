@@ -42,18 +42,8 @@
 
   <link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
-  <!--icon css-->
   <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url('css/themify.css') }}">
-  <!--Slick slider css-->
-  <link rel="stylesheet" type="text/css" href="{{ url('css/slick.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url('css/slick-theme.css') }}">
-  <!--Animate css-->
-  <link rel="stylesheet" type="text/css" href="{{ url('css/animate.css') }}">
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
-  <!-- Theme css -->
-  <link rel="stylesheet" type="text/css" href="{{ url('css/color2.css') }}" media="screen" id="color">
+  <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
   <!-- Extra css -->
   <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
 
@@ -832,60 +822,32 @@
 <!-- footer end -->
 
 
-<!-- latest jquery-->
+
 <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
-
-<!-- slick js-->
 <script src="{{ url('js/slick.js') }}"></script>
-
-<!-- popper js-->
 <script src="{{ url('js/popper.min.js') }}"></script>
 <script src="{{ url('js/bootstrap-notify.min.js') }}"></script>
-
-<!-- menu js-->
 <script src="{{ url('js/menu.js') }}"></script>
-
-<!-- elevatezoom js-->
 <script src="{{ url('js/jquery.elevatezoom.js') }}"></script>
-
-<!-- timer js -->
-{{--<script src="{{ url('js/timer2.js') }}"></script>--}}
-
-<!-- feather icon -->
 <script src="{{ url('js/feather.min.js') }}"></script>
 <script src="{{ url('js/feather-icon.js') }}"></script>
-
-
-<!-- Bootstrap js-->
 <script src="{{ url('js/bootstrap.js') }}"></script>
-
-<!-- tool tip js -->
 <script src="{{ url('js/tippy-popper.min.js') }}"></script>
 <script src="{{ url('js/tippy-bundle.iife.min.js') }}"></script>
-
-
-<!-- Theme js-->
 <script src="{{ url('js/modal.js') }}"></script>
 <script src="{{ url('js/script.js') }}"></script>
-
-
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
-
-
 <script type="application/ld+json" id="master_json_content">
     {
       "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"
   }
 </script>
-
 <script src="{{ url('libs/js/script.js') }}"></script>
 @toastr_js
 @toastr_render
-
 @yield('productsByCategory')
 @yield('scripts')
-
 <script> feather.replace()</script>
 
 

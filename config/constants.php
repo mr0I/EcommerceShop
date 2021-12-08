@@ -15,5 +15,4 @@ return [
 
     'catProductsPerPage' => env('CAT_PRODUCTS_PER_PAGE',16),
     'siteUrl' => env('SITE_URL','http://127.0.0.1:8000/')
-
 ];
