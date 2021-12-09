@@ -8,9 +8,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="@yield('metadesc')">
   <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="compare-url" content="{{ url('compare') }}">
-  <meta name="wishlist-url" content="{{ url('wishlist') }}">
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('metadesc')">
   <meta property="og:image" content="https://isee.sisoog.com/assets/images/logo.png">
@@ -36,17 +33,17 @@
   {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-384x384.png" sizes="384x384">--}}
   {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-512x512.png" sizes="512x512">--}}
   <meta name="msapplication-TileColor" content="#fff">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="compare-url" content="{{ url('compare') }}">
+  <meta name="wishlist-url" content="{{ url('wishlist') }}">
   <!-- Disable scale web page -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  {{--<link rel="preload" href="/assets/fonts/micons.woff2" as="font" type="font/woff2" crossorigin="anonymous">--}}
-
   <link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
   <!-- Extra css -->
   <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
-
   @yield('productSchema')
   {!! NoCaptcha::renderJs() !!}
   @toastr_css

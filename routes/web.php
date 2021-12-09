@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAdmin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin',
+    'middleware' => ['isAdmin','XssSanitization']], function () {
     Route::get('/dashboard', 'AdminContrller@index');
     Route::get('/dashboard/articles', 'AdminContrller@articles');
     Route::get('/dashboard/add_article', 'AdminContrller@addArticle');
@@ -30,7 +31,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'isAd
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
     Route::get('/', 'DashController@index');
 });
-Route::group(['namespace' => 'Site'], function () {
+Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function () {
     Route::get('/', 'SiteController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
@@ -43,7 +44,6 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/blog', 'SiteController@blog');
     Route::post('/storeComment', 'CommentController@store');
     Route::get('/genSitemap', 'SiteController@genSitemap');
-//    Route::get('/search/{q}', 'SiteController@search');
     Route::get('/search', 'SiteController@search');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
