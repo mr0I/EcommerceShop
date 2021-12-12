@@ -318,119 +318,6 @@
                     <a class="dark-menu-item" href="{{ route('home') }}">{{ __('Home') }}</a>
                   </li>
                   <!--HOME-END-->
-                  <!--SHOP-->
-                  <!--SHOP-END-->
-                  <!--product-meu start-->
-                  <li class="mega"><a class="dark-menu-item" href="#">{{ __('Products') }}
-                    </a>
-                    <ul class="mega-menu full-mega-menu ">
-                      <li>
-                        <div class="container">
-                          <div class="row">
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>{{ __('Mobile') }}</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="product-page(left-sidebar).html">سایدبار راست</a></li>
-                                    <li><a href="product-page(right-sidebar).html">سایدبار چپ</a></li>
-                                    <li><a href="product-page(no-sidebar).html">بدون سایدبار</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>لایه پکیج</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="product-page(bundle).html">پکیج محصولات</a></li>
-                                    <li><a href="product-page(image-swatch).html">مشاهده تصاویر</a></li>
-                                    <li><a href="product-page(vertical-tab).html">تب عمودی</a></li>
-                                    <li><a href="product-page(video-thumbnail).html">ویدئو بندانگشتی</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>لایه های محصول </h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="product-page(4-image).html">4 تصویر </a></li>
-                                    <li><a href="product-page(sticky).html">چسبنده</a></li>
-                                    <li><a href="product-page(accordian).html">آکاردئون</a></li>
-                                    <li><a href="product-page(360-view).html">نمایش 360 درجه</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>تصاویر بند انگشتی</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="product-page(left-image).html">تصاویر راست</a></li>
-                                    <li><a href="product-page(right-image).html">تصاویر چپ</a></li>
-                                    <li><a href="product-page(image-outside).html">تصاویر بیرونی</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>3 ستونه</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="product-page(3-col-left).html">تصاویر بندانگشتی راست</a></li>
-                                    <li><a href="product-page(3-col-right).html">تصاویر بندانگشتی چپ</a></li>
-                                    <li><a href="product-page(3-column).html">تصاویر بندانگشتی پایین</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col mega-box">
-                              <div class="link-section">
-                                <div class="menu-title">
-                                  <h5>عناصر محصول</h5>
-                                </div>
-                                <div class="menu-content">
-                                  <ul>
-                                    <li><a href="element-productbox.html">باکس محصول</a></li>
-                                    <li><a href="element-product-slider.html">اسلایدر محصولات</a></li>
-                                    <li><a href="element-no_slider.html">بدون اسلایدر</a></li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row menu-banner">
-                            <div class="col-lg-6">
-                              <div>
-                                <img src="{{ url('images/menu-banner1.jpg') }}" alt="menu-banner" class="img-fluid">
-                              </div>
-                            </div>
-                            <div class="col-lg-6">
-                              <div>
-                                <img src="{{ url('images/menu-banner2.jpg') }}" alt="menu-banner" class="img-fluid">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <!--product-meu end-->
 
                   <!--pages meu start-->
                   <li>
@@ -796,20 +683,12 @@
   <div class="subfooter dark-footer ">
     <div class="container">
       <div class="row">
-        <div class="col-xl-6 col-md-8 col-sm-12">
+        <div class="col-12">
           <div class="footer-left">
-            <p>Copyright © 2020، تمام حقوق محفوظ است</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-md-4 col-sm-12">
-          <div class="footer-right">
-            <ul class="sosiyal">
-              <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="javascript:void(0)"><i class="fa fa-rss"></i></a></li>
-            </ul>
+            <p class="w-100 text-left" style="direction: ltr;text-align: left;">
+              ©Copyright 2021 ~ <span class="font-weight-bold">OutSider</span>
+              <i class="fa fa-paint-brush"></i>
+            </p>
           </div>
         </div>
       </div>

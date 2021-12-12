@@ -299,18 +299,33 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
+        $searchPhrase = trim($request->q);
+
+        // Sanitize Search Query
+        if ($searchPhrase=='' ||
+            strlen($searchPhrase)<3 ||
+            $this->hasOnlySpecialCharater($searchPhrase)){
+            return redirect('404');
+        }
+
         if ($request->cat!=='0'){
-        $products = Product::where('title','like','%'.$request->q.'%')
+        $products = Product::where('title','like','%'.$searchPhrase.'%')
             ->where('category_id',$request->cat)->paginate(12);
         } else {
-            $products = Product::where('title','like','%'.$request->q.'%')->paginate(12);
+            $products = Product::where('title','like','%'.$searchPhrase.'%')->paginate(12);
         }
 
         return view('site/search',[
             'products'=>$products,
-            'search_query'=>$request->q,
+            'search_query'=>$searchPhrase,
             'category_id'=>$request->cat
             ]);
+    }
+
+    private function hasOnlySpecialCharater($str)
+    {
+        $pattern = "/^[^a-zA-Z0-9ا-ی]+$/";
+        return preg_match($pattern, $str);
     }
 
 

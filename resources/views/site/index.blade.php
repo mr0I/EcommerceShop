@@ -931,7 +931,7 @@
   <!-- slider tab end -->
 
   <!--deal banner start-->
-  <section class="deal-banner">
+  <section class="deal-banner d-none">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-8">
@@ -959,7 +959,7 @@
   <!--deal banner end-->
 
   <!--hot deal start-->
-  <section class="hot-deal hotdeal-first b-g-white section-big-pb-space space-abjust">
+  <section class="hot-deal hotdeal-first b-g-white section-big-pb-space space-abjust mt-5">
     <div class="custom-container">
       <div class="row hot-2 ">
         <div class="col-12">

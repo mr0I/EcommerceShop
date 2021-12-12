@@ -373,14 +373,12 @@ function searchProduct(e) {
     let sq = document.querySelector('#search_product_input').value;
     let cat_id = document.querySelector('#search_product_select').value;
 
-    console.log('cid',cat_id);
-
-    if (sq!=='') {
+    if (sq.length >2 && sq.trim()!=='' &&  !hasOnlySpecialCharater(sq)) {
         window.location.href = `${window.localVars.siteUrl}search?q=${sq}&cat=${cat_id}`;
     } else {
         window.BottomToast.fire({
             icon: 'warning',
-            title: 'عبارت موردنظر برای جستجو را وارد نمایید!',
+            title: 'عبارت  جستجو شده نامعتبر است!!!',
             timer:1500
         });
     }
@@ -711,4 +709,9 @@ function addToCompare(e,pid) {
         .catch((error) => {
             console.error('Error:', error);
         });
+}
+
+function hasOnlySpecialCharater(val) {
+    const pattern = /^[^a-zA-Z0-9ا-ی]+$/;
+    return (pattern.test(val));
 }
