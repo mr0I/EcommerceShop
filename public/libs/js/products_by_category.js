@@ -87,10 +87,9 @@ jQuery(document).ready(function($) {
                     const productsContainer = $('.product-wrapper-grid');
                     const bottomLoader = $('.bottomLoader');
 
-                    bottomLoader.css('display','block');
-
                     if (data.result === 'Done') {
                         const products = data.products;
+                        if (Object.keys(products).length!==0)  bottomLoader.css('display','block');
 
                         setTimeout(function () {
                             products.forEach(product => {
@@ -196,7 +195,7 @@ jQuery(document).ready(function($) {
         let status = ($('#status_checkbox').prop('checked'))? 'available' : 'no_diff';
 
         const data = {
-            brands_filters: ((window.brands_filters).length!==0)? window.brands_filters : null,
+            brands_filters: ((window.brands_filters).length!==0)? window.brands_filters : [],
             min_price: min_price,
             max_price: max_price,
             status: status
@@ -210,6 +209,7 @@ jQuery(document).ready(function($) {
             body: JSON.stringify(data),
         }).then(response => response.json())
             .then(data => {
+                console.log('dataaa',data);
                 let productsContainer = $('.product-wrapper-grid');
 
                 if (data.result === 'Done') {
@@ -333,10 +333,7 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                         `);
 
 
-
-
     // load required methods for ajax load
     feather.replace();
     $('.digits').digits();
-
 }

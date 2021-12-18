@@ -208,7 +208,7 @@ class IndexController extends Controller
         foreach ($all_products as $product){
             if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
         }
-        if ($request->brands_filters!==null){
+        if (is_array($request->brands_filters) && sizeof($request->brands_filters) !== 0){
             $brandsFilters = $request->brands_filters;
         } elseif(isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
@@ -217,6 +217,7 @@ class IndexController extends Controller
         } else {
             $brandsFilters = $All_brands;
         }
+
 
         // sorting filter
         if ($request->sort_type!==null){
@@ -249,8 +250,6 @@ class IndexController extends Controller
         }
 
         // price filter
-        $min_price =0;
-        $max_price =9999999999;
         if ($request->min_price!==null && $request->max_price!==null ){
             $min_price =$request->min_price;
             $max_price =$request->max_price;
@@ -278,6 +277,10 @@ class IndexController extends Controller
         } else {
             $status = ['available','not-available'];
         }
+
+        //return response()->json(['res'=>$All_brands,'size'=>sizeof($All_brands)]);
+        //return response()->json(['res2'=>$brandsFilters,'size2'=>sizeof($brandsFilters)]);
+
 
 
         if (sizeof($All_brands)===0 || (sizeof($All_brands)===1 && $All_brands[0]==null)){
