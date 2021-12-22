@@ -22,16 +22,20 @@ class AppServiceProvider extends ServiceProvider
             if ($wish!==null){
                 $old_pids_arr = (array) json_decode($wish->pids);
                 $wish_list_len = sizeof($old_pids_arr);
-            } else{
+            } else {
                 $wish_list_len = 0;
             }
             $categories_en = Category::all()->pluck('name','id');
             $categories_fa = Category::all()->pluck('name_fa','id');
 
+
+            $logoPath = 'images/site_logo.png';
+
             $view->with([
                 'wish_list_len'=>$wish_list_len,
                 'categories_en'=>$categories_en,
                 'categories_fa'=>$categories_fa,
+                'logoPath'=>$logoPath,
                 ]);
         });
 

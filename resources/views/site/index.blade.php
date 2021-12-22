@@ -145,9 +145,9 @@
                                 </h6>
                               </a>
                             </div>
-                            <div class="detail-right">
+                            <div class="detail-right d-flex justify-content-center w-100">
                               @if($product->main_price!==null && $product->main_price!=='')
-                                <div class="check-price">
+                                <div class="check-price digits">
                                   {{ $product->main_price }} تومان
                                 </div>
                               @endif
@@ -164,6 +164,7 @@
                   @endforeach
                 </div>
               </div>
+
               <div id="tab-2" class="tab-content">
                 <div class="product-slide-6 product-m no-arrow">
                   <div>

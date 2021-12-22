@@ -267,7 +267,9 @@ class SiteController extends Controller
     public function wishlist(){
         $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
         $wish = wishlist::where('userIdentity',$user_identity)->get();
-        $arr = str_replace(array('[',']'),'',explode(",", $wish[0]->pids));
+
+        $arr = preg_replace('/[\[\]\']+/','',
+            str_replace('"','',explode(",", $wish[0]->pids)));
 
         $products = Product::whereIn('id',$arr)->paginate(5);
         return view('site/wishlist',compact('products'));

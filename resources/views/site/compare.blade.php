@@ -85,15 +85,14 @@
                                class="featured-image">
                         </a>
                         @if($product1->status=='available')
-                          <div class="product-price product_price">
+                          <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
                           </div>
-                          <a href="{{ $product1->url }}" class="btn btn-white btn-outline tooltip-top"
-                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                             target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>
-                        @else
-                          <div class="product-price product_price">
+                          </a>                        @else
+                          <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
                         @endif
@@ -106,15 +105,15 @@
                                class="featured-image">
                         </a>
                         @if($product2->status=='available')
-                        <div class="product-price product_price">
+                        <div class="product_price digits price">
                           <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
                         </div>
-                        <a href="{{ $product2->url }}" class="btn btn-white btn-outline tooltip-top"
-                           data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                        <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                            target="_blank" rel="noopener noreferrer">
                           {{ __('Buy') }}
                         </a>
                           @else
-                          <div class="product-price product_price">
+                          <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
                         @endif
@@ -127,15 +126,14 @@
                                class="featured-image">
                         </a>
                         @if($product3->status=='available')
-                          <div class="product-price product_price">
+                          <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
                           </div>
-                          <a href="{{ $product3->url }}" class="btn btn-white btn-outline tooltip-top"
-                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                             target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>
-                        @else
-                          <div class="product-price product_price">
+                          </a>                        @else
+                          <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
                         @endif
@@ -148,15 +146,14 @@
                                class="featured-image">
                         </a>
                         @if($product4->status=='available')
-                          <div class="product-price product_price">
+                          <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
                           </div>
-                          <a href="{{ $product4->url }}" class="btn btn-white btn-outline tooltip-top"
-                             data-tippy-content="خرید" target="_blank" rel="noopener noreferrer">
+                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                             target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>
-                        @else
-                          <div class="product-price product_price">
+                          </a>                        @else
+                          <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
                         @endif
@@ -167,28 +164,28 @@
                     <th class="product-name">توضیحات محصول</th>
                     @if($product1!==null)
                       <td class="item-row">
-                        <p class="description-compare">
+                        <p class="description-compare desc">
                           {{ mb_strimwidth( $product1->description,0,300,'---') }}
                         </p>
                       </td>
                     @endif
                     @if($product2!==null)
                       <td class="item-row">
-                        <p class="description-compare">
+                        <p class="description-compare desc">
                           {{ mb_strimwidth( $product2->description,0,300,'---') }}
                         </p>
                       </td>
                     @endif
                     @if($product3!==null)
                       <td class="item-row">
-                        <p class="description-compare">
+                        <p class="description-compare desc">
                           {{ mb_strimwidth( $product3->description,0,300,'---') }}
                         </p>
                       </td>
                     @endif
                     @if($product4!==null)
                       <td class="item-row">
-                        <p class="description-compare">
+                        <p class="description-compare desc">
                           {{ mb_strimwidth( $product4->description,0,300,'---') }}
                         </p>
                       </td>

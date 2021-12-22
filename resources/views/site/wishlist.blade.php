@@ -34,7 +34,7 @@
           @if(sizeof($products)===0)
             <div class="alert alert-warning text-center">{{ __('There is no item in list!!!') }}</div>
             @else
-            <table class="table cart-table table-responsive-xs">
+            <table class="table cart-table table-responsive-xs wish-table">
               <thead>
               <tr class="table-head">
                 <th scope="col">تصویر</th>
@@ -53,8 +53,14 @@
                     </a>
                   </td>
                   <td><a href="/product/{{ $product->id }}">{{ $product->title }}</a></td>
-                  <td><h2>{{ $product->price }} تومان</h2></td>
-                  <td><p>{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p></td>
+                  <td class="digits price">
+                    @if($product->price!='0')
+                    <h2>{{ $product->price }} تومان</h2>
+                      @else
+                      <h2>---</h2>
+                      @endif
+                  </td>
+                  <td><p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p></td>
                   <td>
                     <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
                     <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>

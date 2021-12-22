@@ -53,14 +53,14 @@
                         <h6 class="price-title">{{ $product->title }}</h6>
                       </a>
                     </div>
-                    <div class="detail-right">
+                    <div class="detail-right d-flex justify-content-center">
                       @if($product->main_price!==null)
-                      <div class="check-price">
+                      <div class="check-price digits text-muted">
                         {{ $product->main_price }}   تومان
                       </div>
                       @endif
                       <div class="price">
-                        <div class="price">
+                        <div class="digits price">
                           {{ $product->price }}   تومان
                         </div>
                       </div>
