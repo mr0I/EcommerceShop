@@ -28,9 +28,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin',
     Route::post('/deleteArticle', 'ArticleController@deleteArticle');
 });
 
-Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
-    Route::get('/', 'DashController@index');
-});
+//Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
+//    Route::get('/', 'DashController@index');
+//});
 Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function () {
     Route::get('/', 'SiteController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
@@ -45,6 +45,9 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::post('/storeComment', 'CommentController@store');
     Route::get('/genSitemap', 'SiteController@genSitemap');
     Route::get('/search', 'SiteController@search');
+    // Dashboard
+    Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth');
+    Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');

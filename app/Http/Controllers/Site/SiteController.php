@@ -331,15 +331,31 @@ class SiteController extends Controller
     }
 
 
-
     public function genSitemap()
     {
         $path = public_path('sitemap.xml');
         SitemapGenerator::create('http://127.0.0.1:8000')->writeToFile($path);
     }
 
-
     public function restricted(){
         return view('site/restricted');
+    }
+
+    public function my_account(){
+        $user = Auth::user();
+
+        return view('site/dashboard/index',compact('user'));
+    }
+    public function my_wishlist(){
+        $user = Auth::user();
+
+        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $wish = wishlist::where('userIdentity',$user_identity)->get();
+
+        $arr = preg_replace('/[\[\]\']+/','',
+            str_replace('"','',explode(",", $wish[0]->pids)));
+        $products = Product::whereIn('id',$arr)->paginate(2);
+
+        return view('site/dashboard/my_wishlist',compact('user','products'));
     }
 }

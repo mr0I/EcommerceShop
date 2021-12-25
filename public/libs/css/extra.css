@@ -437,6 +437,10 @@ p.desc{
     padding: 8px 4px !important;
     font-size: 115% !important;
 }
+.wish-table td,th{
+    text-align: center;
+    vertical-align: middle;
+}
 .wish-table p.available{
     color: green !important;
 }

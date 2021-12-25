@@ -331,11 +331,11 @@ jQuery(document).ready(function($){
                             window.BottomToast.fire({
                                 icon: 'success',
                                 title: 'محصول از لیست علاقه مندی حذف شد :)',
-                                timer:1500
+                                timer:1000
                             });
                             setTimeout(function () {
                                 window.location.reload(true);
-                            },2000)
+                            },1500)
                         } else {
                             window.swalWithBootstrapButtons.fire({
                                 position: 'center',

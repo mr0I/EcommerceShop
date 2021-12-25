@@ -183,13 +183,14 @@ class IndexController extends Controller
         $old_pids_arr = (array) json_decode($old_pids);
         $new_pids_arr=[];
         for($i=0;$i<sizeof($old_pids_arr);$i++){
-            if ($old_pids_arr[$i]!==$pid) array_push($new_pids_arr,$old_pids_arr[$i]);
+            if ($old_pids_arr[$i]!=$pid) array_push($new_pids_arr,$old_pids_arr[$i]);
         }
         $pids = json_encode($new_pids_arr);
 
-        $wish->pids= $pids;
-        $wish->save();
-        return response()->json(['result' => 'Done' ] , 200);
+        $update = $wish->update(array_merge([],['pids'=>$pids]));
+
+        if ($update) return response()->json(['result' => 'Done' ] , 200);
+        else return response()->json(['result' => 'Error' ] , 400);
     }
 
     public function getCatProducts(Request $request)

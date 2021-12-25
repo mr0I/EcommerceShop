@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        view()->composer(['site.layout.master'], function ($view) {
+        view()->composer(['site.layout.master','site.dashboard.layout.master'], function ($view) {
             $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
             $wish = wishlist::where('userIdentity',$user_identity)->first();
             if ($wish!==null){
