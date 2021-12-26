@@ -28,9 +28,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin',
     Route::post('/deleteArticle', 'ArticleController@deleteArticle');
 });
 
-//Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'isAuth'], function () {
-//    Route::get('/', 'DashController@index');
-//});
 Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function () {
     Route::get('/', 'SiteController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
@@ -48,6 +45,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     // Dashboard
     Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth');
     Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');
+    Route::get('/my_account/changepassword', 'SiteController@change_password')->middleware('isAuth');
     // Ajax
     Route::get('/dm-admin', 'IndexController@admin_login');
     Route::post('/changeLang', 'IndexController@changeLang');
@@ -60,6 +58,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::post('/getCatProducts/{name}', 'IndexController@getCatProducts');
     Route::post('/getProductInfo', 'IndexController@getProductInfo');
     Route::post('/writeLog', 'IndexController@writeLog');
+    Route::post('/updateUserInfo', 'IndexController@updateUserInfo');
 });
 
 

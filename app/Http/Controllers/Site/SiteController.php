@@ -358,4 +358,10 @@ class SiteController extends Controller
 
         return view('site/dashboard/my_wishlist',compact('user','products'));
     }
+    public function change_password()
+    {
+        $user = Auth::user();
+
+        return view('site/dashboard/change_password',compact('user'));
+    }
 }

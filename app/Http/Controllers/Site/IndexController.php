@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
 use App\wishlist;
+use Validator;
 use function GuzzleHttp\default_ca_bundle;
 use function GuzzleHttp\Promise\all;
 use http\Env\Response;
@@ -333,6 +334,28 @@ class IndexController extends Controller
         } else{
             return response()->json(['result'=>'Error'] ,400 );
         }
+    }
+
+    public function updateUserInfo(Request $request)
+    {
+        $validator = Validator::make($request->data, [
+            'name' => 'required|string|max:255',
+            'family' => 'required|string|max:255'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['result' => 'Bad Request' ],400);
+        }
+
+        $user = Auth::user();
+        $update = $user->update(array_merge([],[
+            'name'=>$request->data['name'],
+            'family'=>$request->data['family']
+            ]
+        ));
+
+        if ($update) return response()->json(['result'=>'Done'], 200);
+
+        return response()->json(['result' => 'Error' ],408);
     }
 
     public function writeLog(Request $request)

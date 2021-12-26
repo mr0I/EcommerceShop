@@ -1,7 +1,7 @@
 @extends('site.dashboard.layout.master')
 
 @section('title')
-  User Dashboard
+  User Wish List
 @endsection
 
 

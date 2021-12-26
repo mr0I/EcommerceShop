@@ -448,6 +448,34 @@ p.desc{
     color: darkred !important;
 }
 
+/* start editable field */
+.editable-field{
+    position: relative;
+    margin: 5px 0;
+}
+.editable-field label{
+    width: 20%;
+}
+.editable-field i.edit-button{
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    color: #262626;
+    cursor: pointer;
+}
+
+/* end editable field */
+
+
+/* start override theme styles */
+.btn-rounded, .btn-normal{
+    padding: 13px 30px !important;
+}
+.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+    cursor: not-allowed;
+}
+/* end override theme styles */
+
 /* start responsive */
 @media screen and (max-width: 2000px) {
     .blog.blog-inverce .blog-contain .blog-details-2 .btn {

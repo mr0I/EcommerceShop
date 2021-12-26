@@ -506,7 +506,7 @@
               <ul>
                 <li class="active"><a href="{{ url('/my_account') }}">اطلاعات حساب</a></li>
                 <li><a href="{{ url('/my_account/wishlist') }}">لیست علاقه مندی من</a></li>
-                <li><a href="javascript:void(0)">تغییر رمز عبور</a></li>
+                <li><a href="{{ url('/my_account/changepassword') }}">تغییر رمز عبور</a></li>
                 <li class="last"><a href="javascript:void(0)">خروج از حساب کاربری</a></li>
               </ul>
             </div>

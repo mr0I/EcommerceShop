@@ -64,34 +64,6 @@ jQuery(document).ready(function($){
                 console.error('Error:', error);
             });
 
-        // $.ajax({
-        //     url: '/changeTheme',
-        //     headers:{
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     },
-        //     type: 'POST',
-        //     data: { 'theme':selected_theme },
-        //     dataType: 'json',
-        //     beforeSend: function(){},
-        //     success: function (res , xhr) {
-        //         console.log(res);
-        //         console.log(xhr);
-        //         if (res.result === 'Done'){
-        //             if (res.selected_theme === 'dark'){
-        //                 $('#MainBody').removeClass('bg-light').addClass('dark');
-        //                 $('.curroncy-dropdown-click').find('.txt').text('تم تیره');
-        //             } else {
-        //                 $('#MainBody').removeClass('dark').addClass('bg-light');
-        //                 $('.curroncy-dropdown-click').find('.txt').text('تم روشن');
-        //             }
-        //         } else{
-        //             alert('خطا در انجام عملیات!!!');
-        //         }
-        //     }, error:function (err) {
-        //     }, complete:function () {
-        //     },timeout:10000
-        // });
-
     });
 
     /* Change Language */
@@ -357,6 +329,77 @@ jQuery(document).ready(function($){
     });
 
 
+
+    /* Editable Input Fields */
+    const $eb = $('.edit-button');
+    const $ei = $('.editable-input');
+    const $es = $('#edit_user_frm_submit');
+
+    $eb.on('click', function() {
+        $(this).siblings('.editable-input').prop('readonly', false).focus();
+        $(this).css('visibility','hidden');
+        $es.removeClass('disabled');
+    });
+    $ei.on('blur', function() {
+        $eb.css('visibility','visible');
+        $ei.prop('readonly', true);
+    });
+    /* Editable Input Fields */
+
+
+    $es.on('click',function (e) {
+        e.preventDefault();
+        const $esText = $es.text();
+        const name = document.forms['edit-user-frm']['name'].value;
+        const family = document.forms['edit-user-frm']['family'].value;
+        const userData = {
+            'name': name,
+            'family': family
+        };
+
+        $.ajax({
+            url: '/updateUserInfo',
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            data: { 'data':userData },
+            dataType: 'json',
+            beforeSend: function(){
+                $es.html(`<i class="fa fa-spinner fa-pulse fa-2x"></i>`);
+            },
+            success: function (res , xhr) {
+                if (res.result === 'Done' && xhr==='success'){
+                    window.swalWithBootstrapButtons.fire({
+                        position: 'center',
+                        icon: 'success',
+                        html:`اطلاعات شما ویرایش شد :)`,
+                        showConfirmButton: false,
+                        showCloseButton: false,
+                        showCancelButton: false,
+                        timer: 2000,
+                        timerProgressBar: true
+                    });
+                } else{
+                    window.swalWithBootstrapButtons.fire({
+                        position: 'center',
+                        icon: 'error',
+                        html:`لطفا ورودی ها را کنترل نمایید :)`,
+                        showConfirmButton: true,
+                        confirmButtonText:'خُب',
+                        showCloseButton: false,
+                        showCancelButton: false
+                    });
+                }
+            }, error:function (err) {
+                // console.log(err);
+            }, complete:function () {
+                $es.html($esText);
+            },timeout:10000
+        });
+    });
+
+
     /* Split Prices By Comma */
     $.fn.digits = function () {
         return this.each(function () {
@@ -432,17 +475,17 @@ function viewModal(pid) {
                                   <h2> ${product.title} </h2>
                                   <ul class="pro-price">
                                   ${
-                                    (product.main_price!==null && product.main_price!=='')?
-                                        `<li class="check-price digits" style="text-decoration: line-through"><span>${ product.main_price } تومان <span></li>` : ``
-                                    }
+                    (product.main_price!==null && product.main_price!=='')?
+                        `<li class="check-price digits" style="text-decoration: line-through"><span>${ product.main_price } تومان <span></li>` : ``
+                    }
                                   ${
-                                    (product.price!==0)?
-                                        `<li class="price digits">${product.price} تومان </li>` : `<li class="text-danger">ناموجود</li>`
-                                    }
+                    (product.price!==0)?
+                        `<li class="price digits">${product.price} تومان </li>` : `<li class="text-danger">ناموجود</li>`
+                    }
                                   ${
-                                    (product.main_price!==null && product.main_price!=='')?
-                                        `<li>${data.discount} % تخفیف </li>` : ``
-                                    }
+                    (product.main_price!==null && product.main_price!=='')?
+                        `<li>${data.discount} % تخفیف </li>` : ``
+                    }
                                   </ul>
                                   <ul class="best-seller">
                                     <li>
