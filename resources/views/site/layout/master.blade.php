@@ -679,7 +679,7 @@
           <div class="footer-left">
             <p class="w-100 text-left" style="direction: ltr;text-align: left;">
               ©Copyright 2021 ~ <span class="font-weight-bold">OutSider</span>
-              <i class="fa fa-paint-brush"></i>
+              <i class="fa fa-code"></i>
             </p>
           </div>
         </div>

@@ -15,7 +15,7 @@ class CreateArticleViewsTable extends Migration
     {
         Schema::create('article_views', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("article_id");
+            $table->unsignedBigInteger("article_id"); // Foreign Key
             $table->string("titleslug");
             $table->string("url");
             $table->string("session_id");
