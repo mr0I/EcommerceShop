@@ -36,6 +36,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">
   <meta name="wishlist-url" content="{{ url('wishlist') }}">
+  <meta name="dash-url" content="{{ url('my_account') }}">
   <!-- Disable scale web page -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   {{--<link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">--}}
@@ -507,8 +508,15 @@
                 <li class="active"><a href="{{ url('/my_account') }}">اطلاعات حساب</a></li>
                 <li><a href="{{ url('/my_account/wishlist') }}">لیست علاقه مندی من</a></li>
                 <li><a href="{{ url('/my_account/changepassword') }}">تغییر رمز عبور</a></li>
-                <li class="last"><a href="javascript:void(0)">خروج از حساب کاربری</a></li>
+                <li class="last">
+                  <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
+                    {{ __('SignOut') }}
+                  </a>
+                </li>
               </ul>
+              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display:none;">
+                {{ csrf_field() }}
+              </form>
             </div>
           </div>
         </div>

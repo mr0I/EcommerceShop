@@ -329,11 +329,10 @@ jQuery(document).ready(function($){
     });
 
 
-
     /* Editable Input Fields */
-    const $eb = $('.edit-button');
-    const $ei = $('.editable-input');
-    const $es = $('#edit_user_frm_submit');
+    const $eb = $('.edit-button'),
+        $ei = $('.editable-input'),
+        $es = $('#edit_user_frm_submit');
 
     $eb.on('click', function() {
         $(this).siblings('.editable-input').prop('readonly', false).focus();
@@ -344,14 +343,12 @@ jQuery(document).ready(function($){
         $eb.css('visibility','visible');
         $ei.prop('readonly', true);
     });
-    /* Editable Input Fields */
-
 
     $es.on('click',function (e) {
         e.preventDefault();
-        const $esText = $es.text();
-        const name = document.forms['edit-user-frm']['name'].value;
-        const family = document.forms['edit-user-frm']['family'].value;
+        const $esText = $es.text(),
+            name = document.forms['edit-user-frm']['name'].value,
+            family = document.forms['edit-user-frm']['family'].value;
         const userData = {
             'name': name,
             'family': family
@@ -381,14 +378,10 @@ jQuery(document).ready(function($){
                         timerProgressBar: true
                     });
                 } else{
-                    window.swalWithBootstrapButtons.fire({
-                        position: 'center',
+                    window.BottomToast.fire({
                         icon: 'error',
-                        html:`لطفا ورودی ها را کنترل نمایید :)`,
-                        showConfirmButton: true,
-                        confirmButtonText:'خُب',
-                        showCloseButton: false,
-                        showCancelButton: false
+                        title: 'لطفا ورودی ها را کنترل نمایید!',
+                        timer:1500
                     });
                 }
             }, error:function (err) {
@@ -398,6 +391,66 @@ jQuery(document).ready(function($){
             },timeout:10000
         });
     });
+    /* Editable Input Fields */
+
+
+    /* change password form */
+    $('#change_user_pass_frm_submit').on('click',function (e) {
+        e.preventDefault();
+        $btn = $(this);
+        $btnText = $(this).text();
+
+        const currentPass = document.forms['change-user-pass-frm']['current_pass'].value,
+            newPass = document.forms['change-user-pass-frm']['new_pass'].value,
+            newPassConfirmation = document.forms['change-user-pass-frm']['new_pass_confirmation'].value;
+        const passData={
+            'current_pass': currentPass,
+            'new_pass': newPass,
+            'new_pass_confirmation': newPassConfirmation
+        };
+
+        $.ajax({
+            url: '/updateUserPass',
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            data: { 'data':passData },
+            dataType: 'json',
+            beforeSend: function(){
+                $btn.html('<i class="fa fa-spinner fa-pulse"></i>' + $btnText);
+            },
+            success: function (res , xhr) {
+                if (res.result === 'Done' && xhr==='success'){
+                    window.swalWithBootstrapButtons.fire({
+                        position: 'center',
+                        icon: 'success',
+                        html:`رمز عبور با موفقیت تغییر یافت :)`,
+                        showConfirmButton: true,
+                        confirmButtonText: 'خُب',
+                        showCloseButton: false,
+                        showCancelButton: false,
+                        timer: 2000,
+                        timerProgressBar: true
+                    }).then((result) => {
+                        if (result.isConfirmed) window.location.href = $('meta[name="dash-url"]').attr('content');
+                    });
+                } else{
+                    window.BottomToast.fire({
+                        icon: 'error',
+                        title: 'لطفا ورودی ها را کنترل نمایید!',
+                        timer:1500
+                    });
+                }
+            }, error:function (err) {
+                console.log(err);
+            }, complete:function () {
+                $btn.html($btnText);
+            },timeout:10000
+        });
+
+    });
+    /* change password form */
 
 
     /* Split Prices By Comma */

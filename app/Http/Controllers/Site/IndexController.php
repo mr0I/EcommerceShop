@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\metaproduct;
 use App\Product;
 use App\wishlist;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use function GuzzleHttp\default_ca_bundle;
 use function GuzzleHttp\Promise\all;
@@ -348,13 +349,38 @@ class IndexController extends Controller
 
         $user = Auth::user();
         $update = $user->update(array_merge([],[
-            'name'=>$request->data['name'],
-            'family'=>$request->data['family']
+                'name'=>$request->data['name'],
+                'family'=>$request->data['family']
             ]
         ));
 
         if ($update) return response()->json(['result'=>'Done'], 200);
 
+        return response()->json(['result' => 'Error' ],408);
+    }
+
+    public function updateUserPass(Request $request)
+    {
+        $user = Auth::user();
+
+        $validator = Validator::make($request->data, [
+            'current_pass' => 'required|string|min:6',
+            'new_pass' =>  array(
+                'required','string', 'min:6', 'confirmed',
+                'regex:/(^([a-zA-Z]+)(\d+)?$)/u'
+            )
+        ]);
+        if ($validator->fails()
+            || !Hash::check($request->data['current_pass'] , $user->password)
+            || $request->data['current_pass'] === $request->data['new_pass']
+        ) {
+            return response()->json(['result' => 'Bad Request']);
+        }
+
+        $user->password = Hash::make($request->data['new_pass']);
+        $res = $user->save();
+
+        if ($res) return response()->json(['result'=>'Done'], 200);
         return response()->json(['result' => 'Error' ],408);
     }
 
