@@ -311,8 +311,8 @@ class SiteController extends Controller
         }
 
         if ($request->cat!=='0'){
-        $products = Product::where('title','like','%'.$searchPhrase.'%')
-            ->where('category_id',$request->cat)->paginate(12);
+            $products = Product::where('title','like','%'.$searchPhrase.'%')
+                ->where('category_id',$request->cat)->paginate(12);
         } else {
             $products = Product::where('title','like','%'.$searchPhrase.'%')->paginate(12);
         }
@@ -321,7 +321,7 @@ class SiteController extends Controller
             'products'=>$products,
             'search_query'=>$searchPhrase,
             'category_id'=>$request->cat
-            ]);
+        ]);
     }
 
     private function hasOnlySpecialCharater($str)
@@ -352,9 +352,12 @@ class SiteController extends Controller
         $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
         $wish = wishlist::where('userIdentity',$user_identity)->get();
 
-        $arr = preg_replace('/[\[\]\']+/','',
-            str_replace('"','',explode(",", $wish[0]->pids)));
-        $products = Product::whereIn('id',$arr)->paginate(2);
+            $products = [];
+        if (sizeof($wish)!==0){
+            $arr = preg_replace('/[\[\]\']+/','',
+                str_replace('"','',explode(",", $wish[0]->pids)));
+            $products = Product::whereIn('id',$arr)->paginate(2);
+        }
 
         return view('site/dashboard/my_wishlist',compact('user','products'));
     }

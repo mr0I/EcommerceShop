@@ -384,6 +384,7 @@ class IndexController extends Controller
         return response()->json(['result' => 'Error' ],408);
     }
 
+
     public function writeLog(Request $request)
     {
         $logs = array(

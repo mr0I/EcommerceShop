@@ -19,7 +19,7 @@ class CreateArticleViewsTable extends Migration
             $table->string("titleslug");
             $table->string("url");
             $table->string("session_id");
-            $table->unsignedInteger('user_id')->nullable();
+            $table->uuid('user_id')->nullable(); // Foreign Key
             $table->string("ip");
             $table->string("agent");
             $table->timestamps();

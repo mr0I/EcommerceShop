@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\uuids;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,uuids;
 
     /**
      * The attributes that are mass assignable.

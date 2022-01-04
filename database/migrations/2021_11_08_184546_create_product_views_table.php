@@ -15,11 +15,11 @@ class CreateProductViewsTable extends Migration
     {
         Schema::create('product_views', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger("product_id");
+            $table->unsignedInteger("product_id"); // Foreign Key
             $table->string("titleslug");
             $table->string("url");
             $table->string("session_id");
-            $table->unsignedInteger('user_id')->nullable();
+            $table->uuid('user_id')->nullable(); // Foreign Key
             $table->string("ip");
             $table->string("agent");
             $table->timestamps();
