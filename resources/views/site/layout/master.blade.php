@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">
-  <meta name="author" content="Outsider" />
+  <meta name="author" content="ZeroOne" />
   <meta name="robots" content="all, index, follow" />
   <meta name="googlebot" content="index, follow" />
   <meta name="geo.region" content="IR" />
@@ -678,7 +678,7 @@
         <div class="col-12">
           <div class="footer-left">
             <p class="w-100 text-left" style="direction: ltr;text-align: left;">
-              ©Copyright 2021 ~ <span class="font-weight-bold">OutSider</span>
+              ©Copyright 2021 ~ <span class="font-weight-bold">ZeroOne</span>
               <i class="fa fa-code"></i>
             </p>
           </div>

@@ -318,6 +318,9 @@ ul.rating-star{
 input.form-control{
     margin-bottom: 0 !important;
 }
+.help-block{
+    color: red;
+}
 /* Form Styles */
 
 .theme-pannel-main{
@@ -463,7 +466,6 @@ p.desc{
     color: #262626;
     cursor: pointer;
 }
-
 /* end editable field */
 
 
@@ -475,6 +477,16 @@ p.desc{
     cursor: not-allowed;
 }
 /* end override theme styles */
+
+
+/* start pagination buttons */
+.Page.navigation{
+
+}
+/* end pagination buttons */
+
+
+
 
 /* start responsive */
 @media screen and (max-width: 2000px) {

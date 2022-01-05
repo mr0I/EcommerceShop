@@ -3,16 +3,33 @@
 
 @section('content')
 
+  {{-- Display Errors --}}
   @if (session('status'))
-    <div class="alert alert-success">
+    <div class="my-3 alert alert-success">
       {{ session('status') }}
     </div>
   @endif
   @if (session('warning'))
-    <div class="alert alert-warning">
+    <div class="my-3 alert alert-warning">
       {{ session('warning') }}
     </div>
   @endif
+  @if ($errors->has('email'))
+    <div class="my-3 alert alert-danger">
+      {{ $errors->first('email') }}
+    </div>
+  @endif
+  @if ($errors->has('password'))
+    <div class="my-3 alert alert-danger">
+      {{ $errors->first('password') }}
+    </div>
+  @endif
+  @if ($errors->has('g-recaptcha-response'))
+    <div class="my-3 alert alert-danger">
+      {{ $errors->first('g-recaptcha-response') }}
+    </div>
+  @endif
+  {{-- Display Errors --}}
 
 
   <div class="container mt-5">
@@ -44,11 +61,6 @@
                 <label class="col-md-4 control-label">{{ __('Captcha') }}</label>
                 <div class="col-md-6">
                   {!! app('captcha')->display() !!}
-                  @if ($errors->has('g-recaptcha-response'))
-                    <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                  @endif
                 </div>
               </div>
 

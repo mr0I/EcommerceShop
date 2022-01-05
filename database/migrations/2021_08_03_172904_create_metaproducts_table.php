@@ -15,7 +15,7 @@ class CreateMetaproductsTable extends Migration
     {
         Schema::create('metaproducts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id'); // Foreign Key
+            $table->unsignedInteger('product_id'); // Foreign Key
             $table->string('key');
             $table->string('value');
             $table->timestamps();

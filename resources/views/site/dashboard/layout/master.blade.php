@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">
-  <meta name="author" content="Outsider" />
+  <meta name="author" content="ZeroOne" />
   <meta name="robots" content="all, index, follow" />
   <meta name="googlebot" content="index, follow" />
   <meta name="geo.region" content="IR" />

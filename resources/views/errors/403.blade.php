@@ -5,7 +5,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>404, Page Not Found</title>
+  <title>403, Forbidden</title>
 
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
@@ -77,9 +77,11 @@
 <body>
 <div class="container">
   <div class="copy-container center-xy">
-    <h2>{{ __('Oops! Page Not Be Found') }}</h2>
-    <p>{{ __('Sorry but the page you are looking for does not exist') }}</p>
+    <p>
+      403, Forbidden!
+    </p>
     <a href="{{ route('home') }}">{{ __('Back to homepage') }}</a>
+
   </div>
 </div>
 
