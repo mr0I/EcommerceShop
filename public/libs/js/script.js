@@ -7,6 +7,8 @@ jQuery(document).ready(function($){
 
     window.localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
 
+
+
     /* Toasts */
     window.BottomToast = Swal.mixin({
         toast: true,

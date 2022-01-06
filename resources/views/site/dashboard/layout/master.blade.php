@@ -505,9 +505,12 @@
               <p>{{ __('Hi, ') . $user->name }}</p>
               <hr>
               <ul>
-                <li class="active"><a href="{{ url('/my_account') }}">اطلاعات حساب</a></li>
-                <li><a href="{{ url('/my_account/wishlist') }}">لیست علاقه مندی من</a></li>
-                <li><a href="{{ url('/my_account/changepassword') }}">تغییر رمز عبور</a></li>
+                <li class="active"><a href="{{ url('/my_account') }}">{{ __('Account Info') }}</a></li>
+                <li><a href="{{ url('/my_account/wishlist') }}">{{ __('My Wish List') }}</a></li>
+                <li><a href="{{ url('/my_account/changepassword') }}">{{ __('change password') }}</a></li>
+                @if(Auth::user()->role->name==='Admin')
+                <li><a href="{{ url('admin/dashboard') }}">{{ __('Admin Panel') }}</a></li>
+                @endif
                 <li class="last">
                   <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
                     {{ __('SignOut') }}
@@ -646,6 +649,7 @@
 <script src="{{ url('js/script.js') }}"></script>
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
+
 <script type="application/ld+json" id="master_json_content">
     {
       "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"

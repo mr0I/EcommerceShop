@@ -37,11 +37,11 @@
                 </div>
                 <div class="form-group row editor-label">
                   <div class="col-xl-3 col-md-4">
-                    <label><span>*</span> توضیحات</label>
+                    <label for="editor"><span>*</span> توضیحات</label>
                   </div>
                   <div class="col-xl-8 col-md-7">
                     <div class=" editor-space">
-                      <textarea class="w-100" name="desc" cols="50 " rows="5"></textarea>
+                      <textarea class="w-100" id="editor" name="desc" cols="50" rows="5"></textarea>
                     </div>
                   </div>
                 </div>
