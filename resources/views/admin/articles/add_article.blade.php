@@ -40,9 +40,14 @@
                     <label for="editor"><span>*</span> توضیحات</label>
                   </div>
                   <div class="col-xl-8 col-md-7">
-                    <div class=" editor-space">
-                      <textarea class="w-100" id="editor" name="desc" cols="50" rows="5"></textarea>
+                    <div id="editor">
+                      <p>Hello World!</p>
+                      <p>Some initial <strong>bold</strong> text</p>
+                      <p><br></p>
                     </div>
+                    {{--<div class=" editor-space">--}}
+                      {{--<textarea class="w-100" id="editor" name="desc" cols="50" rows="5"></textarea>--}}
+                    {{--</div>--}}
                   </div>
                 </div>
                 <div class="form-group row">
@@ -115,3 +120,32 @@
 
   </div>
 @endsection
+
+
+@section('inlineScripts')
+  <script type="text/javascript">
+      let toolbarOptions = [
+          ['bold', 'italic', 'underline', 'strike'],
+          ['image','blockquote', 'code-block'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'direction': 'rtl' }],
+          [{ 'size': ['small', false, 'large', 'huge'] }],
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': [] }],
+          [{ 'align': [] }],
+          ['clean']
+      ];
+
+      let options = {
+          //debug: 'info',
+          modules: {toolbar: toolbarOptions},
+          placeholder: 'توضیحات مقاله...',
+          readOnly: false,
+          theme: 'snow'
+      };
+      let editor  = new Quill('#editor', options);
+  </script>
+  @endsection

@@ -708,7 +708,7 @@
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
 <script type="application/ld+json" id="master_json_content">
     {
-      "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"
+      "quillToolbarOptions" : "<?= Config::get('constants.siteUrl') ?>"
   }
 </script>
 <script src="{{ url('libs/js/script.js') }}"></script>
