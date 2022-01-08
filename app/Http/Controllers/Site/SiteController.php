@@ -91,7 +91,7 @@ class SiteController extends Controller
 
     public function blog()
     {
-        $articles = Article::where('status','published')->paginate(1);
+        $articles = Article::where('status','published')->latest()->paginate(5);
         $popular_articles = Article::where('status','published')
             ->orderBy('views','DESC')->latest()->get();
 

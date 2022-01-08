@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin',
-    'middleware' => ['isAdmin','XssSanitization']], function () {
+    'middleware' => ['isAdmin']], function () {
     Route::get('/dashboard', 'AdminContrller@index');
     Route::get('/dashboard/articles', 'AdminContrller@articles');
     Route::get('/dashboard/add_article', 'AdminContrller@addArticle');

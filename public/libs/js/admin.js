@@ -14,17 +14,17 @@ jQuery(document).ready(function($){
 
 
     $('.ArticleFrmSubmit').on('click',function () {
-        const thisBtn = $(this),
-            frm_type = thisBtn.data('type');
-
+        const thisBtn = $(this);
+        const frm_type = thisBtn.data('type');
 
         let title = document.forms['ArticlePublic']['title'].value,
-            desc = document.forms['ArticlePublic']['desc'].value,
+            desc = $('#editor').find('.ql-editor').html(),
             image_id = document.forms['ArticlePublic']['image_id'].value,
             status = (document.forms['ArticlePublic']['status'].checked)? 'published' : 'draft',
             meta_title = document.forms['ArticleSeo']['meta_title'].value,
             meta_desc = document.forms['ArticleSeo']['meta_desc'].value,
             meta_keywords = document.forms['ArticleSeo']['tags'].value;
+
 
         let keywords = [];
         JSON.parse(meta_keywords).map(key => keywords.push(key.value));

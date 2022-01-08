@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title',155);
             $table->unsignedBigInteger('article_image_id')->nullable(); // Foreign Key
-            $table->text('description');
+            $table->longText('description');
             $table->string('meta_title',55)->nullable();
             $table->string('meta_desc',155)->nullable();
             $table->string('meta_keywords',255)->nullable();

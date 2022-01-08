@@ -8,6 +8,7 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminContrller extends Controller
 {
@@ -29,7 +30,7 @@ class AdminContrller extends Controller
 
     public function articles()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->paginate(10);
 
         return view('admin/articles/index',compact('articles'));
     }

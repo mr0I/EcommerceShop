@@ -69,7 +69,10 @@
                         {{--<li><i class="fa fa-heart"></i> 5 پسند</li>--}}
                         <li><i class="fa fa-comments"></i> {{ sizeof($comments) }} دیدگاه</li>
                       </ul>
-                      <p>{{ mb_strimwidth($article->description,0,200,'---') }}</p>
+                      @php
+                        $excerpt = mb_strimwidth($article->description,0,200,'---')
+                      @endphp
+                      <p>{{ strip_tags($excerpt) }}</p>
                     </div>
                   </div>
                 </div>
@@ -87,18 +90,18 @@
                     <li>
                       <div class="media">
                         @if($popular_article->article_image_id!==null)
-                          <a href="{{ url('/article/'.$article->slug) }}">
+                          <a href="{{ url('/article/'.$popular_article->slug) }}">
                             <img src="{{ url('uploads/article_images/'.$popular_article->articleImage['image']) }}"
                                  class="img-fluid" alt="{{ __('Article Image') }}">
                           </a>
                         @else
-                          <a href="{{ url('/article/'.$article->slug) }}">
+                          <a href="{{ url('/article/'.$popular_article->slug) }}">
                             <img src="{{ url('images/custom/noimage.png') }}"
                                  class="img-fluid" alt="{{ __('Article Image') }}">
                           </a>
                         @endif
                         <div class="media-body align-self-center">
-                          <a href="{{ url('/article/'.$article->slug) }}">
+                          <a href="{{ url('/article/'.$popular_article->slug) }}">
                             <h6>{{ $popular_article->title }}</h6>
                           </a>
                           <p>{{ $popular_article->views }} {{ __('Views') }}</p>

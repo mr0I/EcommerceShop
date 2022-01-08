@@ -51,7 +51,7 @@
               {{--<li><i class="fa fa-heart"></i> 5 پسند</li>--}}
               <li><i class="fa fa-comments"></i> {{ sizeof($comments) }} دیدگاه</li>
             </ul>
-            <p>{{ $article->description }}</p>
+            <p>{!! $article->description !!}</p>
           </div>
         </div>
       </div>

@@ -65,7 +65,7 @@
                     <td>{{ $article->title }}</td>
                     <td>
                       <span>
-                            {{ mb_strimwidth($article->description,0,50,'---') }}
+                            {{ strip_tags(mb_strimwidth($article->description,0,50,'---')) }}
                       </span>
                     </td>
                     <td>

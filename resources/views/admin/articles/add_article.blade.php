@@ -40,14 +40,11 @@
                     <label for="editor"><span>*</span> توضیحات</label>
                   </div>
                   <div class="col-xl-8 col-md-7">
-                    <div id="editor">
+                    <div id="editor" name="desc">
                       <p>Hello World!</p>
                       <p>Some initial <strong>bold</strong> text</p>
                       <p><br></p>
                     </div>
-                    {{--<div class=" editor-space">--}}
-                      {{--<textarea class="w-100" id="editor" name="desc" cols="50" rows="5"></textarea>--}}
-                    {{--</div>--}}
                   </div>
                 </div>
                 <div class="form-group row">
@@ -124,7 +121,7 @@
 
 @section('inlineScripts')
   <script type="text/javascript">
-      let toolbarOptions = [
+      const toolbarOptions = [
           ['bold', 'italic', 'underline', 'strike'],
           ['image','blockquote', 'code-block'],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -138,14 +135,14 @@
           [{ 'align': [] }],
           ['clean']
       ];
-
-      let options = {
+      const options = {
           //debug: 'info',
           modules: {toolbar: toolbarOptions},
           placeholder: 'توضیحات مقاله...',
           readOnly: false,
           theme: 'snow'
       };
-      let editor  = new Quill('#editor', options);
+
+      new Quill('#editor', options);
   </script>
-  @endsection
+@endsection

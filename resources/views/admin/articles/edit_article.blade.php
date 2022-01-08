@@ -46,10 +46,8 @@
                       <label><span>*</span> توضیحات</label>
                     </div>
                     <div class="col-xl-8 col-md-7">
-                      <div class=" editor-space">
-                      <textarea class="w-100" name="desc" cols="50 " rows="5">
-                        {{ $article->description ?? old('desc') }}
-                      </textarea>
+                      <div id="editor" name="desc">
+                        {!! $article->description ?? old('desc') !!}
                       </div>
                     </div>
                   </div>
@@ -107,6 +105,14 @@
                       <textarea rows="4" class="col-12" name="meta_desc">{{ $article->meta_desc ?? old('meta_desc') }}</textarea>
                     </div>
                   </div>
+                  <div class="form-group row editor-label">
+                    <div class="col-xl-3 col-md-4">
+                      <label>کلمات کلیدی</label>
+                    </div>
+                    <div class="col-xl-8 col-md-7">
+                      <input name="tags" value="{{ $article->meta_keywords ?? old('meta_keywords') }}">
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -121,4 +127,33 @@
     <!-- Container-fluid Ends-->
 
   </div>
+@endsection
+
+
+@section('inlineScripts')
+  <script type="text/javascript">
+      const toolbarOptions = [
+          ['bold', 'italic', 'underline', 'strike'],
+          ['image','blockquote', 'code-block'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          [{ 'script': 'sub'}, { 'script': 'super' }],
+          [{ 'indent': '-1'}, { 'indent': '+1' }],
+          [{ 'direction': 'rtl' }],
+          [{ 'size': ['small', false, 'large', 'huge'] }],
+          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+          [{ 'color': [] }, { 'background': [] }],
+          [{ 'font': [] }],
+          [{ 'align': [] }],
+          ['clean']
+      ];
+      const options = {
+          //debug: 'info',
+          modules: {toolbar: toolbarOptions},
+          placeholder: 'توضیحات مقاله...',
+          readOnly: false,
+          theme: 'snow'
+      };
+
+      new Quill('#editor', options);
+  </script>
 @endsection
