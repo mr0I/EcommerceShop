@@ -1,6 +1,9 @@
 @extends('site.layout.master')
 
 
+@section('keywords') {{ $product->title  }} @endsection
+@section('metadesc') {{ mb_strimwidth($product->description,0,300,null)  }} @endsection
+
 @section('productSchema')
   <script type="application/ld+json">
     {

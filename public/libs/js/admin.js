@@ -39,8 +39,7 @@ jQuery(document).ready(function($){
             meta_keywords:keywords.join(', ')
         };
 
-
-        if (frm_type==='Add'){
+        if (frm_type === 'Add'){
             $.ajax({
                 url: '/admin/addArticle',
                 headers:{
@@ -65,8 +64,10 @@ jQuery(document).ready(function($){
                     thisBtn.html('ذخیره');
                 },timeout:10000
             });
-        } else if(frm_type==='Edit'){
+        } else if(frm_type === 'Edit'){
             const article_id = thisBtn.data('id');
+
+            console.log(article_data);
 
             $.ajax({
                 url: `/admin/updateArticle/${article_id}`,
@@ -181,14 +182,12 @@ function delArticle(articleId) {
         })
             .then(response => response.json())
             .then(data => {
-                // console.log('data',data);return;
                 if (data.result === 'Done'){
                     alert('مقاله پاک شد:)');
                     window.location.reload();
                 }else{
                     alert('خطا در عملیات');
                 }
-
             })
             .catch((error) => {
                 console.error('Error:', error);

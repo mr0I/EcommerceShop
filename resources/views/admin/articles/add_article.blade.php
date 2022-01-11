@@ -40,11 +40,7 @@
                     <label for="editor"><span>*</span> توضیحات</label>
                   </div>
                   <div class="col-xl-8 col-md-7">
-                    <div id="editor" name="desc">
-                      <p>Hello World!</p>
-                      <p>Some initial <strong>bold</strong> text</p>
-                      <p><br></p>
-                    </div>
+                    <div id="editor" name="desc"></div>
                   </div>
                 </div>
                 <div class="form-group row">

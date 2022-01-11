@@ -72,6 +72,11 @@ class SiteController extends Controller
             compact('mobileProducts' ,'specialProducts','articles'));
     }
 
+    public function authentication()
+    {
+        return view('auth/authentication');
+    }
+
     public function singleArticle($slug)
     {
         $article = Article::where('slug',$slug)->first();

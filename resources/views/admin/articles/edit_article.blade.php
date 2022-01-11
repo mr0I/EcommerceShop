@@ -80,7 +80,7 @@
                       </div>
                       <p><span id="percent"></span></p>
                       <p><span id="result"></span></p>
-                      <input type="hidden" id="uploaded_image_id" name="image_id">
+                      <input type="hidden" id="uploaded_image_id" name="image_id" value="{{ $article->article_image_id }}">
                     </div>
                   </div>
                 </form>

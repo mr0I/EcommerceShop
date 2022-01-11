@@ -16,6 +16,7 @@ class CreateArticleImagesTable extends Migration
         Schema::create('article_images', function (Blueprint $table) {
             $table->id();
             $table->string('image');
+            $table->unsignedBigInteger('article_id'); // Foreign Key
             $table->timestamps();
         });
     }

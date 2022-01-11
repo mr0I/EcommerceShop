@@ -116,10 +116,10 @@ class RegisterController extends Controller
                 $status = "Your e-mail is already verified. You can now login.";
             }
         }else{
-            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+            return redirect('/authentication')->with('warning', "Sorry your email cannot be identified.");
         }
 
-        return redirect('/login')->with('status', $status);
+        return redirect('/authentication')->with('status', $status);
     }
 
 

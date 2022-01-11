@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::post('/storeComment', 'CommentController@store');
     Route::get('/genSitemap', 'SiteController@genSitemap');
     Route::get('/search', 'SiteController@search');
+    Route::get('/authentication', 'SiteController@authentication')->middleware('guest');
     // Dashboard
     Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth');
     Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');

@@ -16,15 +16,17 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
     public function addArticle(Request $request)
     {
-        $res = Article::create(array_merge($request->data,['views'=>0]));
-        if ($res){
+        $article = Article::create(array_merge($request->data,['views'=>0]));
+        if ($article){
+            $imageID = $article->article_image_id;
+            $articleID = $article->id;
+
+            $image = ArticleImage::find($imageID);
+            $image->article_id = $articleID;
+            $image->save();
+
             return response()->json(['result'=>'Done'],200);
         } else{
             return response()->json(['result'=>'Error'],400);
@@ -34,19 +36,28 @@ class ArticleController extends Controller
     public function updateArticle(Request $request,$article_id)
     {
         $article = Article::find($article_id);
-        $image_id = $article->article_image_id;
+        $old_image_id = $article->article_image_id;
+        $new_image_id = $request->data['article_image_id'];
 
-        $res = $article->update(array_merge($request->data));
-        if ($res){
-            if ($image_id!==null){
-                $image = ArticleImage::find($image_id);
+        $update = $article->update($request->data);
+        if ($update){
+            $imageID = $article->article_image_id;
+            $articleID = $article->id;
+
+            $image = ArticleImage::find($imageID);
+            $image->article_id = $articleID;
+            $image->save();
+
+            if ($old_image_id !== null && $old_image_id != $new_image_id){
+                $image = ArticleImage::find($old_image_id);
+                @unlink(public_path().'/uploads/article_images/'. $image->image);
                 $res2 = $image->delete();
                 if ($res2) return response()->json(['result' => 'Done'] , 200);
                 else return response()->json(['result' => 'Error'] , 400);
             }
             return response()->json(['result' => 'Done'] , 200);
         } else {
-            response()->json(['result' => 'Error'] , 400);
+            return response()->json(['result' => 'Error'] , 400);
         }
     }
 
@@ -67,18 +78,20 @@ class ArticleController extends Controller
     public function deleteArticle(Request $request)
     {
         $article = Article::find($request->articleId);
+
         if ($article!==null){
             $image_id = $article->article_image_id;
+            $image = ArticleImage::find($image_id);
+            @unlink(public_path().'/uploads/article_images/'. $image->image);
             $res = $article->delete();
             if ($res){
-                $image = ArticleImage::find($image_id);
-                $res2 = $image->delete();
-                if ($res2) return response()->json(['result' => 'Done'] , 200);
-                else return response()->json(['result' => 'Error'] , 400);
+                return response()->json(['result' => 'Done'] , 200);
             }
         } else{
             return response()->json(['result' => 'Error'] , 400);
         }
+
+        return response()->json(['result' => 'Error'] , 408);
     }
 
     /**
