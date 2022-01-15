@@ -25,9 +25,13 @@ jQuery(document).ready(function($){
             meta_desc = document.forms['ArticleSeo']['meta_desc'].value,
             meta_keywords = document.forms['ArticleSeo']['tags'].value;
 
+        // console.log(typeof meta_keywords);
+        // return;
 
         let keywords = [];
-        JSON.parse(meta_keywords).map(key => keywords.push(key.value));
+        if (meta_keywords !== '' && meta_keywords !== null ){
+            JSON.parse(meta_keywords).map(key => keywords.push(key.value));
+        }
 
         const article_data={
             title:title,
@@ -36,7 +40,7 @@ jQuery(document).ready(function($){
             article_image_id:image_id,
             meta_title:meta_title,
             meta_desc:meta_desc,
-            meta_keywords:keywords.join(', ')
+            meta_keywords: keywords.length !== 0 ? keywords.join(', ') : null
         };
 
         if (frm_type === 'Add'){

@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
+use Spatie\Crawler\Crawler;
 use Spatie\Sitemap\SitemapGenerator;
 
 class SiteController extends Controller
@@ -339,7 +340,11 @@ class SiteController extends Controller
     public function genSitemap()
     {
         $path = public_path('sitemap.xml');
-        SitemapGenerator::create('http://127.0.0.1:8000')->writeToFile($path);
+        SitemapGenerator::create('http://127.0.0.1:8000')
+            ->configureCrawler(function (Crawler $crawler) {
+                $crawler->setMaximumDepth(3);
+            })
+            ->writeToFile($path);
     }
 
     public function restricted(){
