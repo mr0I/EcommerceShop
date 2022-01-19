@@ -2,6 +2,9 @@
 h1,h2,h3,h4,h5,h6,li{
     line-height: 2 !important;
 }
+ul{
+    padding: 0;
+}
 /* Globals */
 
 
@@ -483,6 +486,76 @@ p.desc{
     text-align: center !important;
 }
 /* end quill styles */
+
+
+/* start placeholder animation */
+.load-wraper{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(211,211,211);
+    z-index: 44;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.activity{
+    position: absolute;
+    left: -45%;
+    height: 100%;
+    width: 45%;
+    background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    background-image: -moz-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    background-image: -webkit-linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6), rgba(251,251,251, .3), rgba(251,251,251, .05));
+    animation: loading 1s infinite;
+    z-index: 45;
+}
+
+@keyframes loading {
+    0%{
+        left: -45%;
+    }
+    100%{
+        left: 100%;
+    }
+}
+
+.row.block-row.block-light{
+    background-color: #ffffff;
+}
+.row.block-row.block-dark{
+    background-color: #212121;
+}
+.row.block-row{
+    flex-flow: column wrap;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: none;
+    z-index: 999;
+}
+.block-container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+}
+.block{
+    margin: 13px 0;
+}
+
+/* end placeholder animation */
+
+
+
+
 
 /* start responsive */
 @media screen and (max-width: 2000px) {

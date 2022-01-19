@@ -493,12 +493,10 @@ let _do_search = (searchQuery,catId) => {
 };
 
 function viewModal(pid) {
-    let loader = document.getElementById("modal_loading");
-    let loader_icon = document.getElementById("modal_loading_icon");
+    let loader = document.getElementById("ph_animation");
+    loader.style.display='flex';
 
     const data = { pid: pid };
-    loader.style.display='block';
-    loader_icon.classList.add('fa-spin');
     fetch('/getProductInfo', {
         method: 'POST',
         headers: {
@@ -506,12 +504,12 @@ function viewModal(pid) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         body: JSON.stringify(data),
-    })
-        .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
             if (data.result === 'Done') {
                 let product = data.product;
                 const modalBody = $('.modal').find('.modal-body');
+                loader.style.display='none';
 
                 modalBody.html('');
                 modalBody.append(`
@@ -543,7 +541,7 @@ function viewModal(pid) {
                                   <ul class="best-seller">
                                     <li>
                                       <i class="fa fa-eye align-middle mx-2"></i>
-                                      ${data.views} مشاهده 
+                                      ${data.views} مشاهده
                                     </li>
                                   </ul>
                                 </div>
@@ -568,9 +566,7 @@ function viewModal(pid) {
                             </div>
                           </div>
                     `);
-
                 $('.digits').digits();
-
             } else {
                 window.swalWithBootstrapButtons.fire({
                     position: 'center',
@@ -583,14 +579,10 @@ function viewModal(pid) {
                     cancelButtonText: 'خُب'
                 });
             }
-            loader.style.display='none';
-            loader_icon.classList.remove('fa-spin');
         })
         .catch((error) => {
             loader.style.display='none';
-            loader_icon.classList.remove('fa-spin');
         });
-
 
 }
 function addToWish(e,pid) {

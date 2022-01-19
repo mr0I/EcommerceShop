@@ -526,7 +526,44 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content quick-view-modal">
         <div class="modal-body"></div>
-        <div id="modal_loading"><i class="fa fa-circle-o-notch" id="modal_loading_icon"></i></div>
+        <div class="row block-row @if(session()->get('theme') =='light') block-light @else block-dark @endif"
+             id="ph_animation">
+          <div class="block-container w-50">
+            <div class="block w-100 h-100">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+          </div>
+          <div class="block-container w-50">
+            <div class="block w-100 h-25">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+            <div class="block w-50 h-25">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+            <div class="block w-25 h-25">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+            <div class="block w-100 h-50">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+            <div class="block w-100 h-25">
+              <div class="load-wraper">
+                <div class="activity"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
