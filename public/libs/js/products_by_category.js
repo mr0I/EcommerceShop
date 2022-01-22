@@ -303,7 +303,7 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                                     </div>
                                     <p>${product.description}</p>
                                     <a href="/product/${product.id}">
-                                      <h6 class="price-title">/product/${product.title}</h6>
+                                      <h6 class="price-title">${product.title}</h6>
                                     </a>
                                   </div>
                                   <div class="detail-right">

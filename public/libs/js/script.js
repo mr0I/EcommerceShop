@@ -453,6 +453,7 @@ jQuery(document).ready(function($){
     /* change password form */
 
 
+
     /* Split Prices By Comma */
     $.fn.digits = function () {
         return this.each(function () {
@@ -729,4 +730,7 @@ function addToCompare(e,pid) {
 function hasOnlySpecialCharacter(val) {
     const pattern = /^[^a-zA-Z0-9ا-ی]+$/;
     return (pattern.test(val));
+}
+function closeSidebarFilter() {
+    $('span.filter-back').trigger('click');
 }

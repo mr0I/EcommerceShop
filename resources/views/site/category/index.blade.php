@@ -36,7 +36,7 @@
             <div class="collection-filter-block creative-card creative-inner category-side">
               <!-- brand filter start -->
               <div class="collection-mobile-back">
-                <span class="filter-back"><i class="fa fa-angle-right" aria-hidden="true"></i> بازگشت</span></div>
+                <span class="filter-back"><i class="fa fa-angle-right" aria-hidden="true"></i>بازگشت</span></div>
               @if(sizeof($brands)!==0 && (sizeof($brands)!==1 && $brands[0]!=null))
                 <div class="collection-collapse-block open">
                   <h3 class="collapse-block-title mt-0">برند</h3>
@@ -72,12 +72,12 @@
               </div>
 
 
-                <button class="btn btn-success btn-outline category-apply-filters w-100 mt-4 p-1">
-                  {{ __('Apply Filters') }}
-                </button>
-                <button class="btn btn-danger btn-outline category-reset-filters w-100 mt-2 p-1">
-                  {{ __('Reset Filters') }}
-                </button>
+              <button class="btn btn-success btn-outline category-apply-filters w-100 mt-4 p-1">
+                {{ __('Apply Filters') }}
+              </button>
+              <button class="btn btn-danger btn-outline category-reset-filters w-100 mt-2 p-1">
+                {{ __('Reset Filters') }}
+              </button>
 
             </div>
             <!-- silde-bar colleps block end here -->
@@ -114,18 +114,13 @@
                                   @endif
                                 </div>
                                 <div class="cart-info">
-                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-shopping-cart">
-                                      <circle cx="9" cy="21" r="1"></circle>
-                                      <circle cx="20" cy="21" r="1"></circle>
-                                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                    </svg> </button>
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
                                   <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                      class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
                                             data-feather="refresh-cw"></i></a>
                                 </div>
                               </div>
@@ -165,18 +160,13 @@
                                   @endif
                                 </div>
                                 <div class="cart-info">
-                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-shopping-cart">
-                                      <circle cx="9" cy="21" r="1"></circle>
-                                      <circle cx="20" cy="21" r="1"></circle>
-                                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                    </svg> </button>
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
                                   <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                      class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                  <a href="compare.html" class="tooltip-top" data-tippy-content="مقایسه"><i
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
                                             data-feather="refresh-cw"></i></a>
                                 </div>
                               </div>
@@ -241,184 +231,58 @@
                               <div class="horizontal-filter collection-filter">
                                 <div class="horizontal-filter-contain">
                                   <div class="collection-mobile-back"><span class="filter-back"><i
-                                              class="fa fa-angle-right" aria-hidden="true"></i> بازگشت</span></div>
+                                              class="fa fa-angle-right" aria-hidden="true"></i> بازگشت</span>
+                                  </div>
+
                                   <div class="filter-group">
                                     <div class="collection-collapse-block">
-                                      <h6 class="collapse-block-title">انتخاب رنگ</h6>
+                                      @if(sizeof($brands)!==0 && (sizeof($brands)!==1 && $brands[0]!=null))
+                                        <div class="collection-collapse-block open">
+                                          <h3 class="collapse-block-title mt-0">برند</h3>
+                                          <div class="collection-collapse-block-content">
+                                            <div class="collection-brand-filter">
+                                              @foreach($brands as $brand)
+                                                <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
+                                                  <input type="checkbox" class="custom-control-input form-check-input brands-filter" id="brand_{{ $brand }}" data-brand="{{ $brand }}">
+                                                  <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">{{ ucwords($brand) }}</label>
+                                                </div>
+                                              @endforeach
+                                            </div>
+                                          </div>
+                                        </div>
+                                      @endif
+                                    </div>
+                                  </div>
+                                  <div class="filter-group">
+                                    <div class="collection-collapse-block">
+                                      <h3 class="collapse-block-title">قیمت</h3>
                                       <div class="collection-collapse-block-content">
-                                        <div class="color-selector">
-                                          <ul>
-                                            <li>
-                                              <div class="color-1 active"></div> سفید(14)
-                                            </li>
-                                            <li>
-                                              <div class="color-2"></div> قهوه ای(24)
-                                            </li>
-                                            <li>
-                                              <div class="color-3"></div> قرمز(18)
-                                            </li>
-                                            <li>
-                                              <div class="color-4"></div> بنفش(10)
-                                            </li>
-                                            <li>
-                                              <div class="color-5"></div> کله غازی(9)
-                                            </li>
-                                            <li>
-                                              <div class="color-6"></div> صورتی(11)
-                                            </li>
-                                            <li>
-                                              <div class="color-7"></div> نارنجی(15)
-                                            </li>
-                                          </ul>
+                                        <div class="filter-slide">
+                                          <input class="js-range-slider price-range" type="text" name="my_range" value="" data-type="double" />
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="filter-group">
                                     <div class="collection-collapse-block">
-                                      <h6 class="collapse-block-title">انتخاب رنگ</h6>
-                                      <div class="collection-collapse-block-content">
-                                        <div class="size-selector">
-                                          <div class="collection-brand-filter">
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="xssmall">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="xssmall">xs</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="small">
-                                              <label class="custom-control-label form-check-label" for="small">s</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="mediam">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="mediam">m</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="large">
-                                              <label class="custom-control-label form-check-label" for="large">l</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="extralarge">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="extralarge">xl</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="2extralarge">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="2extralarge">2xl</label>
-                                            </div>
-                                          </div>
+                                      <div class="collection-collapse-block-content mt-2">
+                                        <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
+                                          <input type="checkbox" class="custom-control-input form-check-input" id="status_checkbox">
+                                          <label class="custom-control-label form-check-label" for="status_checkbox">{{ __('Only Available Products') }}</label>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="filter-group">
-                                    <div class="collection-collapse-block">
-                                      <h6 class="collapse-block-title">انتخاب قیمت</h6>
-                                      <div class="collection-collapse-block-content">
-                                        <div class="size-selector">
-                                          <div class="collection-brand-filter">
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="hundred">
-                                              <label class="custom-control-label form-check-label" for="hundred">10 تا
-                                                100 هزار
-                                                تومان</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="twohundred">
-                                              <label class="custom-control-label form-check-label" for="twohundred">100
-                                                تا 200 هزار
-                                                تومان</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="threehundred">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="threehundred">200 تا 300 هزار
-                                                تومان</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="fourhundred">
-                                              <label class="custom-control-label form-check-label" for="fourhundred">300
-                                                تا 400 هزار
-                                                تومان</label>
-                                            </div>
-                                            <div
-                                                    class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                              <input type="checkbox" class="custom-control-input form-check-input"
-                                                     id="fourhundredabove">
-                                              <label class="custom-control-label form-check-label"
-                                                     for="fourhundredabove">بیشتر از 400 هزار
-                                                تومان</label>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                    <button onclick="closeSidebarFilter()"
+                                            class="btn-success btn-outline category-apply-filters w-100 mt-4 p-1 mobile-submit-filter-btn">
+                                      {{ __('Apply Filters') }}
+                                    </button>
+                                    <button class="btn-danger btn-outline category-reset-filters w-100 mt-2 p-1">
+                                      {{ __('Reset Filters') }}
+                                    </button>
                                   </div>
-                                  <div class="filter-group">
-                                    <div class="collection-collapse-block">
-                                      <h6 class="collapse-block-title">انتخاب برند</h6>
-                                      <div class="collection-collapse-block-content">
-                                        <div class="collection-brand-filter">
-                                          <div
-                                                  class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input form-check-input"
-                                                   id="zara">
-                                            <label class="custom-control-label form-check-label" for="zara">زارا</label>
-                                          </div>
-                                          <div
-                                                  class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input form-check-input"
-                                                   id="vera-moda">
-                                            <label class="custom-control-label form-check-label"
-                                                   for="vera-moda">سامسونگ</label>
-                                          </div>
-                                          <div
-                                                  class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input form-check-input"
-                                                   id="forever-21">
-                                            <label class="custom-control-label form-check-label" for="forever-21">ال سی
-                                              من</label>
-                                          </div>
-                                          <div
-                                                  class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input form-check-input"
-                                                   id="roadster">
-                                            <label class="custom-control-label form-check-label"
-                                                   for="roadster">هوآوی</label>
-                                          </div>
-                                          <div
-                                                  class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input form-check-input"
-                                                   id="only">
-                                            <label class="custom-control-label form-check-label"
-                                                   for="only">اسنوا</label>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+
                                 </div>
                                 <a href="javascript:void(0)" class="btn btn-solid btn-sm close-filter"> بستن فیلتر</a>
                               </div>
@@ -490,8 +354,8 @@
                                     </div>
                                   </div>
                                   <div class="icon-detail">
-                                    <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <i
-                                              data-feather="shopping-cart"></i> </button>
+                                    <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="{{ __('Add To Cart') }}"> <i
+                                              data-feather="shopping-cart"></i> </a>
                                     <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})"
                                        data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
@@ -503,7 +367,7 @@
                               </div>
                             </div>
                           @endforeach
-                          @else
+                        @else
                           <div class="alert alert-warning">{{ __('No product in this category') }}</div>
                         @endif
                       </div>

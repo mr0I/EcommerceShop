@@ -324,18 +324,7 @@
                     <a class="dark-menu-item" href="#">{{ __('Products Category') }}</a>
                     <ul>
                       <li><a href="{{ url('category/mobile') }}">{{ __('Mobile') }}</a></li>
-                      <li>
-                        <a href="javascript:void(0)">مقایسه</a>
-                        <ul>
-                          <li><a href="compare.html">مقایسه</a></li>
-                          <li><a href="compare-2.html">مقایسه-2</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="collection.html">کالکشن</a></li>
-                      <li><a href="look-book.html">لوک بوک</a></li>
-                      <li><a href="404.html">خطای 404</a></li>
-                      <li><a href="coming-soon.html">به زودی </a></li>
-                      <li><a href="faq.html">سوالات متداول</a></li>
+                      <li><a href="{{ url('category/mobileAccessories') }}">{{ __('Mobile Accessories') }}</a></li>
                     </ul>
                   </li>
 
@@ -709,7 +698,7 @@
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
 <script type="application/ld+json" id="master_json_content">
     {
-      "quillToolbarOptions" : "<?= Config::get('constants.siteUrl') ?>"
+      "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"
   }
 </script>
 <script src="{{ url('libs/js/script.js') }}"></script>

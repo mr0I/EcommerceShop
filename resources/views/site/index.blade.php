@@ -1046,8 +1046,7 @@
     <!-- title start -->
     <div class="title4 b-g-white text-left">
       <h3>{{ __('Latest News') }}</h3>
-      <div class="line">
-      </div>
+      <div class="line"></div>
     </div>
     <!-- title end -->
 
@@ -1073,7 +1072,7 @@
                     </div>
                     <div class="blog-details-2">
                       <h4>{{ $article->title }} </h4>
-                      <p>{{ mb_strimwidth($article->description,0,200,'---') }}</p>
+                      <p>{!! mb_strimwidth($article->description,0,200,'---') !!}</p>
                       <a href="{{ url('article/'.$article->slug) }}" class=" btn btn-rounded  btn-xs">
                         {{ __('Read More') }}
                       </a>
