@@ -324,7 +324,13 @@
                     <a class="dark-menu-item" href="#">{{ __('Products Category') }}</a>
                     <ul>
                       <li><a href="{{ url('category/mobile') }}">{{ __('Mobile') }}</a></li>
+                      <li><a href="{{ url('category/laptop') }}">{{ __('laptop') }}</a></li>
+                      <li><a href="{{ url('category/tablet') }}">{{ __('tablet') }}</a></li>
                       <li><a href="{{ url('category/mobileAccessories') }}">{{ __('Mobile Accessories') }}</a></li>
+                      <li><a href="{{ url('category/computerParts') }}">{{ __('Computer Parts') }}</a></li>
+                      <li><a href="{{ url('category/laptopAccessories') }}">{{ __('Laptop Accessories') }}</a></li>
+                      <li><a href="{{ url('category/wearableGadget') }}">{{ __('Wearable Gadget') }}</a></li>
+                      <li><a href="{{ url('category/officeMachines') }}">{{ __('Office Machines') }}</a></li>
                     </ul>
                   </li>
 
