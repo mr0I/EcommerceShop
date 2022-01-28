@@ -7,6 +7,10 @@ ul{
 }
 /* Globals */
 
+.loader-wrapper img {
+    max-height: 250px;
+}
+
 
 ul.product-specifications >li:before{
     content: '\f00c';
@@ -562,7 +566,6 @@ p.desc{
     margin-right: 30px;
 }
 /* start navbar */
-
 
 
 /* start responsive */

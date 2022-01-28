@@ -55,7 +55,7 @@
 
 <!-- loader start -->
 <div class="loader-wrapper">
-  <div><img src="{{ url('images/main-loading.gif') }}" alt="loader"></div>
+  <div><img src="{{ url('images/loaders/loading5.gif') }}" alt="loader"></div>
 </div>
 <!-- loader end -->
 

@@ -1,22 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>404, Page Not Found</title>
+  <title>{{ __('404, Page Not Found') }}</title>
+  <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
 
   <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
     .center-xy {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       position: absolute;
+      top: 25%;
+      left: 0;
+      right: 0;
+      /* transform: translate(-50%, -50%); */
     }
     html, body {
-      font-family: 'Roboto Mono', monospace;
+      font-family: 'iransans','Roboto Mono', monospace;
       font-size: 16px;
     }
     html {
@@ -24,7 +27,7 @@
       user-select: none;
     }
     body {
-      background-color: #0d6efd;
+      background-color: #ffffff;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -36,27 +39,16 @@
       text-align: center;
     }
     h1,h2,h3,h4,h5,h6{
-      color: #EEEEEE;
+      color: #212121;
     }
     a{
-      color: #EEEEEE;
-      text-decoration: underline;
+      color: #ff002e;
       font-weight: bolder;
     }
     p {
-      color: #EEEEEE;
+      color: #212121;
       font-size: 24px;
-      letter-spacing: 0.2px;
       margin: 0;
-    }
-    .handle {
-      background: #ffe500;
-      width: 14px;
-      height: 30px;
-      top: 0;
-      left: 0;
-      margin-top: 1px;
-      position: absolute;
     }
     #cb-replay {
       fill: #666;
@@ -77,8 +69,9 @@
 <body>
 <div class="container">
   <div class="copy-container center-xy">
-    <h2>{{ __('Oops! Page Not Be Found') }}</h2>
+    <p><img src="{{ url('images/emojis/404.png') }}" alt="page not found" width="150"></p>
     <p>{{ __('Sorry but the page you are looking for does not exist') }}</p>
+    <br>
     <a href="{{ route('home') }}">{{ __('Back to homepage') }}</a>
   </div>
 </div>
