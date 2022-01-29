@@ -32,7 +32,9 @@
       <div class="row">
         <div class="col-sm-12">
           @if(sizeof($products)===0)
-            <div class="alert alert-warning text-center">{{ __('There is no item in list!!!') }}</div>
+            <div class="no-result text-center">
+              <p>{{ __('There is no item in list!!!') }}</p>
+            </div>
             @else
             <table class="table cart-table table-responsive-xs wish-table">
               <thead>

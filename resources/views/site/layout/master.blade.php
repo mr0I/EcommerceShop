@@ -334,60 +334,22 @@
                     </ul>
                   </li>
 
-                  <li>
-                    <a class="dark-menu-item" href="#">{{ __('Pages') }}</a>
-                    <ul>
-                      <li>
-                        <a href="javascript:void(0)">فاکتور<span class="new-tag">جدید</span></a>
-                        <ul>
-                          <li><a href="../invoice-template/element-invoice.html">فاکتور یک</a></li>
-                          <li><a href="../invoice-template/element-invoice2.html">فاکتور دو</a></li>
-                          <li><a href="../invoice-template/element-invoice3.html">فاکتور سه</a></li>
-                          <li><a href="../invoice-template/element-invoice4.html">فاکتور چهار</a></li>
-                          <li><a href="../invoice-template/element-invoice5.html">فاکتور پنج</a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">حساب کاربری</a>
-                        <ul>
-                          <li><a href="wishlist.html">لیست علاقه مندی</a></li>
-                          <li><a href="cart.html">سبد خرید</a></li>
-                          <li><a href="dashboard.html">داشبورد</a></li>
-                          <li><a href="login.html">ورود</a></li>
-                          <li><a href="register.html">ثبت نام</a></li>
-                          <li><a href="contact.html">تماس</a></li>
-                          <li><a href="forget-pwd.html">فراموشی رمز عبور</a></li>
-                          <li><a href="profile.html">پروفایل </a></li>
-                          <li>
-                            <a href="javascript:void(0)">پرداخت</a>
-                            <ul>
-                              <li><a href="checkout.html">پرداخت 1</a></li>
-                              <li><a href="checkout2.html">پرداخت 2<span class="new-tag">جدید</span></a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="about-page.html">درباره ما</a></li>
-                      <li><a href="search.html">جستجو</a></li>
-                      <li><a href="typography.html">تایپوگرافی </a></li>
-                      <li><a href="review.html">نظرات </a></li>
-                      <li><a href="order-success.html">سفارش موفق</a></li>
-                      <li><a href="order-history.html">تاریخچه سفارش</a></li>
-                      <li><a href="order-tracking.html">پیگیری سفارش</a></li>
-                      <li>
-                        <a href="javascript:void(0)">مقایسه</a>
-                        <ul>
-                          <li><a href="compare.html">مقایسه</a></li>
-                          <li><a href="compare-2.html">مقایسه-2</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="collection.html">کالکشن</a></li>
-                      <li><a href="look-book.html">لوک بوک</a></li>
-                      <li><a href="404.html">خطای 404</a></li>
-                      <li><a href="coming-soon.html">به زودی </a></li>
-                      <li><a href="faq.html">سوالات متداول</a></li>
-                    </ul>
-                  </li>
+                  {{--<li>--}}
+                    {{--<a class="dark-menu-item" href="#">{{ __('Pages') }}</a>--}}
+                    {{--<ul>--}}
+                      {{--<li>--}}
+                        {{--<a href="javascript:void(0)">حساب کاربری</a>--}}
+                        {{--<ul>--}}
+                          {{--<li><a href="login.html">ورود</a></li>--}}
+                          {{--<li><a href="register.html">ثبت نام</a></li>--}}
+                          {{--<li><a href="forget-pwd.html">فراموشی رمز عبور</a></li>--}}
+                        {{--</ul>--}}
+                      {{--</li>--}}
+                      {{--<li>--}}
+                        {{--<a href="javascript:void(0)">مقایسه</a>--}}
+                      {{--</li>--}}
+                    {{--</ul>--}}
+                  {{--</li>--}}
                   <!--product-end end-->
 
                   <!--blog-meu start-->

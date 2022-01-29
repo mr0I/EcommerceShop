@@ -200,6 +200,9 @@ jQuery(document).ready(function($) {
             max_price: max_price,
             status: status
         };
+
+        console.log(data);
+
         fetch(`/getCatProducts/${getUrlParams().category_name}`, {
             method: 'POST',
             headers: {

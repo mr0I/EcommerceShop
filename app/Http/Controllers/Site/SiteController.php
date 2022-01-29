@@ -263,11 +263,27 @@ class SiteController extends Controller
         }
 
         // New Products
-        $latest_mobile_products = Product::take(5)->latest('date')->get();
+        $latest_mobile_accessories_products = Product::take(5)->where('category_id',2)->latest('date')->get();
+        $latest_computer_parts_products = Product::take(5)->where('category_id',3)->latest('date')->get();
+        $latest_laptop_accessories_products = Product::take(5)->where('category_id',4)->latest('date')->get();
+        $latest_wearable_gadget_products = Product::take(5)->where('category_id',5)->latest('date')->get();
+        $latest_tablet_products = Product::take(5)->where('category_id',6)->latest('date')->get();
+        $latest_laptop_products = Product::take(5)->where('category_id',7)->latest('date')->get();
+        $latest_office_machines_products = Product::take(5)->where('category_id',8)->latest('date')->get();
+
+
 
         return view('site/category/index' ,
-            compact('products','category_id','brands','products_count','latest_mobile_products'
-                ,'priceMin','priceMax'));
+            compact('products','category_id','brands','products_count'
+                ,'priceMin','priceMax',
+                'latest_mobile_accessories_products',
+                'latest_computer_parts_products',
+                'latest_laptop_accessories_products',
+                'latest_wearable_gadget_products',
+                'latest_tablet_products',
+                'latest_laptop_products',
+                'latest_office_machines_products'
+            ));
     }
 
     public function wishlist(){

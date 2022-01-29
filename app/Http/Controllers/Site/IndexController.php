@@ -213,13 +213,14 @@ class IndexController extends Controller
         }
         if (is_array($request->brands_filters) && sizeof($request->brands_filters) !== 0){
             $brandsFilters = $request->brands_filters;
-        } elseif(isset($_GET['filters'])){
+        } elseif (isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $brandsFilters = $filters->brands;
-            if(count($brandsFilters)===1 && $brandsFilters[0]==='') $brandsFilters = $All_brands;
+            if (count($brandsFilters)===1 && $brandsFilters[0]==='') $brandsFilters = $All_brands;
         } else {
             $brandsFilters = $All_brands;
         }
+
 
 
         // sorting filter
@@ -280,10 +281,6 @@ class IndexController extends Controller
         } else {
             $status = ['available','not-available'];
         }
-
-        //return response()->json(['res'=>$All_brands,'size'=>sizeof($All_brands)]);
-        //return response()->json(['res2'=>$brandsFilters,'size2'=>sizeof($brandsFilters)]);
-
 
 
         if (sizeof($All_brands)===0 || (sizeof($All_brands)===1 && $All_brands[0]==null)){

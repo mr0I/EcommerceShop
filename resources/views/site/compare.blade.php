@@ -88,7 +88,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ $product1->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>                        @else
@@ -129,7 +129,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ $product3->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>                        @else
@@ -149,7 +149,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ $product4->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>                        @else
@@ -230,7 +230,9 @@
                   </tbody>
                 </table>
                 @else
-                <p class="alert alert-warning text-center">{{ __('THERE IS NO ITEM!!!') }}</p>
+                <div class="no-result text-center">
+                  <p>{{ __('THERE IS NO ITEM!!!') }}</p>
+                </div>
               @endif
 
             </div>

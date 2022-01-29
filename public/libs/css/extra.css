@@ -11,6 +11,20 @@ ul{
     max-height: 250px;
 }
 
+.btn-danger{
+    background-color: #aa002e;
+    border-color: #aa002e;
+}
+.btn-success{
+    background-color: teal;
+    border-color: teal;
+}
+.btn-success:hover{
+    background-color: #26a69a;
+    border-color: #26a69a;
+}
+
+
 
 ul.product-specifications >li:before{
     content: '\f00c';
@@ -311,7 +325,7 @@ ul.rating-star{
 }
 .modal #modal_loading i{
     font-size: 300%;
-    color: #00baf2;
+    color: #aa002e;
     position: absolute;
     left: 0;
     top: 45%;
@@ -432,7 +446,7 @@ mark.highlight-text{
     font-weight: bold;
 }
 .digits.price{
-    color: #00baf2 !important;
+    color: #aa002e !important;
     font-weight: bold !important;
     font-size: 115% !important;
     margin-top: 8px !important;
@@ -566,6 +580,21 @@ p.desc{
     margin-right: 30px;
 }
 /* start navbar */
+
+
+/* start no-result alert */
+.no-result{
+    padding: 18px;
+    background-color: #aa002e;
+    opacity: 0.8;
+}
+.no-result>p{
+    text-align: center;
+    font-size: 175%;
+    color: #e0e0e0;
+}
+
+/* end no-result alert */
 
 
 /* start responsive */

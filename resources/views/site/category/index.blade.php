@@ -44,8 +44,11 @@
                     <div class="collection-brand-filter">
                       @foreach($brands as $brand)
                         <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
-                          <input type="checkbox" class="custom-control-input form-check-input brands-filter" id="brand_{{ $brand }}" data-brand="{{ $brand }}">
-                          <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">{{ ucwords($brand) }}</label>
+                          <input type="checkbox" class="custom-control-input form-check-input brands-filter"
+                                 id="brand_{{ $brand }}" data-brand="{{ $brand }}">
+                          <label class="custom-control-label form-check-label" for="brand_{{ $brand }}">
+                            {{ ucwords($brand) }}
+                          </label>
                         </div>
                       @endforeach
                     </div>
@@ -53,7 +56,7 @@
                 </div>
             @endif
             <!-- price filter start here -->
-              <div class="collection-collapse-block border-0 open">
+              <div class="collection-collapse-block border-0">
                 <h3 class="collapse-block-title">قیمت</h3>
                 <div class="collection-collapse-block-content">
                   <div class="filter-slide">
@@ -61,7 +64,7 @@
                   </div>
                 </div>
               </div>
-              <div class="collection-collapse-block border-0 open">
+              <div class="collection-collapse-block border-0">
                 <h3 class="collapse-block-title">وضعیت موجودی</h3>
                 <div class="collection-collapse-block-content mt-2">
                   <div class="custom-control custom-checkbox  form-check collection-filter-checkbox">
@@ -87,7 +90,7 @@
               <div class="slide-1">
                 <div>
                   <div class="media-banner plrb-0 b-g-white1 border-0">
-                    @foreach($latest_mobile_products as $product)
+                    @foreach($latest_mobile_accessories_products as $product)
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
@@ -108,9 +111,9 @@
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
                                   @if($product->main_price!==null)
-                                    <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
                                   @else
-                                    <h6>{{ $product->price }} تومان </h6>
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
                                   @endif
                                 </div>
                                 <div class="cart-info">
@@ -133,11 +136,11 @@
                 </div>
                 <div>
                   <div class="media-banner plrb-0 b-g-white1 border-0">
-                    @foreach($latest_mobile_products as $product)
+                    @foreach($latest_computer_parts_products as $product)
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image. '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -154,9 +157,239 @@
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
                                   @if($product->main_price!==null)
-                                    <h6>{{ $product->price }} تومان <span>{{ $product->main_price }}</span></h6>
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
                                   @else
-                                    <h6>{{ $product->price }} تومان </h6>
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div>
+                  <div class="media-banner plrb-0 b-g-white1 border-0">
+                    @foreach($latest_laptop_accessories_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @else
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div>
+                  <div class="media-banner plrb-0 b-g-white1 border-0">
+                    @foreach($latest_wearable_gadget_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @else
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div>
+                  <div class="media-banner plrb-0 b-g-white1 border-0">
+                    @foreach($latest_tablet_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @else
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div>
+                  <div class="media-banner plrb-0 b-g-white1 border-0">
+                    @foreach($latest_laptop_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @else
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @endif
+                                </div>
+                                <div class="cart-info">
+                                  <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                    <i data-feather="shopping-cart"></i>
+                                  </a>
+                                  <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                     class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                  <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
+                                            data-feather="refresh-cw"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div>
+                  <div class="media-banner plrb-0 b-g-white1 border-0">
+                    @foreach($latest_office_machines_products as $product)
+                      <div class="media-banner-box">
+                        <div class="media">
+                          <a href="/product/{{ $product->id }}" tabindex="0">
+                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                          </a>
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <div class="product-detail">
+                                  <ul class="rating">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-o"></i></li>
+                                  </ul>
+                                  <a href="/product/{{ $product->id }}" tabindex="0">
+                                    <p style="font-size: 75%;">{{ $product->title }}</p>
+                                  </a>
+                                  @if($product->main_price!==null)
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
+                                  @else
+                                    <h6 class="digits">{{ $product->price }} تومان </h6>
                                   @endif
                                 </div>
                                 <div class="cart-info">

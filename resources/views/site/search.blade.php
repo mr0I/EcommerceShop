@@ -17,7 +17,11 @@
               @if(sizeof($products)!==0)
               <h2>{{ __('Search Results for ') }} <strong class="text-success">{{ $search_query }}</strong></h2>
                 @else
-                <h2>{{ __('Nothing Found for ') }} <strong class="text-danger">{{ $search_query }}</strong></h2>
+                  @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
+                    <h2>نتیجه ای برای <strong class="text-danger">{{ $search_query }}</strong> یافت نشد! </h2>
+                  @else
+                    <h2>Nothing Found for<strong class="text-danger">{{ $search_query }}</strong></h2>
+                  @endif
                 @endif
             </div>
           </div>
