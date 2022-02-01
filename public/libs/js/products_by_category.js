@@ -289,12 +289,12 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                               <div class="product-imgbox">
                                 <div class="product-front">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image + '.jpg'}" class="img-fluid" alt="product">
+                                    <img src="${window.public_dir + '/' + product.image + '.webp'}" class="img-fluid" alt="product">
                                   </a>
                                 </div>
                                 <div class="product-back">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image + '.jpg'}" class="img-fluid " alt="product">
+                                    <img src="${window.public_dir + '/' + product.image + '.webp'}" class="img-fluid " alt="product">
                                   </a>
                                 </div>
                               </div>

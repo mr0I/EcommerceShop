@@ -81,7 +81,7 @@
                     @if($product1!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product1  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product1->image . '.jpg' }}" alt="product"
+                          <img src="{{ url('uploads/productImages/').'/'. $product1->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product1->status=='available')
@@ -101,7 +101,7 @@
                     @if($product2!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product2  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product2->image . '.jpg' }}" alt="product"
+                          <img src="{{ url('uploads/productImages/').'/'. $product2->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product2->status=='available')
@@ -122,7 +122,7 @@
                     @if($product3!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product3  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product3->image . '.jpg' }}" alt="product"
+                          <img src="{{ url('uploads/productImages/').'/'. $product3->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product3->status=='available')
@@ -142,7 +142,7 @@
                     @if($product4!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product4  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/product_images/').'/'. $product4->image . '.jpg' }}" alt="product"
+                          <img src="{{ url('uploads/productImages/').'/'. $product4->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
                         @if($product4->status=='available')

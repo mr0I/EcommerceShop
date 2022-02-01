@@ -94,7 +94,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -140,7 +140,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -186,7 +186,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -232,7 +232,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -278,7 +278,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -324,7 +324,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -370,7 +370,7 @@
                       <div class="media-banner-box">
                         <div class="media">
                           <a href="/product/{{ $product->id }}" tabindex="0">
-                            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="banner" width="65">
+                            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
                           </a>
                           <div class="media-body">
                             <div class="media-contant">
@@ -553,12 +553,12 @@
                                 <div class="product-imgbox">
                                   <div class="product-front">
                                     <a href="/product/{{ $product->id }}">
-                                      <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid" alt="product">
+                                      <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid" alt="product">
                                     </a>
                                   </div>
                                   <div class="product-back">
                                     <a href="/product/{{ $product->id }}">
-                                      <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid " alt="product">
+                                      <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="product">
                                     </a>
                                   </div>
                                 </div>
@@ -677,7 +677,7 @@
 
   <script type="application/ld+json" id="json_content">
     {
-      "publicDir" : "/uploads/product_images",
+      "publicDir" : "/uploads/productImages",
       "productsCount" : <?= $products_count ?>,
       "productsPerPage" : <?= Config::get('constants.catProductsPerPage') ?>,
       "priceMin" : <?= $priceMin ?>,

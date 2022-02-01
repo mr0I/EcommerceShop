@@ -275,36 +275,7 @@
                 </a>
               </div>
             </div>
-            <div class="nav-block">
 
-              <div class="nav-left">
-                <nav class="navbar" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
-                  <button class="navbar-toggler" type="button">
-                    <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
-                  </button>
-                  <h5 class="mb-0  text-white title-font">دسته بندی های فروشگاه</h5>
-                </nav>
-                <div class="collapse  nav-desk" id="navbarToggleExternalContent">
-                  <ul class="nav-cat title-font">
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="{{ url('images/layout-1/nav-img/01.png') }}" alt="category-product">لباس گرم</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img src="{{ url('images/layout-1/nav-img/02.png') }}" alt="category-product">تلویزیون</a></li>
-                    <ul class="mor-slide-open">
-                      <li> <a href="category-page(left-sidebar).html"><img
-                                  src="{{ url('images/layout-1/nav-img/08.png') }}" alt="category-product"> ورزشی</a></li>
-                      <li> <a href="category-page(left-sidebar).html"><img
-                                  src="{{ url('images/layout-1/nav-img/09.png') }}" alt="category-product"> کیف و کفش</a>
-                      </li>
-                    </ul>
-                    </li>
-                    <li>
-                      <a class="mor-slide-click">دسته بندی بیشتر <i class="fa fa-angle-down pro-down"></i><i
-                                class="fa fa-angle-up pro-up"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             <div class="menu-block">
               <nav id="main-nav">
                 <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
@@ -323,7 +294,6 @@
                   <li>
                     <a class="dark-menu-item" href="#">{{ __('Products Category') }}</a>
                     <ul>
-                      <li><a href="{{ url('category/mobile') }}">{{ __('Mobile') }}</a></li>
                       <li><a href="{{ url('category/laptop') }}">{{ __('laptop') }}</a></li>
                       <li><a href="{{ url('category/tablet') }}">{{ __('tablet') }}</a></li>
                       <li><a href="{{ url('category/mobileAccessories') }}">{{ __('Mobile Accessories') }}</a></li>
@@ -333,23 +303,6 @@
                       <li><a href="{{ url('category/officeMachines') }}">{{ __('Office Machines') }}</a></li>
                     </ul>
                   </li>
-
-                  {{--<li>--}}
-                    {{--<a class="dark-menu-item" href="#">{{ __('Pages') }}</a>--}}
-                    {{--<ul>--}}
-                      {{--<li>--}}
-                        {{--<a href="javascript:void(0)">حساب کاربری</a>--}}
-                        {{--<ul>--}}
-                          {{--<li><a href="login.html">ورود</a></li>--}}
-                          {{--<li><a href="register.html">ثبت نام</a></li>--}}
-                          {{--<li><a href="forget-pwd.html">فراموشی رمز عبور</a></li>--}}
-                        {{--</ul>--}}
-                      {{--</li>--}}
-                      {{--<li>--}}
-                        {{--<a href="javascript:void(0)">مقایسه</a>--}}
-                      {{--</li>--}}
-                    {{--</ul>--}}
-                  {{--</li>--}}
                   <!--product-end end-->
 
                   <!--blog-meu start-->

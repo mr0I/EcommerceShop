@@ -12,7 +12,7 @@
     "name": "<?= $product->title ?>",
     "alternateName": "",
     "image": [
-        "<?= url('uploads/product_images'). '/' . $product->image . '.jpg' ?>",
+        "<?= url('uploads/productImages'). '/' . $product->image . '.webp' ?>",
     ],
     "description": "<?= $product->description ?>",
     "sku": 100,
@@ -110,7 +110,7 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="product-slick">
-                <div><img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                <div><img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
               </div>
             </div>
             <div class="col-lg-6">
@@ -243,12 +243,12 @@
                     <div class="product-imgbox">
                       <div class="product-front">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ url('uploads/product_images'). '/' . $related_product->image . '.jpg' }}" class="img-fluid" alt="product">
+                          <img src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}" class="img-fluid" alt="product">
                         </a>
                       </div>
                       <div class="product-back">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ url('uploads/product_images'). '/' . $related_product->image . '.jpg' }}" class="img-fluid  " alt="product">
+                          <img src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}" class="img-fluid  " alt="product">
                         </a>
                       </div>
                       <div class="product-icon icon-inline">
@@ -316,7 +316,7 @@
       <div class="container">
         <div class="cart-content">
           <div class="product-image">
-            <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid" alt="" >
+            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid" alt="" >
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
               @if($product->price==0)

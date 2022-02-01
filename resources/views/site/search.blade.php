@@ -42,12 +42,12 @@
                 <div class="product-imgbox">
                   <div class="product-front">
                     <a href="/product/{{ $product->id }}">
-                    <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid  " alt="product">
+                    <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid  " alt="product">
                     </a>
                   </div>
                   <div class="product-back">
                     <a href="/product/{{ $product->id }}">
-                      <img src="{{ url('uploads/product_images'). '/' . $product->image . '.jpg' }}" class="img-fluid  " alt="product">
+                      <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid  " alt="product">
                     </a>                  </div>
                 </div>
                 <div class="product-detail detail-center ">

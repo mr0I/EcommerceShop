@@ -518,7 +518,7 @@ function viewModal(pid) {
                           <div class="row">
                             <div class="col-lg-6 col-xs-12">
                               <div class="quick-view-img">
-                                <img src="/uploads/product_images/${product.image}.jpg" alt="تصویر محصول" class="img-fluid bg-img">
+                                <img src="/uploads/productImages/${product.image}.webp" alt="تصویر محصول" class="img-fluid bg-img">
                               </div>
                             </div>
                             <div class="col-lg-6 rtl-text">

@@ -51,7 +51,7 @@
                 <tr>
                   <td>
                     <a href="/product/{{ $product->id }}">
-                      <img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" alt="product" class="img-fluid  ">
+                      <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" alt="product" class="img-fluid  ">
                     </a>
                   </td>
                   <td><a href="/product/{{ $product->id }}">{{ $product->title }}</a></td>

@@ -35,7 +35,7 @@
                       <tr>
                         <td>
                           <a href="/product/{{ $product->id }}">
-                            <img src="{{ url('uploads/product_images/'). '/' . $product->image. '.jpg' }}" width="65"
+                            <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" width="65"
                                  alt="product" class="img-fluid  tooltip-top" data-tippy-content="{{ $product->title }}">
                           </a>
                         </td>

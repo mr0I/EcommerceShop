@@ -33,25 +33,36 @@ class SiteController extends Controller
 
     public function index()
     {
-        $mobileProductsCacheKey = 'mobileProducts';
+        $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
+        $laptopProductsCacheKey = 'laptopProducts';
+        $tabletProductsCacheKey = 'tabletProducts';
         $specialProductsCacheKey = 'specialProducts';
         $articlesCacheKey = 'publishedArticles';
-        $cachedmobileProducts = Cache::get($mobileProductsCacheKey);
+        $cachedmobileAccessoriesProducts = Cache::get($mobileAccessoriesProductsCacheKey);
+        $cachedlaptopProducts = Cache::get($laptopProductsCacheKey);
+        $cachedtabletProducts = Cache::get($tabletProductsCacheKey);
         $cachedspecialProducts = Cache::get($specialProductsCacheKey);
         $cachedarticles = Cache::get($articlesCacheKey);
 
-        if ($cachedmobileProducts){
-            $mobileProducts = $cachedmobileProducts;
+        if ($cachedmobileAccessoriesProducts){
+            $mobileAccessoriesProducts = $cachedmobileAccessoriesProducts;
         } else {
-            $mobileProducts =DB::table('categories' , 'c')
-                ->join('products as p' , 'p.category_id', '=', 'c.id')
-                ->where('c.id' , '1')
-                ->select('*')
-                ->orderBy('date' , 'ASC')
-                ->take(10)->get();
-
-            Cache::add($mobileProductsCacheKey,$mobileProducts,now()->addMinutes(10));
+            $mobileAccessoriesProducts = Product::where('category_id','2')->orderBy('date','ASC')->take(10)->get();
+            Cache::add($mobileAccessoriesProductsCacheKey,$mobileAccessoriesProducts,now()->addMinutes(10));
         }
+        if ($cachedlaptopProducts){
+            $laptopProducts = $cachedlaptopProducts;
+        } else {
+            $laptopProducts = Product::where('category_id','7')->orderBy('date','ASC')->take(10)->get();
+            Cache::add($laptopProductsCacheKey,$laptopProducts,now()->addMinutes(10));
+        }
+        if ($cachedtabletProducts){
+            $tabletProducts = $cachedtabletProducts;
+        } else {
+            $tabletProducts = Product::where('category_id','6')->orderBy('date','ASC')->take(10)->get();
+            Cache::add($tabletProductsCacheKey,$tabletProducts,now()->addMinutes(10));
+        }
+
 
         if ($cachedspecialProducts){
             $specialProducts = $cachedspecialProducts;
@@ -59,7 +70,6 @@ class SiteController extends Controller
             $specialProducts = Product::where('main_price', '<>' , null)->get();
             Cache::add($specialProductsCacheKey,$specialProducts,now()->addMinutes(10));
         }
-
         if ($cachedarticles){
             $articles = $cachedarticles;
         } else {
@@ -70,7 +80,11 @@ class SiteController extends Controller
 
 
         return view('site/index' ,
-            compact('mobileProducts' ,'specialProducts','articles'));
+            compact('mobileAccessoriesProducts',
+                'laptopProducts',
+                'tabletProducts' ,
+                'specialProducts',
+                'articles'));
     }
 
     public function authentication()
