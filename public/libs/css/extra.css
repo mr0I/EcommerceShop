@@ -584,14 +584,13 @@ p.desc{
 
 /* start no-result alert */
 .no-result{
-    padding: 18px;
-    background-color: #aa002e;
-    opacity: 0.8;
+    padding: 13px;
+    border: 1px solid #aa002e;
 }
 .no-result>p{
     text-align: center;
-    font-size: 175%;
-    color: #e0e0e0;
+    font-size: 125%;
+    color: #aa002e;
 }
 
 /* end no-result alert */

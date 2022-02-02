@@ -35,7 +35,7 @@
             <div class="no-result text-center">
               <p>{{ __('There is no item in list!!!') }}</p>
             </div>
-            @else
+          @else
             <table class="table cart-table table-responsive-xs wish-table">
               <thead>
               <tr class="table-head">
@@ -57,10 +57,10 @@
                   <td><a href="/product/{{ $product->id }}">{{ $product->title }}</a></td>
                   <td class="digits price">
                     @if($product->price!='0')
-                    <h2>{{ $product->price }} تومان</h2>
-                      @else
+                      <h2>{{ $product->price }} تومان</h2>
+                    @else
                       <h2>---</h2>
-                      @endif
+                    @endif
                   </td>
                   <td><p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p></td>
                   <td>
@@ -75,44 +75,47 @@
         </div>
       </div>
 
-      <div class="product-pagination">
-        <div class="theme-paggination-block">
-          <div class="container-fluid p-0">
-            <div class="row">
-              <div class="col-12">
-                <nav aria-label="Page navigation">
-                  <ul class="pagination d-flex justify-content-center">
-                    @if ($products->currentPage() != 1)
-                      <li class="page-item">
-                        <a class="page-link"
-                           href="{{ $products->previousPageUrl() }}" aria-label="Previous">
-                          <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
-                          <span class="sr-only">{{ __('Previous') }}</span>
-                        </a>
-                      </li>
-                    @endif
-                    @for ($i = 1; $i <= $products->lastPage(); $i++)
-                      <li class="page-item @if ($products->currentPage()==$i)active @endif">
-                        <a class="page-link" href="{{ $products->url($i) }}">
-                          @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
-                        </a>
-                      </li>
-                    @endfor
-                    @if ($products->currentPage() != $products->lastPage())
-                      <li class="page-item">
-                        <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
-                          <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-                          <span class="sr-only">{{ __('Next') }}</span>
-                        </a>
-                      </li>
-                    @endif
-                  </ul>
-                </nav>
+
+      @if(sizeof($products) !== 0)
+        <div class="product-pagination">
+          <div class="theme-paggination-block">
+            <div class="container-fluid p-0">
+              <div class="row">
+                <div class="col-12">
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination d-flex justify-content-center">
+                      @if ($products->currentPage() != 1)
+                        <li class="page-item">
+                          <a class="page-link"
+                             href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                            <span class="sr-only">{{ __('Previous') }}</span>
+                          </a>
+                        </li>
+                      @endif
+                      @for ($i = 1; $i <= $products->lastPage(); $i++)
+                        <li class="page-item @if ($products->currentPage()==$i)active @endif">
+                          <a class="page-link" href="{{ $products->url($i) }}">
+                            @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
+                          </a>
+                        </li>
+                      @endfor
+                      @if ($products->currentPage() != $products->lastPage())
+                        <li class="page-item">
+                          <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                            <span class="sr-only">{{ __('Next') }}</span>
+                          </a>
+                        </li>
+                      @endif
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      @endif
     </div>
   </section>
   <!--section end-->

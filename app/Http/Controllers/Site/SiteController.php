@@ -304,10 +304,14 @@ class SiteController extends Controller
         $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
         $wish = wishlist::where('userIdentity',$user_identity)->get();
 
-        $arr = preg_replace('/[\[\]\']+/','',
-            str_replace('"','',explode(",", $wish[0]->pids)));
+        $products = [];
+        if(count($wish) !== 0){
+            $arr = preg_replace('/[\[\]\']+/','',
+                str_replace('"','',explode(",", $wish[0]->pids)));
 
-        $products = Product::whereIn('id',$arr)->paginate(5);
+            $products = Product::whereIn('id',$arr)->paginate(5);
+        }
+
         return view('site/wishlist',compact('products'));
     }
 

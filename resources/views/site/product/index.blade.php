@@ -167,12 +167,12 @@
                 <div class="pro-group ">
                   <h6 class="product-title">اشتراک گذاری</h6>
                   <ul class="product-social">
-                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url($encodeUrl) }}"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://plus.google.com/share?url={{ url($encodeUrl) }}"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="https://twitter.com/share?url={{ url($encodeUrl) }}"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="https://wa.me/?text={{ url($encodeUrl) }}"><i class="fa fa-whatsapp"></i></a></li>
-                    <li><a href="https://telegram.me/share/url?url={{ url($encodeUrl) }}"><i class="fa fa-telegram"></i></a></li>
-                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ url($encodeUrl) }}"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url($encodeUrl) }}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="https://plus.google.com/share?url={{ url($encodeUrl) }}"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a target="_blank" href="https://twitter.com/share?url={{ url($encodeUrl) }}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a target="_blank" href="https://wa.me/?text={{ url($encodeUrl) }}"><i class="fa fa-whatsapp"></i></a></li>
+                    <li><a target="_blank" href="https://telegram.me/share/url?url={{ url($encodeUrl) }}"><i class="fa fa-telegram"></i></a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ url($encodeUrl) }}"><i class="fa fa-linkedin"></i></a></li>
                   </ul>
                 </div>
               </div>
