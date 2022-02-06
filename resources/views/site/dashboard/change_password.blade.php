@@ -1,4 +1,4 @@
-@extends('site.dashboard.layout.master')
+@extends('site.layout.master')
 
 @section('title')
   Change User Password

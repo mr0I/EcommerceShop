@@ -266,8 +266,6 @@ class SiteController extends Controller
         }
         $products = $sorted_products->skip($offset)->take($limit)->get();
         $all_products_count = $sorted_products->count();
-
-
         $products_count = $sorted_products->count();
 
         // Calc Brands

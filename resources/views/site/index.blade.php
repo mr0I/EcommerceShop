@@ -369,13 +369,6 @@
                             <a href="/product/{{ $product->id }}">
                               <h5 style="direction: rtl;">{{ $product->title }} </h5>
                             </a>
-                            <ul class="rating">
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star"></i></li>
-                              <li><i class="fa fa-star-o"></i></li>
-                            </ul>
                             <p style="direction: rtl">{{ mb_strimwidth($product->description,0,650,'---') }}</p>
                             @php
                               $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);

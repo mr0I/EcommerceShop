@@ -6,6 +6,7 @@
 
 @section('content')
   <!-- breadcrumb start -->
+  @if(sizeof($products) !== 0)
   <div class="breadcrumb-main ">
     <div class="container">
       <div class="row">
@@ -24,6 +25,7 @@
       </div>
     </div>
   </div>
+
   <!-- breadcrumb End -->
 
   <!-- section start -->
@@ -100,13 +102,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -146,13 +141,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -192,13 +180,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -238,13 +219,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -284,13 +258,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -330,13 +297,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -376,13 +336,6 @@
                             <div class="media-contant">
                               <div>
                                 <div class="product-detail">
-                                  <ul class="rating">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star-o"></i></li>
-                                  </ul>
                                   <a href="/product/{{ $product->id }}" tabindex="0">
                                     <p style="font-size: 75%;">{{ $product->title }}</p>
                                   </a>
@@ -565,9 +518,6 @@
                                 <div class="product-detail detail-center detail-inverse">
                                   <div class="detail-title">
                                     <div class="detail-left">
-                                      <div class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                      </div>
                                       <p>{{ mb_strimwidth($product->decription,0,100,'---') }}</p>
                                       <a href="/product/{{ $product->id }}">
                                         <h6 class="price-title">{{ $product->title }}</h6>
@@ -616,6 +566,13 @@
     </div>
   </section>
   <!-- section End -->
+
+
+    @else
+    <div class="no-result text-center my-5">
+      <p>{{ __('There is no item in this category!') }}</p>
+    </div>
+  @endif
 
   <!-- Quick-view modal popup start-->
   <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"

@@ -16,7 +16,7 @@
               <ul>
                 <li><a href={{ url('/') }}>خانه</a></li>
                 <li><i class="fa fa-angle-double-left"></i></li>
-                <li><a href="javascript:void(0)">لیست علاقه مندی</a></li>
+                <li>لیست علاقه مندی</li>
               </ul>
             </div>
           </div>

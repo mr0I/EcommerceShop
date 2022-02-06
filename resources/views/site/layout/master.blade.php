@@ -38,12 +38,9 @@
   <meta name="wishlist-url" content="{{ url('wishlist') }}">
   <!-- Disable scale web page -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  {{--<link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">--}}
-  <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="{{url('images/favicon/favicon.ico')}}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
-  <!-- Extra css -->
-  <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
   @yield('productSchema')
   {!! NoCaptcha::renderJs() !!}
   @toastr_css
@@ -588,7 +585,7 @@
       <div class="row">
         <div class="col-12">
           <div class="footer-left">
-            <p class="w-100 text-left" style="direction: ltr;text-align: left;">
+            <p class="w-100 text-left" style="direction: ltr;text-align: left;font-family: Arial">
               ©Copyright 2021 ~ <span class="font-weight-bold">ZeroOne</span>
               <i class="fa fa-code"></i>
             </p>

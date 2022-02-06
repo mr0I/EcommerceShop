@@ -301,9 +301,6 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                               <div class="product-detail detail-center detail-inverse">
                                 <div class="detail-title">
                                   <div class="detail-left">
-                                    <div class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                              class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    </div>
                                     <p>${product.description}</p>
                                     <a href="/product/${product.id}">
                                       <h6 class="price-title">${product.title}</h6>

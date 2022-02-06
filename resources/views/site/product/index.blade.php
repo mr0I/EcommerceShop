@@ -273,13 +273,6 @@
                     <div class="product-detail detail-inline ">
                       <div class="detail-title">
                         <div class="detail-left">
-                          <div class="rating-star">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                          </div>
                           <a href="/product/{{ $related_product->id }}">
                             <h6 class="price-title">
                               {{ $related_product->title }}

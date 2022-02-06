@@ -24,7 +24,7 @@
                 <input type="password" class="form-control" placeholder="{{ __('Password') }}" name="password" id="password"
                        autocomplete="current-password" required>
               </div>
-              <button href="#" type="submit" class="btn btn-normal"> {{ __('Login') }}</button>
+              <button type="submit" class="btn btn-normal"> {{ __('Login') }}</button>
               <a class="float-end txt-default mt-2" href="forget-pwd.html"> فراموشی رمز عبور؟</a>
             </form>
           </div>

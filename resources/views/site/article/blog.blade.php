@@ -19,7 +19,6 @@
         <div class="col">
           <div class="breadcrumb-contain">
             <div>
-              {{--<h2>اخبار</h2>--}}
               <ul>
                 <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                 <li><i class="fa fa-angle-double-left"></i></li>
@@ -173,8 +172,8 @@
       </div>
     </section>
   @else
-    <div class="container mt-5">
-      <p class="alert alert-warning text-center">{{ __('No Article!!!') }}</p>
+    <div class="no-result text-center my-5">
+      <p>{{ __('No Article!') }}</p>
     </div>
   @endif
   <!-- Section ends -->

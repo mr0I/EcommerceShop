@@ -1,9 +1,11 @@
 // sass --watch scss/main.scss:css/mix.css --style compressed
 
 
+@import "partials/base";
 @import "partials/themify";
 @import "partials/slick";
 @import "partials/slick-theme";
 @import "partials/animate";
 @import "partials/bootstrap";
 @import "partials/color2";
+@import "partials/extra";

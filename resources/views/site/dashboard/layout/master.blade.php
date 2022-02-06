@@ -36,15 +36,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">
   <meta name="wishlist-url" content="{{ url('wishlist') }}">
-  <meta name="dash-url" content="{{ url('my_account') }}">
   <!-- Disable scale web page -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  {{--<link rel="icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">--}}
-  <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="{{url('images/favicon/favicon.ico')}}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
-  <!-- Extra css -->
-  <link rel="stylesheet" type="text/css" href="{{ url('libs/css/extra.css') }}">
   @yield('productSchema')
   {!! NoCaptcha::renderJs() !!}
   @toastr_css
@@ -56,7 +52,7 @@
 
 <!-- loader start -->
 <div class="loader-wrapper">
-  <div><img src="{{ url('images/main-loading.gif') }}" alt="loader"></div>
+  <div><img src="{{ url('images/loaders/loading5.gif') }}" alt="loader"></div>
 </div>
 <!-- loader end -->
 
@@ -276,36 +272,7 @@
                 </a>
               </div>
             </div>
-            <div class="nav-block">
 
-              <div class="nav-left">
-                <nav class="navbar" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
-                  <button class="navbar-toggler" type="button">
-                    <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
-                  </button>
-                  <h5 class="mb-0  text-white title-font">دسته بندی های فروشگاه</h5>
-                </nav>
-                <div class="collapse  nav-desk" id="navbarToggleExternalContent">
-                  <ul class="nav-cat title-font">
-                    <li> <a href="category-page(left-sidebar).html"><img
-                                src="{{ url('images/layout-1/nav-img/01.png') }}" alt="category-product">لباس گرم</a></li>
-                    <li> <a href="category-page(left-sidebar).html"><img src="{{ url('images/layout-1/nav-img/02.png') }}" alt="category-product">تلویزیون</a></li>
-                    <ul class="mor-slide-open">
-                      <li> <a href="category-page(left-sidebar).html"><img
-                                  src="{{ url('images/layout-1/nav-img/08.png') }}" alt="category-product"> ورزشی</a></li>
-                      <li> <a href="category-page(left-sidebar).html"><img
-                                  src="{{ url('images/layout-1/nav-img/09.png') }}" alt="category-product"> کیف و کفش</a>
-                      </li>
-                    </ul>
-                    </li>
-                    <li>
-                      <a class="mor-slide-click">دسته بندی بیشتر <i class="fa fa-angle-down pro-down"></i><i
-                                class="fa fa-angle-up pro-up"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             <div class="menu-block">
               <nav id="main-nav">
                 <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
@@ -324,74 +291,13 @@
                   <li>
                     <a class="dark-menu-item" href="#">{{ __('Products Category') }}</a>
                     <ul>
-                      <li><a href="{{ url('category/mobile') }}">{{ __('Mobile') }}</a></li>
-                      <li>
-                        <a href="javascript:void(0)">مقایسه</a>
-                        <ul>
-                          <li><a href="compare.html">مقایسه</a></li>
-                          <li><a href="compare-2.html">مقایسه-2</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="collection.html">کالکشن</a></li>
-                      <li><a href="look-book.html">لوک بوک</a></li>
-                      <li><a href="404.html">خطای 404</a></li>
-                      <li><a href="coming-soon.html">به زودی </a></li>
-                      <li><a href="faq.html">سوالات متداول</a></li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <a class="dark-menu-item" href="#">{{ __('Pages') }}</a>
-                    <ul>
-                      <li>
-                        <a href="javascript:void(0)">فاکتور<span class="new-tag">جدید</span></a>
-                        <ul>
-                          <li><a href="../invoice-template/element-invoice.html">فاکتور یک</a></li>
-                          <li><a href="../invoice-template/element-invoice2.html">فاکتور دو</a></li>
-                          <li><a href="../invoice-template/element-invoice3.html">فاکتور سه</a></li>
-                          <li><a href="../invoice-template/element-invoice4.html">فاکتور چهار</a></li>
-                          <li><a href="../invoice-template/element-invoice5.html">فاکتور پنج</a></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="javascript:void(0)">حساب کاربری</a>
-                        <ul>
-                          <li><a href="wishlist.html">لیست علاقه مندی</a></li>
-                          <li><a href="cart.html">سبد خرید</a></li>
-                          <li><a href="dashboard.html">داشبورد</a></li>
-                          <li><a href="login.html">ورود</a></li>
-                          <li><a href="register.html">ثبت نام</a></li>
-                          <li><a href="contact.html">تماس</a></li>
-                          <li><a href="forget-pwd.html">فراموشی رمز عبور</a></li>
-                          <li><a href="profile.html">پروفایل </a></li>
-                          <li>
-                            <a href="javascript:void(0)">پرداخت</a>
-                            <ul>
-                              <li><a href="checkout.html">پرداخت 1</a></li>
-                              <li><a href="checkout2.html">پرداخت 2<span class="new-tag">جدید</span></a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="about-page.html">درباره ما</a></li>
-                      <li><a href="search.html">جستجو</a></li>
-                      <li><a href="typography.html">تایپوگرافی </a></li>
-                      <li><a href="review.html">نظرات </a></li>
-                      <li><a href="order-success.html">سفارش موفق</a></li>
-                      <li><a href="order-history.html">تاریخچه سفارش</a></li>
-                      <li><a href="order-tracking.html">پیگیری سفارش</a></li>
-                      <li>
-                        <a href="javascript:void(0)">مقایسه</a>
-                        <ul>
-                          <li><a href="compare.html">مقایسه</a></li>
-                          <li><a href="compare-2.html">مقایسه-2</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="collection.html">کالکشن</a></li>
-                      <li><a href="look-book.html">لوک بوک</a></li>
-                      <li><a href="404.html">خطای 404</a></li>
-                      <li><a href="coming-soon.html">به زودی </a></li>
-                      <li><a href="faq.html">سوالات متداول</a></li>
+                      <li><a href="{{ url('category/laptop') }}">{{ __('laptop') }}</a></li>
+                      <li><a href="{{ url('category/tablet') }}">{{ __('tablet') }}</a></li>
+                      <li><a href="{{ url('category/mobileAccessories') }}">{{ __('Mobile Accessories') }}</a></li>
+                      <li><a href="{{ url('category/computerParts') }}">{{ __('Computer Parts') }}</a></li>
+                      <li><a href="{{ url('category/laptopAccessories') }}">{{ __('Laptop Accessories') }}</a></li>
+                      <li><a href="{{ url('category/wearableGadget') }}">{{ __('Wearable Gadget') }}</a></li>
+                      <li><a href="{{ url('category/officeMachines') }}">{{ __('Office Machines') }}</a></li>
                     </ul>
                   </li>
                   <!--product-end end-->
@@ -428,8 +334,9 @@
                       </svg>
                   </a>
                 </li>
-                <li class="mobile-user onhover-dropdown" onclick="openAccount()">
-                  <a href="javascript:void(0)">
+                <li class="mobile-user onhover-dropdown">
+                  {{--<li class="mobile-user onhover-dropdown" onclick="openAccount()">--}}
+                  <a href="{{ url('authentication') }}">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
                          xml:space="preserve">
@@ -488,7 +395,6 @@
 </header>
 <!--header end-->
 
-
 <div id="container">
   <section class="section-big-py-space b-g-light">
     <div class="container">
@@ -509,7 +415,7 @@
                 <li><a href="{{ url('/my_account/wishlist') }}">{{ __('My Wish List') }}</a></li>
                 <li><a href="{{ url('/my_account/changepassword') }}">{{ __('change password') }}</a></li>
                 @if(Auth::user()->role->name==='Admin')
-                <li><a href="{{ url('admin/dashboard') }}">{{ __('Admin Panel') }}</a></li>
+                  <li><a href="{{ url('admin/dashboard') }}">{{ __('Admin Panel') }}</a></li>
                 @endif
                 <li class="last">
                   <a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
@@ -530,6 +436,7 @@
     </div>
   </section>
 </div>
+
 
 
 
@@ -632,6 +539,102 @@
 </div>
 <!-- add to  setting bar  end-->
 
+<!-- footer start -->
+<footer>
+  <div class="footer1">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-main">
+            <div class="footer-box">
+              <div class="footer-title mobile-title">
+                <h5>درباره ما</h5>
+              </div>
+              <div class="footer-contant">
+                <div class="footer-logo">
+                  <a href="{{ url('/') }}">
+                    <img src="{{ url($logoPath) }}" class="img-fluid" alt="logo">
+                  </a>
+                </div>
+                <p>
+                  فروشگاه می مارکت با هدف عرضه مستقیم محصولات شیائومی راه اندازی شده است. ما با خرید مستقیم و تمرکز بر اینکه بدون واسطه محصولات را به مصرف کنندگان برسانیم توانسته ایم بهترین قیمت عرضه محصولات را در ایران داشته باشیم.
+                </p>
+              </div>
+            </div>
+            <div class="footer-box">
+              <div class="footer-title">
+                <h5>حساب کاربری</h5>
+              </div>
+              <div class="footer-contant">
+                <ul>
+                  <li><a href="javascript:void(0)">درباره ما</a></li>
+                  <li><a href="javascript:void(0)">تماس با ما</a></li>
+                  <li><a href="javascript:void(0)">قوانین و مقررات</a></li>
+                  <li><a href="javascript:void(0)">تعویض و مرجوع</a></li>
+                  <li><a href="javascript:void(0)">حمل و نقل و تحویل</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-box">
+              <div class="footer-title">
+                <h5>تماس با ما</h5>
+              </div>
+              <div class="footer-contant">
+                <ul class="contact-list">
+                  <li><i class="fa fa-map-marker"></i><span>تهران، میدان آزادی، خیابان آزادی <br> <span>
+                          فروشگاه بیگ دیل</span></span></li>
+                  <li><i class="fa fa-phone"></i>شماره تماس : <span>02155667788</span></li>
+                  <li><i class="fa fa-envelope-o"></i>ایمیل : example@gmail.com</li>
+                  <li><i class="fa fa-fax"></i>فکس : <span>123456</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-box">
+              <div class="footer-title">
+                <h5>خبرنامه</h5>
+              </div>
+              <div class="footer-contant">
+                <div class="newsletter-second">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="نام کامل خود را وارد کنید">
+                      <span class="input-group-text"><i class="ti-user"></i></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="آدرس ایمیل خود را وارد کنید">
+                      <span class="input-group-text"><i class="ti-email"></i></span>
+                    </div>
+                  </div>
+                  <div class="form-group mb-0">
+                    <a href="javascript:void(0)" class="btn btn-solid btn-sm">عضویت</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subfooter dark-footer ">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="footer-left">
+            <p class="w-100 text-left" style="direction: ltr;text-align: left;font-family: Arial">
+              ©Copyright 2021 ~ <span class="font-weight-bold">ZeroOne</span>
+              <i class="fa fa-code"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer end -->
+
 
 
 <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
@@ -649,7 +652,6 @@
 <script src="{{ url('js/script.js') }}"></script>
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
-
 <script type="application/ld+json" id="master_json_content">
     {
       "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"
