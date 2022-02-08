@@ -6,7 +6,7 @@
 
 @section('content')
   @php
-    include_once public_path() . '/libs/helpers/jdatetime.class.php';
+    include_once public_path() . '/helpers/jdatetime.class.php';
     $date = new jDateTime(true, true, 'Asia/Tehran');
   @endphp
 
