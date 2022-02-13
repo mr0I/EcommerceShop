@@ -68,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/site/category/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="89">
@@ -114,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/libs/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1109">
-              <caret line="735" selection-start-line="735" selection-end-line="735" />
+            <state relative-caret-position="164">
+              <caret line="484" column="58" selection-start-line="484" selection-start-column="52" selection-end-line="484" selection-end-column="58" />
               <folding>
                 <element signature="e#125#17127#0" />
                 <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
@@ -665,16 +665,15 @@
       <workItem from="1644168163424" duration="861000" />
       <workItem from="1644169142555" duration="4331000" />
       <workItem from="1644335854916" duration="4538000" />
-      <workItem from="1644773623338" duration="3598000" />
+      <workItem from="1644773623338" duration="3910000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="615177000" />
+    <option name="totallyTimeSpent" value="615489000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info content_ui="combo" x="542" y="58" width="281" height="611" id="Project" order="0" sideWeight="0.498366" weight="0.21406959" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -691,7 +690,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3880342" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.94871795" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.94871795" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -963,19 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/libs/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1109">
-          <caret line="735" selection-start-line="735" selection-end-line="735" />
-          <folding>
-            <element signature="e#125#17127#0" />
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#addToWish#0" />
-            <element signature="n#!!block;n#addToCompare#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/scss/partials/_color2.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -1062,6 +1048,19 @@
             <element signature="e#14435#16996#0#HTML" />
             <element signature="e#17013#19574#0#HTML" />
             <element signature="e#19591#22161#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="484" column="58" selection-start-line="484" selection-start-column="52" selection-end-line="484" selection-end-column="58" />
+          <folding>
+            <element signature="e#125#17127#0" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#addToWish#0" />
+            <element signature="n#!!block;n#addToCompare#0" />
           </folding>
         </state>
       </provider>
