@@ -6,7 +6,7 @@ ul{
   padding: 0;
 }
 header#stickyheader{
-  z-index: 99;
+  z-index: 999999;
 }
 /* Globals */
 
@@ -588,6 +588,12 @@ p.desc{
 }
 .navbar-menu .menu-block{
   margin-right: 30px;
+}
+.sticky .category-header-2 .navbar-menu .menu-block .pixelstrap .dark-menu-item{
+  color: #e0e0e0;
+}
+.sticky .category-header-2 .navbar-menu .icon-block ul li svg {
+  fill: #e0e0e0;
 }
 /* start navbar */
 

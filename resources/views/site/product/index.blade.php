@@ -162,7 +162,7 @@
                 </div>
 
                 @php
-                  $encodeUrl = urlencode('/product/'.$product->id);
+                  $encodeUrl = urlencode('product/'.$product->id);
                 @endphp
                 <div class="pro-group ">
                   <h6 class="product-title">اشتراک گذاری</h6>

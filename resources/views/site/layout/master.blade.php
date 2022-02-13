@@ -571,11 +571,6 @@
 <script src="{{ url('js/script.js') }}"></script>
 <script src="{{ url('libs/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('libs/js/jquery.mark.min.js') }}"></script>
-<script type="application/ld+json" id="master_json_content">
-    {
-      "siteUrl" : "<?= Config::get('constants.siteUrl') ?>"
-  }
-</script>
 <script src="{{ url('libs/js/script.js') }}"></script>
 @toastr_js
 @toastr_render

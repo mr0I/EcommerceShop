@@ -76,7 +76,7 @@
       </div>
 
 
-      @if(sizeof($products) !== 0)
+      @if(sizeof($products) !== 0 && $products->total() > $products->perPage())
         <div class="product-pagination">
           <div class="theme-paggination-block">
             <div class="container-fluid p-0">

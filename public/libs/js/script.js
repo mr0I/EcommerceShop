@@ -5,8 +5,6 @@
 
 jQuery(document).ready(function($){
 
-    window.localVars = JSON.parse(document.getElementById("master_json_content").innerHTML,false);
-
     /* Toasts */
     window.BottomToast = Swal.mixin({
         toast: true,
@@ -464,7 +462,6 @@ jQuery(document).ready(function($){
 });
 
 
-
 const mobileSearchInput = document.getElementById("mobile_search_product_input");
 mobileSearchInput.addEventListener('keyup',function (e) {
     if (e.keyCode === 13){
@@ -482,8 +479,10 @@ function searchProduct(e) {
     _do_search(sq,cat_id);
 }
 let _do_search = (searchQuery,catId) => {
-    if (searchQuery.length >2 && searchQuery.trim()!=='' &&  !hasOnlySpecialCharacter(searchQuery)) {
-        window.location.href = `${window.localVars.siteUrl}search?q=${searchQuery}&cat=${catId}`;
+    if (searchQuery.length > 2
+        && searchQuery.trim() !== ''
+        &&  !hasOnlySpecialCharacter(searchQuery)) {
+        window.location.href = `${document.location.origin}/search?q=${searchQuery}&cat=${catId}`;
     } else {
         window.BottomToast.fire({
             icon: 'warning',
