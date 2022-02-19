@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => array(
                 'required','string', 'min:6', 'confirmed',
-                'regex:/(^([a-zA-Z]+)(\d+)?$)/u'
+                'regex:/([A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]*/u'
             ),
         ]);
     }

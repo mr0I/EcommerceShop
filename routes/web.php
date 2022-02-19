@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::get('/genSitemap', 'SiteController@genSitemap');
     Route::get('/search', 'SiteController@search');
     Route::get('/authentication', 'SiteController@authentication')->middleware('guest');
+    Route::get('/mailTest', 'SiteController@mailTest');
+    Route::post('/sendTestMail', 'SiteController@sendTestMail');
     // Dashboard
     Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth');
     Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');

@@ -141,7 +141,9 @@
                   @if($product->specifications!==null && $product->specifications!=='')
                     <ul class="product-specifications mt-5">
                       @foreach(json_decode($product->specifications , true) as $key=>$value)
-                        <li class="w-100">{{ $key }}  {{ $value }}</li>
+                        @if($key !== '')
+                          <li class="w-100">{{ $key }}  {{ $value }}</li>
+                        @endif
                       @endforeach
                     </ul>
                   @endif

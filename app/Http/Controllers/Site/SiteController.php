@@ -9,6 +9,7 @@ use App\Category;
 use App\Comment;
 use App\Compare;
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyMail;
 use App\metaproduct;
 use App\Product;
 use App\ProductView;
@@ -408,5 +409,17 @@ class SiteController extends Controller
         $user = Auth::user();
 
         return view('site/dashboard/change_password',compact('user'));
+    }
+
+    public function mailTest()
+    {
+        return view('site/test_mail');
+    }
+    public function sendTestMail(Request $request)
+    {
+        $user = 'ali';
+        $res = Mail::to($request->target_mail)->send(new VerifyMail($user));
+
+        dd($res);
     }
 }

@@ -339,8 +339,22 @@ ul.rating-star{
 
 
 /* Form Styles */
+body.dark{
+  input.form-control{
+    color: #e0e0e0;
+  }
+  input.form-control:focus{
+    color: initial;
+  }
+}
+body.bg-light{
+  input.form-control{
+    color: initial;
+  }
+}
+
 input.form-control{
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 .help-block{
   color: red;

@@ -32,7 +32,8 @@
         <div class="col-lg-4 offset-lg-4">
           <div class="theme-card">
             <h3 class="text-center">ایجاد حساب کاربری</h3>
-          </div>            <form class="theme-form" method="post" action="{{ route('register') }}">
+          </div>
+          <form class="theme-form" method="post" action="{{ route('register') }}">
             @csrf
             <div class="row g-3">
               <div class="col-md-12 form-group">
