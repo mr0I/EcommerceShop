@@ -10,6 +10,7 @@ use App\VerifyUser;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -86,7 +87,12 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'token' => Str::random(40)
         ]);
-        Mail::to($user->email)->send(new VerifyMail($user));
+
+        try{
+            Mail::to($user->email)->send(new VerifyMail($user));
+        } catch (\Exception $exception){
+            Log::error('Error sending mail',['Error Text'=> $exception->getMessage() ]);
+        }
 
         if ($user && $verifyUser){
             Session::flash('user_create_success', __('User Created Successfully'));

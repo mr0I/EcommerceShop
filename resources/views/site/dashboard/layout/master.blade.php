@@ -408,7 +408,7 @@
               </span>
             </div>
             <div class="block-content ">
-              <p>{{ __('Hi, ') . $user->name }}</p>
+              <p>{{ __('Hi, ') . $user->name  }}</p>
               <hr>
               <ul>
                 <li class="active"><a href="{{ url('/my_account') }}">{{ __('Account Info') }}</a></li>

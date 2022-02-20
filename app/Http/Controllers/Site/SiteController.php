@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
@@ -418,8 +419,13 @@ class SiteController extends Controller
     public function sendTestMail(Request $request)
     {
         $user = 'ali';
-        $res = Mail::to($request->target_mail)->send(new VerifyMail($user));
+        try{
+            Mail::to($request->target_mail)->send(new VerifyMail($user));
+        } catch (\Exception $exception){
+            Log::error('Error sending mail',['Error Text'=> $exception->getMessage() ]);
+            return back()->withError($exception->getMessage())->withInput();
+        }
 
-        dd($res);
+        return redirect()->back()->with('message', 'Email Sent:)');
     }
 }
