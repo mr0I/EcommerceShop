@@ -8,6 +8,17 @@ ul{
 header#stickyheader{
   z-index: 999999;
 }
+.modal-open .modal {
+  z-index: 9999999;
+}
+
+@font-face {
+  font-family: "vazir";
+  src: url("../fonts/Vazir.woff2") format("woff2"),
+    url("../fonts/Vazir.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
 /* Globals */
 
 .loader-wrapper img {
@@ -625,6 +636,9 @@ p.desc{
 
 /* end no-result alert */
 
+.product .product-box .product-imgbox{
+  min-height: 350px;
+}
 
 /* start responsive */
 @media screen and (max-width: 2000px) {

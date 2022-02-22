@@ -10,7 +10,7 @@
   <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('metadesc')">
-  <meta property="og:image" content="https://isee.sisoog.com/assets/images/logo.png">
+  <meta property="og:image" content="{{ url('images/icons/logo-144x144.png') }}">
   <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">

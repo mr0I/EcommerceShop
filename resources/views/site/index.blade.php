@@ -116,7 +116,6 @@
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
-
                             <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
@@ -140,7 +139,7 @@
                           <div class="detail-title">
                             <div class="detail-left">
                               <a href="/product/{{ $product->id }}">
-                                <h6 class="price-title">
+                                <h6 class="price-title" style="font-family: vazir;">
                                   {{ $product->title }}
                                 </h6>
                               </a>
@@ -205,7 +204,7 @@
                           <div class="detail-title">
                             <div class="detail-left">
                               <a href="/product/{{ $product->id }}">
-                                <h6 class="price-title">
+                                <h6 class="price-title" style="font-family: vazir;">
                                   {{ $product->title }}
                                 </h6>
                               </a>
@@ -270,7 +269,7 @@
                           <div class="detail-title">
                             <div class="detail-left">
                               <a href="/product/{{ $product->id }}">
-                                <h6 class="price-title">
+                                <h6 class="price-title" style="font-family: vazir;">
                                   {{ $product->title }}
                                 </h6>
                               </a>

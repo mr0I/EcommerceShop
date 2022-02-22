@@ -8,6 +8,7 @@ use App\ArticleView;
 use App\Category;
 use App\Comment;
 use App\Compare;
+use App\Helpers\functions;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyMail;
 use App\metaproduct;
@@ -301,7 +302,8 @@ class SiteController extends Controller
     }
 
     public function wishlist(){
-        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $userIP = functions::getIP();
+        $user_identity = (Auth::check())? Auth::user()->id : $userIP;
         $wish = wishlist::where('userIdentity',$user_identity)->get();
 
         $products = [];

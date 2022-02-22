@@ -585,6 +585,7 @@ function viewModal(pid) {
         });
 
 }
+
 function addToWish(e,pid) {
     e.preventDefault();
 

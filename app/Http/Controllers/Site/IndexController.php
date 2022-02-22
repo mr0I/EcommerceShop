@@ -118,7 +118,8 @@ class IndexController extends Controller
 
     public function addToWish(Request $request)
     {
-        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
+        $userIP = functions::getIP();
+        $user_identity = (Auth::check())? Auth::user()->id : $userIP;
         $pid = $request->product_id;
 
         $wish = wishlist::where('userIdentity',$user_identity)->first();
