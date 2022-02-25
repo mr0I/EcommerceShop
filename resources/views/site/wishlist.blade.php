@@ -46,15 +46,35 @@
                 <th scope="col">عملیات</th>
               </tr>
               </thead>
-              <tbody>
               @foreach($products as $product)
+                <tbody>
                 <tr>
                   <td>
                     <a href="/product/{{ $product->id }}">
                       <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" alt="product" class="img-fluid  ">
                     </a>
                   </td>
-                  <td><a href="/product/{{ $product->id }}">{{ $product->title }}</a></td>
+                  <td>
+                    <a href="/product/{{ $product->id }}">{{ $product->title }}</a>
+                    <div class="mobile-cart-content">
+                      <div class="col-xs-3">
+                        <p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p>
+                      </div>
+                      <div class="col-xs-3 digits price">
+                        @if($product->price!='0')
+                          <h2>{{ $product->price }} تومان</h2>
+                        @else
+                          <h2>---</h2>
+                        @endif
+                      </div>
+                      <div class="col-xs-3">
+                        <h2 class="td-color">
+                          <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
+                          <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
+                        </h2>
+                      </div>
+                    </div>
+                  </td>
                   <td class="digits price">
                     @if($product->price!='0')
                       <h2>{{ $product->price }} تومان</h2>
@@ -68,8 +88,8 @@
                     <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
                   </td>
                 </tr>
+                </tbody>
               @endforeach
-              </tbody>
             </table>
           @endif
         </div>
