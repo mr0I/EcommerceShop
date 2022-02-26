@@ -21,26 +21,18 @@
   <section class="theme-slider home-slide b-g-white " id="home-slide">
     <div class="custom-container">
       <div class="row">
-        <div class="col">
+        <div class="col" style="padding: 0;">
           <div class="slide-1 no-arrow">
             <div>
               <div class="slider-banner p-center slide-banner-1">
                 <div class="slider-img">
-                  <ul class="layout1-slide-1">
-                    <li id="img-1"><img src="{{ url('images/layout-2/slider/1.1.png') }}" class="img-fluid" alt="slider">
-                    </li>
-                    <li id="img-2" class="slide-center"><img src="{{ url('images/layout-2/slider/1.2.png') }}"
-                                                             class="img-fluid" alt="slider">
-                    </li>
-                  </ul>
+                  <img src="{{ url('images/banner/banner3.jpg') }}" class="img-fluid" alt="slider">
                 </div>
                 <div class="slider-banner-contain">
-                  <div>
-                    <h1><span>موبایل</span> شیائومی</h1>
-                    <h4>سریع و زیبا</h4>
-                    <h2>دوربین با کیفیت عالی</h2>
+                  <div class="w-100">
+                    <h2>جدیدترین لپ تاپ ها</h2>
                     <a href="product-page(left-sidebar).html" class="btn btn-normal">
-                      شروع خرید
+                      {{ __('Start buying') }}
                     </a>
                   </div>
                 </div>

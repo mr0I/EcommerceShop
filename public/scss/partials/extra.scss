@@ -633,12 +633,19 @@ p.desc{
   font-size: 125%;
   color: $primaryColor;
 }
-
 /* end no-result alert */
 
-.product .product-box .product-imgbox{
-  min-height: 350px;
+
+
+/* start home page styles */
+.section-pt-space{
+  padding: 0;
 }
+.tab-product-main .tab-prodcut-contain ul li.current:before{
+  bottom: 0;
+  top: unset;
+}
+/* end home page styles */
 
 /* start responsive */
 @media screen and (max-width: 2000px) {
