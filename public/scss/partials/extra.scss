@@ -620,6 +620,9 @@ p.desc{
 .sticky .category-header-2 .navbar-menu .icon-block ul li svg {
   fill: #e0e0e0;
 }
+ul#main-menu a.dark-menu-item{
+  font-size: 1.25em;
+}
 /* start navbar */
 
 
@@ -636,7 +639,6 @@ p.desc{
 /* end no-result alert */
 
 
-
 /* start home page styles */
 .section-pt-space{
   padding: 0;
@@ -644,6 +646,9 @@ p.desc{
 .tab-product-main .tab-prodcut-contain ul li.current:before{
   bottom: 0;
   top: unset;
+}
+.slider-banner-contain-title{
+  color: $primaryColor !important;
 }
 /* end home page styles */
 

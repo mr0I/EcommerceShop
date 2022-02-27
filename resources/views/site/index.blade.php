@@ -26,12 +26,12 @@
             <div>
               <div class="slider-banner p-center slide-banner-1">
                 <div class="slider-img">
-                  <img src="{{ url('images/banner/banner3.jpg') }}" class="img-fluid" alt="slider">
+                  <img src="{{ url('images/banner/banner1.webp') }}" class="img-fluid" alt="slider">
                 </div>
                 <div class="slider-banner-contain">
                   <div class="w-100">
-                    <h2>جدیدترین لپ تاپ ها</h2>
-                    <a href="product-page(left-sidebar).html" class="btn btn-normal">
+                    <h2 class="slider-banner-contain-title">انواع لپ تاپ</h2>
+                    <a href="{{ url('category/laptop') }}" class="btn btn-normal">
                       {{ __('Start buying') }}
                     </a>
                   </div>
@@ -41,20 +41,28 @@
             <div>
               <div class="slider-banner p-center slide-banner-1">
                 <div class="slider-img">
-                  <ul class="layout1-slide-2">
-                    <li id="img-3" class="slide-center"><img src="{{ url('images/layout-2/slider/2.1.png') }}"
-                                                             class="img-fluid" alt="slider"></li>
-                    <li id="img-4" class="slide-center"><img src="{{ url('images/layout-2/slider/2.2.png') }}"
-                                                             class="img-fluid" alt="slider"></li>
-                  </ul>
+                  <img src="{{ url('images/banner/banner2.webp') }}" class="img-fluid" alt="slider">
                 </div>
                 <div class="slider-banner-contain">
-                  <div>
-                    <h1><span>فروش</span> بزرگ</h1>
-                    <h4>شروع از 99 هزار تومان</h4>
-                    <h2>50% تخفیف</h2>
-                    <a href="product-page(left-sidebar).html" class="btn btn-normal">
-                      شروع خرید
+                  <div class="w-100">
+                    <h2 class="slider-banner-contain-title" style="text-align: left;">انواع تبلت</h2>
+                    <a href="{{ url('category/tablet') }}" class="btn btn-normal" style="float: left;">
+                      {{ __('Start buying') }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="slider-banner p-center slide-banner-1">
+                <div class="slider-img">
+                  <img src="{{ url('images/banner/banner3.webp') }}" class="img-fluid" alt="slider">
+                </div>
+                <div class="slider-banner-contain">
+                  <div class="w-100">
+                    <h2 class="slider-banner-contain-title">گجت های پوشیدنی</h2>
+                    <a href="{{ url('category/wearableGadget') }}" class="btn btn-normal">
+                      {{ __('Start buying') }}
                     </a>
                   </div>
                 </div>
