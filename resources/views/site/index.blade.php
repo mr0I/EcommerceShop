@@ -336,7 +336,7 @@
         <div class="col-12">
           <!--title start-->
           <div class="title3 b-g-white text-left">
-            <h4>پیشنهاد های ویژه</h4>
+            <h4>{{ __('Hot Deals') }}</h4>
           </div>
           <!--titel end-->
         </div>
@@ -366,7 +366,7 @@
                         <div>
                           <div>
                             <a href="/product/{{ $product->id }}">
-                              <h5 style="direction: rtl;">{{ $product->title }} </h5>
+                              <h5 style="direction: rtl;font-family: vazir;">{{ $product->title }} </h5>
                             </a>
                             <p style="direction: rtl">{{ mb_strimwidth($product->description,0,650,'---') }}</p>
                             @php

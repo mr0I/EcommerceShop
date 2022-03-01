@@ -5,7 +5,7 @@
 
   {{-- Display Errors --}}
   @if (session('status'))
-    <div class="my-3 alert alert-success">
+    <div class="my-3 alert alert-success w-75 m-auto text-center">
       {{ session('status') }}
     </div>
   @endif
@@ -59,7 +59,6 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-                  <label class="col-md-4 control-label">{{ __('Captcha') }}</label>
                   <div class="col-12">
                     {!! app('captcha')->display() !!}
                   </div>
@@ -124,19 +123,20 @@
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
                            placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" autocomplete="email" required>
                     @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
                     @enderror
                   </div>
                   <div class="col-md-12 form-group">
                     <label for="password">{{ __('Password') }}</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
                            placeholder="{{ __('Enter Password') }}" autocomplete="new-password" required>
+                    <small class="text-muted">{{ __('Password must contain at least 6 letters and contain letters and numbers.') }}</small>
                     @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
                     @enderror
                   </div>
                   <div class="col-md-12 form-group">
@@ -151,7 +151,6 @@
                     </button>
                   </div>
                 </div>
-
               </form>
             </div>
           </div>

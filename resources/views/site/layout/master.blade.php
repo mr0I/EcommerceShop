@@ -100,45 +100,45 @@
       <div class="col-md-12">
         <div class="main-menu-block">
           <div class="header-left">
-            <div class="sm-nav-block d-none">
-                <span class="sm-nav-btn">
-                  <i class="fa fa-bars"></i>
-                </span>
-              <ul class="nav-slide">
-                <li>
-                  <div class="nav-sm-back">
-                    بازگشت <i class="fa fa-angle-left pe-2"></i>
-                  </div>
-                </li>
-                <li><a href="category-page(left-sidebar).html">لباس گرم</a></li>
-                <li><a href="category-page(left-sidebar).html">تلویزیون</a></li>
-                <li><a href="category-page(left-sidebar).html">محصولات حیوانات خانگی</a></li>
-                <li><a href="category-page(left-sidebar).html">ماشین، متورسیکلت</a></li>
-                <li><a href="category-page(left-sidebar).html">محصولات صنعتی</a></li>
-                <li><a href="category-page(left-sidebar).html">محصولات زیبایی و سلامت</a></li>
-                <li><a href="category-page(left-sidebar).html">آجیل و خشکبار </a></li>
-                <li><a href="category-page(left-sidebar).html">ورزشی</a></li>
-                <li><a href="category-page(left-sidebar).html">کیف و کفش</a></li>
-                <li><a href="category-page(left-sidebar).html">فیلم و موسیقی </a></li>
-                <li><a href="category-page(left-sidebar).html">کنسول بازی</a></li>
-                <li><a href="category-page(left-sidebar).html">اسباب بازی، محصولات کودک</a></li>
-                <li class="mor-slide-open">
-                  <ul>
-                    <li><a href="category-page(left-sidebar).html">کیف و کفش</a></li>
-                    <li><a href="category-page(left-sidebar).html">فیلم و موسیقی </a></li>
-                    <li><a href="category-page(left-sidebar).html">کنسول بازی</a></li>
-                    <li><a href="category-page(left-sidebar).html">اسباب بازی، محصولات کودک</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a class="mor-slide-click">
-                    دسته بندی های بیشتر
-                    <i class="fa fa-angle-down pro-down"></i>
-                    <i class="fa fa-angle-up pro-up"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {{--<div class="sm-nav-block d-none">--}}
+                {{--<span class="sm-nav-btn">--}}
+                  {{--<i class="fa fa-bars"></i>--}}
+                {{--</span>--}}
+              {{--<ul class="nav-slide">--}}
+                {{--<li>--}}
+                  {{--<div class="nav-sm-back">--}}
+                    {{--بازگشت <i class="fa fa-angle-left pe-2"></i>--}}
+                  {{--</div>--}}
+                {{--</li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">لباس گرم</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">تلویزیون</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">محصولات حیوانات خانگی</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">ماشین، متورسیکلت</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">محصولات صنعتی</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">محصولات زیبایی و سلامت</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">آجیل و خشکبار </a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">ورزشی</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">کیف و کفش</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">فیلم و موسیقی </a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">کنسول بازی</a></li>--}}
+                {{--<li><a href="category-page(left-sidebar).html">اسباب بازی، محصولات کودک</a></li>--}}
+                {{--<li class="mor-slide-open">--}}
+                  {{--<ul>--}}
+                    {{--<li><a href="category-page(left-sidebar).html">کیف و کفش</a></li>--}}
+                    {{--<li><a href="category-page(left-sidebar).html">فیلم و موسیقی </a></li>--}}
+                    {{--<li><a href="category-page(left-sidebar).html">کنسول بازی</a></li>--}}
+                    {{--<li><a href="category-page(left-sidebar).html">اسباب بازی، محصولات کودک</a></li>--}}
+                  {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                  {{--<a class="mor-slide-click">--}}
+                    {{--دسته بندی های بیشتر--}}
+                    {{--<i class="fa fa-angle-down pro-down"></i>--}}
+                    {{--<i class="fa fa-angle-up pro-up"></i>--}}
+                  {{--</a>--}}
+                {{--</li>--}}
+              {{--</ul>--}}
+            {{--</div>--}}
             <div class="brand-logo">
               <a href="{{ url('/') }}">
                 <img src="{{ url($logoPath) }}" class="img-fluid  " alt="logo">

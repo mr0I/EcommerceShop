@@ -104,7 +104,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -145,7 +145,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -186,7 +186,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -227,7 +227,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -268,7 +268,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -309,7 +309,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -350,7 +350,7 @@
                                   <div>
                                     <div class="product-detail">
                                       <a href="/product/{{ $product->id }}" tabindex="0">
-                                        <p style="font-size: 75%;">{{ $product->title }}</p>
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
                                       @if($product->main_price!==null)
                                         <h6 class="digits">{{ $product->price }} تومان </h6>
@@ -520,7 +520,7 @@
                                       <div class="detail-left">
                                         <p>{{ mb_strimwidth($product->decription,0,100,'---') }}</p>
                                         <a href="/product/{{ $product->id }}">
-                                          <h6 class="price-title">{{ $product->title }}</h6>
+                                          <h6 class="price-title" style="font-family: vazir;">{{ $product->title }}</h6>
                                         </a>
                                       </div>
                                       <div class="detail-right">

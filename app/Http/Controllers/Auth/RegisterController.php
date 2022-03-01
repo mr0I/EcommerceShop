@@ -9,6 +9,7 @@ use App\User;
 use App\VerifyUser;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -117,12 +118,20 @@ class RegisterController extends Controller
                 $user->email_verified_at= Carbon::now();
                 $user->save();
 
-                $status = "Your e-mail is verified. You can now login.";
+                $status = (App::getLocale() === 'en')
+                    ? 'Your e-mail is verified. You can now login.'
+                    : 'ایمیل شما تایید شد. اکنون می توانید وارد شوید.';
             }else{
-                $status = "Your e-mail is already verified. You can now login.";
+                $status = (App::getLocale() === 'en')
+                    ? 'Your e-mail is already verified. You can now login.'
+                    : 'ایمیل شما قبلا تایید شده است. اکنون می توانید وارد شوید.';
             }
         }else{
-            return redirect('/authentication')->with('warning', "Sorry your email cannot be identified.");
+            $msg = (App::getLocale() === 'en')
+                ? 'Sorry your email cannot be identified.'
+                : 'متاسفانه شما معتبر نیست!';
+
+            return redirect('/authentication')->with('warning', $msg);
         }
 
         return redirect('/authentication')->with('status', $status);

@@ -357,10 +357,19 @@ body.dark{
   input.form-control:focus{
     color: initial;
   }
+  input.form-control[readonly]{
+    background-color: #222222;
+  }
+  .editable-field i.edit-button{
+    color: #e0e0e0;
+  }
 }
 body.bg-light{
   input.form-control{
     color: initial;
+  }
+  input.form-control[readonly]{
+    background-color: initial;
   }
 }
 
@@ -649,6 +658,9 @@ ul#main-menu a.dark-menu-item{
 }
 .slider-banner-contain-title{
   color: $primaryColor !important;
+}
+.slider-img > img{
+  width: 100%;
 }
 /* end home page styles */
 

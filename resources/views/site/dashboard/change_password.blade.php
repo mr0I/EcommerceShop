@@ -28,7 +28,7 @@
                       <label class="px-2 m-0" for="new_pass">{{ __('New Password') }} </label>
                       <input type="password" class="form-control" name="new_pass" id="new_pass">
                       <small id="passwordHelpBlock" class="form-text text-muted">
-                        {{ __('Your password must be at least 6 characters') }}
+                        {{ __('Password must contain at least 6 letters and contain letters and numbers.') }}
                       </small>
                     </div>
                     <div class="my-3 w-100">

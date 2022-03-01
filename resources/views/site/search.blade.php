@@ -54,7 +54,7 @@
                   <div class="detail-title">
                     <div class="detail-left">
                       <a href="/product/{{ $product->id }}">
-                        <h6 class="price-title">{{ $product->title }}</h6>
+                        <h6 class="price-title" style="font-family: vazir">{{ $product->title }}</h6>
                       </a>
                     </div>
                     <div class="detail-right d-flex justify-content-center">
