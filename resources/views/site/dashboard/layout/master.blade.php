@@ -10,7 +10,7 @@
   <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('metadesc')">
-  <meta property="og:image" content="{{ url('images/icons/logo-144x144.png') }}">
+  <meta property="og:image" content="https://i.postimg.cc/XYzMRt1r/logo-144x144.png">
   <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">
@@ -25,13 +25,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="dgmarketz">
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-48x48.png" sizes="48x48">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-96x96.png" sizes="96x96">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-144x144.png" sizes="144x144">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-192x192.png" sizes="192x192">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-256x256.png" sizes="256x256">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-384x384.png" sizes="384x384">--}}
-  {{--<link rel="apple-touch-icon" href="/assets/images/icons/logo-512x512.png" sizes="512x512">--}}
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-48x48.webp" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-96x96.webp" sizes="96x96">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-144x144.webp" sizes="144x144">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-192x192.webp" sizes="192x192">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-256x256.webp" sizes="256x256">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-384x384.webp" sizes="384x384">
+  <link rel="apple-touch-icon" href="/assets/images/icons/logo-512x512.webp" sizes="512x512">
   <meta name="msapplication-TileColor" content="#fff">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">

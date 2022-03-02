@@ -10,7 +10,7 @@
   <meta name="keywords" content="@yield('keywords','فروشگاه محصولات دیجیتال,محصولات دیجیتال,اخبار فناوری')">
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('metadesc')">
-  <meta property="og:image" content="{{ url('images/icons/logo-144x144.png') }}">
+  <meta property="og:image" content="https://i.postimg.cc/XYzMRt1r/logo-144x144.png">
   <meta property="og:url" content="https://dgmarketz.com/">
   <meta name="msapplication-tap-highlight" content="no"/>
   <meta name="application-name" content="dgmarketz">
@@ -27,13 +27,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="dgmarketz">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-48x48.png') }}" sizes="48x48">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-96x96.png') }}" sizes="96x96">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-144x144.png') }}" sizes="144x144">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-192x192.png') }}" sizes="192x192">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-256x256.png') }}" sizes="256x256">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-384x384.png') }}" sizes="384x384">
-  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-512x512.png') }}" sizes="512x512">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-48x48.webp') }}" sizes="48x48">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-96x96.webp') }}" sizes="96x96">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-144x144.webp') }}" sizes="144x144">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-192x192.webp') }}" sizes="192x192">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-256x256.webp') }}" sizes="256x256">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-384x384.webp') }}" sizes="384x384">
+  <link rel="apple-touch-icon" href="{{ url('images/icons/logo-512x512.webp') }}" sizes="512x512">
   <meta name="msapplication-TileColor" content="#fff">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">
@@ -467,7 +467,7 @@
           <div class="footer-main">
             <div class="footer-box">
               <div class="footer-title mobile-title">
-                <h5>درباره ما</h5>
+                <h5>درباره دیجی مارکت</h5>
               </div>
               <div class="footer-contant">
                 <div class="footer-logo">
@@ -475,61 +475,22 @@
                     <img src="{{ url($logoPath) }}" class="img-fluid" alt="logo">
                   </a>
                 </div>
-                <p>
-                  فروشگاه می مارکت با هدف عرضه مستقیم محصولات شیائومی راه اندازی شده است. ما با خرید مستقیم و تمرکز بر اینکه بدون واسطه محصولات را به مصرف کنندگان برسانیم توانسته ایم بهترین قیمت عرضه محصولات را در ایران داشته باشیم.
+                <p style="color: #bdbdbd;line-height: 2;user-select: none">
+                  وبسایت  دیجی مارکت با هدف معرفی محصولات منتخب دیجیتال از وبسایت های معتبر مانند دیجی کالا راه اندازی شده است.
                 </p>
               </div>
             </div>
             <div class="footer-box">
               <div class="footer-title">
-                <h5>حساب کاربری</h5>
+                <h5>{{ __('Useful Links') }}</h5>
               </div>
               <div class="footer-contant">
                 <ul>
-                  <li><a href="javascript:void(0)">درباره ما</a></li>
-                  <li><a href="javascript:void(0)">تماس با ما</a></li>
-                  <li><a href="javascript:void(0)">قوانین و مقررات</a></li>
-                  <li><a href="javascript:void(0)">تعویض و مرجوع</a></li>
-                  <li><a href="javascript:void(0)">حمل و نقل و تحویل</a></li>
+                  <li><a href="{{ url('authentication') }}">{{ __('User Account') }}</a></li>
+                  <li><a href="{{ url('blog') }}">{{ __('Blog') }}</a></li>
+                  <li><a href="{{ url('compare') }}">{{ __('Compare') }}</a></li>
+                  <li><a href="{{ url('wishlist') }}">{{ __('Wish List') }}</a></li>
                 </ul>
-              </div>
-            </div>
-            <div class="footer-box">
-              <div class="footer-title">
-                <h5>تماس با ما</h5>
-              </div>
-              <div class="footer-contant">
-                <ul class="contact-list">
-                  <li><i class="fa fa-map-marker"></i><span>تهران، میدان آزادی، خیابان آزادی <br> <span>
-                          فروشگاه بیگ دیل</span></span></li>
-                  <li><i class="fa fa-phone"></i>شماره تماس : <span>02155667788</span></li>
-                  <li><i class="fa fa-envelope-o"></i>ایمیل : example@gmail.com</li>
-                  <li><i class="fa fa-fax"></i>فکس : <span>123456</span></li>
-                </ul>
-              </div>
-            </div>
-            <div class="footer-box">
-              <div class="footer-title">
-                <h5>خبرنامه</h5>
-              </div>
-              <div class="footer-contant">
-                <div class="newsletter-second">
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="نام کامل خود را وارد کنید">
-                      <span class="input-group-text"><i class="ti-user"></i></span>
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="آدرس ایمیل خود را وارد کنید">
-                      <span class="input-group-text"><i class="ti-email"></i></span>
-                    </div>
-                  </div>
-                  <div class="form-group mb-0">
-                    <a href="javascript:void(0)" class="btn btn-solid btn-sm">عضویت</a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

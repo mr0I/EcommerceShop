@@ -659,10 +659,20 @@ ul#main-menu a.dark-menu-item{
 .slider-banner-contain-title{
   color: $primaryColor !important;
 }
-.slider-img > img{
-  width: 100%;
+.slider-img {
+  height: auto !important;
+  img{
+    width: 100%;
+  }
 }
 /* end home page styles */
+
+/* start footer */
+.footer1 .footer-main>div {
+  max-width: 50%;
+  width: 45%;
+}
+/* end footer */
 
 /* start responsive */
 @media screen and (max-width: 2000px) {
@@ -677,6 +687,10 @@ ul#main-menu a.dark-menu-item{
   }
   .layout-header2 .main-menu-block .brand-logo img{
     height: 55px;
+  }
+  .footer1 .footer-main>div {
+    max-width: 100%;
+    width: 100%;
   }
 }
 @media screen and (max-width: 575px) {
