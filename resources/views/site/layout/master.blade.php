@@ -38,6 +38,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="compare-url" content="{{ url('compare') }}">
   <meta name="wishlist-url" content="{{ url('wishlist') }}">
+  <meta name="auth-url" content="{{ url('authentication') }}">
   <!-- Disable scale web page -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="icon" type="image/x-icon" href="{{url('images/favicon/favicon.ico')}}">

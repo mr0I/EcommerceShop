@@ -118,6 +118,10 @@ class IndexController extends Controller
 
     public function addToWish(Request $request)
     {
+        if(! Auth::check()) {
+            return response()->json(['result' => 'Unauthorized' ] , 401);
+        }
+
         $userIP = functions::getIP();
         $user_identity = (Auth::check())? Auth::user()->id : $userIP;
         $pid = $request->product_id;

@@ -597,15 +597,15 @@ function addToWish(e,pid) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         body: JSON.stringify(data),
-    })
-        .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.result === 'Done') {
                 window.swalWithBootstrapButtons.fire({
                     position: 'center',
                     icon: 'success',
                     title: '',
-                    html:`محصول به لیست علاقه مندی اضافه شد :)`,
+                    html: `محصول به لیست علاقه مندی اضافه شد :)`,
                     showConfirmButton: true,
                     confirmButtonText: 'برو به لیست علاقه مندی',
                     showCloseButton: false,
@@ -619,16 +619,30 @@ function addToWish(e,pid) {
                     }
                 });
                 $('.item-count-contain').html(data.count);
-            } else if(data.result==='Duplicate'){
+            } else if (data.result === 'Duplicate') {
                 window.swalWithBootstrapButtons.fire({
                     position: 'center',
                     icon: 'error',
                     title: '',
-                    html:`این محصول قبلا به لیست علاقه مندی اضافه شده است!`,
+                    html: `این محصول قبلا به لیست علاقه مندی اضافه شده است!`,
                     showConfirmButton: false,
                     showCloseButton: false,
                     showCancelButton: true,
                     cancelButtonText: 'خُب'
+                });
+            } else if (data.result === 'Unauthorized') {
+                window.swalWithBootstrapButtons.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'خطای اعتبارسنجی',
+                    html:`برای اینکار باید به سایت وارد شوید!`,
+                    showConfirmButton: true,
+                    showCloseButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'بیخیال',
+                    confirmButtonText: 'باشه'
+                }).then( (result) => {
+                    if (result.isConfirmed) window.location.href = $('meta[name="auth-url"]').attr('content');
                 });
             } else {
                 window.swalWithBootstrapButtons.fire({
@@ -646,6 +660,7 @@ function addToWish(e,pid) {
         .catch((error) => {
             console.error('Error:', error);
         });
+
 }
 function addToCompare(e,pid) {
     e.preventDefault();
