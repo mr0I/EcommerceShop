@@ -30,6 +30,13 @@
     <div class="custom-container">
       <div class="row">
         <div class="col-sm-12">
+          @if($product1 === null || $product2 === null || $product3 === null || $product4 === null )
+          <div class="d-flex justify-content-center mb-3">
+            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#add_to_compare_modal">
+              {{ __('Add New Product') }}
+            </button>
+          </div>
+          @endif
           <div class="compare-page">
             <div class="table-wrapper table-responsive">
               @if($product1!==null || $product2!==null || $product3!==null || $product4!==null )
@@ -105,14 +112,14 @@
                                class="featured-image">
                         </a>
                         @if($product2->status=='available')
-                        <div class="product_price digits price">
-                          <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
-                        </div>
-                        <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
-                            target="_blank" rel="noopener noreferrer">
-                          {{ __('Buy') }}
-                        </a>
-                          @else
+                          <div class="product_price digits price">
+                            <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
+                          </div>
+                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                             target="_blank" rel="noopener noreferrer">
+                            {{ __('Buy') }}
+                          </a>
+                        @else
                           <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
@@ -198,7 +205,7 @@
                       $not_available_txt = __('Not Available');
                     @endphp
 
-                  @if($product1!==null)
+                    @if($product1!==null)
                       <td class="availabel-stock">
                         <p class="{{ ($product1->status=='available')? 'text-success' : 'text-danger' }}">
                           {{ ($product1->status=='available')? $available_txt : $not_available_txt  }}
@@ -229,7 +236,7 @@
                   </tr>
                   </tbody>
                 </table>
-                @else
+              @else
                 <div class="no-result text-center">
                   <p>{{ __('THERE IS NO ITEM!!!') }}</p>
                 </div>
@@ -240,6 +247,53 @@
         </div>
       </div>
     </div>
+
+    {{-- add to compare modal --}}
+    <div class="modal fade bd-example-modal-lg theme-modal" id="add_to_compare_modal" tabindex="-1" role="dialog"
+         aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content quick-view-modal">
+          <div class="modal-body">
+            <form class="form-header">
+              <div class="input-group">
+                <input type="text" class="form-control" id="compare_product" placeholder="{{ __('product name...') }}"
+                       name="compare_product" value="{{ old('compare_product') }}" required autocomplete="compare_product">
+                <button type="submit" class="btn btn-normal" onclick="addCompareProduct(event)">
+                  {{ __('Search') }} <i class="fa fa-search mx-1"></i>
+                </button>
+              </div>
+            </form>
+
+            <div class="compare-products-table" style="display: none">
+                <table class="jsgrid-table mt-4 m-auto w-75">
+                  <tbody>
+                  <tr class="jsgrid-header-row">
+                    <th class="jsgrid-header-cell" style="width: 150px;">{{ __('Row') }}</th>
+                    <th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">{{ __('Product Title') }}</th>
+                    <th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">{{ __('Add') }}</th>
+                  </tr>
+                  <tr class="jsgrid-filter-row">
+                    <td class="jsgrid-cell" style="width: 150px;">1</td>
+                    <td class="jsgrid-cell" style="width: 150px;">گوشی</td>
+                    <td class="jsgrid-cell" style="width: 150px;">
+                      <button class="btnt btn-normal"><i class="fa fa-plus"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="jsgrid-filter-row">
+                    <td class="jsgrid-cell" style="width: 150px;">2</td>
+                    <td class="jsgrid-cell" style="width: 150px;">گوشی</td>
+                    <td class="jsgrid-cell" style="width: 150px;">
+                      <button class="btnt btn-normal"><i class="fa fa-plus"></i></button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </section>
   <!-- Section ends -->
 @endsection

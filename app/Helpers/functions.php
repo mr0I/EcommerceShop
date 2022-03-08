@@ -24,4 +24,8 @@ class functions
             return $http_x_headers[0];
         }
     }
+
+    public static function clearInputs($input){
+        return trim(htmlentities(addslashes($input)));
+    }
 }

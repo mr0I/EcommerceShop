@@ -503,7 +503,7 @@ p.desc{
   line-height: 3 !important;
   text-align: justify !important;
   padding: 8px 4px !important;
-  font-size: 115% !important;
+  font-size: 100% !important;
 }
 .wish-table td,th{
   text-align: center;
@@ -673,6 +673,27 @@ ul#main-menu a.dark-menu-item{
   width: 45%;
 }
 /* end footer */
+
+
+/* start compare modal */
+.compare-products-table{
+  table{
+    border: 1px groove #5555;
+    th{
+      background-color: #181818;
+      padding: 5px 0;
+      text-align: center;
+      border: 1px solid #222222;
+    }
+    td{
+      text-align: center;
+      border: 1px solid #222222;
+    }
+  }
+}
+/* end compare modal */
+
+
 
 /* start responsive */
 @media screen and (max-width: 2000px) {

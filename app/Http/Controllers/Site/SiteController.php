@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Session;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
 use Spatie\Crawler\Crawler;
 use Spatie\Sitemap\SitemapGenerator;
+use App\Helpers;
 
 class SiteController extends Controller
 {
@@ -153,26 +154,20 @@ class SiteController extends Controller
         }
     }
 
-    public function compare_products(){
-        $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
-        $compare = Compare::where('userIdentity',$user_identity)->first();
+    public function compare_products(Request $request)
+    {
+        $pid1 = functions::clearInputs($request->pid1);
+        $pid2 = functions::clearInputs($request->pid2);
+        $pid3 = functions::clearInputs($request->pid3);
+        $pid4 = functions::clearInputs($request->pid4);
 
-        if ($compare !== null){
-            $product1 = ($compare->pid1!== null)? Product::find($compare->pid1): null;
-            $product2 = ($compare->pid2!== null)? Product::find($compare->pid2): null;
-            $product3 = ($compare->pid3!== null)? Product::find($compare->pid3): null;
-            $product4 = ($compare->pid4!== null)? Product::find($compare->pid4): null;
-            // remove old pids
-            if($product1===null) $compare->pid1=null;$compare->save();
-            if($product2===null) $compare->pid2=null;$compare->save();
-            if($product3===null) $compare->pid3=null;$compare->save();
-            if($product4===null) $compare->pid4=null;$compare->save();
-        } else {
-            $product1 = null;
-            $product2 = null;
-            $product3 = null;
-            $product4 = null;
-        }
+        $product1 = null;$product2 = null;$product3 = null;$product4 = null;
+        $pattern = '/^(pr-)+\d/';
+        if (strlen($pid1) > 0 && preg_match($pattern ,$pid1)) $product1 = Product::find(substr($pid1,3));
+        if (strlen($pid2) > 0 && preg_match($pattern ,$pid2)) $product2 = Product::find(substr($pid2,3));
+        if (strlen($pid3) > 0 && preg_match($pattern ,$pid3)) $product3 = Product::find(substr($pid3,3));
+        if (strlen($pid4) > 0 && preg_match($pattern ,$pid4)) $product4 = Product::find(substr($pid4,3));
+
 
         return view('site/compare', compact('product1','product2','product3','product4'));
     }

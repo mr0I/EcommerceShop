@@ -450,8 +450,6 @@ jQuery(document).ready(function($){
     });
     /* change password form */
 
-
-
     /* Split Prices By Comma */
     $.fn.digits = function () {
         return this.each(function () {
@@ -748,4 +746,15 @@ function hasOnlySpecialCharacter(val) {
 }
 function closeSidebarFilter() {
     $('span.filter-back').trigger('click');
+}
+
+function addCompareProduct(e) {
+    e.preventDefault();
+
+    const compareTable = document.querySelector('div[class="compare-products-table"]');
+    setTimeout(function () {
+        $(compareTable).slideDown('400');
+    } , 1000)
+
+
 }
