@@ -266,8 +266,8 @@
                            data-tippy-content="مشاهده سریع" onclick="viewModal({{ $related_product->id }})">
                           <i data-feather="eye"></i>
                         </a>
-                        <a href="#" class="add-to-compare tooltip-top"
-                           onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه">
+                        <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                           data-tippy-content="مقایسه">
                           <i data-feather="refresh-cw"></i>
                         </a>
                       </div>

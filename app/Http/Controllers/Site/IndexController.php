@@ -386,6 +386,28 @@ class IndexController extends Controller
         return response()->json(['result' => 'Error' ],408);
     }
 
+    public function getProducts(Request $request)
+    {
+        $sq = functions::clearInputs($request->search_query);
+
+        // Sanitize Search Query
+        if ($sq === '' ||
+            strlen($sq) < 3 ||
+            $this->hasOnlySpecialCharater($sq)){
+            return response()->json(['result' => 'Bad Request' ],400);
+        }
+
+        $products = Product::where('title','like','%'.$sq.'%')
+            ->skip(0)->take(10)->latest('date')->get(['id','title','price']);
+        return response()->json(['result'=>'Done','products'=>$products ],200);
+    }
+
+    private function hasOnlySpecialCharater($str)
+    {
+        $pattern = "/^[^a-zA-Z0-9ا-ی]+$/";
+        return preg_match($pattern, $str);
+    }
+
 
     public function writeLog(Request $request)
     {

@@ -63,6 +63,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::post('/writeLog', 'IndexController@writeLog');
     Route::post('/updateUserInfo', 'IndexController@updateUserInfo');
     Route::post('/updateUserPass', 'IndexController@updateUserPass');
+    Route::post('/getProducts', 'IndexController@getProducts');
 });
 
 

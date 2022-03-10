@@ -12,10 +12,14 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="breadcrumb-contain">
             <div style="direction: @if(\Illuminate\Support\Facades\App::getLocale() !=='fa') ltr @else rtl @endif">
               @if(sizeof($products)!==0)
-              <h2>{{ __('Search Results for ') }} <strong class="text-success">{{ $search_query }}</strong></h2>
+                <div class="d-flex justify-content-around align-items-center">
+                  <h2>{{ __('Search Results for ') }}
+                    <strong class="text-success">{{ $search_query }}</strong>
+                  </h2>
+                    <small>{{ __('Results Count: ') }} <span class="text-success">{{ $products->total() }}</span> </small>
+                </div>
                 @else
                   @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
                     <h2>نتیجه ای برای <strong class="text-danger">{{ $search_query }}</strong> یافت نشد! </h2>
@@ -24,7 +28,6 @@
                   @endif
                 @endif
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -83,8 +86,8 @@
                        class="tooltip-top" data-tippy-content="مشاهده سریع">
                       <i data-feather="eye"></i>
                     </a>
-                    <a href="#" class="add-to-compare tooltip-top"
-                       onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه">
+                    <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                       data-tippy-content="مقایسه">
                       <i data-feather="refresh-cw"></i>
                     </a>
                   </div>

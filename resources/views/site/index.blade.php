@@ -128,7 +128,7 @@
                                class="tooltip-top" data-tippy-content="مشاهده سریع">
                               <i data-feather="eye"></i>
                             </a>
-                            <a href="{{ url('compare/pr-'. $product->id) }}" class="add-to-compare tooltip-top"
+                            <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
                                 data-tippy-content="مقایسه">
                               <i data-feather="refresh-cw"></i>
                             </a>
@@ -193,8 +193,8 @@
                                class="tooltip-top" data-tippy-content="مشاهده سریع">
                               <i data-feather="eye"></i>
                             </a>
-                            <a href="#" class="add-to-compare tooltip-top"
-                               onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه">
+                            <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                               data-tippy-content="مقایسه">
                               <i data-feather="refresh-cw"></i>
                             </a>
                           </div>
@@ -258,8 +258,8 @@
                                class="tooltip-top" data-tippy-content="مشاهده سریع">
                               <i data-feather="eye"></i>
                             </a>
-                            <a href="#" class="add-to-compare tooltip-top"
-                               onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه">
+                            <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                               data-tippy-content="مقایسه">
                               <i data-feather="refresh-cw"></i>
                             </a>
                           </div>

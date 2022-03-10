@@ -18,6 +18,18 @@ jQuery(document).ready(function($){
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     });
+    window.TopToast = Swal.mixin({
+        toast: true,
+        position: 'top-start',
+        showConfirmButton: false,
+        timer: 3500,
+        background: '#1c272b',
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
     window.swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success mx-1',
@@ -45,7 +57,6 @@ jQuery(document).ready(function($){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.result === 'Done'){
                     if (data.selected_theme === 'dark'){
                         $('#MainBody').removeClass('bg-light').addClass('dark');
@@ -85,7 +96,6 @@ jQuery(document).ready(function($){
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.result === 'Done'){
                     window.location.reload('true');
                 } else{
@@ -163,7 +173,7 @@ jQuery(document).ready(function($){
             $('.changeThemeSelect option[value=dark]').prop('selected',true);
         }
 
-        if (selected_theme === null || selected_theme === '') {
+        if (selected_theme === '') {
             alert('خطا در تغییر تم');
             return;
         }
@@ -206,68 +216,6 @@ jQuery(document).ready(function($){
             });
     });
 
-
-    /* Remove Compare */
-    $('.remove-compare').on('click' , function () {
-        const pid = $(this).data('pid');
-
-        window.swalWithBootstrapButtons.fire({
-            position: 'center',
-            icon: 'warning',
-            title: '',
-            html:`محصول انتخابی از لیست مقایسه حذف شود؟`,
-            showConfirmButton: true,
-            confirmButtonText: 'بله',
-            showCloseButton: false,
-            showCancelButton: true,
-            cancelButtonText: 'خیر'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const data = { product_id: pid };
-                fetch('/removeFromCompare', {
-                    method: 'POST', // or 'PUT'
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.result === 'Done') {
-                            window.swalWithBootstrapButtons.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: '',
-                                html:`محصول از لیست مقایسه حذف شد :)`,
-                                showConfirmButton: true,
-                                confirmButtonText: 'خُب',
-                                showCloseButton: false,
-                                showCancelButton: false,
-                                timer: 3000,
-                                timerProgressBar: true
-                            }).then((result)=>{
-                                if (result.isConfirmed || result.isDismissed)  window.location.reload(true);
-                            });
-                        } else {
-                            window.swalWithBootstrapButtons.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: '',
-                                html:`خطا در عملیات!`,
-                                showConfirmButton: false,
-                                showCloseButton: false,
-                                showCancelButton: true,
-                                cancelButtonText: 'خُب'
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-            }
-        });
-    });
 
     /* Remove wishlist */
     $('.remove-wish-product').on('click',function (e) {
@@ -450,6 +398,17 @@ jQuery(document).ready(function($){
     });
     /* change password form */
 
+
+    /* add 2 compare input */
+    $('#compare_product_input').on('input',function () {
+        const inputValue = $(this).val();
+        const btn = $('#add_compare_product_btn');
+
+        if (inputValue.trim().length > 2) btn.removeAttr('disabled');
+        else btn.attr('disabled','disabled');
+    });
+
+
     /* Split Prices By Comma */
     $.fn.digits = function () {
         return this.each(function () {
@@ -597,7 +556,6 @@ function addToWish(e,pid) {
         body: JSON.stringify(data),
     }).then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data.result === 'Done') {
                 window.swalWithBootstrapButtons.fire({
                     position: 'center',
@@ -660,86 +618,6 @@ function addToWish(e,pid) {
         });
 
 }
-function addToCompare(e,pid) {
-    e.preventDefault();
-
-    const data = { product_id: pid };
-    fetch('/addToCompare', {
-        method: 'POST', // or 'PUT'
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.result === 'Done') {
-                window.swalWithBootstrapButtons.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: '',
-                    html:`محصول به لیست مقایسه اضافه شد :)`,
-                    showConfirmButton: true,
-                    confirmButtonText: 'برو به لیست مقایسه',
-                    showCloseButton: false,
-                    showCancelButton: false,
-                    timer: 3000,
-                    timerProgressBar: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = $('meta[name="compare-url"]').attr('content');
-                        return false;
-                    }
-                });
-            } else if(data.result === 'Full'){
-                window.swalWithBootstrapButtons.fire({
-                    position: 'center',
-                    icon: 'info',
-                    title: '',
-                    html:`لیست مقایسه پر شده است!`,
-                    showConfirmButton: true,
-                    confirmButtonText: 'برو به لیست مقایسه',
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    cancelButtonText: 'بستن',
-                    timer: 3000,
-                    timerProgressBar: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = $('meta[name="compare-url"]').attr('content');
-                        return false;
-                    }
-                });
-            } else if(data.result==='Duplicate'){
-                window.swalWithBootstrapButtons.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: '',
-                    html:`این محصول قبلا به لیست اضافه شده است!`,
-                    showConfirmButton: false,
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    cancelButtonText: 'خُب'
-                });
-            } else {
-                window.swalWithBootstrapButtons.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: '',
-                    html:`خطا در افزودن به لیست!`,
-                    showConfirmButton: false,
-                    showCloseButton: false,
-                    showCancelButton: true,
-                    cancelButtonText: 'خُب'
-                });
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
 function hasOnlySpecialCharacter(val) {
     const pattern = /^[^a-zA-Z0-9ا-ی]+$/;
     return (pattern.test(val));
@@ -750,11 +628,82 @@ function closeSidebarFilter() {
 
 function addCompareProduct(e) {
     e.preventDefault();
-
     const compareTable = document.querySelector('div[class="compare-products-table"]');
-    setTimeout(function () {
-        $(compareTable).slideDown('400');
-    } , 1000)
+    const sq = document.getElementById("compare_product_input").value;
+    const submitBtn = document.getElementById("add_compare_product_btn");
+    const submitBtnText = document.getElementById("add_compare_product_btn").innerHTML;
 
+    $(submitBtn).attr('disabled','disabled').html('<i class="fa fa-spinner fa-pulse"></i>');
+    const data = { search_query: sq.trim() };
+    fetch('/getProducts', {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        body: JSON.stringify(data),
+    }).then(res => res.json())
+        .then(data => {
+            const products = data.products;
 
+            setTimeout(function () {
+                $(submitBtn).removeAttr('disabled').html(submitBtnText);
+                if (data.products.length === 0){
+                    window.TopToast.fire({
+                        icon: 'warning',
+                        title: 'نتیجه ای یافت نشد!',
+                        timer:1000
+                    });
+                } else {
+                    let row = 0;
+                    $(compareTable).find('table').find('tbody').html('');
+                    products.forEach(product => {
+                        row++;
+                        $(compareTable).find('table').find('tbody').append(
+                            `
+                          <tr class="jsgrid-filter-row">
+                            <td class="jsgrid-cell">${row}</td>
+                            <td class="jsgrid-cell">${product.title}</td>
+                            <td class="jsgrid-cell"><span class="digits">${product.price}</span></td>
+                            <td class="jsgrid-cell">
+                              <button class="btn text-danger" style="background: transparent;border: none;box-shadow: none" 
+                               onclick="addProductToCompare(${product.id})">
+                              <i class="fa fa-plus"></i>
+                              </button>
+                            </td>
+                          </tr>
+                    `
+                        );
+                        $('.digits').digits();
+                    });
+                    $(compareTable).slideDown('400');
+                }
+            } , 1500);
+        }).catch((error) => {
+        console.log(error);
+    });
+}
+
+function addProductToCompare(pid) {
+    const url = new URL(window.location.href);
+    let urlStr = (JSON.stringify(url)).replace(/\"/g, "");
+    if (urlStr.substr(urlStr.length - 1) === '/') urlStr = urlStr.slice(0,-1);
+
+    if (urlStr.includes(pid)) {
+        window.TopToast.fire({
+            icon: 'warning',
+            title: 'محصول قبلا اضافه شده است!',
+            timer:1000
+        });
+    } else {
+        document.location.href = `${urlStr}/pr-${pid}`;
+    }
+
+}
+
+function removeCompare(pid) {
+    const url = new URL(window.location.href);
+    const removeStr = `/pr-${pid}`;
+
+    document.location.replace((JSON.stringify(url)).replace(removeStr, "").replace(/\"/g, ""));
 }

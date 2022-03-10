@@ -168,8 +168,13 @@ class SiteController extends Controller
         if (strlen($pid3) > 0 && preg_match($pattern ,$pid3)) $product3 = Product::find(substr($pid3,3));
         if (strlen($pid4) > 0 && preg_match($pattern ,$pid4)) $product4 = Product::find(substr($pid4,3));
 
+        $productsCount = 0;
+        if ($product1 !== null) $productsCount++;
+        if ($product2 !== null) $productsCount++;
+        if ($product3 !== null) $productsCount++;
+        if ($product4 !== null) $productsCount++;
 
-        return view('site/compare', compact('product1','product2','product3','product4'));
+        return view('site/compare', compact('product1','product2','product3','product4','productsCount'));
     }
 
     public function category(Request $request)
@@ -338,11 +343,11 @@ class SiteController extends Controller
 
     public function search(Request $request)
     {
-        $searchPhrase = trim($request->q);
+        $searchPhrase = functions::clearInputs($request->q);
 
         // Sanitize Search Query
-        if ($searchPhrase=='' ||
-            strlen($searchPhrase)<3 ||
+        if ($searchPhrase == '' ||
+            strlen($searchPhrase) < 3 ||
             $this->hasOnlySpecialCharater($searchPhrase)){
             return redirect('404');
         }

@@ -119,8 +119,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -160,8 +162,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -201,8 +205,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -242,8 +248,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -283,8 +291,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -324,8 +334,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -365,8 +377,10 @@
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
-                                      <a href="#" class="tooltip-top" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"><i
-                                                data-feather="refresh-cw"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>
@@ -491,9 +505,9 @@
                           <li class="sorting-option">
                             <a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='expensive')? 'active' : '' ?>"
                                data-sort="expensive">گران‌ترین</a></li>
-                          <li class="sorting-option">
-                            <a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='most_viewed')? 'active' : '' ?>"
-                               data-sort="most_viewed">پربازدیدترین</a></li>
+                          {{--<li class="sorting-option">--}}
+                            {{--<a href="#" class="sorting-option-btn sorting-option-btn <?= (isset($_GET['sortBy']) && $_GET['sortBy']=='most_viewed')? 'active' : '' ?>"--}}
+                               {{--data-sort="most_viewed">پربازدیدترین</a></li>--}}
                         </ul>
                       </div>
 
@@ -543,8 +557,10 @@
                                          data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
                                          class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
-                                      <a href="#" class="tooltip-top add-to-compare" onclick="addToCompare(event,{{ $product->id }})" data-tippy-content="مقایسه"> <i
-                                                data-feather="refresh-cw"></i> </a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
                                     </div>
                                   </div>
                                 </div>

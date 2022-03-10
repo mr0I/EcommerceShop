@@ -19,6 +19,11 @@ header#stickyheader{
     font-weight: normal;
     font-style: normal;
 }
+button{
+  &:disabled{
+    cursor: not-allowed;
+  }
+}
 /* Globals */
 
 .loader-wrapper img {
@@ -540,6 +545,7 @@ p.desc{
 }
 .btn:disabled, .btn.disabled, fieldset:disabled .btn {
   cursor: not-allowed;
+  pointer-events: unset;
 }
 /* end override theme styles */
 
@@ -677,6 +683,8 @@ ul#main-menu a.dark-menu-item{
 
 /* start compare modal */
 .compare-products-table{
+  max-height: 450px;
+  overflow-y: auto;
   table{
     border: 1px groove #5555;
     th{
@@ -688,7 +696,16 @@ ul#main-menu a.dark-menu-item{
     td{
       text-align: center;
       border: 1px solid #222222;
+      padding: 8px;
     }
+  }
+}
+#add_to_compare_modal{
+  input{
+    border-radius: 0;
+  }
+  button[type=submit]{
+    min-width: 120px;
   }
 }
 /* end compare modal */

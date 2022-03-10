@@ -201,8 +201,6 @@ jQuery(document).ready(function($) {
             status: status
         };
 
-        console.log(data);
-
         fetch(`/getCatProducts/${getUrlParams().category_name}`, {
             method: 'POST',
             headers: {
@@ -212,7 +210,6 @@ jQuery(document).ready(function($) {
             body: JSON.stringify(data),
         }).then(response => response.json())
             .then(data => {
-                console.log('dataaa',data);
                 let productsContainer = $('.product-wrapper-grid');
 
                 if (data.result === 'Done') {
@@ -324,16 +321,21 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                                      data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"
                                      onclick="viewModal(${product.id})" class="tooltip-top" data-tippy-content="مشاهده سریع"> <i data-feather="eye"></i> </a>
-                                  <a href="#" class="tooltip-top add-to-compare" onclick="addToCompare(event,${product.id})" data-tippy-content="مقایسه"> <i
-                                            data-feather="refresh-cw"></i> </a>
+                                  <a href="#" class="tooltip-top" data-tippy-content="مقایسه" onclick="goToComparePage(event,${product.id})">
+                                      <i data-feather="refresh-cw"></i>
+                                   </a>
                                 </div>
                               </div>
                             </div>
                           </div>
                         `);
 
-
     // load required methods for ajax load
     feather.replace();
     $('.digits').digits();
+}
+
+function goToComparePage(e,pid) {
+    e.preventDefault();
+    window.location.replace(`http://${window.location.hostname}/compare/pr-${pid}`);
 }

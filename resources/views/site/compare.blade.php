@@ -30,46 +30,55 @@
     <div class="custom-container">
       <div class="row">
         <div class="col-sm-12">
-          @if($product1 === null || $product2 === null || $product3 === null || $product4 === null )
-          <div class="d-flex justify-content-center mb-3">
-            <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#add_to_compare_modal">
-              {{ __('Add New Product') }}
-            </button>
-          </div>
+          @if($productsCount === 0)
+            <div class="no-result text-center">
+              <p>{{ __('THERE IS NO ITEM!!!') }}</p>
+            </div>
+          @endif
+          @if($productsCount !== 0 && $productsCount < 4)
+            <div class="d-flex justify-content-center mb-3">
+              <button class="btn btn-normal btn-sm" data-bs-toggle="modal" data-bs-target="#add_to_compare_modal">
+                <i class="fa fa-plus mx-1"></i>{{ __('Add New Product') }}
+              </button>
+            </div>
           @endif
           <div class="compare-page">
             <div class="table-wrapper table-responsive">
-              @if($product1!==null || $product2!==null || $product3!==null || $product4!==null )
+              @if($productsCount !== 0)
                 <table class="table">
                   <thead>
                   <tr class="th-compare">
+                    @if($product1!==null && $productsCount > 1)
                     <td></td>
-                    @if($product1!==null)
                       <th class="item-row">
-                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="1">
-                          حذف
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="1"
+                                onclick="removeCompare({{ $product1->id }})">
+                          {{ __('Remove') }}
                           <i data-feather="remove"></i>
                         </button>
                       </th>
                     @endif
                     @if($product2!==null)
                       <th class="item-row">
-                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="2">
-                          حذف
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="2"
+                        onclick="removeCompare({{ $product2->id }})">
+                          {{ __('Remove') }}
                         </button>
                       </th>
                     @endif
                     @if($product3!==null)
                       <th class="item-row">
-                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="3">
-                          حذف
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="3"
+                        onclick="removeCompare({{ $product3->id }})">
+                          {{ __('Remove') }}
                         </button>
                       </th>
                     @endif
                     @if($product4!==null)
                       <th class="item-row">
-                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="4">
-                          حذف
+                        <button type="button" class="remove-compare text-danger text-center w-100" data-pid="4"
+                        onclick="removeCompare({{ $product4->id }})">
+                          {{ __('Remove') }}
                         </button>
                       </th>
                     @endif
@@ -236,12 +245,7 @@
                   </tr>
                   </tbody>
                 </table>
-              @else
-                <div class="no-result text-center">
-                  <p>{{ __('THERE IS NO ITEM!!!') }}</p>
-                </div>
               @endif
-
             </div>
           </div>
         </div>
@@ -254,45 +258,34 @@
       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content quick-view-modal">
           <div class="modal-body">
-            <form class="form-header">
+            <form class="form-header w-75 m-auto mb-4">
               <div class="input-group">
-                <input type="text" class="form-control" id="compare_product" placeholder="{{ __('product name...') }}"
-                       name="compare_product" value="{{ old('compare_product') }}" required autocomplete="compare_product">
-                <button type="submit" class="btn btn-normal" onclick="addCompareProduct(event)">
+                <input type="text" class="form-control" id="compare_product_input" placeholder="{{ __('product name...') }}"
+                       name="compare_product_input" required autocomplete="compare_product_input">
+                <button type="submit" class="btn btn-normal" id="add_compare_product_btn" disabled
+                        onclick="addCompareProduct(event)">
                   {{ __('Search') }} <i class="fa fa-search mx-1"></i>
                 </button>
               </div>
             </form>
 
             <div class="compare-products-table" style="display: none">
-                <table class="jsgrid-table mt-4 m-auto w-75">
-                  <tbody>
-                  <tr class="jsgrid-header-row">
-                    <th class="jsgrid-header-cell" style="width: 150px;">{{ __('Row') }}</th>
-                    <th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">{{ __('Product Title') }}</th>
-                    <th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">{{ __('Add') }}</th>
-                  </tr>
-                  <tr class="jsgrid-filter-row">
-                    <td class="jsgrid-cell" style="width: 150px;">1</td>
-                    <td class="jsgrid-cell" style="width: 150px;">گوشی</td>
-                    <td class="jsgrid-cell" style="width: 150px;">
-                      <button class="btnt btn-normal"><i class="fa fa-plus"></i></button>
-                    </td>
-                  </tr>
-                  <tr class="jsgrid-filter-row">
-                    <td class="jsgrid-cell" style="width: 150px;">2</td>
-                    <td class="jsgrid-cell" style="width: 150px;">گوشی</td>
-                    <td class="jsgrid-cell" style="width: 150px;">
-                      <button class="btnt btn-normal"><i class="fa fa-plus"></i></button>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
+              <table class="jsgrid-table m-auto w-100">
+                <thead>
+                <tr class="jsgrid-header-row">
+                  <th class="jsgrid-header-cell" style="width: 10%;">{{ __('Row') }}</th>
+                  <th class="jsgrid-header-cell jsgrid-align-right" style="width: 40%;">{{ __('Product Title') }}</th>
+                  <th class="jsgrid-header-cell jsgrid-align-right" style="width: 40%;">{{ __('Product Price') }}</th>
+                  <th class="jsgrid-header-cell jsgrid-align-right" style="width: 10%;">{{ __('Add') }}</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
 
   </section>
   <!-- Section ends -->
