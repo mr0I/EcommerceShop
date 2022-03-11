@@ -32,7 +32,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::get('/', 'SiteController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');
-    Route::get('/compare/{pid1}/{pid2?}/{pid3?}/{pid4?}', 'SiteController@compare_products');
+    Route::get('/compare/{pid1?}/{pid2?}/{pid3?}/{pid4?}', 'SiteController@compare_products');
     Route::get('/wishlist', 'SiteController@wishlist');
     Route::get('/category/{name}', 'SiteController@category');
     Route::get('/adminnnnlogin', 'SiteController@adminLogin');

@@ -30,18 +30,18 @@
     <div class="custom-container">
       <div class="row">
         <div class="col-sm-12">
-          @if($productsCount === 0)
-            <div class="no-result text-center">
-              <p>{{ __('THERE IS NO ITEM!!!') }}</p>
-            </div>
-          @endif
-          @if($productsCount !== 0 && $productsCount < 4)
+          @if($productsCount < 4)
             <div class="d-flex justify-content-center mb-3">
               <button class="btn btn-normal btn-sm" data-bs-toggle="modal" data-bs-target="#add_to_compare_modal">
                 <i class="fa fa-plus mx-1"></i>{{ __('Add New Product') }}
               </button>
             </div>
           @endif
+            @if($productsCount === 0)
+              <div class="no-result text-center">
+                <p>{{ __('THERE IS NO ITEM!!!') }}</p>
+              </div>
+            @endif
           <div class="compare-page">
             <div class="table-wrapper table-responsive">
               @if($productsCount !== 0)

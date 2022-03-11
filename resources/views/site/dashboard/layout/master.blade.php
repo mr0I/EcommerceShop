@@ -306,6 +306,9 @@
                   <li>
                     <a class="dark-menu-item" href="{{ url('/blog') }}">{{ __('Articles') }}</a>
                   </li>
+                  <li>
+                    <a class="dark-menu-item" href="{{ url('/compare') }}">{{ __('Compare') }}</a>
+                  </li>
                   <!--blog-meu end-->
                 </ul>
               </nav>

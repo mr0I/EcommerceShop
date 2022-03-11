@@ -6,7 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ __('404, Page Not Found') }}</title>
-  <link rel="shortcut icon" href="{{url('images/favicon/favicon.png')}}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{url('images/favicon/favicon.ico')}}" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="{{ url('css/mix.css') }}">
 
   <style type="text/css">

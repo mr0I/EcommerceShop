@@ -264,6 +264,9 @@
                   <li>
                     <a class="dark-menu-item" href="{{ url('/blog') }}">{{ __('Articles') }}</a>
                   </li>
+                  <li>
+                    <a class="dark-menu-item" href="{{ url('/compare') }}">{{ __('Compare') }}</a>
+                  </li>
                   <!--blog-meu end-->
                 </ul>
               </nav>
@@ -487,6 +490,7 @@
                   <li><a href="{{ url('authentication') }}">{{ __('User Account') }}</a></li>
                   <li><a href="{{ url('blog') }}">{{ __('Blog') }}</a></li>
                   <li><a href="{{ url('wishlist') }}">{{ __('Wish List') }}</a></li>
+                  <li><a href="{{ url('compare') }}">{{ __('Compare') }}</a></li>
                 </ul>
               </div>
             </div>
