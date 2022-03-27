@@ -274,17 +274,17 @@ class IndexController extends Controller
 
         // Availability Filter
         if (isset($request->status)){
-            if($request->status=='available'){
-                $status=['available'];
+            if($request->status=='marketable'){
+                $status=['marketable'];
             } else {
-                $status = ['available','not-available'];
+                $status = ['marketable','out_of_stock'];
             }
         } else if(isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $st = $filters->status;
-            ($st=='available')? $status=['available'] : $status=['available','not-available'];
+            ($st=='marketable')? $status=['marketable'] : $status=['marketable','out_of_stock'];
         } else {
-            $status = ['available','not-available'];
+            $status = ['marketable','out_of_stock'];
         }
 
 

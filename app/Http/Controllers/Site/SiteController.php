@@ -35,6 +35,7 @@ use App\Helpers;
 class SiteController extends Controller
 {
 
+
     public function index()
     {
         $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
@@ -71,7 +72,7 @@ class SiteController extends Controller
         if ($cachedspecialProducts){
             $specialProducts = $cachedspecialProducts;
         } else {
-            $specialProducts = Product::where('main_price', '<>' , null)->get();
+            $specialProducts = Product::where('main_price', '<>' , null)->take(20)->get();
             Cache::add($specialProductsCacheKey,$specialProducts,now()->addMinutes(10));
         }
         if ($cachedarticles){
@@ -125,6 +126,7 @@ class SiteController extends Controller
     public function product($slug)
     {
         $product = Product::find($slug);
+
         if ($product !== null) {
             $related_products = Product::where('category_id', $product->category_id)
                 ->where('id', '<>' , $product->id)->latest('date')->take(6)->get();
@@ -233,6 +235,7 @@ class SiteController extends Controller
             $brandsFilters = $All_brands;
         }
 
+
         // price filter
         $min_price =0;
         $max_price =9999999999;
@@ -247,9 +250,9 @@ class SiteController extends Controller
         if(isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
             $st = $filters->status;
-            ($st=='available')? $status=['available'] : $status=['available','not-available'];
+            ($st=='marketable')? $status=['marketable'] : $status=['marketable','out_of_stock'];
         } else {
-            $status = ['available','not-available'];
+            $status = ['marketable','out_of_stock'];
         }
 
 
@@ -270,6 +273,7 @@ class SiteController extends Controller
         $products = $sorted_products->skip($offset)->take($limit)->get();
         $all_products_count = $sorted_products->count();
         $products_count = $sorted_products->count();
+
 
         // Calc Brands
         $brands = [];

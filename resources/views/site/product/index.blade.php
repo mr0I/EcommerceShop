@@ -110,7 +110,8 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="product-slick">
-                <div><img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                <div><img class="img-fluid image_zoom_cls-0" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                          alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'"></div>
               </div>
             </div>
             <div class="col-lg-6">
@@ -118,17 +119,22 @@
                 <div class="pro-group">
                   <h2>{{ $product->title }}</h2>
                   <ul class="pro-price">
-                    @if($product->price==0)
-                      <li class="text-danger">{{ __('Not Available') }} </li>
+                    @if($product->status === 'out_of_stock')
+                      <li class="text-danger">
+                        {{ __('Not Available') }}
+                      </li>
                     @else
-                      <li class="digits price">{{ $product->price }} تومان</li>
-                    @endif
-                    @if($product->main_price!==null && $product->main_price!=='')
-                      @php
-                        $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
-                      @endphp
-                      <li><span class="digits">{{ $product->main_price }} تومان</span></li>
-                      <li>{{ $discount }}% {{ __('Discount') }}</li>
+                      @if($product->main_price === $product->price)
+                        <li class="price digits">{{ $product->price }} تومان</li>
+                      @else
+                        @php
+                          $discount = \App\Helpers\functions::calcDiscount($product->main_price,$product->price);
+                        @endphp
+                        <li class="price digits">{{ $product->price }} تومان</li>
+                        <li><span class="digits">{{ $product->main_price }} تومان</span></li>
+                        <li>{{ $discount }}% {{ __('Discount') }}</li>
+
+                      @endif
                     @endif
                   </ul>
                   <ul class="best-seller">
@@ -138,11 +144,11 @@
                     </li>
                   </ul>
 
-                  @if($product->specifications!==null && $product->specifications!=='')
+                  @if(json_decode($product->parameters) !== null && sizeof(json_decode($product->parameters)) !== 0 )
                     <ul class="product-specifications mt-5">
-                      @foreach(json_decode($product->specifications , true) as $key=>$value)
+                      @foreach(json_decode($product->parameters , true)[0] as $key=>$value)
                         @if($key !== '')
-                          <li class="w-100">{{ $key }}  {{ $value }}</li>
+                          <li class="w-100">{{ $key }} : {{ $value[0] }}</li>
                         @endif
                       @endforeach
                     </ul>
@@ -204,18 +210,22 @@
               </ul>
               <div class="tab-content nav-material" id="top-tabContent">
                 <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                  <p class="desc">{{ $product->description }} </p>
+                  <p class="desc">{{ ($product->description !== '') ? $product->description : __('No Description!') }} </p>
                 </div>
                 <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
                   <div class="single-product-tables">
                     <table>
                       <tbody>
-                      @foreach(json_decode($product->parameters , true) as $key=>$value)
-                        <tr>
-                          <td>{{ $key }}</td>
-                          <td> {{ $value }}</td>
-                        </tr>
-                      @endforeach
+                      @if(json_decode($product->specifications , true) !== null && sizeof(json_decode($product->specifications , true)) !== 0)
+                        @foreach(json_decode($product->specifications , true)[0] as $key=>$value)
+                          <tr>
+                            <td>{{ $key }}</td>
+                            <td> {{ $value[0] }}</td>
+                          </tr>
+                        @endforeach
+                      @else
+                        <tr><td>{{ __('No Specifications!') }}</td></tr>
+                      @endif
                       </tbody>
                     </table>
                   </div>
@@ -245,12 +255,14 @@
                     <div class="product-imgbox">
                       <div class="product-front">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}" class="img-fluid" alt="product">
+                          <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}"
+                               alt="{{ $related_product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                       </div>
                       <div class="product-back">
                         <a href="/product/{{ $related_product->id }}">
-                          <img src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}" class="img-fluid  " alt="product">
+                          <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $related_product->image . '.webp' }}"
+                               alt="{{ $related_product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                       </div>
                       <div class="product-icon icon-inline">
@@ -282,16 +294,26 @@
                           </a>
                         </div>
                         <div class="detail-right">
-                          @if($related_product->main_price!==null && $related_product->main_price!=='')
-                            <div class="check-price">
-                              {{ $related_product->main_price }}  تومان
+                          @if($related_product->status === 'out_of_stock')
+                            <div class="text-danger">
+                              {{ __('Not Available') }}
                             </div>
+                          @else
+                            @if($related_product->main_price === $related_product->price)
+                              <div class="price">
+                                <div class="price digits">{{ $related_product->price }} تومان</div>
+                              </div>
+                            @else
+                              <div class="check-price digits">
+                                {{ $related_product->main_price }} تومان
+                              </div>
+                              <div class="price">
+                                <div class="price digits">
+                                  {{ $related_product->price }} تومان
+                                </div>
+                              </div>
+                            @endif
                           @endif
-                          <div class="price">
-                            <div class="price digits">
-                              {{ $related_product->price }} تومان
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -311,7 +333,8 @@
       <div class="container">
         <div class="cart-content">
           <div class="product-image">
-            <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid" alt="" >
+            <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                 alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
             <div class="content d-lg-block d-none">
               <h5>{{ $product->title }}</h5>
               @if($product->price==0)

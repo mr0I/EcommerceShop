@@ -399,7 +399,7 @@ jQuery(document).ready(function($){
     /* change password form */
 
 
-    /* add 2 compare input */
+    /* compare input */
     $('#compare_product_input').on('input',function () {
         const inputValue = $(this).val();
         const btn = $('#add_compare_product_btn');
@@ -466,15 +466,18 @@ function viewModal(pid) {
             if (data.result === 'Done') {
                 let product = data.product;
                 const modalBody = $('.modal').find('.modal-body');
-                loader.style.display='none';
 
-                modalBody.html('');
-                modalBody.append(`
+                setTimeout(function () {
+                    loader.style.display='none';
+                    modalBody.html('');
+                    modalBody.append(`
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           <div class="row">
                             <div class="col-lg-6 col-xs-12">
                               <div class="quick-view-img">
-                                <img src="/uploads/productImages/${product.image}.webp" alt="تصویر محصول" class="img-fluid bg-img">
+                                <img class="img-fluid bg-img" src="/uploads/productImages/${product.image}.webp" 
+                                alt="${product.title}" onerror="this.src='${'../../images/inf.jpg'}'" 
+                                >
                               </div>
                             </div>
                             <div class="col-lg-6 rtl-text">
@@ -483,17 +486,13 @@ function viewModal(pid) {
                                   <h2> ${product.title} </h2>
                                   <ul class="pro-price">
                                   ${
-                    (product.main_price!==null && product.main_price!=='')?
-                        `<li class="check-price digits" style="text-decoration: line-through"><span>${ product.main_price } تومان <span></li>` : ``
-                    }
-                                  ${
-                    (product.price!==0)?
-                        `<li class="price digits">${product.price} تومان </li>` : `<li class="text-danger">ناموجود</li>`
-                    }
-                                  ${
-                    (product.main_price!==null && product.main_price!=='')?
-                        `<li>${data.discount} % تخفیف </li>` : ``
-                    }
+                                    (product.status === 'out_of_stock')?
+                                        `<li class="price"><span class="text-danger">ناموجود</span></li>` :
+                                        (product.main_price === product.price)? `<li class="price digits">${product.price} تومان </li>` :
+                                          `<li class="price digits">${product.price}  تومان </li>
+                                           <li class="check-price digits" style="text-decoration: line-through"><span>${ product.main_price } تومان <span></li>
+                                           <li>${data.discount} % تخفیف </li>`  
+                                    }
                                   </ul>
                                   <ul class="best-seller">
                                     <li>
@@ -524,6 +523,8 @@ function viewModal(pid) {
                           </div>
                     `);
                 $('.digits').digits();
+                } ,1500);
+
             } else {
                 window.swalWithBootstrapButtons.fire({
                     position: 'center',

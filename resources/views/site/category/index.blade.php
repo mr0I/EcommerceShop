@@ -25,7 +25,6 @@
         </div>
       </div>
     </div>
-
     <!-- breadcrumb End -->
 
     <!-- section start -->
@@ -97,7 +96,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                      alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -106,10 +106,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -140,7 +142,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -149,10 +152,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -183,7 +188,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -192,10 +198,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -226,7 +234,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -235,10 +244,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -269,7 +280,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -278,10 +290,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -312,7 +326,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -321,10 +336,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -355,7 +372,8 @@
                           <div class="media-banner-box">
                             <div class="media">
                               <a href="/product/{{ $product->id }}" tabindex="0">
-                                <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="banner" width="65">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                     alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
                               </a>
                               <div class="media-body">
                                 <div class="media-contant">
@@ -364,10 +382,12 @@
                                       <a href="/product/{{ $product->id }}" tabindex="0">
                                         <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
                                       </a>
-                                      @if($product->main_price!==null)
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
                                       @else
-                                        <h6 class="digits">{{ $product->price }} تومان </h6>
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
                                       @endif
                                     </div>
                                     <div class="cart-info">
@@ -396,8 +416,9 @@
               <!-- side-bar single product slider end -->
               <!-- side-bar banner start here -->
               <div class="collection-sidebar-banner">
-                <a href="javascript:void(0)"><img src="{{ url('/images/category/side-banner.png') }}" class="img-fluid "
-                                                  alt=""></a>
+                <a href="javascript:void(0)">
+                  <img src="{{ url('/images/category/side-banner.png') }}" class="img-fluid " alt="">
+                </a>
               </div>
               <!-- side-bar banner end here -->
             </div>
@@ -520,12 +541,14 @@
                                   <div class="product-imgbox">
                                     <div class="product-front">
                                       <a href="/product/{{ $product->id }}">
-                                        <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid" alt="product">
+                                        <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                             alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                                       </a>
                                     </div>
                                     <div class="product-back">
                                       <a href="/product/{{ $product->id }}">
-                                        <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid " alt="product">
+                                        <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                             alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                                       </a>
                                     </div>
                                   </div>
@@ -538,16 +561,26 @@
                                         </a>
                                       </div>
                                       <div class="detail-right">
-                                        @if($product->main_price!==null)
-                                          <div class="check-price digits"> {{ $product->main_price }} تومان </div>
-                                        @endif
-                                        <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
-                                          @if($product->status=='not-available')
-                                            <div class="text-danger"> {{ __('Not Available') }} </div>
+                                        @if($product->status === 'out_of_stock')
+                                          <div class="text-danger">
+                                            {{ __('Not Available') }}
+                                          </div>
+                                        @else
+                                          @if($product->main_price === $product->price)
+                                            <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                              <div class="digits">{{ $product->price }} تومان</div>
+                                            </div>
                                           @else
-                                            <div class="digits"> {{ $product->price }} تومان </div>
+                                            <div class="check-price digits">
+                                              {{ $product->main_price }} تومان
+                                            </div>
+                                            <div class="price">
+                                              <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                                <div class="digits">{{ $product->price }} تومان</div>
+                                              </div>
+                                            </div>
                                           @endif
-                                        </div>
+                                        @endif
                                       </div>
                                     </div>
                                     <div class="icon-detail">
@@ -582,8 +615,6 @@
       </div>
     </section>
     <!-- section End -->
-
-
   @else
     <div class="no-result text-center my-5">
       <p>{{ __('There is no item in this category!') }}</p>

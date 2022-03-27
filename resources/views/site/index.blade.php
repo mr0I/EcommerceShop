@@ -107,12 +107,14 @@
                         <div class="product-imgbox">
                           <div class="product-front">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-back">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
@@ -129,7 +131,7 @@
                               <i data-feather="eye"></i>
                             </a>
                             <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
-                                data-tippy-content="مقایسه">
+                               data-tippy-content="مقایسه">
                               <i data-feather="refresh-cw"></i>
                             </a>
                           </div>
@@ -145,16 +147,26 @@
                               </a>
                             </div>
                             <div class="detail-right d-flex justify-content-center w-100">
-                              @if($product->main_price!==null && $product->main_price!=='')
-                                <div class="check-price digits">
-                                  {{ $product->main_price }} تومان
+                              @if($product->status === 'out_of_stock')
+                                <div class="text-danger">
+                                  {{ __('Not Available') }}
                                 </div>
+                              @else
+                                @if($product->main_price === $product->price)
+                                  <div class="price">
+                                    <div class="price digits">{{ $product->price }} تومان</div>
+                                  </div>
+                                @else
+                                  <div class="check-price digits">
+                                    {{ $product->main_price }} تومان
+                                  </div>
+                                  <div class="price">
+                                    <div class="price digits">
+                                      {{ $product->price }} تومان
+                                    </div>
+                                  </div>
+                                @endif
                               @endif
-                              <div class="price">
-                                <div class="price digits">
-                                  {{ $product->price }} تومان
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -171,12 +183,14 @@
                         <div class="product-imgbox">
                           <div class="product-front">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-back">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
@@ -210,16 +224,26 @@
                               </a>
                             </div>
                             <div class="detail-right d-flex justify-content-center w-100">
-                              @if($product->main_price!==null && $product->main_price!=='')
-                                <div class="check-price digits">
-                                  {{ $product->main_price }} تومان
+                              @if($product->status === 'out_of_stock')
+                                <div class="text-danger">
+                                  {{ __('Not Available') }}
                                 </div>
+                              @else
+                                @if($product->main_price === $product->price)
+                                  <div class="price">
+                                    <div class="price digits">{{ $product->price }} تومان</div>
+                                  </div>
+                                @else
+                                  <div class="check-price digits">
+                                    {{ $product->main_price }} تومان
+                                  </div>
+                                  <div class="price">
+                                    <div class="price digits">
+                                      {{ $product->price }} تومان
+                                    </div>
+                                  </div>
+                                @endif
                               @endif
-                              <div class="price">
-                                <div class="price digits">
-                                  {{ $product->price }} تومان
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -236,12 +260,14 @@
                         <div class="product-imgbox">
                           <div class="product-front">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-back">
                             <a href="/product/{{ $product->id }}">
-                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" class="img-fluid  " alt="product">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
@@ -275,16 +301,26 @@
                               </a>
                             </div>
                             <div class="detail-right d-flex justify-content-center w-100">
-                              @if($product->main_price!==null && $product->main_price!=='')
-                                <div class="check-price digits">
-                                  {{ $product->main_price }} تومان
+                              @if($product->status === 'out_of_stock')
+                                <div class="text-danger">
+                                  {{ __('Not Available') }}
                                 </div>
+                              @else
+                                @if($product->main_price === $product->price)
+                                  <div class="price">
+                                    <div class="price digits">{{ $product->price }} تومان</div>
+                                  </div>
+                                @else
+                                  <div class="check-price digits">
+                                    {{ $product->main_price }} تومان
+                                  </div>
+                                  <div class="price">
+                                    <div class="price digits">
+                                      {{ $product->price }} تومان
+                                    </div>
+                                  </div>
+                                @endif
                               @endif
-                              <div class="price">
-                                <div class="price digits">
-                                  {{ $product->price }} تومان
-                                </div>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -338,7 +374,7 @@
           <div class="title3 b-g-white text-left">
             <h4>{{ __('Hot Deals') }}</h4>
           </div>
-          <!--titel end-->
+          <!--title end-->
         </div>
         <div class="col-lg-12">
           <div class="slide-1 no-arrow">
@@ -352,7 +388,7 @@
                           <div class="img-wrraper">
                             <div>
                               <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" alt="hot-deal"
-                                   class="img-fluid  bg-img">
+                                   class="img-fluid bg-img" onerror="this.src='{{ url('images/inf.jpg') }}'">
                             </div>
                           </div>
                         </a>
@@ -384,13 +420,15 @@
                           </div>
                         </div>
                       @endforeach
-
                     </div>
                   </div>
                   <div class="col-md-2 ">
                     <div class="hotdeal-right-nav">
                       @foreach($specialProducts as $product)
-                        <div><img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" alt="hot-dea" class="img-fluid  "></div>
+                        <div>
+                          <img class="img-fluid" src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                               alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
+                        </div>
                       @endforeach
                     </div>
                   </div>
@@ -425,9 +463,9 @@
                     <div class="blog-img">
                       <a href="{{ url('article/'.$article->slug) }}">
                         @if($article->article_image_id!==null)
-                        <img src="{{ url('uploads/article_images/'.$article->articleImage['image']) }}"
-                             alt="blog_pic" class="img-fluid w-100" style="max-height: 250px;">
-                          @else
+                          <img src="{{ url('uploads/article_images/'.$article->articleImage['image']) }}"
+                               alt="blog_pic" class="img-fluid w-100" style="max-height: 250px;">
+                        @else
                           <img src="{{ url('images/custom/noimage.png') }}"
                                alt="blog_pic" class="img-fluid w-100" style="max-height: 250px;">
                         @endif

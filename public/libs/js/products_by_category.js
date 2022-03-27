@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
     // Initial Quantification Checkboxes
     if (getUrlParams().filters!== ''){
         const status_chk = (JSON.parse(getUrlParams().filters)).status;
-        (status_chk==='available')? $('#status_checkbox').prop('checked',true) : $('#status_checkbox').prop('checked',false);
+        (status_chk==='marketable')? $('#status_checkbox').prop('checked',true) : $('#status_checkbox').prop('checked',false);
 
         if ($('input.brands-filter').length){
             const brandsArray = (JSON.parse(getUrlParams().filters)).brands;
@@ -192,7 +192,7 @@ jQuery(document).ready(function($) {
         let priceRange = $('.price-range').val();
         let min_price = (priceRange.split(';'))[0];
         let max_price = (priceRange.split(';'))[1];
-        let status = ($('#status_checkbox').prop('checked'))? 'available' : 'no_diff';
+        let status = ($('#status_checkbox').prop('checked'))? 'marketable' : 'no_diff';
 
         const data = {
             brands_filters: ((window.brands_filters).length!==0)? window.brands_filters : [],
@@ -304,13 +304,18 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                                     </a>
                                   </div>
                                   <div class="detail-right">
-                                    ${(product.main_price!==null)? '<div class="check-price digits">  '+product.main_price+' تومان </div>' : ''}
-                                    <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold">
-                                    ${(product.status=='not-available')?
-        `<div class="text-danger"> ناموجود </div> `
-        :
-        `<div class="digits"> ${product.price} تومان </div> `
-        }
+                                  <div>
+                                  ${(product.out_of_stock === 'out_of_stock')
+                                    ? `<div class="text-danger"> ناموجود </div>`
+                                    : (product.main_price === product.price ) 
+                                    ? `<div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                           <div class="digits">${product.price } تومان</div>
+                                       </div>`
+                                    : `<div class="check-price digits">${product.main_price} تومان</div>
+                                        <div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
+                                           <div class="digits">${product.price } تومان</div>
+                                       </div>`
+                                    }
                                     </div>
                                   </div>
                                 </div>
