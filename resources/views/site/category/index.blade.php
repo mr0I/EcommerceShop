@@ -514,7 +514,7 @@
                       </div>
 
                       <div class="row w-100 text-center mt-2">
-                        <ul class="sorting-options">
+                        <ul class="sorting-options" id="sorting_options_btns">
                           <li class="sorting-option">{{ __('Sorting By: ') }}</li>
                           <li class="sorting-option">
                             <a href="#" class="sorting-option-btn <?= ((isset($_GET['sortBy']) && $_GET['sortBy']=='latest') || !isset($_GET['sortBy']))? 'active' : '' ?>"

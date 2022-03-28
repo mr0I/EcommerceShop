@@ -38,17 +38,25 @@ class SiteController extends Controller
 
     public function index()
     {
+        $mobileProductsCacheKey = 'mobileProducts';
         $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
         $laptopProductsCacheKey = 'laptopProducts';
         $tabletProductsCacheKey = 'tabletProducts';
         $specialProductsCacheKey = 'specialProducts';
         $articlesCacheKey = 'publishedArticles';
+        $cachedmobileProducts = Cache::get($mobileProductsCacheKey);
         $cachedmobileAccessoriesProducts = Cache::get($mobileAccessoriesProductsCacheKey);
         $cachedlaptopProducts = Cache::get($laptopProductsCacheKey);
         $cachedtabletProducts = Cache::get($tabletProductsCacheKey);
         $cachedspecialProducts = Cache::get($specialProductsCacheKey);
         $cachedarticles = Cache::get($articlesCacheKey);
 
+        if ($cachedmobileProducts){
+            $mobileProducts = $cachedmobileProducts;
+        } else {
+            $mobileProducts = Product::where('category_id','1')->orderBy('date','ASC')->take(10)->get();
+            Cache::add($mobileProductsCacheKey,$mobileProducts,now()->addMinutes(10));
+        }
         if ($cachedmobileAccessoriesProducts){
             $mobileAccessoriesProducts = $cachedmobileAccessoriesProducts;
         } else {
@@ -85,7 +93,7 @@ class SiteController extends Controller
 
 
         return view('site/index' ,
-            compact('mobileAccessoriesProducts',
+            compact('mobileProducts','mobileAccessoriesProducts',
                 'laptopProducts',
                 'tabletProducts' ,
                 'specialProducts',
@@ -234,6 +242,8 @@ class SiteController extends Controller
         } else {
             $brandsFilters = $All_brands;
         }
+
+        $priceMin= ($priceMin===null) ? $priceMin =0 : $priceMin;
 
 
         // price filter

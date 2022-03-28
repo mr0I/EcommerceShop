@@ -81,9 +81,10 @@
     <div class="tab-product-main">
       <div class="tab-prodcut-contain">
         <ul class="tabs tab-title">
-          <li class="current"><a href="tab-1">لپ تاپ</a></li>
-          <li class=""><a href="tab-2">تبلت</a></li>
-          <li class=""><a href="tab-3">لوازم جانبی موبایل</a></li>
+          <li class="current"><a href="tab-1">موبایل</a></li>
+          <li><a href="tab-2">لپ تاپ</a></li>
+          <li><a href="tab-3">تبلت</a></li>
+          <li><a href="tab-4">لوازم جانبی موبایل</a></li>
         </ul>
       </div>
     </div>
@@ -100,6 +101,82 @@
           <div class="theme-tab product mb--5">
             <div class="tab-content-cls ">
               <div id="tab-1" class="tab-content active default">
+                <div class="product-slide-6 product-m no-arrow">
+                  @foreach($mobileProducts as $product)
+                    <div>
+                      <div class="product-box">
+                        <div class="product-imgbox">
+                          <div class="product-front">
+                            <a href="/product/{{ $product->id }}">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
+                            </a>
+                          </div>
+                          <div class="product-back">
+                            <a href="/product/{{ $product->id }}">
+                              <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                                   class="img-fluid" alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
+                            </a>
+                          </div>
+                          <div class="product-icon icon-inline">
+                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
+                               data-tippy-content="خرید">
+                              <i data-feather="shopping-cart"></i>
+                            </a>
+                            <a href="#" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"
+                               onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی">
+                              <i data-feather="heart"></i>
+                            </a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                               class="tooltip-top" data-tippy-content="مشاهده سریع">
+                              <i data-feather="eye"></i>
+                            </a>
+                            <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                               data-tippy-content="مقایسه">
+                              <i data-feather="refresh-cw"></i>
+                            </a>
+                          </div>
+
+                        </div>
+                        <div class="product-detail detail-inline ">
+                          <div class="detail-title">
+                            <div class="detail-left">
+                              <a href="/product/{{ $product->id }}">
+                                <h6 class="price-title" style="font-family: vazir;">
+                                  {{ $product->title }}
+                                </h6>
+                              </a>
+                            </div>
+                            <div class="detail-right d-flex justify-content-center w-100">
+                              @if($product->status === 'out_of_stock')
+                                <div class="text-danger">
+                                  {{ __('Not Available') }}
+                                </div>
+                              @else
+                                @if($product->main_price === $product->price)
+                                  <div class="price">
+                                    <div class="price digits">{{ $product->price }} تومان</div>
+                                  </div>
+                                @else
+                                  <div class="check-price digits">
+                                    {{ $product->main_price }} تومان
+                                  </div>
+                                  <div class="price">
+                                    <div class="price digits">
+                                      {{ $product->price }} تومان
+                                    </div>
+                                  </div>
+                                @endif
+                              @endif
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+              <div id="tab-2" class="tab-content">
                 <div class="product-slide-6 product-m no-arrow">
                   @foreach($laptopProducts as $product)
                     <div>
@@ -175,7 +252,7 @@
                   @endforeach
                 </div>
               </div>
-              <div id="tab-2" class="tab-content">
+              <div id="tab-3" class="tab-content">
                 <div class="product-slide-6 product-m no-arrow">
                   @foreach($tabletProducts as $product)
                     <div>
@@ -252,7 +329,7 @@
                   @endforeach
                 </div>
               </div>
-              <div id="tab-3" class="tab-content">
+              <div id="tab-4" class="tab-content">
                 <div class="product-slide-6 product-m no-arrow">
                   @foreach($mobileAccessoriesProducts as $product)
                     <div>

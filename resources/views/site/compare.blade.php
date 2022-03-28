@@ -97,8 +97,8 @@
                     @if($product1!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product1  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/productImages/').'/'. $product1->image . '.webp' }}" alt="product"
-                               class="featured-image">
+                          <img src="{{ url('uploads/productImages/').'/'. $product1->image . '.webp' }}" alt="{{ $product1->title }}"
+                               class="featured-image" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                         @if($product1->status=='marketable')
                           <div class="product_price digits price">
@@ -107,7 +107,8 @@
                           <a href="{{ $product1->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>                        @else
+                          </a>
+                        @else
                           <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
@@ -117,8 +118,8 @@
                     @if($product2!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product2  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/productImages/').'/'. $product2->image . '.webp' }}" alt="product"
-                               class="featured-image">
+                          <img src="{{ url('uploads/productImages/').'/'. $product2->image . '.webp' }}" alt="{{ $product2->title }}"
+                               class="featured-image" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                         @if($product2->status=='marketable')
                           <div class="product_price digits price">
@@ -138,8 +139,8 @@
                     @if($product3!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product3  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/productImages/').'/'. $product3->image . '.webp' }}" alt="product"
-                               class="featured-image">
+                          <img src="{{ url('uploads/productImages/').'/'. $product3->image . '.webp' }}" alt="{{ $product3->title }}"
+                               class="featured-image" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                         @if($product3->status=='marketable')
                           <div class="product_price digits price">
@@ -148,7 +149,8 @@
                           <a href="{{ $product3->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>                        @else
+                          </a>
+                        @else
                           <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>
@@ -158,8 +160,8 @@
                     @if($product4!==null)
                       <td class="item-row">
                         <a href="/product/{{ $product4  ->id }}" target="_blank">
-                          <img src="{{ url('uploads/productImages/').'/'. $product4->image . '.webp' }}" alt="product"
-                               class="featured-image">
+                          <img src="{{ url('uploads/productImages/').'/'. $product4->image . '.webp' }}" alt="{{ $product4->title }}"
+                               class="featured-image" onerror="this.src='{{ url('images/inf.jpg') }}'">
                         </a>
                         @if($product4->status=='marketable')
                           <div class="product_price digits price">
@@ -168,7 +170,8 @@
                           <a href="{{ $product4->url }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
-                          </a>                        @else
+                          </a>
+                        @else
                           <div class="product_price">
                             <strong>قیمت : </strong><span>--- </span>
                           </div>

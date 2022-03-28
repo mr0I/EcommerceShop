@@ -238,6 +238,10 @@ jQuery(document).ready(function($) {
                                 '"status":"'+ status + '"' + '}' ;
                             window.history.replaceState({ url: updatedUrl }, null, updatedUrl);
                         });
+                        $([document.documentElement, document.body]).animate({
+                        // $('html,body').animate({
+                            scrollTop: $("#sorting_options_btns").offset().top
+                        }, 2500);
                     } else {
                         window.BottomToast.fire({
                             icon: 'warning',
@@ -344,5 +348,5 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
 
 function goToComparePage(e,pid) {
     e.preventDefault();
-    window.location.replace(`http://${window.location.hostname}/compare/pr-${pid}`);
+    window.location.replace(`http://${window.location.host}/compare/pr-${pid}`);
 }
