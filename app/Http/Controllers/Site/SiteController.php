@@ -310,6 +310,8 @@ class SiteController extends Controller
         $user_identity = (Auth::check())? Auth::user()->id : $userIP;
         $wish = wishlist::where('userIdentity',$user_identity)->get();
 
+
+
         $products = [];
         if(count($wish) !== 0){
             $arr = preg_replace('/[\[\]\']+/','',

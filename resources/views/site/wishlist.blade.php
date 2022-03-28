@@ -51,21 +51,15 @@
                 <tr>
                   <td>
                     <a href="/product/{{ $product->id }}">
-                      <img src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}" alt="product" class="img-fluid  ">
+                      <img class="img-fluid" src="{{ url('uploads/productImages/'). '/' . $product->image. '.webp' }}"
+                           alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                     </a>
                   </td>
                   <td>
                     <a href="/product/{{ $product->id }}">{{ $product->title }}</a>
                     <div class="mobile-cart-content">
                       <div class="col-xs-3">
-                        <p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p>
-                      </div>
-                      <div class="col-xs-3 digits price">
-                        @if($product->price!='0')
-                          <h2>{{ $product->price }} تومان</h2>
-                        @else
-                          <h2>---</h2>
-                        @endif
+                        <p class="<?= ($product->status=='marketable')? 'available' : 'not-available' ?>">{{ ($product->status=='marketable')? 'موجود' : 'ناموجود' }}</p>
                       </div>
                       <div class="col-xs-3">
                         <h2 class="td-color">
@@ -75,14 +69,14 @@
                       </div>
                     </div>
                   </td>
-                  <td class="digits price">
-                    @if($product->price!='0')
+                  <td class="digits price text-white">
+                    @if($product->status === 'marketable')
                       <h2>{{ $product->price }} تومان</h2>
                     @else
                       <h2>---</h2>
                     @endif
                   </td>
-                  <td><p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p></td>
+                  <td><p class="<?= ($product->status=='marketable')? 'available' : 'not-available' ?>">{{ ($product->status=='marketable')? 'موجود' : 'ناموجود' }}</p></td>
                   <td>
                     <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
                     <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>

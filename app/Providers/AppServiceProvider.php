@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Product;
 use App\wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -20,15 +21,18 @@ class AppServiceProvider extends ServiceProvider
             $user_identity = (Auth::check())? Auth::user()->id : $_SERVER['REMOTE_ADDR'];
             $wish = wishlist::where('userIdentity',$user_identity)->first();
             if ($wish!==null){
-                $old_pids_arr = (array) json_decode($wish->pids);
-                $wish_list_len = sizeof($old_pids_arr);
+                $old_pids_arr = $wish->pids;
+                $arr = preg_replace('/[\[\]\']+/','',
+                    str_replace('"','',explode(",", $old_pids_arr)));
+                $products = Product::whereIn('id',$arr)->get();
+
+                $wish_list_len = sizeof($products);
             } else {
                 $wish_list_len = 0;
             }
+
             $categories_en = Category::all()->pluck('name','id');
             $categories_fa = Category::all()->pluck('name_fa','id');
-
-
             $logoPath = 'images/site_logo.png';
 
             $view->with([

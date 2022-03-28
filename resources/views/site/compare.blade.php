@@ -100,7 +100,7 @@
                           <img src="{{ url('uploads/productImages/').'/'. $product1->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
-                        @if($product1->status=='available')
+                        @if($product1->status=='marketable')
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
                           </div>
@@ -120,7 +120,7 @@
                           <img src="{{ url('uploads/productImages/').'/'. $product2->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
-                        @if($product2->status=='available')
+                        @if($product2->status=='marketable')
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
                           </div>
@@ -141,7 +141,7 @@
                           <img src="{{ url('uploads/productImages/').'/'. $product3->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
-                        @if($product3->status=='available')
+                        @if($product3->status=='marketable')
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
                           </div>
@@ -161,7 +161,7 @@
                           <img src="{{ url('uploads/productImages/').'/'. $product4->image . '.webp' }}" alt="product"
                                class="featured-image">
                         </a>
-                        @if($product4->status=='available')
+                        @if($product4->status=='marketable')
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
                           </div>
@@ -216,29 +216,29 @@
 
                     @if($product1!==null)
                       <td class="availabel-stock">
-                        <p class="{{ ($product1->status=='available')? 'text-success' : 'text-danger' }}">
-                          {{ ($product1->status=='available')? $available_txt : $not_available_txt  }}
+                        <p class="{{ ($product1->status=='marketable')? 'text-success' : 'text-danger' }}">
+                          {{ ($product1->status=='marketable')? $available_txt : $not_available_txt  }}
                         </p>
                       </td>
                     @endif
                     @if($product2!==null)
                       <td class="availabel-stock">
-                        <p class="{{ ($product2->status=='available')? 'text-success' : 'text-danger' }}">
-                          {{ ($product2->status=='available')? $available_txt : $not_available_txt  }}
+                        <p class="{{ ($product2->status=='marketable')? 'text-success' : 'text-danger' }}">
+                          {{ ($product2->status=='marketable')? $available_txt : $not_available_txt  }}
                         </p>
                       </td>
                     @endif
                     @if($product3!==null)
                       <td class="availabel-stock">
-                        <p class="{{ ($product3->status=='available')? 'text-success' : 'text-danger' }}">
-                          {{ ($product3->status=='available')? $available_txt : $not_available_txt  }}
+                        <p class="{{ ($product3->status=='marketable')? 'text-success' : 'text-danger' }}">
+                          {{ ($product3->status=='marketable')? $available_txt : $not_available_txt  }}
                         </p>
                       </td>
                     @endif
                     @if($product4!==null)
                       <td class="availabel-stock">
-                        <p class="{{ ($product4->status=='available')? 'text-success' : 'text-danger' }}">
-                          {{ ($product4->status=='available')? $available_txt : $not_available_txt  }}
+                        <p class="{{ ($product4->status=='marketable')? 'text-success' : 'text-danger' }}">
+                          {{ ($product4->status=='marketable')? $available_txt : $not_available_txt  }}
                         </p>
                       </td>
                     @endif

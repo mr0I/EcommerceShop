@@ -125,23 +125,29 @@ class IndexController extends Controller
         $userIP = functions::getIP();
         $user_identity = (Auth::check())? Auth::user()->id : $userIP;
         $pid = $request->product_id;
-
         $wish = wishlist::where('userIdentity',$user_identity)->first();
 
         if ($wish !== null){
             $old_pids = $wish->pids;
             $old_pids_arr = (array) json_decode($old_pids);
+            $new_pids_arr = [];
+
+            foreach ($old_pids_arr as $key=>$value){
+                $product = Product::find($value);
+                if (!$product) unset($old_pids_arr[$key]);
+                else array_push($new_pids_arr,$value);
+            }
 
             if (in_array($pid , $old_pids_arr)){
                 return response()->json(['result'=> 'Duplicate'] , 200);
             }
 
-            array_push($old_pids_arr,$pid);
-            $pids = json_encode($old_pids_arr);
+            array_push($new_pids_arr,$pid);
+            $pids = json_encode($new_pids_arr);
 
             $wish->pids= $pids;
             $wish->save();
-            return response()->json(['result' => 'Done' ,'count'=>count($old_pids_arr)] , 200);
+            return response()->json(['result' => 'Done' ,'count'=>count($new_pids_arr)] , 200);
         } else {
             $pids = [];
             array_push($pids,$pid);

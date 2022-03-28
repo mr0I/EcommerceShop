@@ -18,7 +18,7 @@
                   <h2>{{ __('Search Results for ') }}
                     <strong class="text-success">{{ $search_query }}</strong>
                   </h2>
-                    <small>{{ __('Results Count: ') }} <span class="text-success">{{ $products->total() }}</span> </small>
+                  <div>{{ __('Results Count: ') }} <span class="text-success">{{ $products->total() }}</span> </div>
                 </div>
                 @else
                   @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
@@ -45,12 +45,14 @@
                 <div class="product-imgbox">
                   <div class="product-front">
                     <a href="/product/{{ $product->id }}">
-                    <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid  " alt="product">
+                    <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                         alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                     </a>
                   </div>
                   <div class="product-back">
                     <a href="/product/{{ $product->id }}">
-                      <img src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}" class="img-fluid  " alt="product">
+                      <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                           alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                     </a>                  </div>
                 </div>
                 <div class="product-detail detail-center ">
@@ -61,21 +63,31 @@
                       </a>
                     </div>
                     <div class="detail-right d-flex justify-content-center">
-                      @if($product->main_price!==null)
-                      <div class="check-price digits text-muted">
-                        {{ $product->main_price }}   تومان
-                      </div>
-                      @endif
-                      <div class="price">
-                        <div class="digits price">
-                          {{ $product->price }}   تومان
+                      @if($product->status === 'out_of_stock')
+                        <div class="text-danger">
+                          {{ __('Not Available') }}
                         </div>
-                      </div>
+                      @else
+                        @if($product->main_price === $product->price)
+                          <div class="price">
+                            <div class="price digits">{{ $product->price }} تومان</div>
+                          </div>
+                        @else
+                          <div class="check-price digits">
+                            {{ $product->main_price }} تومان
+                          </div>
+                          <div class="price">
+                            <div class="price digits">
+                              {{ $product->price }} تومان
+                            </div>
+                          </div>
+                        @endif
+                      @endif
                     </div>
                   </div>
                   <div class="icon-detail">
                     <a href="{{ $product->url }}" class="tooltip-top add-cartnoty"
-                       data-tippy-content="{{ _('Add to basket') }}" target="_blank">
+                       data-tippy-content="{{ __('Add to basket') }}" target="_blank">
                       <i data-feather="shopping-cart"></i>
                     </a>
                     <a href="#" class="add-to-wish tooltip-top" data-id="{{ $product->id }}"

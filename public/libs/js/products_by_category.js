@@ -286,12 +286,14 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                               <div class="product-imgbox">
                                 <div class="product-front">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image + '.webp'}" class="img-fluid" alt="product">
+                                    <img class="img-fluid" src="${window.public_dir + '/' + product.image + '.webp'}" alt="${product.title}" 
+                                     onerror="this.src='${'../../images/inf.jpg'}'" >
                                   </a>
                                 </div>
                                 <div class="product-back">
                                   <a href="/product/${product.id}">
-                                    <img src="${window.public_dir + '/' + product.image + '.webp'}" class="img-fluid " alt="product">
+                                    <img class="img-fluid" src="${window.public_dir + '/' + product.image + '.webp'}" alt="${product.title}" 
+                                     onerror="this.src='${'../../images/inf.jpg'}'" >
                                   </a>
                                 </div>
                               </div>

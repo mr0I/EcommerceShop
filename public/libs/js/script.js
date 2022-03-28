@@ -665,7 +665,9 @@ function addCompareProduct(e) {
                           <tr class="jsgrid-filter-row">
                             <td class="jsgrid-cell">${row}</td>
                             <td class="jsgrid-cell">${product.title}</td>
-                            <td class="jsgrid-cell"><span class="digits">${product.price}</span></td>
+                            <td class="jsgrid-cell"><span class="digits">
+                                ${(product.price !== null && product.price !== undefined  )? product.price : '---'}</span>
+                            </td>
                             <td class="jsgrid-cell">
                               <button class="btn text-danger" style="background: transparent;border: none;box-shadow: none" 
                                onclick="addProductToCompare(${product.id})">
