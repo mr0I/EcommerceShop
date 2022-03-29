@@ -193,6 +193,7 @@ class SiteController extends Controller
         $category_id = Category::where('name',$category_name)->get('id');
         $all_products = Product::where('category_id',$category_id[0]->id)->get();
         $all_products_count = sizeof($all_products);
+        
 
 
         if (!isset($_GET['page'])){
@@ -201,7 +202,6 @@ class SiteController extends Controller
             $limit = (Config::get('constants.catProductsPerPage')) * intval($_GET['page']) ;
             $limit = ($limit>$all_products_count)? $all_products_count: $limit;
         }
-        $offset = 0;
 
         // sorting filter
         $sortBy = 'date';
@@ -280,9 +280,9 @@ class SiteController extends Controller
                 ->where('disabled','false')
                 ->orderBy($sortBy,$sorting);
         }
-        $products = $sorted_products->skip($offset)->take($limit)->get();
-        $all_products_count = $sorted_products->count();
+        $products = $sorted_products->skip(0)->take($limit)->get();
         $products_count = $sorted_products->count();
+
 
 
         // Calc Brands
@@ -292,6 +292,7 @@ class SiteController extends Controller
         }
 
         // New Products
+        $latest_mobile_products = Product::take(5)->where('category_id',1)->latest('date')->get();
         $latest_mobile_accessories_products = Product::take(5)->where('category_id',2)->latest('date')->get();
         $latest_computer_parts_products = Product::take(5)->where('category_id',3)->latest('date')->get();
         $latest_laptop_accessories_products = Product::take(5)->where('category_id',4)->latest('date')->get();
@@ -300,11 +301,11 @@ class SiteController extends Controller
         $latest_laptop_products = Product::take(5)->where('category_id',7)->latest('date')->get();
         $latest_office_machines_products = Product::take(5)->where('category_id',8)->latest('date')->get();
 
-
-
+        
         return view('site/category/index' ,
             compact('products','category_id','brands','products_count'
                 ,'priceMin','priceMax',
+                'latest_mobile_products',
                 'latest_mobile_accessories_products',
                 'latest_computer_parts_products',
                 'latest_laptop_accessories_products',

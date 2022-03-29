@@ -13,5 +13,5 @@ return [
     |
     */
 
-    'catProductsPerPage' => env('CAT_PRODUCTS_PER_PAGE',16)
+    'catProductsPerPage' => env('CAT_PRODUCTS_PER_PAGE',20)
 ];

@@ -311,7 +311,7 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                                   </div>
                                   <div class="detail-right">
                                   <div>
-                                  ${(product.out_of_stock === 'out_of_stock')
+                                  ${(product.status === 'out_of_stock')
                                     ? `<div class="text-danger"> ناموجود </div>`
                                     : (product.main_price === product.price ) 
                                     ? `<div class="price text-center mx-0 my-2 w-100" style="font-weight: bold;">
@@ -326,8 +326,9 @@ function appendProducts(productsContainer,product,bottomLoader=null) {
                                   </div>
                                 </div>
                                 <div class="icon-detail">
-                                  <button class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید"> <i
-                                            data-feather="shopping-cart"></i> </button>
+                                  <a href="${product.url}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                   <i data-feather="shopping-cart"></i> 
+                                  </a>
                                   <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,${product.id})"
                                      data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                   <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view"

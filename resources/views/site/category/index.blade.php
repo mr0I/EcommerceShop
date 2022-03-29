@@ -89,6 +89,52 @@
               <div class="theme-card creative-card creative-inner">
                 <h5 class="title-border">محصولات جدید</h5>
                 <div class="slide-1">
+                  @if(sizeof($latest_mobile_products) !== 0)
+                    <div>
+                      <div class="media-banner plrb-0 b-g-white1 border-0">
+                        @foreach($latest_mobile_products as $product)
+                          <div class="media-banner-box">
+                            <div class="media">
+                              <a href="/product/{{ $product->id }}" tabindex="0">
+                                <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                                      alt="{{ $product->title }}" width="65" onerror="this.src='{{ url('images/inf.jpg') }}'">
+                              </a>
+                              <div class="media-body">
+                                <div class="media-contant">
+                                  <div>
+                                    <div class="product-detail">
+                                      <a href="/product/{{ $product->id }}" tabindex="0">
+                                        <p style="font-size: 75%;font-family: vazir">{{ $product->title }}</p>
+                                      </a>
+                                      @if($product->status === 'out_of_stock')
+                                        <h6 class="text-danger">
+                                          {{ __('Not Available') }}
+                                        </h6>
+                                      @else
+                                        <h6 class="digits">{{ $product->price }} تومان</h6>
+                                      @endif
+                                    </div>
+                                    <div class="cart-info">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                        <i data-feather="shopping-cart"></i>
+                                      </a>
+                                      <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
+                                      <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"
+                                         class="tooltip-top" data-tippy-content="مشاهده سریع"><i data-feather="eye"></i></a>
+                                      <a href="{{ url('compare/pr-'. $product->id) }}" class="tooltip-top"
+                                         data-tippy-content="مقایسه">
+                                        <i data-feather="refresh-cw"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                    </div>
+                  @endif
                   @if(sizeof($latest_mobile_accessories_products) !== 0)
                     <div>
                       <div class="media-banner plrb-0 b-g-white1 border-0">
@@ -115,7 +161,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -161,7 +207,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -207,7 +253,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -253,7 +299,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -299,7 +345,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -345,7 +391,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -391,7 +437,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید">
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -584,8 +630,9 @@
                                       </div>
                                     </div>
                                     <div class="icon-detail">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="{{ __('Add To Cart') }}"> <i
-                                                data-feather="shopping-cart"></i> </a>
+                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="{{ __('Add To Cart') }}" target="_blank">
+                                        <i data-feather="shopping-cart"></i>
+                                      </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})"
                                          data-tippy-content="افزودن به لیست علاقه مندی"> <i data-feather="heart"></i> </a>
                                       <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" onclick="viewModal({{ $product->id }})"

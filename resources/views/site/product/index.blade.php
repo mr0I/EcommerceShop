@@ -146,9 +146,9 @@
 
                   @if(json_decode($product->parameters) !== null && sizeof(json_decode($product->parameters)) !== 0 )
                     <ul class="product-specifications mt-5">
-                      @foreach(json_decode($product->parameters , true)[0] as $key=>$value)
+                      @foreach(json_decode($product->parameters)[0] as $key=>$value)
                         @if($key !== '')
-                          <li class="w-100">{{ $key }} : {{ $value[0] }}</li>
+                          <li class="w-100">{{ $key }} : {{ $value }}</li>
                         @endif
                       @endforeach
                     </ul>
@@ -220,7 +220,7 @@
                         @foreach(json_decode($product->specifications , true)[0] as $key=>$value)
                           <tr>
                             <td>{{ $key }}</td>
-                            <td> {{ $value[0] }}</td>
+                            <td> {{ $value }}</td>
                           </tr>
                         @endforeach
                       @else
