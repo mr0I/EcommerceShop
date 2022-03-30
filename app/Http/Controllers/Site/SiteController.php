@@ -299,7 +299,7 @@ class SiteController extends Controller
         $latest_wearable_gadget_products = Product::take(5)->where('category_id',5)->latest('date')->get();
         $latest_tablet_products = Product::take(5)->where('category_id',6)->latest('date')->get();
         $latest_laptop_products = Product::take(5)->where('category_id',7)->latest('date')->get();
-        $latest_office_machines_products = Product::take(5)->where('category_id',8)->latest('date')->get();
+        //$latest_office_machines_products = Product::take(5)->where('category_id',8)->latest('date')->get();
 
         
         return view('site/category/index' ,
@@ -311,8 +311,7 @@ class SiteController extends Controller
                 'latest_laptop_accessories_products',
                 'latest_wearable_gadget_products',
                 'latest_tablet_products',
-                'latest_laptop_products',
-                'latest_office_machines_products'
+                'latest_laptop_products'
             ));
     }
 

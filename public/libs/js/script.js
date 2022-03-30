@@ -487,7 +487,7 @@ function viewModal(pid) {
                                   <ul class="pro-price">
                                   ${
                                     (product.status === 'out_of_stock')?
-                                        `<li class="price"><span class="text-danger">ناموجود</span></li>` :
+                                        `<li class="price"><strong class="text-danger">ناموجود</strong></li>` :
                                         (product.main_price === product.price)? `<li class="price digits">${product.price} تومان </li>` :
                                           `<li class="price digits">${product.price}  تومان </li>
                                            <li class="check-price digits" style="text-decoration: line-through"><span>${ product.main_price } تومان <span></li>

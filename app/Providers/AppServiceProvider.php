@@ -31,9 +31,10 @@ class AppServiceProvider extends ServiceProvider
                 $wish_list_len = 0;
             }
 
-            $categories_en = Category::all()->pluck('name','id');
-            $categories_fa = Category::all()->pluck('name_fa','id');
+            $categories_en = Category::all()->except(8)->pluck('name','id');
+            $categories_fa = Category::all()->except(8)->pluck('name_fa','id');
             $logoPath = 'images/site_logo.png';
+
 
             $view->with([
                 'wish_list_len'=>$wish_list_len,

@@ -256,7 +256,7 @@
                       <li><a href="{{ url('category/computerParts') }}">{{ __('Computer Parts') }}</a></li>
                       <li><a href="{{ url('category/laptopAccessories') }}">{{ __('Laptop Accessories') }}</a></li>
                       <li><a href="{{ url('category/wearableGadget') }}">{{ __('Wearable Gadget') }}</a></li>
-                      <li><a href="{{ url('category/officeMachines') }}">{{ __('Office Machines') }}</a></li>
+{{--                      <li><a href="{{ url('category/officeMachines') }}">{{ __('Office Machines') }}</a></li>--}}
                     </ul>
                   </li>
                   <!--product-end end-->

@@ -710,6 +710,17 @@ ul#main-menu a.dark-menu-item{
 }
 /* end compare modal */
 
+/* start others */
+.single-product-tables {
+  table{
+    width: 100%;
+    td{
+      padding: 13px;
+      border: 2px groove #4e4e4e;
+    }
+  }
+}
+/* end others */
 
 
 /* start responsive */
@@ -720,6 +731,14 @@ ul#main-menu a.dark-menu-item{
   }
 }
 @media screen and (max-width: 768px) {
+  .single-product-tables {
+    table{
+      width: 100% !important;
+      td{
+        padding: 8px;
+      }
+    }
+  }
   .blog.blog-inverce .blog-contain .blog-details-2 .btn {
     position: relative;
   }
