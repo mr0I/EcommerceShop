@@ -1,7 +1,9 @@
 @extends('site.layout.master')
 
 
-@section('title',$article->meta_title)
+@section('title')
+  {{ '  دیجی مارکت | ' . $article->meta_title}}
+@endsection
 @section('metadesc',$article->meta_desc)
 @section('keywords', $article->meta_keywords)
 
@@ -58,29 +60,29 @@
 
 
       @if(sizeof($comments)!==0)
-      <div class="row section-big-pb-space">
-        <div class="col-sm-12 ">
-          <div class="creative-card">
-            <ul class="comment-section">
-              @foreach($comments as $comment)
-                <li>
-                  <div class="media">
-                    <img src="http://www.gravatar.com/avatar/<?= md5($comment->email); ?>?rating=PG&size=24&size=50&d=identicon" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <h6>{{ $comment->name }}
-                        <p>
-                          <span class="m-0">( {{ $date->date("j F Y در H:i A" , strtotime($comment->created_at)) }} )</span>
-                        </p>
-                      </h6>
-                      <p>{{ $comment->comment }}</p>
+        <div class="row section-big-pb-space">
+          <div class="col-sm-12 ">
+            <div class="creative-card">
+              <ul class="comment-section">
+                @foreach($comments as $comment)
+                  <li>
+                    <div class="media">
+                      <img src="http://www.gravatar.com/avatar/<?= md5($comment->email); ?>?rating=PG&size=24&size=50&d=identicon" alt="Generic placeholder image">
+                      <div class="media-body">
+                        <h6>{{ $comment->name }}
+                          <p>
+                            <span class="m-0">( {{ $date->date("j F Y در H:i A" , strtotime($comment->created_at)) }} )</span>
+                          </p>
+                        </h6>
+                        <p>{{ $comment->comment }}</p>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              @endforeach
-            </ul>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
       @endif
 
       <div class=" row blog-contact">

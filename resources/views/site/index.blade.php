@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  {{ __('Main Page') }}
+  دیجی مارکت | معرفی محصولات دیجیتال
 @endsection
 
 @section('content')

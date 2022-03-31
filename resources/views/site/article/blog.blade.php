@@ -2,7 +2,7 @@
 
 
 @section('title')
-  {{ __('Blog') }}
+  دیجی مارکت | مقالات
 @endsection
 
 

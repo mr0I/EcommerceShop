@@ -2,7 +2,7 @@
 
 
 @section('title')
-  {{ __('Product Search') }}
+  {{ 'دیجی مارکت | جستجو | ' . $search_query  }}
 @endsection
 
 

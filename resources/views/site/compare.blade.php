@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  مقایسه محصولات
+  دیجی مارکت | مقایسه محصولات
 @endsection
 
 @section('content')

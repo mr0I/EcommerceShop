@@ -1,7 +1,7 @@
 @extends('site.dashboard.layout.master')
 
 @section('title')
-  User Dashboard
+  دیجی مارکت | ناحیه کاربری
 @endsection
 
 

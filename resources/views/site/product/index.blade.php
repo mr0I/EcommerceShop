@@ -1,6 +1,13 @@
 @extends('site.layout.master')
 
 
+@section('title')
+  @if($product !== null)
+    {{ 'دیجی مارکت |  ' . $product->title  }}
+  @else
+    {{ 'دیجی مارکت | صفحه محصول ' }}
+  @endif
+@endsection
 @section('keywords') {{ $product->title  }} @endsection
 @section('metadesc') {{ mb_strimwidth($product->description,0,300,null)  }} @endsection
 
@@ -50,13 +57,7 @@
   </script>
 @endsection
 
-@section('title')
-  @if($product !== null)
-    {{ $product->title }}
-  @else
-    {{ __('Product Page') }}
-  @endif
-@endsection
+
 
 @section('content')
 

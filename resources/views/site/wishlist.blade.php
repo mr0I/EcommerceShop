@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  لیست علاقه مندی
+  دیجی مارکت | لیست علاقه مندی
 @endsection
 
 @section('content')

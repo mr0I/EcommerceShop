@@ -1,5 +1,8 @@
 @extends('site.layout.master')
 
+@section('title')
+  دیجی مارکت | ورود - ثبت نام
+@endsection
 
 @section('content')
 

@@ -1,7 +1,7 @@
 @extends('site.layout.master')
 
 @section('title')
-  {{ __('Category Page') }}
+  {{ 'دیجی مارکت |  ' . $products[0]['category']->name_fa  }}
 @endsection
 
 @section('content')
