@@ -42,13 +42,11 @@ class SiteController extends Controller
         $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
         $laptopProductsCacheKey = 'laptopProducts';
         $tabletProductsCacheKey = 'tabletProducts';
-        $specialProductsCacheKey = 'specialProducts';
         $articlesCacheKey = 'publishedArticles';
         $cachedmobileProducts = Cache::get($mobileProductsCacheKey);
         $cachedmobileAccessoriesProducts = Cache::get($mobileAccessoriesProductsCacheKey);
         $cachedlaptopProducts = Cache::get($laptopProductsCacheKey);
         $cachedtabletProducts = Cache::get($tabletProductsCacheKey);
-        $cachedspecialProducts = Cache::get($specialProductsCacheKey);
         $cachedarticles = Cache::get($articlesCacheKey);
 
         if ($cachedmobileProducts){
@@ -77,12 +75,6 @@ class SiteController extends Controller
         }
 
 
-        if ($cachedspecialProducts){
-            $specialProducts = $cachedspecialProducts;
-        } else {
-            $specialProducts = Product::where('main_price', '<>' , null)->take(20)->get();
-            Cache::add($specialProductsCacheKey,$specialProducts,now()->addMinutes(10));
-        }
         if ($cachedarticles){
             $articles = $cachedarticles;
         } else {
@@ -90,6 +82,11 @@ class SiteController extends Controller
                 ->where('status','published')->get();
             Cache::add($articlesCacheKey,$articles,now()->addMinutes(10));
         }
+
+        // get random special products
+        $randomCat = rand(1,7);
+        $specialProducts = Product::where('main_price', '<>' , null)
+            ->where('category_id',$randomCat)->take(20)->get();
 
 
         return view('site/index' ,

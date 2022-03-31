@@ -22,7 +22,7 @@
                 </div>
                 @else
                   @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
-                    <h2>نتیجه ای برای <strong class="text-danger">{{ $search_query }}</strong> یافت نشد! </h2>
+                    <h2 class="text-center">نتیجه ای برای جستجوی شما یافت نشد!</h2>
                   @else
                     <h2>Nothing Found for<strong class="text-danger">{{ $search_query }}</strong></h2>
                   @endif
@@ -110,7 +110,7 @@
         @endforeach
       </div>
 
-      @if($products->lastPage() > 1)
+      @if($products->lastPage() > 1 && sizeof($products) !== 0)
         <div class="row justify-content-center">
           <div class="col-9">
             <div class="product-pagination">
@@ -120,6 +120,14 @@
                     <nav aria-label="Page navigation">
                       <ul class="pagination justify-content-center">
                         @if ($products->currentPage() != 1)
+                          <li class="page-item">
+                            <a class="page-link"
+                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page=1' }}"
+                               aria-label="First">
+                              <span aria-hidden="true"><i class="fa fa-backward" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('First') }}</span>
+                            </a>
+                          </li>
                           <li class="page-item">
                             <a class="page-link"
                                href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->currentPage()-1) }}"
@@ -135,11 +143,13 @@
                           $page = explode('?',$productUrl)[1];
                           $finalUrl = $products->path().'/?q='.$search_query.'&cat='.$category_id.'&'.$page;
                           @endphp
-                          <li class="page-item @if ($products->currentPage()==$i)active @endif">
+                          @if(abs($products->currentPage() - $i) < 4)
+                          <li class="page-item @if ($products->currentPage()==$i) active @endif">
                             <a class="page-link" @if($products->currentPage()!=$i) href="{{ $finalUrl  }}" @endif>
                               @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
                             </a>
                           </li>
+                            @endif
                         @endfor
                         @if ($products->currentPage() != $products->lastPage())
                           <li class="page-item">
@@ -147,6 +157,15 @@
                                href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->currentPage()+1) }}" aria-label="Next">
                               <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                               <span class="sr-only">{{ __('Next') }}</span>
+                            </a>
+                          </li>
+                        @endif
+                        @if ($products->currentPage() != $products->lastPage())
+                          <li class="page-item">
+                            <a class="page-link"
+                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->lastPage()) }}" aria-label="Last">
+                              <span aria-hidden="true"><i class="fa fa-forward" aria-hidden="true"></i></span>
+                              <span class="sr-only">{{ __('Last') }}</span>
                             </a>
                           </li>
                         @endif
@@ -159,6 +178,7 @@
           </div>
         </div>
       @endif
+
     </div>
   </section>
   <!-- product section end -->
