@@ -9,6 +9,7 @@ use App\User;
 use App\VerifyUser;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -137,5 +138,14 @@ class RegisterController extends Controller
         return redirect('/authentication')->with('status', $status);
     }
 
+    // override functions
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        $msg = (App::getLocale() === 'en')
+            ? 'We sent you an activation code. Check your email and click on the link to verify.'
+            : 'کد فعال سازی برای شما ارسال شد. ایمیل خود را بررسی کنید و برای تایید روی لینک فعالسازی کلیک کنید.';
+        return redirect('/authentication')->with('status', $msg);
+    }
 
 }

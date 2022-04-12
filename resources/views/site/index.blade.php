@@ -19,7 +19,7 @@
 
   <!--slider start-->
   <section class="theme-slider home-slide b-g-white " id="home-slide">
-    <div class="custom-container">
+    <div class="custom-container" style="max-width: 100%;">
       <div class="row">
         <div class="col" style="padding: 0;">
           <div class="slide-1 no-arrow">

@@ -66,4 +66,50 @@ class LoginController extends Controller
     }
 
 
+    // override functions
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string|email',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        }
+
+        return redirect(url('my_account'));
+        //return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout(Request $request)
+    {
+        $current_lang = session()->get('lang');
+        $current_theme = session()->get('theme');
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        // reasign language & theme sessions
+        session()->put('lang' , $current_lang);
+        session()->put('theme' , $current_theme);
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect('/');
+    }
+
+
 }
