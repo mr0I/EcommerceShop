@@ -190,7 +190,6 @@ class SiteController extends Controller
         $category_id = Category::where('name',$category_name)->get('id');
         $all_products = Product::where('category_id',$category_id[0]->id)->get();
         $all_products_count = sizeof($all_products);
-        
 
 
         if (!isset($_GET['page'])){
@@ -229,8 +228,8 @@ class SiteController extends Controller
         $priceMax = 0;
         foreach ($all_products as $product){
             if (! in_array($product->brand , $All_brands)) array_push($All_brands,$product->brand);
-            if($product->price<$priceMin) $priceMin=$product->price;
-            if($product->price>$priceMax) $priceMax=$product->price;
+            if($product->price < $priceMin) $priceMin=$product->price;
+            if($product->price > $priceMax) $priceMax=$product->price;
         }
         if (isset($_GET['filters'])){
             $filters = json_decode($_GET['filters']);
@@ -239,7 +238,6 @@ class SiteController extends Controller
         } else {
             $brandsFilters = $All_brands;
         }
-
         $priceMin= ($priceMin===null) ? $priceMin =0 : $priceMin;
 
 
@@ -252,6 +250,7 @@ class SiteController extends Controller
             $min_price = $priceRange->min;
             $max_price = $priceRange->max;
         }
+
 
         // Availability Filter
         if(isset($_GET['filters'])){
@@ -301,7 +300,7 @@ class SiteController extends Controller
         
         return view('site/category/index' ,
             compact('products','category_id','brands','products_count'
-                ,'priceMin','priceMax',
+                ,'priceMin','priceMax', 'min_price','max_price',
                 'latest_mobile_products',
                 'latest_mobile_accessories_products',
                 'latest_computer_parts_products',

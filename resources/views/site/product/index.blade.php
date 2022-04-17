@@ -149,7 +149,11 @@
                     <ul class="product-specifications mt-5">
                       @foreach(json_decode($product->parameters)[0] as $key=>$value)
                         @if($key !== '')
-                          <li class="w-100">{{ $key }} : {{ $value }}</li>
+                          <li class="w-100">
+                            <span><bdi>{{ $key }}</bdi></span>
+                            :
+                            <span><bdi>{{ $value }}</bdi></span>
+                          </li>
                         @endif
                       @endforeach
                     </ul>

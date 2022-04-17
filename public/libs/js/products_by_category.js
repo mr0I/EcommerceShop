@@ -33,14 +33,15 @@ jQuery(document).ready(function($) {
         }
     }
 
+
     // Initial Quantification Price Range
     $(".price-range").ionRangeSlider({
         type: "double",
         grid: true,
         min: 0,
         max: Math.ceil(localVars.priceMax),
-        from: Math.floor(localVars.priceMin),
-        to: Math.ceil(localVars.priceMax),
+        from: Math.floor(localVars.min_price),
+        to: Math.ceil(localVars.max_price),
         postfix: " تومان"
     });
 

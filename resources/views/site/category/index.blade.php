@@ -684,7 +684,9 @@
       "productsCount" : <?= $products_count ?>,
       "productsPerPage" : <?= Config::get('constants.catProductsPerPage') ?>,
       "priceMin" : <?= $priceMin ?>,
-      "priceMax" : <?= $priceMax ?>
+      "priceMax" : <?= $priceMax ?>,
+      "max_price" : <?= $max_price ?>,
+      "min_price" : <?= $min_price ?>
     }
   </script>
   <script type="text/javascript" src="{{ url('/libs/js/products_by_category.js') }}"></script>
