@@ -163,8 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
         /*
@@ -233,8 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'functions' => App\Helpers\functions::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
-
-],
+    ],
 
 ];

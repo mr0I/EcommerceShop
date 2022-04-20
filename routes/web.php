@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
     Route::get('/mailTest', 'SiteController@mailTest');
     Route::post('/sendTestMail', 'SiteController@sendTestMail');
     // Dashboard
-    Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth');
+    Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth')->name('my-account');
     Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');
     Route::get('/my_account/changepassword', 'SiteController@change_password')->middleware('isAuth');
     // Ajax
@@ -67,5 +67,14 @@ Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function
 });
 
 
-Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/user/verify/{token}', 'RegisterController@verifyUser');
+    Route::get('/auth/google', 'GoogleController@redirectToGoogle');
+    Route::get('/auth/google/callback', 'GoogleController@handleGoogleCallback');
+    Route::get('/auth/github', 'GithubController@redirectToGithub');
+    Route::get('/auth/github/callback', 'GithubController@handleGithubCallback');
+});
+
+
+
 Auth::routes();

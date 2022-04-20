@@ -17,6 +17,11 @@
       {{ session('warning') }}
     </div>
   @endif
+  @if (session('oauthError'))
+    <div class="my-3 alert alert-warning">
+      {{ session('oauthError') }}
+    </div>
+  @endif
   @if ($errors->has('email'))
     <div class="my-3 alert alert-danger">
       {{ $errors->first('email') }}
@@ -89,6 +94,16 @@
                         {{ __('Forgot Your Password?') }}
                       </a>
                     @endif
+
+                    {{-- Google Oauth --}}
+                    <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                      <strong>Login With Google</strong>
+                    </a>
+                    {{-- Github Oauth --}}
+                    <a href="{{ url('auth/github') }}" style="margin-top: 20px;" class="btn btn-lg btn-dark btn-block">
+                      <strong>Login With Github</strong>
+                    </a>
+
                   </div>
                 </div>
               </form>
