@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use App\ShortLink;
+use Illuminate\Support\Str;
+
 class functions
 {
     public static function calcDiscount($mainPrice , $salePrice){
@@ -29,5 +32,21 @@ class functions
 
     public static function clearInputs($input){
         return trim(htmlentities(addslashes($input)));
+    }
+
+    public static function generateShortLink($slug){
+        $input['link'] = url('/') .'/product/'. $slug;
+        $input['code'] = (Str::random(6));
+
+        $isDuplicate = ShortLink::where('link',$input['link'])->first();
+        if ($isDuplicate === null){
+            ShortLink::create($input);
+            $result = ShortLink::where('code',$input['code'])->first();
+            $shortLink = url('/') .'/sl/'. $result->code;
+        } else {
+            $shortLink = url('/') .'/sl/'. $isDuplicate->code;
+        }
+
+        return $shortLink;
     }
 }

@@ -14,6 +14,7 @@ use App\Mail\VerifyMail;
 use App\metaproduct;
 use App\Product;
 use App\ProductView;
+use App\ShortLink;
 use App\wishlist;
 use App\User;
 use Carbon\Carbon;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use KKomelin\TranslatableStringExporter\Core\Utils\JSON;
 use Spatie\Crawler\Crawler;
 use Spatie\Sitemap\SitemapGenerator;
@@ -130,6 +132,11 @@ class SiteController extends Controller
 
     public function product($slug)
     {
+
+        // generate short link
+        $shortLink = functions::generateShortLink($slug);
+
+
         $product = Product::find($slug);
 
         if ($product !== null) {
@@ -148,17 +155,26 @@ class SiteController extends Controller
             } else {
                 if ($product->showProduct()) {
                     $views = $meta_product->value;
-                    return view('site/product/index',compact('product', 'related_products','views'));
+                    return view('site/product/index',compact('product', 'related_products','views','shortLink'));
                 }
                 $meta_product->increment('value');
                 ProductView::createViewLog($product);
 
                 $views = $meta_product->value;
             }
-            return view('site/product/index',compact('product', 'related_products','views'));
+
+            return view('site/product/index',compact('product', 'related_products','views','shortLink'));
         } else {
             return redirect(url('404'));
         }
+    }
+
+    public function shortenLink($code)
+    {
+        $result = ShortLink::where('code',$code)->first();
+        $url = $result->link;
+
+        return redirect($url);
     }
 
     public function compare_products(Request $request)
@@ -297,7 +313,7 @@ class SiteController extends Controller
         $latest_laptop_products = Product::take(5)->where('category_id',7)->latest('date')->get();
         //$latest_office_machines_products = Product::take(5)->where('category_id',8)->latest('date')->get();
 
-        
+
         return view('site/category/index' ,
             compact('products','category_id','brands','products_count'
                 ,'priceMin','priceMax', 'min_price','max_price',
