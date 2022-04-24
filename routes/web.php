@@ -28,7 +28,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin',
     Route::post('/deleteArticle', 'ArticleController@deleteArticle');
 });
 
-Route::group(['namespace' => 'Site','middleware' => 'XssSanitization'], function () {
+//Route::group(['namespace' => 'Site','prefix'=>'{lang?}', 'middleware' => ['XssSanitization','SecureQueryString','setLocale']], function () {
+Route::group(['namespace' => 'Site', 'middleware' => ['XssSanitization','SecureQueryString']], function () {
     Route::get('/', 'SiteController@index')->name('home');
     Route::get('/product/{slug}', 'SiteController@product');
     Route::get('/restricted', 'SiteController@restricted');

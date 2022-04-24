@@ -93,8 +93,7 @@ jQuery(document).ready(function($){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             body: JSON.stringify(data),
-        })
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(data => {
                 if (data.result === 'Done'){
                     window.location.reload('true');
@@ -105,6 +104,7 @@ jQuery(document).ready(function($){
             .catch((error) => {
                 console.error('Error:', error);
             });
+
     });
 
     /* Change Theme */

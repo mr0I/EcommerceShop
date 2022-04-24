@@ -36,7 +36,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\setLocale::class,
         ],
 
         'api' => [
@@ -66,6 +65,8 @@ class Kernel extends HttpKernel
         'isAuth' => \App\Http\Middleware\isAuth::class,
         'guest' => \App\Http\Middleware\guest::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
-        'XssSanitization' => \App\Http\Middleware\XssSanitization::class
+        'XssSanitization' => \App\Http\Middleware\XssSanitization::class,
+        'SecureQueryString' => \App\Http\Middleware\SecureQueryString::class,
+        'setLocale' => \App\Http\Middleware\setLocale::class,
     ];
 }

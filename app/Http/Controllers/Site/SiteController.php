@@ -38,8 +38,11 @@ class SiteController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
+//        dd($request->segment(1));
+
+
         $mobileProductsCacheKey = 'mobileProducts';
         $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
         $laptopProductsCacheKey = 'laptopProducts';
@@ -135,7 +138,6 @@ class SiteController extends Controller
 
         // generate short link
         $shortLink = functions::generateShortLink($slug);
-
 
         $product = Product::find($slug);
 

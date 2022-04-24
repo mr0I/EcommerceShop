@@ -16,11 +16,21 @@ class setLocale
      */
     public function handle($request, Closure $next)
     {
-        if (session()->get('lang') === 'en') {
-            App::setLocale('en');
-        } else {
-            App::setLocale('fa');
+        if ($request->method() === 'GET') {
+            $segment = $request->segment(1);
+
+            if (!in_array($segment, config('app.locales'))) {
+                $segments = $request->segments();
+                $fallback = session('locale') ?: config('app.fallback_locale');
+                $segments = array_prepend($segments, $fallback);
+
+                return redirect()->to(implode('/', $segments));
+            }
+
+            session(['locale' => $segment]);
+            App::setLocale($segment);
         }
+
         return $next($request);
     }
 }
