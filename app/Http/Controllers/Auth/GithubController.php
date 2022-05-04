@@ -12,7 +12,7 @@ class GithubController extends Controller
 {
     public function redirectToGithub()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')->stateless()->redirect();
     }
 
     public function handleGithubCallback()

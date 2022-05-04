@@ -40,9 +40,6 @@ class SiteController extends Controller
 
     public function index(Request $request)
     {
-//        dd($request->segment(1));
-
-
         $mobileProductsCacheKey = 'mobileProducts';
         $mobileAccessoriesProductsCacheKey = 'mobileAccessoriesProducts';
         $laptopProductsCacheKey = 'laptopProducts';
@@ -294,9 +291,15 @@ class SiteController extends Controller
                 ->where('disabled','false')
                 ->orderBy($sortBy,$sorting);
         }
+
+
+        // cache using redis
+//        $products = Cache::remember('products',now()->addMinutes(2),
+//            function () use($sorted_products,$limit){
+//                return $sorted_products->skip(0)->take($limit)->get();
+//            });
         $products = $sorted_products->skip(0)->take($limit)->get();
         $products_count = $sorted_products->count();
-
 
 
         // Calc Brands
