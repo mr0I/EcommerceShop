@@ -37,7 +37,6 @@ use App\Helpers;
 class SiteController extends Controller
 {
 
-
     public function index(Request $request)
     {
         $mobileProductsCacheKey = 'mobileProducts';
