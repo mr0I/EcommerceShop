@@ -462,4 +462,9 @@ class SiteController extends Controller
 
         return redirect()->back()->with('message', 'Email Sent:)');
     }
+
+    public function dmOut(Request $request)
+    {
+        return view('site/redirect_page', ['pid'=>$request->pid]);
+    }
 }

@@ -115,7 +115,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -161,7 +161,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -207,7 +207,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -253,7 +253,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -299,7 +299,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -345,7 +345,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -391,7 +391,7 @@
                                       @endif
                                     </div>
                                     <div class="cart-info">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="افزودن به سبد خرید" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})" data-tippy-content="افزودن به لیست علاقه مندی"><i data-feather="heart"></i></a>
@@ -584,7 +584,7 @@
                                       </div>
                                     </div>
                                     <div class="icon-detail">
-                                      <a href="{{ $product->url }}" class="tooltip-top add-cartnoty" data-tippy-content="{{ __('Add To Cart') }}" target="_blank">
+                                      <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top add-cartnoty" data-tippy-content="{{ __('Add To Cart') }}" target="_blank">
                                         <i data-feather="shopping-cart"></i>
                                       </a>
                                       <a href="#" class="add-to-wish tooltip-top" onclick="addToWish(event,{{ $product->id }})"

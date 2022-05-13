@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Site', 'middleware' => ['XssSanitization','SecureQ
     Route::get('/mailTest', 'SiteController@mailTest');
     Route::post('/sendTestMail', 'SiteController@sendTestMail');
     Route::get('/sl/{code}', 'SiteController@shortenLink');
+    Route::get('/dm-out/{pid}', 'SiteController@dmOut');
     // Dashboard
     Route::get('/my_account', 'SiteController@my_account')->middleware('isAuth')->name('my-account');
     Route::get('/my_account/wishlist', 'SiteController@my_wishlist')->middleware('isAuth');

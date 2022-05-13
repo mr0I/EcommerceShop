@@ -49,7 +49,7 @@
                         <td><p class="<?= ($product->status=='available')? 'available' : 'not-available' ?>">{{ ($product->status=='available')? 'موجود' : 'ناموجود' }}</p></td>
                         <td>
                           <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
-                          <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
+                          <a href="{{ url('dm-out') .'/'. $product->pid }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
                         </td>
                       </tr>
                     @endforeach

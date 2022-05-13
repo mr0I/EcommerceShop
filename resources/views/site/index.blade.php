@@ -91,8 +91,6 @@
   </section>
   <!--tab product-->
 
-
-
   <!-- slider tab  -->
   <section class="section-py-space ratio_square product">
     <div class="custom-container">
@@ -119,7 +117,7 @@
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
-                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
+                            <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
@@ -195,7 +193,7 @@
                             </a>
                           </div>
                           <div class="product-icon icon-inline">
-                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
+                            <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
@@ -272,7 +270,7 @@
                           </div>
                           <div class="product-icon icon-inline">
 
-                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
+                            <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
@@ -349,7 +347,7 @@
                           </div>
                           <div class="product-icon icon-inline">
 
-                            <a href="{{ $product->url }}" class="tooltip-top" target="_blank"
+                            <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top" target="_blank"
                                data-tippy-content="خرید">
                               <i data-feather="shopping-cart"></i>
                             </a>
@@ -493,7 +491,7 @@
                               <p id="demo">
                               </p>
                             </div>
-                            <a href="{{ $product->url }}" class="btn btn-normal btn-md ">شروع خرید</a>
+                            <a href="{{ url('dm-out') .'/'. $product->pid }}" class="btn btn-normal btn-md ">شروع خرید</a>
                           </div>
                         </div>
                       @endforeach

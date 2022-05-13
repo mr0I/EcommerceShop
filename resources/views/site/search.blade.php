@@ -86,7 +86,7 @@
                     </div>
                   </div>
                   <div class="icon-detail">
-                    <a href="{{ $product->url }}" class="tooltip-top"
+                    <a href="{{ url('dm-out') .'/'. $product->pid }}" class="tooltip-top"
                        data-tippy-content="{{ __('Add to basket') }}" target="_blank">
                       <i data-feather="shopping-cart"></i>
                     </a>

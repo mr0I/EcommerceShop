@@ -104,7 +104,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product1->price }} تومان</span>
                           </div>
-                          <a href="{{ $product1->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ url('dm-out') .'/'. $product1->pid }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>
@@ -125,7 +125,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product2->price }} تومان</span>
                           </div>
-                          <a href="{{ $product2->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ url('dm-out') .'/'. $product2->pid }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>
@@ -146,7 +146,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product3->price }} تومان</span>
                           </div>
-                          <a href="{{ $product3->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ url('dm-out') .'/'. $product3->pid }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>
@@ -167,7 +167,7 @@
                           <div class="product_price digits price">
                             <strong>قیمت : </strong><span>{{ $product4->price }} تومان</span>
                           </div>
-                          <a href="{{ $product4->url }}" class="btn btn-info btn-rounded"
+                          <a href="{{ url('dm-out') .'/'. $product4->pid }}" class="btn btn-info btn-rounded"
                              target="_blank" rel="noopener noreferrer">
                             {{ __('Buy') }}
                           </a>

@@ -161,7 +161,7 @@
 
                   <div class="product-buttons">
                     @if($product->price!=0)
-                      <a href="{{ $product->url }}" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
+                      <a href="{{ url('dm-out') .'/'. $product->pid }}" id="cartEffect" class="btn cart-btn btn-normal tooltip-top"
                          data-tippy-content="افزودن به سبد خرید" target="_blank">
                         <i class="fa fa-shopping-cart"></i>
                         افزودن به سبد خرید
@@ -353,7 +353,7 @@
 
           <div class="add-btn">
             @if($product->price!=0)
-              <a href="{{ $product->url }}" class="btn btn-solid btn-sm" target="_blank">افزودن به سبد خرید</a>
+              <a href="{{ url('dm-out') .'/'. $product->pid }}" class="btn btn-solid btn-sm" target="_blank">افزودن به سبد خرید</a>
             @endif
           </div>
         </div>

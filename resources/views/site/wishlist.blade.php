@@ -64,7 +64,7 @@
                       <div class="col-xs-3">
                         <h2 class="td-color">
                           <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
-                          <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
+                          <a href="{{ url('dm-out') .'/'. $product->pid }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
                         </h2>
                       </div>
                     </div>
@@ -79,7 +79,7 @@
                   <td><p class="<?= ($product->status=='marketable')? 'available' : 'not-available' ?>">{{ ($product->status=='marketable')? 'موجود' : 'ناموجود' }}</p></td>
                   <td>
                     <a href="#" class="icon ms-3 remove-wish-product" data-id="{{ $product->id }}"><i class="ti-close"></i> </a>
-                    <a href="{{ $product->url }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
+                    <a href="{{ url('dm-out') .'/'. $product->pid }}" class="cart" target="_blank"><i class="ti-shopping-cart"></i></a>
                   </td>
                 </tr>
                 </tbody>
