@@ -210,7 +210,7 @@ class SiteController extends Controller
             $limit = Config::get('constants.catProductsPerPage');
         } else {
             $limit = (Config::get('constants.catProductsPerPage')) * intval($_GET['page']) ;
-            $limit = ($limit>$all_products_count)? $all_products_count: $limit;
+            $limit = ($limit>$all_products_count) ? $all_products_count: $limit;
         }
 
         // sorting filter

@@ -31,6 +31,12 @@ class functions
     }
 
     public static function clearInputs($input){
+        // Correct Arabian Chars
+        $input = preg_replace('/ك/i' , 'ک',$input);
+        $input = preg_replace('/ة/i' , 'ه',$input);
+        $input = preg_replace('/ؤ/i' , 'و',$input);
+        $input = preg_replace('/ي|ئ|ء/i' , 'ی',$input);
+
         return trim(htmlentities(addslashes($input)));
     }
 

@@ -110,7 +110,7 @@
                           </a>
                         @else
                           <div class="product_price">
-                            <strong>قیمت : </strong><span>--- </span>
+                            <strong>قیمت : </strong><span>---</span>
                           </div>
                         @endif
                       </td>
