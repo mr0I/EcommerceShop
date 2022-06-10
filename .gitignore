@@ -17,5 +17,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+.idea
+.idea/*
 Push.bat
 .zip
