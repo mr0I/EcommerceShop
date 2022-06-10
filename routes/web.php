@@ -79,5 +79,11 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 
+Route::group([],function (){
+    Route::get('/sitemap_index.xml','SitemapController@index');
+    Route::get('/page-sitemap.xml','SitemapController@pages');
+    Route::get('/product-sitemap.xml','SitemapController@products');
+});
+
 
 Auth::routes();

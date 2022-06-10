@@ -405,15 +405,15 @@ class SiteController extends Controller
     }
 
 
-    public function genSitemap()
-    {
-        $path = public_path('sitemap.xml');
-        SitemapGenerator::create('http://127.0.0.1:8000')
-            ->configureCrawler(function (Crawler $crawler) {
-                $crawler->setMaximumDepth(3);
-            })
-            ->writeToFile($path);
-    }
+//    public function genSitemap()
+//    {
+//        $path = public_path('sitemap.xml');
+//        SitemapGenerator::create('http://127.0.0.1:8000')
+//            ->configureCrawler(function (Crawler $crawler) {
+//                $crawler->setMaximumDepth(3);
+//            })
+//            ->writeToFile($path);
+//    }
 
     public function restricted(){
         return view('errors/403');
