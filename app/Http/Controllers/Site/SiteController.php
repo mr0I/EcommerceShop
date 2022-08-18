@@ -90,6 +90,13 @@ class SiteController extends Controller
             ->where('category_id',$randomCat)->take(20)->get();
 
 
+//        echo "\n\n mobileProducts: \n";
+//        dump($mobileProducts);
+//        echo "\n\n laptopProducts: \n";
+//        dump($laptopProducts);
+//        exit();
+
+
         return view('site/index' ,
             compact('mobileProducts','mobileAccessoriesProducts',
                 'laptopProducts',
