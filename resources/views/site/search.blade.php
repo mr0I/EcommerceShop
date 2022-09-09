@@ -12,22 +12,22 @@
     <div class="container">
       <div class="row">
         <div class="col">
-            <div style="direction: @if(\Illuminate\Support\Facades\App::getLocale() !=='fa') ltr @else rtl @endif">
-              @if(sizeof($products)!==0)
-                <div class="d-flex justify-content-around align-items-center">
-                  <h2>{{ __('Search Results for ') }}
-                    <strong class="text-success">{{ $search_query }}</strong>
-                  </h2>
-                  <div>{{ __('Results Count: ') }} <span class="text-success">{{ $products->total() }}</span> </div>
-                </div>
-                @else
-                  @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
-                    <h2 class="text-center">نتیجه ای برای جستجوی شما یافت نشد!</h2>
-                  @else
-                    <h2>Nothing Found for<strong class="text-danger">{{ $search_query }}</strong></h2>
-                  @endif
-                @endif
-            </div>
+          <div style="direction: @if(\Illuminate\Support\Facades\App::getLocale() !=='fa') ltr @else rtl @endif">
+            @if(sizeof($products)!==0)
+              <div class="d-flex justify-content-around align-items-center">
+                <h2>{{ __('Search Results for ') }}
+                  <strong class="text-success">{{ $search_query }}</strong>
+                </h2>
+                <div>{{ __('Results Count: ') }} <span class="text-success">{{ $products->total() }}</span> </div>
+              </div>
+            @else
+              @if(\Illuminate\Support\Facades\App::getLocale() === 'fa')
+                <h2 class="text-center">نتیجه ای برای جستجوی شما یافت نشد!</h2>
+              @else
+                <h2>Nothing Found for<strong class="text-danger">{{ $search_query }}</strong></h2>
+              @endif
+            @endif
+          </div>
         </div>
       </div>
     </div>
@@ -45,8 +45,8 @@
                 <div class="product-imgbox">
                   <div class="product-front">
                     <a href="/product/{{ $product->id }}">
-                    <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
-                         alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
+                      <img class="img-fluid" src="{{ url('uploads/productImages'). '/' . $product->image . '.webp' }}"
+                           alt="{{ $product->title }}" onerror="this.src='{{ url('images/inf.jpg') }}'">
                     </a>
                   </div>
                   <div class="product-back">
@@ -110,7 +110,20 @@
         @endforeach
       </div>
 
+
+
+
       @if($products->lastPage() > 1 && sizeof($products) !== 0)
+        @php
+          $currentUrl = \Illuminate\Support\Facades\Request::query();
+          $sq = $currentUrl['q'];
+          $cat = $currentUrl['cat'];
+          $page = intval($currentUrl['page']);
+          $firstUrl = sprintf("?q=%s&cat=%s&page=1",$sq,$cat);
+          $prevUrl = sprintf("?q=%s&cat=%s&page=%u",$sq,$cat,$page-1);
+          $nextUrl = sprintf("?q=%s&cat=%s&page=%u",$sq,$cat,$page+1);
+          $lastUrl = sprintf("?q=%s&cat=%s&page=%u",$sq,$cat,$products->lastPage());
+        @endphp
         <div class="row justify-content-center">
           <div class="col-9">
             <div class="product-pagination">
@@ -122,7 +135,7 @@
                         @if ($products->currentPage() != 1)
                           <li class="page-item">
                             <a class="page-link"
-                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page=1' }}"
+                               href="{{ $products->path() . $firstUrl }}"
                                aria-label="First">
                               <span aria-hidden="true"><i class="fa fa-backward" aria-hidden="true"></i></span>
                               <span class="sr-only">{{ __('First') }}</span>
@@ -130,7 +143,7 @@
                           </li>
                           <li class="page-item">
                             <a class="page-link"
-                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->currentPage()-1) }}"
+                               href="{{ $products->path() . $prevUrl }}"
                                aria-label="Previous">
                               <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
                               <span class="sr-only">{{ __('Previous') }}</span>
@@ -139,22 +152,23 @@
                         @endif
                         @for ($i = 1; $i <= $products->lastPage(); $i++)
                           @php
-                          $productUrl = $products->url($i);
-                          $page = explode('?',$productUrl)[1];
-                          $finalUrl = $products->path().'/?q='.$search_query.'&cat='.$category_id.'&'.$page;
+                            $productUrl = $products->url($i);
+                            $page = explode('?',$productUrl)[1];
+                            $finalUrl = sprintf("?q=%s&cat=%s&page=%s",$search_query,$category_id,$page);
                           @endphp
                           @if(abs($products->currentPage() - $i) < 4)
-                          <li class="page-item @if ($products->currentPage()==$i) active @endif">
-                            <a class="page-link" @if($products->currentPage()!=$i) href="{{ $finalUrl  }}" @endif>
-                              @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
-                            </a>
-                          </li>
-                            @endif
+                            <li class="page-item @if ($products->currentPage()==$i) active @endif">
+                              <a class="page-link" @if($products->currentPage()!=$i)
+                              href="{{ $products->path() . $finalUrl  }}" @endif>
+                                @if ($products->currentPage()==$i) صفحه {{$i}} از {{$products->lastPage()}} @else {{$i}} @endif
+                              </a>
+                            </li>
+                          @endif
                         @endfor
                         @if ($products->currentPage() != $products->lastPage())
                           <li class="page-item">
                             <a class="page-link"
-                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->currentPage()+1) }}" aria-label="Next">
+                               href="{{ $products->path() . $nextUrl }}" aria-label="Next">
                               <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                               <span class="sr-only">{{ __('Next') }}</span>
                             </a>
@@ -163,7 +177,7 @@
                         @if ($products->currentPage() != $products->lastPage())
                           <li class="page-item">
                             <a class="page-link"
-                               href="{{ $products->path().'/?q='.$search_query.'&cat='.$category_id.'&page='.($products->lastPage()) }}" aria-label="Last">
+                               href="{{ $products->path() . $lastUrl }}" aria-label="Last">
                               <span aria-hidden="true"><i class="fa fa-forward" aria-hidden="true"></i></span>
                               <span class="sr-only">{{ __('Last') }}</span>
                             </a>
