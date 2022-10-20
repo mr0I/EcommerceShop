@@ -118,7 +118,10 @@
           $currentUrl = \Illuminate\Support\Facades\Request::query();
           $sq = $currentUrl['q'];
           $cat = $currentUrl['cat'];
-          $page = intval($currentUrl['page']);
+          $page = isset($currentUrl['page']) ? intval($currentUrl['page']) : 1;
+          $whichHalf = (abs($products->currentPage() - $products->lastPage()) > abs($products->currentPage() - 1))
+            ? 'firstHalf'
+            : 'secondHalf';
           $firstUrl = sprintf("?q=%s&cat=%s&page=1",$sq,$cat);
           $prevUrl = sprintf("?q=%s&cat=%s&page=%u",$sq,$cat,$page-1);
           $nextUrl = sprintf("?q=%s&cat=%s&page=%u",$sq,$cat,$page+1);
@@ -132,15 +135,8 @@
                   <div class="col-12">
                     <nav aria-label="Page navigation">
                       <ul class="pagination justify-content-center">
+
                         @if ($products->currentPage() != 1)
-                          <li class="page-item">
-                            <a class="page-link"
-                               href="{{ $products->path() . $firstUrl }}"
-                               aria-label="First">
-                              <span aria-hidden="true"><i class="fa fa-backward" aria-hidden="true"></i></span>
-                              <span class="sr-only">{{ __('First') }}</span>
-                            </a>
-                          </li>
                           <li class="page-item">
                             <a class="page-link"
                                href="{{ $products->path() . $prevUrl }}"
@@ -150,13 +146,24 @@
                             </a>
                           </li>
                         @endif
+                        @if ($products->currentPage() != 1)
+                          <li class="page-item ">
+                            <a class="page-link" href="{{ $products->path() . $firstUrl }}">1</a>
+                          </li>
+                        @endif
+
+                        @if($whichHalf === 'secondHalf')
+                          <li class="page-item">
+                            <a class="page-link">---</a>
+                          </li>
+                        @endif
+
                         @for ($i = 1; $i <= $products->lastPage(); $i++)
                           @php
                             $productUrl = $products->url($i);
-                            $page = explode('?',$productUrl)[1];
-                            $finalUrl = sprintf("?q=%s&cat=%s&page=%s",$search_query,$category_id,$page);
+                            $finalUrl = sprintf("?q=%s&cat=%s&page=%s",$search_query,$category_id,$i);
                           @endphp
-                          @if(abs($products->currentPage() - $i) < 4)
+                          @if(abs($products->currentPage() - $i) < 3)
                             <li class="page-item @if ($products->currentPage()==$i) active @endif">
                               <a class="page-link" @if($products->currentPage()!=$i)
                               href="{{ $products->path() . $finalUrl  }}" @endif>
@@ -165,6 +172,18 @@
                             </li>
                           @endif
                         @endfor
+
+                        @if($whichHalf === 'firstHalf')
+                          <li class="page-item">
+                            <a class="page-link">---</a>
+                          </li>
+                        @endif
+
+                        @if ($products->currentPage() != $products->lastPage())
+                          <li class="page-item ">
+                            <a class="page-link" href="{{ $products->path() . $lastUrl }}">{{ $products->lastPage() }}</a>
+                          </li>
+                        @endif
                         @if ($products->currentPage() != $products->lastPage())
                           <li class="page-item">
                             <a class="page-link"
@@ -174,15 +193,7 @@
                             </a>
                           </li>
                         @endif
-                        @if ($products->currentPage() != $products->lastPage())
-                          <li class="page-item">
-                            <a class="page-link"
-                               href="{{ $products->path() . $lastUrl }}" aria-label="Last">
-                              <span aria-hidden="true"><i class="fa fa-forward" aria-hidden="true"></i></span>
-                              <span class="sr-only">{{ __('Last') }}</span>
-                            </a>
-                          </li>
-                        @endif
+
                       </ul>
                     </nav>
                   </div>
