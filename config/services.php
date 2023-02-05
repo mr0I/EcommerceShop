@@ -32,12 +32,12 @@ return [
     'google' => [
         'client_id' => '533264578272-d1g9usqhssfge21glr9dav19pklvgcoi.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => url('/') . 'auth/google/callback',
     ],
     'github' => [
         'client_id' => '7ea92b2041a5d281dca5',
         'client_secret' => 'ff19f2a5774ed922e9d6290c6462c7b3c414545a',
-        'redirect' => 'http://localhost:8000/auth/github/callback',
+        'redirect' => url('/') . 'auth/github/callback',
     ]
 
 ];
